@@ -15,13 +15,14 @@ public class Prodotto implements Serializable{
 	private Integer quantita;
 	private String genere;
 	private String categoria;
+	private Integer copieVendute;
 	
 	public Prodotto() {
 		super();
 	}
-	
+
 	public Prodotto(String isbn, String nome, String autore, String descrizione, String immagine, Double prezzo,
-			Integer quantita, String genere, String categoria) {
+			Integer quantita, String genere, String categoria, Integer copieVendute) {
 		super();
 		this.isbn = isbn;
 		this.nome = nome;
@@ -32,6 +33,7 @@ public class Prodotto implements Serializable{
 		this.quantita = quantita;
 		this.genere = genere;
 		this.categoria = categoria;
+		this.copieVendute = copieVendute;
 	}
 
 	public String getIsbn() {
@@ -106,11 +108,19 @@ public class Prodotto implements Serializable{
 		this.categoria = categoria;
 	}
 
+	public Integer getCopieVendute() {
+		return copieVendute;
+	}
+
+	public void setCopieVendute(Integer copieVendute) {
+		this.copieVendute = copieVendute;
+	}
+
 	@Override
 	public String toString() {
-		return "Prodotto [isbn=" + isbn + ", name=" + nome + ", autore=" + autore + ", descrizione=" + descrizione
+		return "Prodotto [isbn=" + isbn + ", nome=" + nome + ", autore=" + autore + ", descrizione=" + descrizione
 				+ ", immagine=" + immagine + ", prezzo=" + prezzo + ", quantita=" + quantita + ", genere=" + genere
-				+ ", categoria=" + categoria + "]";
+				+ ", categoria=" + categoria + ", copieVendute=" + copieVendute + "]";
 	}
 
 }
