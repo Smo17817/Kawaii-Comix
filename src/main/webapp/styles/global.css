@@ -1,0 +1,132 @@
+/*Global styling*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    --header1: calc(2rem + 1vw);
+    --header2: calc(3.5rem + 1vw);
+    --header3: calc(3rem + 1vw);
+    --header4: calc(2.4rem + 1vw);
+    --text: calc(1.5rem + 1vw);
+    --link: calc(1rem + 1vw);
+    --icon: calc(4rem + 1vw);
+    --big: calc(6rem + 1vw);
+    --special-color: #ff6f88;
+    --hover-color: #c83c54;
+    --footer-color : #414141;
+}
+
+h1 {
+    font-size: var(--header1);
+}
+
+h2 {
+    font-size: var(--header2);
+}
+
+h3 {
+    font-size: var(--header3);
+}
+
+h4,
+h5 {
+    font-size: var(--header4);
+}
+
+li,
+button,
+label,
+input,
+p {
+    font-size: var(--text);
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    font-size: var(--link);
+    text-decoration: none;
+    color: black;
+    transition: all 0.5s ease-in-out;
+}
+
+a:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 0.2rem;
+}
+
+
+/*Nav section*/
+
+.main-head{
+    background: var(--special-color);
+    color: black;
+    border-radius: 0rem 0rem 4rem 4rem;
+
+}
+
+nav{
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+
+#logo{
+    flex: 1 1 40rem;
+    font-family: "Pattaya", sans-serif;
+    font-weight: 400;
+    padding: 2rem;
+    background: url("../icons/kcback.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 10rem;
+    text-align: center;
+}
+
+nav ul{
+    flex: 2 1 40rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav img{
+    height: var(--icon);
+    width: var(--icon);
+}
+
+/*Footer Section*/
+footer{
+    background: var(--footer-color);
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 3rem 5%;
+    color: white;
+}
+
+footer h4 {
+    flex: 2 1 40rem;
+    font-size: calc(1.5rem + 1vw);
+}
+
+footer ul {
+    flex: 1 1 40rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer img{
+    height: 3rem;
+    width: 3rem;
+}
