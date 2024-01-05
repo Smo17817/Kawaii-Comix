@@ -101,16 +101,16 @@ public class ProdottoIDS implements ProdottoDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				String isbn = rs.getString("isbn");
-				String nome = rs.getString("nome");
-				String autore = rs.getString("autore");
-				String descrizione = rs.getString("descrizione");
-				String img = rs.getString("immagine_prod");
-				Double prezzo = rs.getDouble("prezzo");
-				Integer quantita = rs.getInt("quantita");
-				String genere = rs.getString("genere_nome");
-				String categoria = rs.getString("categoria_nome");
-				Integer copieVendute = rs.getInt("copie_vendute");
+				String isbn = rs.getString(ISBN);
+				String nome = rs.getString(NOME);
+				String autore = rs.getString(AUTORE);
+				String descrizione = rs.getString(DESCRIZIONE);
+				String img = rs.getString(IMMAGINE);
+				Double prezzo = rs.getDouble(PREZZO);
+				Integer quantita = rs.getInt(QUANTITA);
+				String genere = rs.getString(GENERE);
+				String categoria = rs.getString(CATEGORIA);
+				Integer copieVendute = rs.getInt(COPIE_VENDUTE);
 
 				Prodotto prodotto = new Prodotto(isbn, nome, autore, descrizione, img, prezzo, quantita, genere,
 						categoria, copieVendute);
@@ -137,15 +137,15 @@ public class ProdottoIDS implements ProdottoDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {
-				String nome = rs.getString("nome");
-				String autore = rs.getString("autore");
-				String descrizione = rs.getString("descrizione");
-				String img = rs.getString("immagine_prod");
-				Double prezzo = rs.getDouble("prezzo");
-				Integer quantita = rs.getInt("quantita");
-				String genere = rs.getString("genere_nome");
-				String categoria = rs.getString("categoria_nome");
-				Integer copieVendute = rs.getInt("copie_vendute");
+				String nome = rs.getString(NOME);
+				String autore = rs.getString(AUTORE);
+				String descrizione = rs.getString(DESCRIZIONE);
+				String img = rs.getString(IMMAGINE);
+				Double prezzo = rs.getDouble(PREZZO);
+				Integer quantita = rs.getInt(QUANTITA);
+				String genere = rs.getString(GENERE);
+				String categoria = rs.getString(CATEGORIA);
+				Integer copieVendute = rs.getInt(COPIE_VENDUTE);
 
 				return new Prodotto(isbn, nome, autore, descrizione, img, prezzo, quantita, genere, categoria,
 						copieVendute);
@@ -170,16 +170,16 @@ public class ProdottoIDS implements ProdottoDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				String isbn = rs.getString("isbn");
-				String nome = rs.getString("nome");
-				String autore = rs.getString("autore");
-				String descrizione = rs.getString("descrizione");
-				String img = rs.getString("immagine_prod");
-				Double prezzo = rs.getDouble("prezzo");
-				Integer quantita = rs.getInt("quantita");
-				String genere = rs.getString("genere_nome");
-				String categoria = rs.getString("categoria_nome");
-				Integer copieVendute = rs.getInt("copie_vendute");
+				String isbn = rs.getString(ISBN);
+				String nome = rs.getString(NOME);
+				String autore = rs.getString(AUTORE);
+				String descrizione = rs.getString(DESCRIZIONE);
+				String img = rs.getString(IMMAGINE);
+				Double prezzo = rs.getDouble(PREZZO);
+				Integer quantita = rs.getInt(QUANTITA);
+				String genere = rs.getString(GENERE);
+				String categoria = rs.getString(CATEGORIA);
+				Integer copieVendute = rs.getInt(COPIE_VENDUTE);
 				Prodotto prodotto = new Prodotto(isbn, nome, autore, descrizione, img, prezzo, quantita, genere,
 						categoria, copieVendute);
 
@@ -225,16 +225,16 @@ public class ProdottoIDS implements ProdottoDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				String isbn = rs.getString("isbn");
-				String nome = rs.getString("nome");
-				String autore = rs.getString("autore");
-				String descrizione = rs.getString("descrizione");
-				String img = rs.getString("immagine_prod");
-				Double prezzo = rs.getDouble("prezzo");
-				Integer quantita = rs.getInt("quantita");
-				String genere = rs.getString("genere_nome");
-				String categoria = rs.getString("categoria_nome");
-				Integer copieVendute = rs.getInt("copie_vendute");
+				String isbn = rs.getString(ISBN);
+				String nome = rs.getString(NOME);
+				String autore = rs.getString(AUTORE);
+				String descrizione = rs.getString(DESCRIZIONE);
+				String img = rs.getString(IMMAGINE);
+				Double prezzo = rs.getDouble(PREZZO);
+				Integer quantita = rs.getInt(QUANTITA);
+				String genere = rs.getString(GENERE);
+				String categoria = rs.getString(CATEGORIA);
+				Integer copieVendute = rs.getInt(COPIE_VENDUTE);
 				Prodotto prodotto = new Prodotto(isbn, nome, autore, descrizione, img, prezzo, quantita, genere,
 						categoria, copieVendute);
 
@@ -249,4 +249,16 @@ public class ProdottoIDS implements ProdottoDAO {
 
 		return prodotti;
 	}
+	
+	/*** MACRO ***/
+	private static final String ISBN = "isbn";
+	private static final String NOME = "nome";
+	private static final String AUTORE = "autore";
+	private static final String DESCRIZIONE = "descrizione";
+	private static final String IMMAGINE = "immagine_prod";
+	private static final String PREZZO = "prezzo";
+	private static final String QUANTITA = "quantita";
+	private static final String GENERE = "genere_nome";
+	private static final String CATEGORIA = "categoria_nome";
+	private static final String COPIE_VENDUTE = "copie_vendute";
 }
