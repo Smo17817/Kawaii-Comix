@@ -61,6 +61,31 @@ public class CarrelloIDS implements CarrelloDAO {
     }
 
     @Override
+    public void doSvuotaCarrello(Carrello carrello) {
+        String query = "INSERT INTO" + CarrelloIDS.TABLE2 +"(carrello_id , prodotto_isbn) VALUES (?,?)";
+        try(Connection connection = ds.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ArrayList<Prodotto> listaProdotti = carrello.getListaProdotti();
+            ArrayList<String> isbnList = new ArrayList<>();
+
+            for (Prodotto prodotto : listaProdotti) {
+                isbnList.add(prodotto.getIsbn());
+            }
+
+            for(String isbn : isbnList){
+                preparedStatement.setInt(1 , carrello.getCarrelloId());
+                preparedStatement.setString(2 , isbn);
+                preparedStatement.executeUpdate();
+            }
+
+            carrello.empty();
+        } catch (SQLException e) {
+            logger.log(Level.ALL , error , e);
+        }
+
+    }
+
+    @Override
     public Carrello doRetrieveCarrello(int userId) {
         String query = "SELECT * FROM " + CarrelloIDS.TABLE + "WHERE user_id = ?";
         Carrello carrello = new Carrello();
@@ -138,6 +163,8 @@ public class CarrelloIDS implements CarrelloDAO {
 
         return carrello;
     }
+
+
 
 
 }

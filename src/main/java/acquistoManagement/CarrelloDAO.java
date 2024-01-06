@@ -6,4 +6,5 @@ public interface CarrelloDAO {
     public Carrello doRetrieveProdottiCarrello(Carrello carrello);
     public void doCreateCarrello(int userId);
     public Boolean doDeleteCarrello(int carrelloId);
+    public void doSvuotaCarrello(Carrello carrello);
 }
