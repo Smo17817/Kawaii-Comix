@@ -57,8 +57,8 @@ public class ProdottoIDS implements ProdottoDAO {
 
 			preparedStatement.setString(1, isbn);
 			
-			preparedStatement.executeUpdate();
-			return true;
+			if(preparedStatement.executeUpdate() > 0);
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		}
