@@ -16,155 +16,155 @@ import java.util.logging.Logger;
 
 public class CarrelloIDS implements CarrelloDAO {
 
-    private static final Logger logger = Logger.getLogger(ProdottoIDS.class.getName());
-    private static final String error = "Errore";
+	private DataSource ds = null;
 
-    private static final String TABLE = "carrello";
+	public CarrelloIDS(DataSource ds) {
+		super();
+		this.ds = ds;
+	}
 
-    private static final String TABLE2 = "carrello_prodotto";
-    private DataSource ds = null;
+	@Override
+	public void doCreateCarrello(int userId) {
+		String query = "INSERT INTO " + CarrelloIDS.TABLE + " (user_id) VALUES (?)";
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setInt(1, userId);
 
-    public  CarrelloIDS(DataSource ds){
-        super();
-        this.ds = ds;
-    }
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+		}
+	}
 
-    @Override
-    public void doCreateCarrello(int userId){
-        String  query = "INSERT INTO" + CarrelloIDS.TABLE + "(user_id) VALUES (?)";
-        try(Connection connection = ds.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query)){
-            preparedStatement.setInt(1, userId);
+	@Override
+	public Boolean doDeleteCarrello(int carrelloId) {
+		String query = "DELETE FROM " + CarrelloIDS.TABLE + " WHERE id = ?";
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            logger.log(Level.ALL , error , e);
-        }
-    }
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 
-    @Override
-    public Boolean doDeleteCarrello(int carrelloId){
-        String query = "DELETE FROM"+ CarrelloIDS.TABLE + "WHERE id = ?";
+			preparedStatement.setInt(1, carrelloId);
 
-        try(Connection connection = ds.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			if (preparedStatement.executeUpdate() > 0) // controllo se le righe sono state modificate
+				return true;
 
-            preparedStatement.setInt(1 , carrelloId);
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+		}
+		return false;
+	}
 
-             if(preparedStatement.executeUpdate() > 0) //controllo se le righe sono state modificate
-                return true;
+	@Override
+	public void doSvuotaCarrello(Carrello carrello) {
+		String query = "INSERT INTO " + CarrelloIDS.TABLE2 + " (carrello_id , prodotto_isbn) VALUES (?,?)";
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			ArrayList<Prodotto> listaProdotti = carrello.getListaProdotti();
+			ArrayList<String> isbnList = new ArrayList<>();
 
-        } catch (SQLException e) {
-            logger.log(Level.ALL , error , e);
-        }
-        return false;
-    }
+			for (Prodotto prodotto : listaProdotti) {
+				isbnList.add(prodotto.getIsbn());
+			}
 
-    @Override
-    public void doSvuotaCarrello(Carrello carrello) {
-        String query = "INSERT INTO" + CarrelloIDS.TABLE2 +"(carrello_id , prodotto_isbn) VALUES (?,?)";
-        try(Connection connection = ds.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            ArrayList<Prodotto> listaProdotti = carrello.getListaProdotti();
-            ArrayList<String> isbnList = new ArrayList<>();
+			for (String isbn : isbnList) {
+				preparedStatement.setInt(1, carrello.getCarrelloId());
+				preparedStatement.setString(2, isbn);
+				preparedStatement.executeUpdate();
+			}
 
-            for (Prodotto prodotto : listaProdotti) {
-                isbnList.add(prodotto.getIsbn());
-            }
+			carrello.empty();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+		}
 
-            for(String isbn : isbnList){
-                preparedStatement.setInt(1 , carrello.getCarrelloId());
-                preparedStatement.setString(2 , isbn);
-                preparedStatement.executeUpdate();
-            }
+	}
 
-            carrello.empty();
-        } catch (SQLException e) {
-            logger.log(Level.ALL , error , e);
-        }
+	@Override
+	public Carrello doRetrieveCarrello(int userId) {
+		String query = "SELECT * FROM " + CarrelloIDS.TABLE + " WHERE user_id = ?";
+		Carrello carrello = new Carrello();
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setInt(1, userId);
 
-    }
+			ResultSet rs = preparedStatement.executeQuery();
 
-    @Override
-    public Carrello doRetrieveCarrello(int userId) {
-        String query = "SELECT * FROM " + CarrelloIDS.TABLE + "WHERE user_id = ?";
-        Carrello carrello = new Carrello();
-        try(Connection connection = ds.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query)){
-            preparedStatement.setInt(1, userId);
+			if (rs.next()) { // se esiste già un carrello per l'utente allora lo recupero dal DB
+				int carrelloid = rs.getInt("id");
+				carrello = new Carrello(carrelloid);
+			} else { // altrimenti se è il primo login creo un nuovo carrello per l'utente e poi
+						// glielo assegno
+				this.doCreateCarrello(userId);
 
-            ResultSet rs = preparedStatement.executeQuery();
+				rs = preparedStatement.executeQuery();
+				carrello = new Carrello(rs.getInt("id"));
+			}
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+		}
 
-            if(rs.next()){ //se esiste già un carrello per l'utente allora lo recupero dal DB
-                int carrelloid = rs.getInt("id");
-                carrello = new Carrello(carrelloid);
-            }else{ // altrimenti se è il primo login  creo un nuovo carrello per l'utente e poi glielo assegno
-                this.doCreateCarrello(userId);
+		return carrello;
+	}
 
-                rs = preparedStatement.executeQuery();
-                carrello = new Carrello(rs.getInt("id"));
-            }
-        } catch (SQLException e) {
-            logger.log(Level.ALL , error , e);
-        }
+	@Override
+	public Carrello doRetrieveProdottiCarrello(Carrello carrello) {
+		String query = "SELECT * FROM " + CarrelloIDS.TABLE2 + " WHERE carrello_id = ?";
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			preparedStatement.setInt(1, carrello.getCarrelloId());
 
-        return  carrello;
-    }
+			ResultSet rs = preparedStatement.executeQuery();
 
-    @Override
-    public Carrello doRetrieveProdottiCarrello(Carrello carrello) {
-        String query = "SELECT * FROM" + CarrelloIDS.TABLE2 + "WHERE carrello_id = ?";
-        try(Connection connection = ds.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);){
-            preparedStatement.setInt(1 , carrello.getCarrelloId());
+			ArrayList<Prodotto> prodottiCarrello = carrello.getListaProdotti();
+			ArrayList<String> isbnList = new ArrayList<>();
+			while (rs.next()) {
+				isbnList.add(rs.getString(("prodotto_isbn")));
+			}
 
-            ResultSet rs = preparedStatement.executeQuery();
+			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
+			Collection<Prodotto> allProducts = prodottoIDS.doRetreiveAllProdotti();
 
+			for (Prodotto prodotto : allProducts) {
+				if (isbnList.contains(prodotto.getIsbn())) {
+					String nomeprod = prodotto.getNome();
+					String autore = prodotto.getAutore();
+					String descrizione = prodotto.getDescrizione();
+					String img = prodotto.getImmagine();
+					String genere = prodotto.getGenere();
+					String categoria = prodotto.getCategoria();
+					Integer quantita = prodotto.getQuantita();
+					Double prezzo = prodotto.getPrezzo();
+					Integer copieVendute = prodotto.getCopieVendute();
+					Prodotto prodotto1 = new Prodotto(prodotto.getIsbn(), nomeprod, autore, descrizione, img, prezzo,
+							quantita, genere, categoria, copieVendute);
+					prodottiCarrello.add(prodotto1);
+				}
+			}
 
-            ArrayList<Prodotto> prodottiCarrello = carrello.getListaProdotti();
-            ArrayList<String> isbnList = new ArrayList<>();
-            while(rs.next()){
-                isbnList.add(rs.getString(("prodotto_isbn")));
-            }
+			for (String isbn : isbnList) {
+				query = "DELETE FROM " + CarrelloIDS.TABLE2 + " WHERE prodotto_isbn = ?";
+				connection.prepareStatement(query);
 
-            ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
-            Collection<Prodotto> allProducts = prodottoIDS.doRetreiveAllProdotti();
+				preparedStatement.setString(1, isbn);
 
-            for(Prodotto prodotto : allProducts){
-                if(isbnList.contains(prodotto.getIsbn())){
-                    String nomeprod = prodotto.getNome();
-                    String autore = prodotto.getAutore();
-                    String descrizione = prodotto.getDescrizione();
-                    String img = prodotto.getImmagine();
-                    String genere = prodotto.getGenere();
-                    String categoria = prodotto.getCategoria();
-                    Integer quantita = prodotto.getQuantita();
-                    Double prezzo = prodotto.getPrezzo();
-                    Integer copieVendute = prodotto.getCopieVendute();
-                    Prodotto prodotto1 = new Prodotto( prodotto.getIsbn() ,nomeprod, autore , descrizione, img , prezzo , quantita,  genere , categoria , copieVendute);
-                    prodottiCarrello.add( prodotto1);
-                }
-            }
+				preparedStatement.executeUpdate();
+			}
 
-            for(String isbn : isbnList){
-                query = "DELETE FROM"+ CarrelloIDS.TABLE2 + "WHERE prodotto_isbn = ?";
-                connection.prepareStatement(query);
+			carrello.setListaProdotti(prodottiCarrello);
 
-                preparedStatement.setString(1 , isbn);
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+		}
 
-                preparedStatement.executeUpdate();
-            }
+		return carrello;
+	}
+	
+	/*** MACRO ***/
 
-            carrello.setListaProdotti(prodottiCarrello);
-
-        } catch (SQLException e) {
-            logger.log(Level.ALL , error , e);
-        }
-
-        return carrello;
-    }
-
-
-
-
+	private static final String TABLE = "carrello";
+	private static final String TABLE2 = "carrello_prodotto";
+	
+	/*** LOGGER ***/
+	private static final Logger logger = Logger.getLogger(CarrelloIDS.class.getName());
+	private static final String error = "Errore";
 }

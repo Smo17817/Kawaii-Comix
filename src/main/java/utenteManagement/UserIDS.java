@@ -11,17 +11,10 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
-
-
 public class UserIDS implements UserDAO {	
-	private static final Logger logger = Logger.getLogger(UserIDS.class.getName());
-	private static final String error = "Errore";
-
-	private static final String TABLE = "site_user";
+	
 	private DataSource ds = null;
 	
-	
-
 	public UserIDS(DataSource ds) {
 		super();
 		this.ds = ds;
@@ -201,6 +194,7 @@ public class UserIDS implements UserDAO {
 	}
 	
 	/*** MACRO ***/
+	private static final String TABLE = "site_user";
 	private static final String ID = "id";
 	private static final String EMAIL = "email_address";
 	private static final String PASSWORD = "password";
@@ -211,4 +205,9 @@ public class UserIDS implements UserDAO {
 	private static final String CAP = "codice_postale";
 	private static final String PROVINCIA = "provincia";
 	private static final String NAZIONE = "nazione";
+	
+	/*** LOGGER ***/
+	private static final Logger logger = Logger.getLogger(UserIDS.class.getName());
+	private static final String error = "Errore";
+
 }

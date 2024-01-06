@@ -3,9 +3,10 @@ package acquistoManagement;
 import catalogoManagement.Prodotto;
 import utenteManagement.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Carrello {
+public class Carrello implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private int carrelloId;

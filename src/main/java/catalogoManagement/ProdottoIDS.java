@@ -12,10 +12,7 @@ import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 public class ProdottoIDS implements ProdottoDAO {
-	private static final Logger logger = Logger.getLogger(ProdottoIDS.class.getName());
-	private static final String error = "Errore";
 
-	private static final String TABLE = "prodotti";
 	private DataSource ds = null;
 
 	public ProdottoIDS(DataSource ds) {
@@ -251,6 +248,7 @@ public class ProdottoIDS implements ProdottoDAO {
 	}
 	
 	/*** MACRO ***/
+	private static final String TABLE = "prodotti";
 	private static final String ISBN = "isbn";
 	private static final String NOME = "nome";
 	private static final String AUTORE = "autore";
@@ -261,4 +259,8 @@ public class ProdottoIDS implements ProdottoDAO {
 	private static final String GENERE = "genere_nome";
 	private static final String CATEGORIA = "categoria_nome";
 	private static final String COPIE_VENDUTE = "copie_vendute";
+	
+	/*** LOGGER ***/
+	private static final Logger logger = Logger.getLogger(ProdottoIDS.class.getName());
+	private static final String error = "Errore";
 }
