@@ -1,4 +1,4 @@
-package view.amministrazione;
+package view.catalogo;
 
 import java.io.File;
 import java.io.IOException;

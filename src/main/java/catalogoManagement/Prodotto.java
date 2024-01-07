@@ -21,7 +21,7 @@ public class Prodotto implements Serializable{
 		super();
 	}
 	
-	// Ladifferenzasta nell'assenza di copieVendute
+	// La differenzasta nell'assenza di copieVendute
 	public Prodotto(String isbn, String nome, String autore, String descrizione, String immagine, Double prezzo,
 			Integer quantita, String genere, String categoria) {
 		super();

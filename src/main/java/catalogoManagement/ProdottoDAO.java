@@ -13,6 +13,8 @@ public interface ProdottoDAO {
 	public Collection<Prodotto> doRetreiveAllProdotti() throws SQLException;
 
 	public Prodotto doRetrieveByIsbn(String isbn) throws SQLException;
+	
+	public Prodotto doRetrieveByNome(String nome) throws SQLException;
 	//Restituisce gli ultimi cinque prodotti aggiunti
 	public Collection<Prodotto> lastSaved() throws SQLException;
 	//Restituisce le copie aggiornate

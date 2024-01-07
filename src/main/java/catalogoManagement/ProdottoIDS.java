@@ -156,6 +156,38 @@ public class ProdottoIDS implements ProdottoDAO {
 
 		return null;
 	}
+	
+	@Override
+	public Prodotto doRetrieveByNome(String nome) throws SQLException {
+		String query = "SELECT * FROM " + ProdottoIDS.TABLE + " WHERE nome = ?";
+
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			preparedStatement.setString(1, nome);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				String isbn = rs.getString(ISBN);
+				String autore = rs.getString(AUTORE);
+				String descrizione = rs.getString(DESCRIZIONE);
+				String img = rs.getString(IMMAGINE);
+				Double prezzo = rs.getDouble(PREZZO);
+				Integer quantita = rs.getInt(QUANTITA);
+				String genere = rs.getString(GENERE);
+				String categoria = rs.getString(CATEGORIA);
+				Integer copieVendute = rs.getInt(COPIE_VENDUTE);
+
+				return new Prodotto(isbn, nome, autore, descrizione, img, prezzo, quantita, genere, categoria,
+						copieVendute);
+			}
+
+			rs.close();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+		}
+
+		return null;
+	}
 
 	@Override
 	public Collection<Prodotto> lastSaved() throws SQLException {
@@ -264,4 +296,5 @@ public class ProdottoIDS implements ProdottoDAO {
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(ProdottoIDS.class.getName());
 	private static final String error = "Errore";
+
 }
