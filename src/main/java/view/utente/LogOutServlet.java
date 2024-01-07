@@ -19,19 +19,18 @@ public class LogOutServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(LogOutServlet.class.getName());
     private static final String error = "Errore";
 
-    private DataSource ds = null;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-
+        DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
         CarrelloIDS carrelloIDS = new CarrelloIDS(ds);
 
         try {
             Carrello carrello = (Carrello) session.getAttribute("carrello");
             carrelloIDS.doSvuotaCarrello(carrello);
-
+            System.out.println("ciao");
+            System.out.println(carrello.getListaProdotti());
             if (carrello.getListaProdotti().isEmpty()) {
                 session.invalidate();
                 response.sendRedirect("login.jsp");

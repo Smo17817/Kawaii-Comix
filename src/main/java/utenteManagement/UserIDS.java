@@ -162,15 +162,16 @@ public class UserIDS implements UserDAO {
 
 	@Override
 	public User doRetrieveUser(String email, String password) throws SQLException {
-		String query = "SELECT * FROM " + UserIDS.TABLE + " WHERE email_address = ? && password = ?";
+		String query = "SELECT * FROM " + UserIDS.TABLE + " WHERE email_address = ? and password = ?";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setString(1, email);
 			preparedStatement.setString(2, password);
-			ResultSet rs = preparedStatement.executeQuery();
 
+			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) {
+
 				Integer id = rs.getInt(ID);
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
@@ -178,8 +179,8 @@ public class UserIDS implements UserDAO {
 				String comune = rs.getString(COMUNE);
 				String cap = rs.getString(CAP);
 				String provincia = rs.getString(PROVINCIA);
-				String nazione = rs.getString(NAZIONE);		
-				
+				String nazione = rs.getString(NAZIONE);
+
 				return new User(id, email, password, nome, cognome, indirizzo, comune, cap, provincia, nazione);
 			}
 

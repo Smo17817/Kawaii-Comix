@@ -24,6 +24,9 @@
     if (currentPage.equals("/index.jsp")) {
       cssFile = "index.css";
       AdditionalCss = true;
+    }else if (currentPage.equals("/login.jsp")){
+      cssFile = "login.css";
+      AdditionalCss = true;
     }
   %>
   <% if(AdditionalCss){%>
@@ -31,9 +34,10 @@
   <%}%>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/<%=cssFile%>">
   <link rel="icon" href="<%=request.getContextPath()%>/icons/Luffys_flag_2_icon-icons.com_76119.ico"/>
-  <link
-          href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
-          rel="stylesheet"
-  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"  rel="stylesheet"/>
+
   <title>Kawaii Comix</title>
 </head>

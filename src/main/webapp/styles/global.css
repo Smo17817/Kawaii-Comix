@@ -11,13 +11,22 @@ html{
     --header2: calc(3.5rem + 1vw);
     --header3: calc(3rem + 1vw);
     --header4: calc(2.4rem + 1vw);
-    --text: calc(1.5rem + 1vw);
+    --text: calc(1rem + 1vw);
     --link: calc(1rem + 1vw);
     --icon: calc(4rem + 1vw);
     --big: calc(6rem + 1vw);
+    --image: calc(30rem + 1vw);
     --special-color: #ff6f88;
     --hover-color: #c83c54;
     --footer-color : #414141;
+}
+
+body{
+    background-image: url("../icons/slider2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: "Poppins" , sans-serif;
 }
 
 h1 {
