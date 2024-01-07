@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import catalogoManagement.ProdottoIDS;
 
 @WebServlet("/ProdottoServlet")
 public class ProdottoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(ProdottoServlet.class.getName());
-	private static final String error = "Errore";
+	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,8 +27,8 @@ public class ProdottoServlet extends HttpServlet {
 		
 		String isbn = request.getParameter("isbn");
 		HttpSession session = request.getSession();
-		//TODO aggiungere DataSource
-		ProdottoIDS prodottoIDS = new ProdottoIDS(null); 
+
+		ProdottoIDS prodottoIDS = new ProdottoIDS(ds); 
 		
 		try {
 			request.setAttribute("prodotto", prodottoIDS.doRetrieveByIsbn(isbn));
@@ -40,5 +40,9 @@ public class ProdottoServlet extends HttpServlet {
 			logger.log(Level.ALL, error, e);
 		}	
 	}
+	
+	/*** LOGGER ***/
+	private static final Logger logger = Logger.getLogger(ProdottoServlet.class.getName());
+	private static final String error = "Errore";
 
 }
