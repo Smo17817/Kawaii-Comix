@@ -8,7 +8,7 @@ public interface ProdottoDAO {
 
 	public Boolean doDeleteProdotto(String isbn) throws SQLException;
 
-	public void doUpdateProdotto(Prodotto prodotto) throws SQLException;
+	public Boolean doUpdateProdotto(Prodotto prodotto) throws SQLException;
 
 	public Collection<Prodotto> doRetreiveAllProdotti() throws SQLException;
 

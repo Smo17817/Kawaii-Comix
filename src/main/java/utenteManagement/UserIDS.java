@@ -161,17 +161,17 @@ public class UserIDS implements UserDAO {
 	}
 
 	@Override
-	public User doRetrieveByEmail(String email) throws SQLException {
-		String query = "SELECT * FROM " + UserIDS.TABLE + " WHERE email_address = ?";
+	public User doRetrieveUser(String email, String password) throws SQLException {
+		String query = "SELECT * FROM " + UserIDS.TABLE + " WHERE email_address = ? && password = ?";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
 			ResultSet rs = preparedStatement.executeQuery();
 
 			if(rs.next()) {
 				Integer id = rs.getInt(ID);
-				String password = rs.getString(PASSWORD);
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
 				String indirizzo = rs.getString(INDIRIZZO);

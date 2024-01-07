@@ -63,7 +63,7 @@ public class ProdottoIDS implements ProdottoDAO {
 	}
 
 	@Override
-	public void doUpdateProdotto(Prodotto prodotto) throws SQLException {
+	public Boolean doUpdateProdotto(Prodotto prodotto) throws SQLException {
 		String query = "UPDATE " + ProdottoIDS.TABLE
 				+ "SET nome = ?, autore = ?, descrizione = ?, immagine_prod = ?, prezzo = ?, quantita = ?, categoria_nome = ?, genere_nome = ? "
 				+ "WHERE isbn = ?";
@@ -82,10 +82,11 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setString(9, prodotto.getIsbn());
 
 			preparedStatement.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		}
-
+		return false;
 	}
 
 	@Override

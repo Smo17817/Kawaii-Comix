@@ -14,19 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import utenteManagement.User;
 import utenteManagement.UserIDS;
 
 @WebServlet("/DatiPersonaliServlet")
 public class DatiPersonaliServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
-	private static final String error = "Errore";
-	private static final String STATUS = "status";
 	
-	//TODO AGGIUNGERE LA JSP
-	private static final String url = "";
+	private static final long serialVersionUID = 1L;
+	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -47,14 +44,13 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
 		
-		//TODO AGGIUNGERE DATASOURCE
-		UserIDS userIDS = new UserIDS(null);
+		UserIDS userIDS = new UserIDS(ds);
 
 		try {			
 			//Se l'utente modifica la password, le due password devono combaciare
 			if (!password1.equals("") && !(password1.equals(password2))) {
 				request.setAttribute(STATUS, "Invalid_password");
-				dispatcher = request.getRequestDispatcher(url);
+				dispatcher = request.getRequestDispatcher(URL);
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -72,11 +68,20 @@ public class DatiPersonaliServlet extends HttpServlet {
 			
 			session.setAttribute("user", user);
 
-			dispatcher = request.getRequestDispatcher(url);
+			dispatcher = request.getRequestDispatcher(URL);
 			dispatcher.forward(request, response);
 			
 		} catch (ServletException | IOException | SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 	}
+	
+	/*** MACRO ***/
+	private static final String STATUS = "status";
+	private static final String URL = ""; //TODO AGGIUNGERE LA JSP
+	
+	/*** LOGGER ***/
+	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
+	private static final String ERROR = "Errore";
+	
 }

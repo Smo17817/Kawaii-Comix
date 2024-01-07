@@ -25,7 +25,6 @@ import catalogoManagement.ProdottoIDS;
 public class CatalogoServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	
 	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 	
 	@Override
