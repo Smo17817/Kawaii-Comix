@@ -31,7 +31,7 @@ public class CatalogoServlet extends HttpServlet{
 			throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		Gson json = new Gson();
-		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+
 		try {
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			ArrayList<Prodotto> catalogo = (ArrayList<Prodotto>) prodottoIDS.doRetreiveAllProdotti();

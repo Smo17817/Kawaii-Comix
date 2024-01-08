@@ -10,6 +10,7 @@
     --body-color: hsl(222, 100%, 99%);
     --body-font: "Poppins", sans-serif;
     --small-font-size: .813rem;
+    --mid-font-size: 2rem;
 }
 main {
     display: flex;
@@ -36,7 +37,7 @@ label{
     margin: 2rem;
     border-radius: 1.2rem;
     flex: 1 1 40rem;
-    min-width: 15vw;
+    max-width: 25rem;
     padding: 1rem;
     box-shadow: 1rem 1rem 1rem rgba(1 , 2 , 68, 0.2);
 }
@@ -44,20 +45,10 @@ label{
 /* SCHEDE PRODOTTO */
 #prodotti {
     flex: 1 1 40rem;
-    min-width: 85vw;
     flex-wrap: wrap;
     padding: 2rem;
 
 }
-
-.features{
-    min-height: 5vh;
-    min-width: 85%;
-    padding: 2rem;
-    display: flex;
-    position: relative;
-}
-
 
 #search-input{
     flex: 1 1 40rem;
@@ -89,7 +80,7 @@ label{
 }
 
 .scheda h4{
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 .scheda img {
     max-height: 19rem;
@@ -114,11 +105,21 @@ label{
     background: var(--hover-color);
 }
 
+/*** SEARCH E MOSTRA FILTRI ***/
+
+.features{
+    min-height: 5vh;
+    padding: 2rem;
+    display: flex;
+    position: relative;    
+}
+
+
 #filtroBottone{
     padding: 1rem;
     margin: 1rem;
     flex: 1 1 40rem;
-    font-size: var(--text);
+    font-size: var(--mid-font-size);
     text-align: center;
     background: var(--special-color);
     color: white;
@@ -149,7 +150,7 @@ label{
     border-radius: 4rem;
     padding-left: 14px;
     font-family: var(--body-font);
-    font-size: var(--small-font-size);
+    font-size: var(--mid-font-size);
     font-weight: 500;
     opacity: 0;
     pointer-events: none;

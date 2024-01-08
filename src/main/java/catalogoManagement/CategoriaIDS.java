@@ -62,9 +62,9 @@ public class CategoriaIDS implements CategoriaDAO{
 	}
 	
 	/*** MACRO ***/
-	private static final String TABLE = "genere";
+	private static final String TABLE = "categoria";
 	
 	/*** LOGGER ***/
-	private static final Logger logger = Logger.getLogger(GenereIDS.class.getName());
+	private static final Logger logger = Logger.getLogger(CategoriaIDS.class.getName());
 	private static final String error = "Errore";
 }

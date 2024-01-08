@@ -26,9 +26,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
+    background-attachment: fixed;
     background-position: center;
-    width: 100vw;
-    height: 100vh;
     font-family: "Poppins" , sans-serif;
 }
 
@@ -74,13 +73,13 @@ a:hover{
 }
 
 
-/*Nav section*/
+/*** NAV SECTION ***/
 
 .main-head{
     background: var(--special-color);
     color: black;
     border-radius: 0rem 0rem 4rem 4rem;
-
+	width: 100%
 }
 
 nav{
@@ -115,7 +114,7 @@ nav img{
     width: var(--icon);
 }
 
-/*Footer Section*/
+/*** FOOTER SECTION ***/
 footer{
     background: var(--footer-color);
     min-height: 10vh;
