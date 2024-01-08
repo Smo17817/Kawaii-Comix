@@ -29,7 +29,6 @@ public class LogOutServlet extends HttpServlet {
         try {
             Carrello carrello = (Carrello) session.getAttribute("carrello");
             carrelloIDS.doSvuotaCarrello(carrello);
-            System.out.println("ciao");
             System.out.println(carrello.getListaProdotti());
             if (carrello.getListaProdotti().isEmpty()) {
                 session.invalidate();

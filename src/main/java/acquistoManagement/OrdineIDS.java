@@ -29,7 +29,7 @@ public class OrdineIDS implements OrdineDAO {
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-			java.sql.Date sqlDate = new java.sql.Date(ordine.getData().getTime());
+			java.sql.Date sqlDate = new java.sql.Date(ordine.getJavaDate().getTime());
 
 			preparedStatement.setDate(1, sqlDate);
 			preparedStatement.setDouble(2, ordine.getTotale());
@@ -45,7 +45,7 @@ public class OrdineIDS implements OrdineDAO {
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 	}
 
@@ -63,7 +63,7 @@ public class OrdineIDS implements OrdineDAO {
 				return true;
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -90,7 +90,7 @@ public class OrdineIDS implements OrdineDAO {
 			if (preparedStatement.executeUpdate() > 0)
 				return true;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -111,46 +111,55 @@ public class OrdineIDS implements OrdineDAO {
 				Integer userId = rs.getInt(USER_ID);
 				Integer stato = rs.getInt(STATO);
 				Integer metodoSpedizione = rs.getInt(METODO_SPEDIZIONE);
-
-				ordini.add(new Ordine(id, data, totale, userId, stato, metodoSpedizione));
+				
+				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
+				// Aggiunge la lista dei singoli ordini associati 
+				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) doRetrieveAllOrdiniSingoli(ordine));
+				
+				ordini.add(ordine);
 			}
 
 			rs.close();
 
 			return ordini;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return ordini;
 	}
 
 	@Override
-	public Ordine doRetrieveById(Integer id) throws SQLException {
+	public Collection<Ordine> doRetrieveById(Integer id) throws SQLException {
 		String query = "SELECT * FROM " + OrdineIDS.TABLE + " WHERE id = ?";
+		ArrayList<Ordine> ordini = new ArrayList<>();
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setInt(1,  id);
 			ResultSet rs = preparedStatement.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				Date data = new Date(rs.getDate(DATA).getTime());
 				Double totale = rs.getDouble(TOTALE);
 				Integer userId = rs.getInt(USER_ID);
 				Integer stato = rs.getInt(STATO);
 				Integer metodoSpedizione = rs.getInt(METODO_SPEDIZIONE);
+				
+				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
+				// Aggiunge la lista dei singoli ordini associati 
+				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) doRetrieveAllOrdiniSingoli(ordine));
 
-				return new Ordine(id, data, totale, userId, stato, metodoSpedizione);
+				ordini.add(ordine) ;
 			}
 
 			rs.close();
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
-		return null;
+		return ordini;
 	}
 	
 	@Override
@@ -171,5 +180,5 @@ public class OrdineIDS implements OrdineDAO {
 
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(OrdineIDS.class.getName());
-	private static final String error = "Errore";
+	private static final String ERROR = "Errore";
 }

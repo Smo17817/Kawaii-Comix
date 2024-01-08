@@ -14,7 +14,7 @@ public interface OrdineDAO {
 
 	public Collection<Ordine> doRetrieveAllOrdini() throws SQLException;
 
-	public Ordine doRetrieveById(Integer id) throws SQLException;
+	public Collection<Ordine> doRetrieveById(Integer id) throws SQLException;
 	
 	public Collection<OrdineSingolo> doRetrieveAllOrdiniSingoli(Ordine ordine) throws SQLException;
 }
