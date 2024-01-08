@@ -61,7 +61,7 @@ function dynamicCatalog(url) {
 
 		for (const p of response) {
 			contenutoHtml += "<div class=\"scheda\" data-categoria=\"" + p.categoria + "\" data-genere=\"" + p.genere + "\">";
-			contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.isbn + "\"><img src=\"" + p.img + "\" class=\"trash\"></a>";
+			contenutoHtml += "<a href=\"ProdottoServlet?isbn=" + p.isbn + "\"><img src=\"" + p.immagine + "\" class=\"trash\"></a>";
 			contenutoHtml += "<div class=\"info\">" + "\n";
 			contenutoHtml += "<h4 class=\"pname\">" + p.nome + "</h4>" + "\n";
 			contenutoHtml += "<p> &#8364 " + p.prezzo.toFixed(2) + "</p>" + "\n";

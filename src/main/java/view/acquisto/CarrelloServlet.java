@@ -54,10 +54,9 @@ public class CarrelloServlet extends HttpServlet {
 				ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(isbn);
 
-				// Controlla che ci sia solo una ripetizione per ogni prodotto
-				if (!carrello.getListaProdotti().contains(prodotto)) {
+				if(prodotto != null){
 					carrello.add(prodotto);
-					session.setAttribute("carrello", carrello);
+					session.setAttribute("carrello" , carrello);
 				}
 			}
 

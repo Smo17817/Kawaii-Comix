@@ -11,7 +11,7 @@
 <body>
   <header class="main-head">
     <nav>
-      <h1 id="logo">kawaii Comix</h1>
+      <h1 id="logo">Kawaii Comix</h1>
       <ul>
         <li><a href="./index.jsp"><img src="./icons/home_icon-icons.com_64840.ico" title="Homepage"></a></li>
         <li><a href="./catalogo.jsp">Catalogo</a></li>

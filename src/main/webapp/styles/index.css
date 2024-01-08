@@ -89,7 +89,7 @@ main{
     position: absolute;
     bottom: 1.25rem;
     left: 50%;
-    transform: traslateX(-50%);
+    transform: translateX(-50%);
     z-index: 1;
 }
 

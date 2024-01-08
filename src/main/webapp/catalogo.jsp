@@ -23,7 +23,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            dynamicCatalog("<%=request.getContextPath()%>/CatalogServlet");
+            dynamicCatalog("<%=request.getContextPath()%>/CatalogoServlet");
             dynamicCategorie("<%=request.getContextPath()%>/CategoriaServlet");
             dynamicGeneri("<%=request.getContextPath()%>/GenereServlet");
         });
@@ -44,7 +44,17 @@
 
 
             <section id="prodotti">
-                <div id="filtroBottone">Nascondi filtri</div>
+                <div class="features">
+                    <div id="filtroBottone">Nascondi filtri</div>
+                    <form action="https://www.google.com/search" class="search" id="search-bar">
+                        <input type="search" placeholder="Type something..." name="q" class="search__input">
+
+                        <div class="search__button" id="search-button">
+                            <i class="ri-search-2-line search__icon"></i>
+                            <i class="ri-close-line search__close"></i>
+                        </div>
+                    </form>
+                </div>
                 <div id="schedeProdotto"></div>
             </section>
 
@@ -53,3 +63,5 @@
     <jsp:include page="./footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+
+<script src="./Script/main.js"></script>

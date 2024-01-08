@@ -25,13 +25,13 @@ import catalogoManagement.ProdottoIDS;
 public class CatalogoServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Gson json = new Gson();
-				
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		try {
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			ArrayList<Prodotto> catalogo = (ArrayList<Prodotto>) prodottoIDS.doRetreiveAllProdotti();
