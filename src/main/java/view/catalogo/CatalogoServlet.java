@@ -25,11 +25,11 @@ import catalogoManagement.ProdottoIDS;
 public class CatalogoServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		Gson json = new Gson();
 				
 		try {

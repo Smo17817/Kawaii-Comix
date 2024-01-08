@@ -19,12 +19,11 @@ import catalogoManagement.ProdottoIDS;
 @WebServlet("/ProdottoServlet")
 public class ProdottoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");		
 		String isbn = request.getParameter("isbn");
 		HttpSession session = request.getSession();
 
