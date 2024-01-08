@@ -26,6 +26,14 @@ public class OrdineSingolo implements Serializable{
 		this.ordineId = ordineId;
 		this.prodotto = prodotto;
 	}
+	
+	public OrdineSingolo(Integer quantita, Double totParziale, Integer ordineId, Prodotto prodotto) {
+		super();
+		this.quantita = quantita;
+		this.totParziale = totParziale;
+		this.ordineId = ordineId;
+		this.prodotto = prodotto;
+	}
 
 	public Integer getId() {
 		return id;

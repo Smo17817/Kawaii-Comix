@@ -24,12 +24,11 @@ import java.util.logging.Logger;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-    private final DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
 
     @Override
     protected void doPost(HttpServletRequest request , HttpServletResponse response)
             throws ServletException , IOException{
-      
+    	DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
         UserDAO userDAO = new UserIDS(ds);
         CarrelloDAO carrelloDAO = new CarrelloIDS(ds);
 

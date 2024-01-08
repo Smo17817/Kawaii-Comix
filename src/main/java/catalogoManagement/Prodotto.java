@@ -71,6 +71,18 @@ public class Prodotto implements Serializable{
 		if(!categoria.equals(""))
 			this.categoria = categoria;	
 	}
+	
+	public Integer sommaQuantita(Integer quantita) {
+		this.quantita += quantita;
+		return this.quantita;
+	}
+	
+	public Integer sommaCopieVendute(Integer quantita) {
+		if(quantita > 0) {
+			this.copieVendute += quantita;
+			return copieVendute;
+		} return this.copieVendute;
+	}
 
 	public String getIsbn() {
 		return isbn;

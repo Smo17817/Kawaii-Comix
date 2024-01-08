@@ -163,6 +163,13 @@ public class OrdineIDS implements OrdineDAO {
 	}
 	
 	@Override
+	public void doSaveOrdineSingoloAssociato(OrdineSingolo ordineSingolo) throws SQLException {
+		OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
+		
+		ordineSingoloIDS.doSaveOrdineSingolo(ordineSingolo);	
+	}
+	
+	@Override
 	public Collection<OrdineSingolo> doRetrieveAllOrdiniSingoli(Ordine ordine) throws SQLException {
 		OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
 		
@@ -181,4 +188,5 @@ public class OrdineIDS implements OrdineDAO {
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(OrdineIDS.class.getName());
 	private static final String ERROR = "Errore";
+
 }
