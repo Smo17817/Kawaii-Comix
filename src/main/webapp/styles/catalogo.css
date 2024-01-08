@@ -1,0 +1,88 @@
+main {
+    display: flex;
+    min-height: 90vh;
+}
+
+#catalogo {
+    min-width: 100vw;
+    display: flex;
+}
+
+#catalogo td {
+    padding: 0.5rem;
+}
+
+/* FILTRI */
+#filtri {
+    border-radius: 1.2rem;
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 1em 1rem 1rem rgba(1, 2, 68, 0.2);
+    height: auto;
+    min-width: 20vw;
+    overflow: hidden;
+}
+
+#filtri h2{
+    white-space: nowrap;
+    padding: 1rem;
+}
+
+
+/* SCHEDE PRODOTTO */
+#prodotti {
+    min-width: 80vw;
+    flex-wrap: wrap;
+    padding: 2rem;
+    position: relative;
+}
+
+#filtroBottone{
+    padding: 1rem;
+    margin: 1rem;
+    font-size: var(--text);
+    text-align: center;
+    background: var(--special-color);
+    color: white;
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    transform: translate(-0% , -5%);
+    border-radius: 2rem;
+    transition: background 0.5s ease-in-out;
+}
+
+#filtroBottone:hover {
+    background: var(--hover-color);
+}
+
+#schedeProdotto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-gap: 4rem;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.scheda {
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #21201e;
+    text-align: center;
+    width: 24rem;
+    max-width: 24rem;
+    height: 40rem;
+    margin: 2rem 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1em 1rem 1rem rgba(1, 2, 68, 0.2);
+}
+
+.scheda img {
+    max-height: 19rem;
+    margin: 1rem;
+    transition: all 0.3s;
+}

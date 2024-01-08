@@ -48,6 +48,7 @@ main{
     background: var(--special-color);
     color: white;
     border-radius: 2rem;
+    padding: 2rem;
     margin: 1rem;
     cursor: pointer;
     transition: background 0.5s ease-in-out;
