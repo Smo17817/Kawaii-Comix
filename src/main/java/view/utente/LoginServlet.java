@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 
                 requestDispatcher = request.getRequestDispatcher("index.jsp");
            }else {
-               request.setAttribute("status" , "failed");
+               request.setAttribute(STATUS , "failed");
                requestDispatcher = request.getRequestDispatcher("login.jsp");
                 System.out.println("è null");
            }
@@ -60,6 +60,9 @@ public class LoginServlet extends HttpServlet {
         	logger.log(Level.ALL, ERROR, e);
         }
     }
+    
+    /*** MACRO ***/
+    private static final String STATUS = "status";
     
     /*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
