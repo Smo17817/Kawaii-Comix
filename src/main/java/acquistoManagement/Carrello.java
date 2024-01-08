@@ -5,13 +5,14 @@ import utenteManagement.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Carrello implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private int carrelloId;
 
-    private transient ArrayList<Prodotto> listaProdotti = new ArrayList<>();
+    private transient HashSet<Prodotto> listaProdotti = new HashSet<>();
 
     public Carrello(int carrelloId) {
         this.carrelloId = carrelloId;
@@ -23,11 +24,11 @@ public class Carrello implements Serializable{
         return carrelloId;
     }
 
-    public ArrayList<Prodotto> getListaProdotti() {
+    public HashSet<Prodotto> getListaProdotti() {
         return listaProdotti;
     }
 
-    public void setListaProdotti(ArrayList<Prodotto> listaProdotti) {
+    public void setListaProdotti(HashSet<Prodotto> listaProdotti) {
         this.listaProdotti = listaProdotti;
     }
 
