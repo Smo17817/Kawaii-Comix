@@ -52,7 +52,15 @@ public class DatiPersonaliServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				return;
 			}
-
+			
+			if (userIDS.EmailExists(email)) { //TODO va aggiunto anche alla registrazione
+				request.setAttribute(STATUS, "Invalid_email");
+				dispatcher = request.getRequestDispatcher(URL);
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			
 			//Aggiorna solo i valori inseriti
 			user.setNotEmpty(email, password1, nome, cognome, indirizzo, comune, cap, provincia, nazione);
 			

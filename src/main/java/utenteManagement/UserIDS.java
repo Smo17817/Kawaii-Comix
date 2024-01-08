@@ -11,10 +11,10 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
-public class UserIDS implements UserDAO {	
-	
+public class UserIDS implements UserDAO {
+
 	private DataSource ds = null;
-	
+
 	public UserIDS(DataSource ds) {
 		super();
 		this.ds = ds;
@@ -87,7 +87,7 @@ public class UserIDS implements UserDAO {
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		}
-		
+
 		return false;
 	}
 
@@ -136,7 +136,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setInt(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 
-			if(rs.next()) {
+			if (rs.next()) {
 				String email = rs.getString(EMAIL);
 				String password = rs.getString(PASSWORD);
 				String nome = rs.getString(NOME);
@@ -145,18 +145,17 @@ public class UserIDS implements UserDAO {
 				String comune = rs.getString(COMUNE);
 				String cap = rs.getString(CAP);
 				String provincia = rs.getString(PROVINCIA);
-				String nazione = rs.getString(NAZIONE);	
-				
+				String nazione = rs.getString(NAZIONE);
+
 				return new User(id, email, password, nome, cognome, indirizzo, comune, cap, provincia, nazione);
 			}
 
 			rs.close();
 
-			
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		}
-		
+
 		return null;
 	}
 
@@ -170,7 +169,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(2, password);
 
 			ResultSet rs = preparedStatement.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 
 				Integer id = rs.getInt(ID);
 				String nome = rs.getString(NOME);
@@ -186,14 +185,33 @@ public class UserIDS implements UserDAO {
 
 			rs.close();
 
-			
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		}
-		
+
 		return null;
 	}
-	
+
+	@Override
+	public boolean EmailExists(String email) throws SQLException {
+
+		String query = "SELECT * FROM site_user WHERE email_address = ?";
+
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+
+			preparedStatement.setString(1, email);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			return resultSet.next();
+
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+		}
+
+		return false;
+
+	}
+
 	/*** MACRO ***/
 	private static final String TABLE = "site_user";
 	private static final String ID = "id";
@@ -206,7 +224,7 @@ public class UserIDS implements UserDAO {
 	private static final String CAP = "codice_postale";
 	private static final String PROVINCIA = "provincia";
 	private static final String NAZIONE = "nazione";
-	
+
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(UserIDS.class.getName());
 	private static final String error = "Errore";

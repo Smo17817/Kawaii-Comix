@@ -15,4 +15,6 @@ public interface UserDAO {
 	public User doRetrieveById(Integer id) throws SQLException;
 	
 	public User doRetrieveUser(String email, String password) throws SQLException;
+	
+	public boolean EmailExists(String email) throws SQLException;
 }
