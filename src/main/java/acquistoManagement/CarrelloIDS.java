@@ -4,7 +4,6 @@ import catalogoManagement.Prodotto;
 import catalogoManagement.ProdottoIDS;
 
 import javax.sql.DataSource;
-import java.rmi.ConnectIOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

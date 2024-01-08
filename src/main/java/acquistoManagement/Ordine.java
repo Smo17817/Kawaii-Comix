@@ -1,6 +1,8 @@
 package acquistoManagement;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Ordine implements Serializable{
@@ -13,6 +15,7 @@ public class Ordine implements Serializable{
 	private Integer userId;
 	private Integer stato;
 	private Integer metodoSpedizione;
+	private ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
 	
 	public Ordine() {
 		super();
@@ -35,12 +38,18 @@ public class Ordine implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public java.util.Date getData() {
-		return data;
+	
+	/*** ATTENZIONE: il cambiamento di formato con uno breve comporta la restituzione di una stringa ***/
+	public String getData() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(this.data);
+	}
+	
+	public Date getJavaDate() {
+		return this.data;
 	}
 
-	public void setData(java.util.Date data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
@@ -76,9 +85,18 @@ public class Ordine implements Serializable{
 		this.metodoSpedizione = metodoSpedizione;
 	}
 
+	public ArrayList<OrdineSingolo> getOrdiniSingoli() {
+		return ordiniSingoli;
+	}
+
+	public void setOrdiniSingoli(ArrayList<OrdineSingolo> ordiniSingoli) {
+		this.ordiniSingoli = ordiniSingoli;
+	}
+
 	@Override
 	public String toString() {
 		return "Ordine [id=" + id + ", data=" + data + ", totale=" + totale + ", userId=" + userId + ", stato=" + stato
-				+ ", metodoSpedizione=" + metodoSpedizione + "]";
-	}	
+				+ ", metodoSpedizione=" + metodoSpedizione + ", ordiniSingoli=" + ordiniSingoli + "]";
+	}
+
 }
