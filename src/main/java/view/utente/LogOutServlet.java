@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 
 @WebServlet("/LogOutServlet")
 public class LogOutServlet extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(LogOutServlet.class.getName());
-    private static final String error = "Errore";
+
+	private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,7 +36,11 @@ public class LogOutServlet extends HttpServlet {
                 response.sendRedirect("login.jsp");
             }
         }catch (Exception exception){
-            logger.log(Level.ALL, error, exception);
+            logger.log(Level.ALL, ERROR, exception);
         }
     }
+    
+    /*** LOGGER ***/
+	private static final Logger logger = Logger.getLogger(LogOutServlet.class.getName());
+    private static final String ERROR = "Errore";
 }

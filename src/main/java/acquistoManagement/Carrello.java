@@ -1,7 +1,6 @@
 package acquistoManagement;
 
 import catalogoManagement.Prodotto;
-import utenteManagement.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;

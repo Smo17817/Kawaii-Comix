@@ -6,7 +6,6 @@ import acquistoManagement.CarrelloIDS;
 import utenteManagement.User;
 import utenteManagement.UserDAO;
 import utenteManagement.UserIDS;
-import view.site.DbManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,24 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
-    private static final String error = "Errore";
 
-
-
-    private Connection connection = null;
+	private static final long serialVersionUID = 1L;
+    private final DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
 
     @Override
     protected void doPost(HttpServletRequest request , HttpServletResponse response)
             throws ServletException , IOException{
-        DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
-
+      
         UserDAO userDAO = new UserIDS(ds);
         CarrelloDAO carrelloDAO = new CarrelloIDS(ds);
 
@@ -62,11 +57,13 @@ public class LoginServlet extends HttpServlet {
            }
            requestDispatcher.forward(request ,response);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+        	logger.log(Level.ALL, ERROR, e);
         }
-
-
     }
+    
+    /*** LOGGER ***/
+	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
+    private static final String ERROR = "Errore";
 
 }
 
