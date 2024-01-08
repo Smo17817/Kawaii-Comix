@@ -1,4 +1,4 @@
-package acquistoManagement;
+package view.acquisto;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import acquistoManagement.Carrello;
+import acquistoManagement.Ordine;
+import acquistoManagement.OrdineIDS;
+import acquistoManagement.OrdineSingolo;
 import catalogoManagement.Prodotto;
 import catalogoManagement.ProdottoIDS;
 import utenteManagement.User;
@@ -25,11 +29,11 @@ import utenteManagement.User;
 public class AddOrdineServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
 
