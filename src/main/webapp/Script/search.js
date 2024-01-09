@@ -1,6 +1,6 @@
 function searchAndFilter() {
   let input, filter, schede, product;
-  input = document.getElementById("search-input");
+  input = document.getElementById("ricerca");
   filter = input.value.toUpperCase();
   schede = document.getElementById("schedeProdotto");
   product = schede.querySelectorAll(".scheda");
@@ -43,6 +43,7 @@ function searchAndFilter() {
       // Se non ci sono né ricerca né filtri attivi, mostra tutti i prodotti
       item.style.display = "";
     }
+
   }
 }
 

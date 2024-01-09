@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <html>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 <body>
     <jsp:include page="./nav.jsp" flush="true"></jsp:include>
     <script src="./Script/dynamicCode.js"></script>
@@ -21,6 +22,7 @@
             });
         });
     </script>
+
     <script>
         $(document).ready(function() {
             dynamicCatalog("<%=request.getContextPath()%>/CatalogoServlet");
@@ -46,9 +48,8 @@
             <section id="prodotti">
                 <div class="features">
                     <div id="filtroBottone">Nascondi filtri</div>
-                    <form action="https://www.google.com/search" class="search" id="search-bar">
-                        <input type="search" placeholder="Type something..." name="q" class="search__input">
-
+                    <form class="search" id="search-bar">
+                        <input type="search"  autocomplete="off" placeholder="Type something..." name="q" class="search__input" id="ricerca" onkeyup="searchAndFilter()">
                         <div class="search__button" id="search-button">
                             <i class="ri-search-2-line search__icon"></i>
                             <i class="ri-close-line search__close"></i>
@@ -56,12 +57,13 @@
                     </form>
                 </div>
                 <div id="schedeProdotto"></div>
+                <div id="pagination-container" class="pagination-container"></div>
             </section>
-
         </section>
     </main>
     <jsp:include page="./footer.jsp" flush="true"></jsp:include>
+    <script src="./Script/search.js"></script>
+    <script src="./Script/main.js"></script>
 </body>
 </html>
 
-<script src="./Script/main.js"></script>

@@ -47,7 +47,37 @@ label{
     flex: 1 1 40rem;
     flex-wrap: wrap;
     padding: 2rem;
+}
 
+
+.pagination-container{
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+    background: darkslategray;
+    min-height: 5vh;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 3rem;
+    bottom: 0;
+}
+
+.pagination-container a{
+    background: var(--special-color);
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 2rem;
+    margin: 2rem;
+}
+
+.pagination-container a:hover{
+    background: var(--hover-color);
 }
 
 #search-input{

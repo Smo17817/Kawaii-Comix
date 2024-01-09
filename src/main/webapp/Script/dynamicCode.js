@@ -70,6 +70,11 @@ function dynamicCatalog(url) {
 			contenutoHtml += "</div>";
 		}
 		$("#schedeProdotto").append(contenutoHtml);
+
+		showItemsForPage(currentPage);
+
+		const totalPages = Math.ceil(response.length / itemsPerPage);
+		createPaginationLinks(totalPages);
 	});
 }
 
@@ -177,4 +182,41 @@ function dynamicModificaProdotto(url) {
 
 		$("#chooseProduct").append(contenutoHtml);
 	});
+}
+
+
+//Pagination
+const itemsPerPage = 20;
+let currentPage = 1;
+
+function showItemsForPage(page) {
+	const startIndex = (page - 1) * itemsPerPage;
+	const endIndex = startIndex + itemsPerPage;
+
+	const allItems = document.querySelectorAll('.scheda');
+	allItems.forEach((item, index) => {
+		if (index >= startIndex && index < endIndex) {
+			item.style.display = 'block';
+		} else {
+			item.style.display = 'none';
+		}
+	});
+}
+
+function createPaginationLinks(totalPages) {
+	const paginationContainer = document.getElementById('pagination-container');
+	paginationContainer.innerHTML = '';
+
+	for (let i = 1; i <= totalPages; i++) {
+		const pageLink = document.createElement('a');
+		pageLink.href = '#';
+		pageLink.textContent = i;
+
+		pageLink.addEventListener('click', () => {
+			currentPage = i;
+			showItemsForPage(currentPage);
+		});
+
+		paginationContainer.appendChild(pageLink);
+	}
 }
