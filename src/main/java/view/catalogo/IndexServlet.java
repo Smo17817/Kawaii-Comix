@@ -38,7 +38,6 @@ public class IndexServlet  extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String tipo = request.getParameter("tipo");
-        System.out.println(tipo);
         try {
             if("lastSaved".equals(tipo)){
                 ArrayList<Prodotto> lastSaved =  (ArrayList<Prodotto>) prodottoDAO.lastSaved();

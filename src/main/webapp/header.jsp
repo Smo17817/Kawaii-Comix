@@ -30,6 +30,9 @@
     } else if (currentPage.equals(("/catalogo.jsp"))) {
       cssFile = "catalogo.css";
       AdditionalCss = true;
+    }else if (currentPage.equals(("/signup.jsp"))) {
+      cssFile = "signup.css";
+      AdditionalCss = true;
     }
   %>
   <% if(AdditionalCss){%>

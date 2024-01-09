@@ -1,30 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <jsp:include page="./header.jsp" flush="true" />
-<input type="hidden" id="status"
-	value="<%=request.getAttribute("status")%>">
-<script
-	src="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
-"></script>
-<link
-	href="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
-"
-	rel="stylesheet">
-<%
-String status = (String) request.getAttribute("status");
-%>
-<script type="text/javascript">
-	if('<%=status%>' == 'success'){
-		Swal.fire("Congratulazione!", "Account creato correttamente!", "success");
-	}else if('<%=status%>' == 'duplicato'){
-		Swal.fire("Spiacente!", "Email già presente nel sito","error");
-	}else if('<%=status%>
-	' == 'Invalid_email') {
-		Swal.fire("Spiacente!", "Inserire indirizzo email valido", "error");
-	}
-</script>
+<% String status = (String) request.getAttribute("status");%>
 <body>
 	<jsp:include page="./nav.jsp" flush="true" />
 	<main>
@@ -71,16 +48,17 @@ String status = (String) request.getAttribute("status");
 						name="cap" placeholder="00000">
 				</div>
 				<div class="form-row">
-					<label for="nazione">Nazione:</label> <select name="nazione">
+					<label for="nazione">Nazione:</label>
+					<select name="nazione" id="nazione">
 						<option>-effettua una scelta-</option>
 						<option>Italia<option>							
 					</select>
-						</div>
-			<div class="sub-class">
-								<button type="submit">Invia</button>
+				</div>
+				<div class="sub-class">
+					<button type="submit">Invia</button>
        			</div>
    			
-						</form>
+			</form>
  		</section>
  	</main>
 </body>
