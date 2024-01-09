@@ -10,7 +10,7 @@ function dynamicIndex(url) {
 		for (const prodotto of response) {
 			contenutoHtml += "<div class=\"scheda\">";
 			contenutoHtml += "<div class=\"nuovo\"> <h6> NUOVO </h6> </div>";
-			contenutoHtml += "<a href=\"ProductServlet?isbn=" + prodotto.isbn + "\"><img src=\"" + prodotto.img + "\"> </a>";
+			contenutoHtml += "<a href=\"ProdottoServlet?isbn=" + prodotto.isbn + "\"><img src=\"" + prodotto.immagine + "\"> </a>";
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
 			contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";

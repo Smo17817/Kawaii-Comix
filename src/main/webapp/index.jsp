@@ -3,6 +3,10 @@
 <html lang="it">
     <jsp:include page="./header.jsp" flush="true"></jsp:include>
     <script src="./Script/index.js"></script>
+    <script src="./Script/dynamicCode.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", dynamicIndex("<%=request.getContextPath()%>/IndexServlet"));
+    </script>
     <body>
         <jsp:include page="./nav.jsp" flush="true"></jsp:include>
         <main>
@@ -43,6 +47,12 @@
                         <a href="#slide2" onclick="scrollSenzaOffset(event)"></a>
                         <a href="#slide3" onclick="scrollSenzaOffset(event)"></a>
                     </div>
+                </div>
+            </section>
+            <section id="prodotti">
+                <h2> Ultime Uscite </h2>
+                <div id="schedeProdotto">
+
                 </div>
             </section>
         </main>
