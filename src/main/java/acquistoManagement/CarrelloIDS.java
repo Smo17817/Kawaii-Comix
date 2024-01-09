@@ -59,7 +59,7 @@ public class CarrelloIDS implements CarrelloDAO {
 		String query = "INSERT INTO " + CarrelloIDS.TABLE2 + " (carrello_id , prodotto_isbn) VALUES (?,?)";
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			HashSet<Prodotto> listaProdotti = carrello.getListaProdotti();
+			HashSet<Prodotto> listaProdotti = (HashSet<Prodotto>) carrello.getListaProdotti();
 			ArrayList<String> isbnList = new ArrayList<>();
 
 			for (Prodotto prodotto : listaProdotti) {
@@ -115,7 +115,7 @@ public class CarrelloIDS implements CarrelloDAO {
 
 			ResultSet rs = preparedStatement.executeQuery();
 
-			HashSet<Prodotto> prodottiCarrello = carrello.getListaProdotti();
+			HashSet<Prodotto> prodottiCarrello = (HashSet<Prodotto>) carrello.getListaProdotti();
 			ArrayList<String> isbnList = new ArrayList<>();
 			while (rs.next()) {
 				isbnList.add(rs.getString(("prodotto_isbn")));
