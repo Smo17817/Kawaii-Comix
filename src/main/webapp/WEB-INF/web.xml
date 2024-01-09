@@ -4,6 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>SignupServlet</servlet-name>
+  	<display-name>SignupServlet</display-name>
+  	<description></description>
+  	<servlet-class>view.utente.SignupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SignupServlet</servlet-name>
+  	<url-pattern>/SignupServlet</url-pattern>
+  </servlet-mapping>
   <resource-ref>
     <description>JNDI reference to a data source</description>
     <res-ref-name>jdbc/kawaiiComix</res-ref-name>

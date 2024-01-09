@@ -35,6 +35,21 @@ public class User implements Serializable {
 		this.provincia = provincia;
 		this.nazione = nazione;
 	}
+	
+	public User(String email, String password, String nome, String cognome, String indirizzo, String comune,
+			String cap, String provincia, String nazione) {
+		super();
+		
+		this.email = email;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.indirizzo = indirizzo;
+		this.comune = comune;
+		this.cap = cap;
+		this.provincia = provincia;
+		this.nazione = nazione;
+	}
 
 	public void setNotEmpty(String email, String password, String nome, String cognome, String indirizzo, String comune, String cap, String provincia, String nazione) {
 		if(!email.equals(""))
