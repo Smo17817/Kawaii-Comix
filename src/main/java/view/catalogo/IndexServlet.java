@@ -37,9 +37,21 @@ public class IndexServlet  extends HttpServlet {
         ProdottoDAO prodottoDAO = new ProdottoIDS(ds);
         PrintWriter out = response.getWriter();
 
+        String tipo = request.getParameter("tipo");
+        System.out.println(tipo);
         try {
-            ArrayList<Prodotto> lastSaved =  (ArrayList<Prodotto>) prodottoDAO.lastSaved();
-            out.write(json.toJson(lastSaved));
+            if("lastSaved".equals(tipo)){
+                ArrayList<Prodotto> lastSaved =  (ArrayList<Prodotto>) prodottoDAO.lastSaved();
+                System.out.println("stampo lastSaved");
+                out.write(json.toJson(lastSaved));
+            } else if ("bestSellers".equals(tipo)) {
+                ArrayList<Prodotto> bestSellers = (ArrayList<Prodotto>) prodottoDAO.bestSellers();
+                System.out.println("stampo bestSellers");
+                out.write(json.toJson(bestSellers));
+            }
+
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

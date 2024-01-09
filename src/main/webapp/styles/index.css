@@ -114,7 +114,7 @@ main {
 	margin-top: 5rem;
 }
 
-#schedeProdotto {
+.schedeProdotto {
 	height: auto;
 	display: flex;
 	flex-wrap: wrap;
@@ -166,6 +166,21 @@ main {
 	color: #fff;
 	padding: 5px;
 	align-items: left;
+}
+
+.gold {
+	background-color: gold;
+	color: #000; /* Cambia il colore del testo se necessario */
+}
+
+.silver {
+	background-color: silver;
+	color: #000; /* Cambia il colore del testo se necessario */
+}
+
+.bronze {
+	background-color: #cd7f32; /* Colore bronzo */
+	color: #000; /* Cambia il colore del testo se necessario */
 }
 
 .nuovo h6{

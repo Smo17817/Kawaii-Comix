@@ -5,7 +5,8 @@
     <script src="./Script/index.js"></script>
     <script src="./Script/dynamicCode.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", dynamicIndex("<%=request.getContextPath()%>/IndexServlet"));
+        document.addEventListener("DOMContentLoaded", dynamicIndex("<%=request.getContextPath()%>/IndexServlet?tipo=lastSaved"));
+        document.addEventListener("DOMContentLoaded", dynamicIndex2("<%=request.getContextPath()%>/IndexServlet?tipo=bestSellers"));
     </script>
     <body>
         <jsp:include page="./nav.jsp" flush="true"></jsp:include>
@@ -51,10 +52,15 @@
             </section>
             <section id="prodotti">
                 <h2> Ultime Uscite </h2>
-                <div id="schedeProdotto">
+                <div id="schedeUltimeAggiunte" class="schedeProdotto">
+
+                </div>
+                <h2> Best Sellers </h2>
+                <div id="schedeBestSeller" class="schedeProdotto">
 
                 </div>
             </section>
+
         </main>
         <jsp:include page="./footer.jsp" flush="true"></jsp:include>
     </body>
