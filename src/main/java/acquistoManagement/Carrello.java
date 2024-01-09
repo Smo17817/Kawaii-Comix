@@ -3,8 +3,8 @@ package acquistoManagement;
 import catalogoManagement.Prodotto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Carrello implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -23,12 +23,12 @@ public class Carrello implements Serializable{
         return carrelloId;
     }
 
-    public HashSet<Prodotto> getListaProdotti() {
+    public Set<Prodotto> getListaProdotti() {
         return listaProdotti;
     }
 
-    public void setListaProdotti(HashSet<Prodotto> listaProdotti) {
-        this.listaProdotti = listaProdotti;
+    public void setListaProdotti(Set<Prodotto> listaProdotti) {
+        this.listaProdotti = (HashSet<Prodotto>) listaProdotti;
     }
 
     public void add(Prodotto p){
