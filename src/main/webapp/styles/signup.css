@@ -1,7 +1,15 @@
+
+main{
+    display: flex;
+    align-items: center;
+    min-height: 90vh;
+    justify-content: center;
+}
+
 #signup {
     margin-top:2rem;
     min-height: 90vh;
-    min-width: 50vw;
+    min-width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,8 +42,9 @@
 
 .signup-form button {
     border: none;
-    font-size: 1.8rem;
-    width: 30%;
+    font-size: var(--text);
+    width: 50%;
+    color: white;
     padding: 1rem;
     margin: 1rem;
     border-radius: 2rem;
@@ -45,20 +54,27 @@
 }
 
 .signup-form button:hover {
-    background: #c83c54;
+    background: var(--hover-color);
 }
 
 .form-row {
     display: flex;
-    align-items: center;
     padding: 3rem;
+    text-align: start;
+    flex-wrap: wrap;
 }
 
 .form-row label {
+    margin: 0rem 3rem;
     flex: 1 1 20rem;
 }
 
 .form-row input {
+    padding: 0.5rem 3rem;
+    flex: 1 1 20rem;
+}
+
+.form-row select{
     padding: 0.5rem 3rem;
     flex: 1 1 20rem;
 }

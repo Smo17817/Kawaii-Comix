@@ -41,11 +41,9 @@ public class IndexServlet  extends HttpServlet {
         try {
             if("lastSaved".equals(tipo)){
                 ArrayList<Prodotto> lastSaved =  (ArrayList<Prodotto>) prodottoDAO.lastSaved();
-                System.out.println("stampo lastSaved");
                 out.write(json.toJson(lastSaved));
             } else if ("bestSellers".equals(tipo)) {
                 ArrayList<Prodotto> bestSellers = (ArrayList<Prodotto>) prodottoDAO.bestSellers();
-                System.out.println("stampo bestSellers");
                 out.write(json.toJson(bestSellers));
             }
 
