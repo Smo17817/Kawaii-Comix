@@ -33,6 +33,9 @@
     }else if (currentPage.equals(("/signup.jsp"))) {
       cssFile = "signup.css";
       AdditionalCss = true;
+    }else if (currentPage.equals(("/areapersonale.jsp"))) {
+      cssFile = "areapersonale.css";
+      AdditionalCss = true;
     }
   %>
   <% if(AdditionalCss){%>

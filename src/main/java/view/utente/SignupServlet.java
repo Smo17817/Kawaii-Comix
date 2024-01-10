@@ -43,31 +43,28 @@ public class SignupServlet extends HttpServlet {
 			try {
 				if (userIDS.EmailExists(email)) { //TODO va aggiunto anche alla registrazione
 					request.setAttribute(STATUS, "Invalid_email");
-					dispatcher = request.getRequestDispatcher(URL);
+					dispatcher = request.getRequestDispatcher("signup.jsp");
 					dispatcher.forward(request, response);
 					return;
 				}
 				else {
-					User user = new User(email,password,nome,cognome,indirizzo, città, comune, cap, provincia, nazione);
-					
-					System.out.println(user);
+					User user = new User(email,password,nome,cognome,indirizzo, città,cap, provincia, nazione);
+
 					userIDS.doSaveUser(user);
+					dispatcher = request.getRequestDispatcher("login.jsp");
+					dispatcher.forward(request, response);
 				}
 				
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ServletException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 	}
 	/*** MACRO ***/
 	private static final String STATUS = "status";
-	private static final String URL = ""; //TODO AGGIUNGERE LA JSP
 }

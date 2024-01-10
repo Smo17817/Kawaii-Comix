@@ -15,7 +15,7 @@
       <ul>
         <li><a href="./index.jsp"><img src="./icons/home_icon-icons.com_64840.ico" title="Homepage"></a></li>
         <li><a href="./catalogo.jsp">Catalogo</a></li>
-        <li><a href="#"><img src="./icons/profile.ico" title="Area Personale"></a></li>
+        <li><a href="./areapersonale.jsp"><img src="./icons/profile.ico" title="Area Personale"></a></li>
         <li><a href="#"><img src="./icons/cart.ico" title="Carrello"></a></li>
       </ul>
     </nav>

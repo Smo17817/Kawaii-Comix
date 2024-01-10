@@ -170,6 +170,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(1, email);
 			preparedStatement.setString(2, password);
 
+			System.out.println(preparedStatement);
 			ResultSet rs = preparedStatement.executeQuery();
 			if (rs.next()) {
 
@@ -222,7 +223,7 @@ public class UserIDS implements UserDAO {
 	private static final String NOME = "nome";
 	private static final String COGNOME = "cognome";
 	private static final String INDIRIZZO = "indirizzo";
-	private static final String CITTA = "città";
+	private static final String CITTA = "citta";
 	private static final String CAP = "codice_postale";
 	private static final String PROVINCIA = "provincia";
 	private static final String NAZIONE = "nazione";

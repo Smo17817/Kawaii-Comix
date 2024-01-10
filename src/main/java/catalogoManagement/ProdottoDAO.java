@@ -18,7 +18,7 @@ public interface ProdottoDAO {
 	//Restituisce gli ultimi cinque prodotti aggiunti
 	public Collection<Prodotto> lastSaved() throws SQLException;
 	//Restituisce le copie aggiornate
-	public Integer updateCopieVendute(Prodotto prodotto);
+	public Integer updateCopieVendute(Prodotto prodotto) throws  SQLException;
 	//Restituisce i prodotti più venduti
 	public Collection<Prodotto> bestSellers() throws SQLException;
 }

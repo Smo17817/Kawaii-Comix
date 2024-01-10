@@ -25,7 +25,7 @@
         </div>
         <div class="links">
           <a href="#">Hai dimenticato la password?</a>
-          <p>Non sei iscritto? <br> <a href="#">Iscriviti!!!</a> </p>
+          <p>Non sei iscritto? <br> <a href="./signup.jsp">Iscriviti!!!</a> </p>
 
         </div>
       </section>

@@ -36,7 +36,7 @@ public class User implements Serializable {
 		this.nazione = nazione;
 	}
 	
-	public User(String email, String password, String nome, String cognome, String indirizzo, String città, String comune,
+	public User(String email, String password, String nome, String cognome, String indirizzo, String città,
 			String cap, String provincia, String nazione) {
 		super();
 		

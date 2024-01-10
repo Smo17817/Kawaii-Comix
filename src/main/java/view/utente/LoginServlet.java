@@ -52,7 +52,6 @@ public class LoginServlet extends HttpServlet {
            }else {
                request.setAttribute(STATUS , "failed");
                requestDispatcher = request.getRequestDispatcher("login.jsp");
-                System.out.println("è null");
            }
            requestDispatcher.forward(request ,response);
         } catch (SQLException e) {
