@@ -4,6 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
   <resource-ref>
     <description>JNDI reference to a data source</description>
     <res-ref-name>jdbc/kawaiiComix</res-ref-name>

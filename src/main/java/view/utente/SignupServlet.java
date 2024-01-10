@@ -34,6 +34,7 @@ public class SignupServlet extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String cognome = request.getParameter("cognome");
 			String indirizzo = request.getParameter("indirizzo");
+			String città = request.getParameter("città");
 			String comune = request.getParameter("comune");
 			String cap = request.getParameter("cap");
 			String provincia = request.getParameter("provincia");
@@ -47,8 +48,9 @@ public class SignupServlet extends HttpServlet {
 					return;
 				}
 				else {
-					User user = new User(email,password,nome,cognome,indirizzo,comune, cap, provincia, nazione);
-					System.out.println("ciao");
+					User user = new User(email,password,nome,cognome,indirizzo, città, comune, cap, provincia, nazione);
+					
+					System.out.println(user);
 					userIDS.doSaveUser(user);
 				}
 				

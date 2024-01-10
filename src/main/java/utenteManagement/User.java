@@ -12,6 +12,7 @@ public class User implements Serializable {
 	private String nome;
 	private String cognome;
 	private String indirizzo;
+	private String città;
 	private String comune;
 	private String cap;
 	private String provincia;
@@ -21,7 +22,7 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(Integer id, String email, String password, String nome, String cognome, String indirizzo, String comune,
+	public User(Integer id, String email, String password, String nome, String cognome, String indirizzo, String città, String comune,
 			String cap, String provincia, String nazione) {
 		super();
 		this.id = id;
@@ -30,13 +31,14 @@ public class User implements Serializable {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.indirizzo = indirizzo;
+		this.città=città;
 		this.comune = comune;
 		this.cap = cap;
 		this.provincia = provincia;
 		this.nazione = nazione;
 	}
 	
-	public User(String email, String password, String nome, String cognome, String indirizzo, String comune,
+	public User(String email, String password, String nome, String cognome, String indirizzo, String città, String comune,
 			String cap, String provincia, String nazione) {
 		super();
 		
@@ -45,13 +47,14 @@ public class User implements Serializable {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.indirizzo = indirizzo;
+		this.città = città;
 		this.comune = comune;
 		this.cap = cap;
 		this.provincia = provincia;
 		this.nazione = nazione;
 	}
 
-	public void setNotEmpty(String email, String password, String nome, String cognome, String indirizzo, String comune, String cap, String provincia, String nazione) {
+	public void setNotEmpty(String email, String password, String nome, String cognome, String indirizzo, String città, String comune, String cap, String provincia, String nazione) {
 		if(!email.equals(""))
 			this.email = email;
 		if(!password.equals(""))
@@ -62,6 +65,8 @@ public class User implements Serializable {
 			this.cognome = cognome;
 		if(!indirizzo.equals(""))
 			this.indirizzo = indirizzo;
+		if(!città.equals(""))
+			this.città = città;
 		if(!comune.equals(""))
 			this.comune = comune;
 		if(!cap.equals(""))
@@ -119,6 +124,14 @@ public class User implements Serializable {
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
 	}
+	
+	public String getCittà() {
+		return città;
+	}
+	
+	public void setCittà(String città) {
+		this.città=città;
+	}
 
 	public String getComune() {
 		return comune;
@@ -155,7 +168,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", nome=" + nome + ", cognome="
-				+ cognome + ", indirizzo=" + indirizzo + ", comune=" + comune + ", cap=" + cap + ", provincia="
+				+ cognome + ", indirizzo=" + indirizzo + ", città=" + città +", comune=" + comune + ", cap=" + cap + ", provincia="
 				+ provincia + ", nazione=" + nazione + "]";
 	}
 
