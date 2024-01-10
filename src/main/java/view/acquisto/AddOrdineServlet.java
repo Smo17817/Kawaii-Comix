@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,7 @@ public class AddOrdineServlet extends HttpServlet {
 
 		User user = (User) session.getAttribute("user");
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
+		ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
 
 		try {
 			// Serve per ottenere la data al momento dell'ordine
@@ -53,7 +55,6 @@ public class AddOrdineServlet extends HttpServlet {
 
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			OrdineIDS ordineIDS = new OrdineIDS(ds);
-			ordineIDS.doSaveOrdine(new Ordine(ordineId, sqlDate, totale, user.getId(), 1, 1));
 
 			String[] values = request.getParameter("quantita").split(",");
 			int i = 0;
@@ -70,12 +71,12 @@ public class AddOrdineServlet extends HttpServlet {
 				prodotto.sommaCopieVendute(+quantitaScelta);
 				prodottoIDS.doUpdateProdotto(prodotto);
 
-				OrdineSingolo ordineSingolo = new OrdineSingolo(quantitaScelta, totParziale, ordineId, prodotto);
-				ordineIDS.doSaveOrdineSingoloAssociato(ordineSingolo);
-
+				ordiniSingoli.add(new OrdineSingolo(quantitaScelta, totParziale, ordineId, prodotto));
 				// Passa alla prossima quantità nella stringa con le quantità
 				i++;
 			}
+			
+			ordineIDS.doSaveOrdine(new Ordine(ordineId, sqlDate, totale, user.getId(), 1, 1, ordiniSingoli));
 
 			carrello.empty();
 			session.setAttribute("carrello", carrello);

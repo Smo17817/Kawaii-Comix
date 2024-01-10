@@ -24,7 +24,7 @@ public class UserIDS implements UserDAO {
 	public void doSaveUser(User user) throws SQLException {
 		
 		String query = "INSERT INTO " + UserIDS.TABLE
-				+ " (email_address, password, nome, cognome, indirizzo, città ,comune, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (email_address, password, nome, cognome, indirizzo, citta, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -34,11 +34,10 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(3, user.getNome());
 			preparedStatement.setString(4, user.getCognome());
 			preparedStatement.setString(5, user.getIndirizzo());
-			preparedStatement.setString(6, user.getCittà());
-			preparedStatement.setString(7, user.getComune());
-			preparedStatement.setString(8, user.getCap());
-			preparedStatement.setString(9, user.getProvincia());
-			preparedStatement.setString(10, user.getNazione());
+			preparedStatement.setString(6, user.getCitta());
+			preparedStatement.setString(7, user.getCap());
+			preparedStatement.setString(8, user.getProvincia());
+			preparedStatement.setString(9, user.getNazione());
 
 			preparedStatement.executeUpdate();
 			
@@ -79,8 +78,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(3, user.getNome());
 			preparedStatement.setString(4, user.getCognome());
 			preparedStatement.setString(5, user.getIndirizzo());
-			preparedStatement.setString(6, user.getCittà());
-			preparedStatement.setString(7, user.getComune());
+			preparedStatement.setString(6, user.getCitta());
 			preparedStatement.setString(8, user.getCap());
 			preparedStatement.setString(9, user.getProvincia());
 			preparedStatement.setString(10, user.getNazione());
@@ -111,13 +109,12 @@ public class UserIDS implements UserDAO {
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
 				String indirizzo = rs.getString(INDIRIZZO);
-				String città = rs.getString(CITTA);
-				String comune = rs.getString(COMUNE);
+				String citta = rs.getString(CITTA);
 				String cap = rs.getString(CAP);
 				String provincia = rs.getString(PROVINCIA);
 				String nazione = rs.getString(NAZIONE);
 
-				User user = new User(id, email, password, nome, cognome, indirizzo, città, comune, cap, provincia, nazione);
+				User user = new User(id, email, password, nome, cognome, indirizzo, citta, cap, provincia, nazione);
 
 				users.add(user);
 			}
@@ -147,13 +144,12 @@ public class UserIDS implements UserDAO {
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
 				String indirizzo = rs.getString(INDIRIZZO);
-				String città = rs.getString(CITTA);
-				String comune = rs.getString(COMUNE);
+				String citta = rs.getString(CITTA);
 				String cap = rs.getString(CAP);
 				String provincia = rs.getString(PROVINCIA);
 				String nazione = rs.getString(NAZIONE);
 
-				return new User(id, email, password, nome, cognome, indirizzo, città, comune, cap, provincia, nazione);
+				return new User(id, email, password, nome, cognome, indirizzo, citta, cap, provincia, nazione);
 			}
 
 			rs.close();
@@ -181,13 +177,12 @@ public class UserIDS implements UserDAO {
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
 				String indirizzo = rs.getString(INDIRIZZO);
-				String città = rs.getString(CITTA);
-				String comune = rs.getString(COMUNE);
+				String citta = rs.getString(CITTA);
 				String cap = rs.getString(CAP);
 				String provincia = rs.getString(PROVINCIA);
 				String nazione = rs.getString(NAZIONE);
 
-				return new User(id, email, password, nome, cognome, indirizzo, città, comune, cap, provincia, nazione);
+				return new User(id, email, password, nome, cognome, indirizzo, citta, cap, provincia, nazione);
 			}
 
 			rs.close();
@@ -228,7 +223,6 @@ public class UserIDS implements UserDAO {
 	private static final String COGNOME = "cognome";
 	private static final String INDIRIZZO = "indirizzo";
 	private static final String CITTA = "città";
-	private static final String COMUNE = "comune";
 	private static final String CAP = "codice_postale";
 	private static final String PROVINCIA = "provincia";
 	private static final String NAZIONE = "nazione";

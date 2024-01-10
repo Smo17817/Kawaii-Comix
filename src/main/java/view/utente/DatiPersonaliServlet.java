@@ -37,8 +37,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String indirizzo = request.getParameter("indirizzo");
-		String città = request.getParameter("città");
-		String comune = request.getParameter("comune");
+		String citta = request.getParameter("citta");
 		String cap = request.getParameter("cap");
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
@@ -63,7 +62,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 			
 			
 			//Aggiorna solo i valori inseriti
-			user.setNotEmpty(email, password1, nome, cognome, indirizzo, città,  comune, cap, provincia, nazione);
+			user.setNotEmpty(email, password1, nome, cognome, indirizzo, citta, cap, provincia, nazione);
 			
 			boolean checkUpdate = userIDS.doUpdateUser(user);
 			

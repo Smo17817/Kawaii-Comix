@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 public interface OrdineDAO {
-	public void doSaveOrdine(Ordine ordine, OrdineSingolo... ordiniSingoli) throws SQLException;
+	public void doSaveOrdine(Ordine ordine) throws SQLException;
 
 	public Boolean doDeleteOrdine(Integer id) throws SQLException;
 

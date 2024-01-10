@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Ordine implements Serializable{
 
@@ -29,6 +30,18 @@ public class Ordine implements Serializable{
 		this.userId = userId;
 		this.stato = stato;
 		this.metodoSpedizione = metodoSpedizione;
+	}
+
+	public Ordine(Integer id, Date data, Double totale, Integer userId, Integer stato, Integer metodoSpedizione,
+			List<OrdineSingolo> ordiniSingoli) {
+		super();
+		this.id = id;
+		this.data = data;
+		this.totale = totale;
+		this.userId = userId;
+		this.stato = stato;
+		this.metodoSpedizione = metodoSpedizione;
+		this.ordiniSingoli = (ArrayList<OrdineSingolo>) ordiniSingoli;
 	}
 
 	public Integer getId() {
