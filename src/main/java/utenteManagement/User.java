@@ -36,7 +36,7 @@ public class User implements Serializable {
 		this.nazione = nazione;
 	}
 	
-	public User(String email, String password, String nome, String cognome, String indirizzo, String città,
+	public User(String email, String password, String nome, String cognome, String indirizzo, String citta,
 			String cap, String provincia, String nazione) {
 		super();
 		
@@ -45,7 +45,7 @@ public class User implements Serializable {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.indirizzo = indirizzo;
-		this.citta = città;
+		this.citta = citta;
 		this.cap = cap;
 		this.provincia = provincia;
 		this.nazione = nazione;
@@ -155,7 +155,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", nome=" + nome + ", cognome="
-				+ cognome + ", indirizzo=" + indirizzo + ", città=" + citta + ", cap=" + cap + ", provincia="
+				+ cognome + ", indirizzo=" + indirizzo + ", citta=" + citta + ", cap=" + cap + ", provincia="
 				+ provincia + ", nazione=" + nazione + "]";
 	}
 
