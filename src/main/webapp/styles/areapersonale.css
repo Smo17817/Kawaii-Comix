@@ -61,7 +61,7 @@
 }
 
 #admin a{
-    display: grid;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 10rem;
@@ -86,11 +86,21 @@ a:hover {
 }
 
 #admin li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    font-size: 90%;
+    height: 15rem;
+    width: 15rem;
+    border-radius: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+    list-style: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
 }
 
 #admin .adimg{
-    padding-left: 4.5rem;
     height: 4rem;
 }

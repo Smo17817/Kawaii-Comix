@@ -1,0 +1,59 @@
+
+main{
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#login{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: auto;
+    min-width: 40vw;
+    padding: 2rem;
+    background: rgba(255 , 255,  255 , 0.8);
+    box-shadow: 0.5rem 0.3rem 1rem rgba(1 ,2 ,68 , 0.1) , 0.8rem 0.6rem 1rem rgba(1 ,2 ,68 , 0.1);
+}
+
+.login-img{
+    margin: 2rem;
+}
+.login-img img{
+    margin-top: 3rem;
+    border-radius: 1.2rem;
+    height: var(--image);
+}
+
+
+
+.form-wrapper form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-wrapper h3{
+    text-align: center;
+}
+.form-wrapper input{
+    padding: 1.5rem 4rem;
+    width: 60%;
+    margin: 1rem;
+}
+
+.form-wrapper button{
+    width: 60%;
+    background: var(--special-color);
+    color: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 1rem;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out;
+}
+
+.form-wrapper button:hover{
+    background: var(--hover-color);
+}

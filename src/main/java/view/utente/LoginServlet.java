@@ -1,8 +1,9 @@
 package view.utente;
 
-import acquistoManagement.Carrello;
-import acquistoManagement.CarrelloDAO;
-import acquistoManagement.CarrelloIDS;
+import acquistoManagement.*;
+import catalogoManagement.GestoreCatalogo;
+import catalogoManagement.GestoreCatalogoDAO;
+import catalogoManagement.GestoreCatalogoIDS;
 import utenteManagement.User;
 import utenteManagement.UserDAO;
 import utenteManagement.UserIDS;
@@ -30,30 +31,48 @@ public class LoginServlet extends HttpServlet {
             throws ServletException , IOException{
     	DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
         UserDAO userDAO = new UserIDS(ds);
+        GestoreCatalogoDAO gestoreCatalogoDAO = new GestoreCatalogoIDS(ds);
+        GestoreOrdiniDAO gestoreOrdiniDAO = new GestoreOrdiniIDS(ds);
         CarrelloDAO carrelloDAO = new CarrelloIDS(ds);
+
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String jspFileName =request.getParameter("jspName");
         HttpSession session  = request.getSession();
         RequestDispatcher requestDispatcher = null;
 
 
         try{
-            User user =  userDAO.doRetrieveUser(email , password);
-            if(user != null){
-                Carrello carrello = carrelloDAO.doRetrieveCarrello(user.getId());
+            if(jspFileName.equals("login")) {
+                User user = userDAO.doRetrieveUser(email, password);
+                if (user != null) {
+                    Carrello carrello = carrelloDAO.doRetrieveCarrello(user.getId());
 
-                carrelloDAO.doRetrieveProdottiCarrello(carrello);
+                    carrelloDAO.doRetrieveProdottiCarrello(carrello);
 
-                session.setAttribute("user"  , user);
-                session.setAttribute("carrello" , carrello);
+                    session.setAttribute("user", user);
+                    session.setAttribute("carrello", carrello);
 
-                requestDispatcher = request.getRequestDispatcher("index.jsp");
-           }else {
-               request.setAttribute(STATUS , "failed");
-               requestDispatcher = request.getRequestDispatcher("login.jsp");
-           }
-           requestDispatcher.forward(request ,response);
+                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                } else {
+                    request.setAttribute(STATUS, "failed");
+                    requestDispatcher = request.getRequestDispatcher("login.jsp");
+                }
+            } else if (jspFileName.equals("loginAdmin")) {
+                GestoreCatalogo gestoreCatalogo = gestoreCatalogoDAO.doRetrieveByAuthentication(email , password);
+                GestoreOrdini gestoreOrdini = gestoreOrdiniDAO.doRetrieveByAuthentication(email ,password);
+                if(gestoreCatalogo != null){
+                    session.setAttribute("user", gestoreCatalogo);
+                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                } else if (gestoreOrdini != null) {
+                    session.setAttribute("user", gestoreCatalogo);
+                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                }else{
+                    requestDispatcher = request.getRequestDispatcher("loginAdmin.jsp");
+                }
+            }
+            requestDispatcher.forward(request ,response);
         } catch (SQLException e) {
         	logger.log(Level.ALL, ERROR, e);
         }

@@ -18,6 +18,7 @@
         <div class="form-wrapper">
           <h3>Accedi al tuo Account</h3>
           <form action="LoginServlet" method="post">
+            <input type="hidden" name="jspName" value="login">
             <input type="email" name="email" placeholder="E-mail">
             <input type="password" name="password" placeholder="Password">
             <button type="submit">Invia</button>

@@ -57,7 +57,7 @@ public class GestoreCatalogo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "GestoreOrdini [email_address=" + email + ", nome=" + nome + ", cognome=" + cognome
+		return "GestoreCatalogo [email_address=" + email + ", nome=" + nome + ", cognome=" + cognome
 				+ ", password=" + password + "]";
 	}
 
