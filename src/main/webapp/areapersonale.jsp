@@ -10,12 +10,59 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
   Object user = session.getAttribute("user");
-  if (user == null)
+  System.out.println(user);
+  if (user == null) {
     response.sendRedirect("login.jsp");
+    return;
+  }
+
+  Boolean flag = (Boolean) session.getAttribute("BOTH");
+
 %>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <body>
-<!--TODO aggiungere logica per generazione dinamica area personale-->
+<script>
+  let flag = <%=flag%>
+  <%if (user instanceof  User) {%>
+    $(document).ready(function() {
+      let contenutoHtml = '';
+      contenutoHtml += '<li> <a href="#"><img class="proimg" alt="" src="./icons/profile.ico">Dati personali</a> </li>';
+      contenutoHtml += '<li> <a href="#"><img class="proimg" alt="" src="./icons/address.ico">Indirizzo</a></li>';
+      contenutoHtml += '<li> <a href="#"><img class="proimg" alt="" src="./icons/cart.ico">Carrello</a> </li>';
+      contenutoHtml += '<li> <a href="OrdineEffettuatiServlet"><img class="proimg" alt="" src="./icons/calendar.ico">I miei Ordini</a></li>';
+      contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
+      document.getElementById("user").innerHTML = contenutoHtml;
+    });
+  <%}else if(flag != null && flag){%>
+    $(document).ready(function() {
+      let contenutoHtml = '';
+      contenutoHtml += '<li> <a href="aggiungiProdotto.jsp"> <img class=\"adimg\" src="./icons/upload.ico"> Aggiungi Prodotto <p> (ADMIN) </p></a> </li>';
+      contenutoHtml += '<li> <a href="modificaProdotto.jsp"> <img class=\"adimg\" src="./icons/edit.ico"> Modifica Prodotto <p> (ADMIN) </p></a> </li>';
+      contenutoHtml += '<li> <a href="eliminaProdotto.jsp"> <img class=\"adimg\" src="./icons/delete.ico"> Elimina Prodotto <p> (ADMIN) </p></a> </li>';
+      contenutoHtml += '<li> <a href="controllaordini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
+      contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
+      document.getElementById("admin").innerHTML = contenutoHtml;
+    });
+  <%}else if(user instanceof  GestoreOrdini){
+  System.out.printf("ciao2");%>
+  $(document).ready(function() {
+    let contenutoHtml = '';
+    contenutoHtml += '<li> <a href="controllaordini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
+    contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
+    document.getElementById("admin").innerHTML = contenutoHtml;
+  });
+  <%}else if(user instanceof GestoreCatalogo){
+  System.out.printf("ciao3");%>
+    $(document).ready(function() {
+      let contenutoHtml = '';
+      contenutoHtml += '<li> <a href="aggiungiProdotto.jsp"> <img class=\"adimg\" src="./icons/upload.ico"> Aggiungi Prodotto <p> (ADMIN) </p></a> </li>';
+      contenutoHtml += '<li> <a href="modificaProdotto.jsp"> <img class=\"adimg\" src="./icons/edit.ico"> Modifica Prodotto <p> (ADMIN) </p></a> </li>';
+      contenutoHtml += '<li> <a href="eliminaProdotto.jsp"> <img class=\"adimg\" src="./icons/delete.ico"> Elimina Prodotto <p> (ADMIN) </p></a> </li>';
+      contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
+      document.getElementById("admin").innerHTML = contenutoHtml;
+    });
+  <%}%>
+</script>
   <main>
     <jsp:include page="./nav.jsp" flush="true"></jsp:include>
     <section class="mid" id="mid">
@@ -27,26 +74,6 @@
       </div>
       <div class="account">
         <ul id="user">
-          <li> <a href="#">
-            <img class="proimg" alt="" src="./icons/profile.ico">
-            Dati personali
-          </a> </li>
-          <li> <a href="#">
-            <img class="proimg" alt="" src="./icons/address.ico">
-            Indirizzo
-          </a></li>
-          <li> <a href="#">
-            <img class="proimg" alt="" src="./icons/cart.ico">
-            Carrello
-          </a> </li>
-          <li> <a href="OrdineEffettuatiServlet">
-            <img class="proimg" alt="" src="./icons/calendar.ico">
-            I miei Ordini
-          </a></li>
-          <li> <a href="LogOutServlet">
-            <img class="proimg" alt="" src="./icons/exit.ico">
-            Esci
-          </a></li>
         </ul>
         <ul id="admin">
         </ul>

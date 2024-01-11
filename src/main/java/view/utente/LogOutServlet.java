@@ -2,6 +2,9 @@ package view.utente;
 
 import acquistoManagement.Carrello;
 import acquistoManagement.CarrelloIDS;
+import acquistoManagement.GestoreOrdini;
+import catalogoManagement.GestoreCatalogo;
+import utenteManagement.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,14 +28,23 @@ public class LogOutServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
         CarrelloIDS carrelloIDS = new CarrelloIDS(ds);
+        Object user =  session.getAttribute("user");
 
         try {
-            Carrello carrello = (Carrello) session.getAttribute("carrello");
-            carrelloIDS.doSvuotaCarrello(carrello);
-            System.out.println(carrello.getListaProdotti());
-            if (carrello.getListaProdotti().isEmpty()) {
+            if(user instanceof GestoreOrdini || user instanceof GestoreCatalogo){
+                System.out.println("ciao");
                 session.invalidate();
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("loginAdmin.jsp");
+
+            } else  {
+                Carrello carrello = (Carrello) session.getAttribute("carrello");
+                carrelloIDS.doSvuotaCarrello(carrello);
+                System.out.println(carrello.getListaProdotti());
+                System.out.println(carrello);
+                if (carrello.getListaProdotti().isEmpty()) {
+                    session.invalidate();
+                    response.sendRedirect("login.jsp");
+                }
             }
         }catch (Exception exception){
             logger.log(Level.ALL, ERROR, exception);

@@ -62,11 +62,17 @@ public class LoginServlet extends HttpServlet {
             } else if (jspFileName.equals("loginAdmin")) {
                 GestoreCatalogo gestoreCatalogo = gestoreCatalogoDAO.doRetrieveByAuthentication(email , password);
                 GestoreOrdini gestoreOrdini = gestoreOrdiniDAO.doRetrieveByAuthentication(email ,password);
-                if(gestoreCatalogo != null){
+
+                if(gestoreCatalogo != null && gestoreOrdini !=null) {
                     session.setAttribute("user", gestoreCatalogo);
+                    session.setAttribute("BOTH" , true);
+                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                }else if(gestoreCatalogo != null){
+                    session.setAttribute("user", gestoreCatalogo);
+                    System.out.println("gestoreCatalogo");
                     requestDispatcher = request.getRequestDispatcher("index.jsp");
                 } else if (gestoreOrdini != null) {
-                    session.setAttribute("user", gestoreCatalogo);
+                    session.setAttribute("user", gestoreOrdini);
                     requestDispatcher = request.getRequestDispatcher("index.jsp");
                 }else{
                     requestDispatcher = request.getRequestDispatcher("loginAdmin.jsp");
