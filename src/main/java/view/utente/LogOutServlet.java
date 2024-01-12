@@ -32,15 +32,12 @@ public class LogOutServlet extends HttpServlet {
 
         try {
             if(user instanceof GestoreOrdini || user instanceof GestoreCatalogo){
-                System.out.println("ciao");
                 session.invalidate();
                 response.sendRedirect("loginAdmin.jsp");
 
             } else  {
                 Carrello carrello = (Carrello) session.getAttribute("carrello");
                 carrelloIDS.doSvuotaCarrello(carrello);
-                System.out.println(carrello.getListaProdotti());
-                System.out.println(carrello);
                 if (carrello.getListaProdotti().isEmpty()) {
                     session.invalidate();
                     response.sendRedirect("login.jsp");

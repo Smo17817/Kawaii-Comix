@@ -131,7 +131,7 @@ label{
     cursor: pointer;
 }
 
-.info a :hover {
+.info a:hover {
     background: var(--hover-color);
 }
 

@@ -6,6 +6,7 @@
 <body>
     <jsp:include page="./nav.jsp" flush="true"></jsp:include>
     <script src="./Script/dynamicCode.js"></script>
+    <script src="./Script/carrello.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var filtroBottone = document.getElementById('filtroBottone');

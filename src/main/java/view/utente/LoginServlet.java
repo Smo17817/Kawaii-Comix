@@ -69,7 +69,6 @@ public class LoginServlet extends HttpServlet {
                     requestDispatcher = request.getRequestDispatcher("index.jsp");
                 }else if(gestoreCatalogo != null){
                     session.setAttribute("user", gestoreCatalogo);
-                    System.out.println("gestoreCatalogo");
                     requestDispatcher = request.getRequestDispatcher("index.jsp");
                 } else if (gestoreOrdini != null) {
                     session.setAttribute("user", gestoreOrdini);

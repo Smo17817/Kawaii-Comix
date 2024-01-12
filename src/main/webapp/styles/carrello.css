@@ -1,0 +1,177 @@
+main {
+    min-width: 100%;
+    min-height: 80vh;
+}
+
+h2 {
+    padding-bottom: 2rem;
+}
+
+#container {
+    padding: 5rem;
+    overflow-x: auto;
+}
+
+table {
+    border-radius: 12px;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+thead {
+    border-bottom: 1px solid black;
+    font-weight: 700;
+}
+
+td, th {
+    padding: 6px 0;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--text);
+}
+
+.trash {
+    height: 30px;
+    opacity: 60%;
+}
+
+.trash:hover {
+    opacity: 1;
+}
+
+.quantita{
+    width: 80%;
+}
+
+.thumbnail {
+    height: 25rem;
+}
+
+/* TOTALE */
+
+#bottom {
+    margin: 2rem;
+    min-height: 10vh;
+    display: flex;
+    justify-content: end;
+}
+
+#cassa {
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    font-size: var(--text);
+    min-width: 50rem;
+    margin: 0rem 2rem 5rem 3rem;
+    box-shadow: 0.5em 1em 0.3em rgba(1, 2, 68, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
+    align-self: end;
+    justify-self: end;
+}
+
+
+
+.totale {
+    display: flex;
+    justify-content: space-between;
+}
+
+.totProd{
+    font-size: var(--text);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    html {
+        font-size: 45%;
+    }
+
+    table {
+        font-size: 1.4rem;
+    }
+
+    td {
+        white-space: normal;
+        height: auto;
+        max-height: none;
+    }
+
+    .thumbnail {
+        max-height: 25rem;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+    html {
+        font-size: 45%;
+    }
+
+    table {
+        font-size: 1.4rem;
+    }
+
+    td {
+        white-space: normal;
+        height: auto;
+        max-height: none;
+    }
+
+    .thumbnail {
+        max-height: 25rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    html {
+        font-size: 45%;
+    }
+
+    table {
+        font-size: 1.4rem;
+    }
+
+    td {
+        white-space: normal;
+        height: auto;
+        max-height: none;
+    }
+
+    .thumbnail {
+        max-height: 15rem;
+    }
+
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+    html {
+        font-size: 45%;
+    }
+
+    table {
+        font-size: 1.2rem;
+    }
+
+    td {
+        white-space: normal;
+        height: auto;
+        max-height: none;
+    }
+
+    .thumbnail {
+        max-height: 10rem;
+    }
+
+}

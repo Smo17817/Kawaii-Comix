@@ -14,7 +14,6 @@ function dynamicIndex(url) {
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
 			contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";
-			contenutoHtml += "<a onclick=\"addCart(" + prodotto.quantita + ", '" + prodotto.isbn + "')\"> Carrello</a>";
 			contenutoHtml += "</div> </div>";
 		}
 
@@ -42,7 +41,6 @@ function dynamicIndex2(url) {
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
 			contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";
-			contenutoHtml += "<a onclick=\"addCart(" + prodotto.quantita + ", '" + prodotto.isbn + "')\"> Carrello</a>";
 			contenutoHtml += "</div> </div>";
 
 			contatore++;
@@ -68,7 +66,7 @@ function dynamicIndex2(url) {
 function dynamicCart(url) {
 	$.ajax({
 		url: url,
-		type: 'GET',
+		type: 'POST',
 		contentType: 'application/json; charset=utf-8'
 	}).done((response) => {
 		response = JSON.parse(response);
@@ -78,7 +76,7 @@ function dynamicCart(url) {
 			for (const p of response) {
 				contenutoHtml += "<tr>";
 				contenutoHtml += "<td> <button data-isbn='" + p.isbn + "'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
-				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.img + "\"></td>";
+				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.immagine + "\"></td>";
 				contenutoHtml += "<td>" + p.nome + "</td>";
 				contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
 				contenutoHtml += "<td> <h5> <input type=number min=1 max=" + p.quantita + " class=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";

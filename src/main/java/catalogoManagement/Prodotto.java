@@ -1,6 +1,7 @@
 package catalogoManagement;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Prodotto implements Serializable{
 
@@ -171,4 +172,38 @@ public class Prodotto implements Serializable{
 				+ ", categoria=" + categoria + ", copieVendute=" + copieVendute + "]";
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Prodotto prodotto = (Prodotto) o;
+
+		if (!Objects.equals(isbn, prodotto.isbn)) return false;
+		if (!Objects.equals(nome, prodotto.nome)) return false;
+		if (!Objects.equals(autore, prodotto.autore)) return false;
+		if (!Objects.equals(descrizione, prodotto.descrizione))
+			return false;
+		if (!Objects.equals(immagine, prodotto.immagine)) return false;
+		if (!Objects.equals(prezzo, prodotto.prezzo)) return false;
+		if (!Objects.equals(quantita, prodotto.quantita)) return false;
+		if (!Objects.equals(genere, prodotto.genere)) return false;
+		if (!Objects.equals(categoria, prodotto.categoria)) return false;
+        return Objects.equals(copieVendute, prodotto.copieVendute);
+    }
+
+	@Override
+	public int hashCode() {
+		int result = isbn != null ? isbn.hashCode() : 0;
+		result = 31 * result + (nome != null ? nome.hashCode() : 0);
+		result = 31 * result + (autore != null ? autore.hashCode() : 0);
+		result = 31 * result + (descrizione != null ? descrizione.hashCode() : 0);
+		result = 31 * result + (immagine != null ? immagine.hashCode() : 0);
+		result = 31 * result + (prezzo != null ? prezzo.hashCode() : 0);
+		result = 31 * result + (quantita != null ? quantita.hashCode() : 0);
+		result = 31 * result + (genere != null ? genere.hashCode() : 0);
+		result = 31 * result + (categoria != null ? categoria.hashCode() : 0);
+		result = 31 * result + (copieVendute != null ? copieVendute.hashCode() : 0);
+		return result;
+	}
 }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,17 +26,20 @@ import utenteManagement.User;
 public class CarrelloServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		HttpSession session = request.getSession();
 		Gson json = new Gson();
+
 
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
+		RequestDispatcher requestDispatcher = null;
 
 		try {
 			PrintWriter out = response.getWriter();

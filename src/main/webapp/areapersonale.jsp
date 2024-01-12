@@ -10,7 +10,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
   Object user = session.getAttribute("user");
-  System.out.println(user);
   if (user == null) {
     response.sendRedirect("login.jsp");
     return;
@@ -43,16 +42,14 @@
       contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
       document.getElementById("admin").innerHTML = contenutoHtml;
     });
-  <%}else if(user instanceof  GestoreOrdini){
-  System.out.printf("ciao2");%>
+  <%}else if(user instanceof  GestoreOrdini){%>
   $(document).ready(function() {
     let contenutoHtml = '';
     contenutoHtml += '<li> <a href="controllaordini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
     contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
     document.getElementById("admin").innerHTML = contenutoHtml;
   });
-  <%}else if(user instanceof GestoreCatalogo){
-  System.out.printf("ciao3");%>
+  <%}else if(user instanceof GestoreCatalogo){%>
     $(document).ready(function() {
       let contenutoHtml = '';
       contenutoHtml += '<li> <a href="aggiungiProdotto.jsp"> <img class=\"adimg\" src="./icons/upload.ico"> Aggiungi Prodotto <p> (ADMIN) </p></a> </li>';
