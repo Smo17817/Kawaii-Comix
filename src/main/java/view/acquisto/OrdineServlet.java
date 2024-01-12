@@ -21,7 +21,6 @@ import javax.sql.DataSource;
 import acquistoManagement.Ordine;
 import acquistoManagement.OrdineComparator;
 import acquistoManagement.OrdineIDS;
-import acquistoManagement.OrdineSingolo;
 
 @WebServlet("/OrdineServlet")
 public class OrdineServlet extends HttpServlet{
