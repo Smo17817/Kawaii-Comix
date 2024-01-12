@@ -25,10 +25,10 @@
   <%if (user instanceof  User) {%>
     $(document).ready(function() {
       let contenutoHtml = '';
-      contenutoHtml += '<li> <a href="#"><img class="proimg" alt="" src="./icons/profile.ico">Dati personali</a> </li>';
-      contenutoHtml += '<li> <a href="#"><img class="proimg" alt="" src="./icons/address.ico">Indirizzo</a></li>';
-      contenutoHtml += '<li> <a href="#"><img class="proimg" alt="" src="./icons/cart.ico">Carrello</a> </li>';
-      contenutoHtml += '<li> <a href="OrdineEffettuatiServlet"><img class="proimg" alt="" src="./icons/calendar.ico">I miei Ordini</a></li>';
+      contenutoHtml += '<li> <a href="datipersonali.jsp"><img class="proimg" alt="" src="./icons/profile.ico">Dati personali</a> </li>';
+      contenutoHtml += '<li> <a href="indirizzo.jsp"><img class="proimg" alt="" src="./icons/address.ico">Indirizzo</a></li>';
+      contenutoHtml += '<li> <a href="carrello.jsp"><img class="proimg" alt="" src="./icons/cart.ico">Carrello</a> </li>';
+      contenutoHtml += '<li> <a href="OrdineServlet"><img class="proimg" alt="" src="./icons/calendar.ico">I miei Ordini</a></li>';
       contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
       document.getElementById("user").innerHTML = contenutoHtml;
     });

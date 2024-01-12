@@ -75,13 +75,15 @@ public class AddOrdineServlet extends HttpServlet {
 				// Passa alla prossima quantità nella stringa con le quantità
 				i++;
 			}
-			
+
+
 			ordineIDS.doSaveOrdine(new Ordine(ordineId, sqlDate, totale, user.getId(), 1, 1, ordiniSingoli));
+
 
 			carrello.empty();
 			session.setAttribute("carrello", carrello);
 
-			dispatcher = request.getRequestDispatcher("profilo.jsp");
+			dispatcher = request.getRequestDispatcher("areapersonale.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException | ServletException | IOException | NumberFormatException e) {
 			logger.log(Level.ALL, ERROR, e);

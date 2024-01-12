@@ -42,6 +42,18 @@
     }else if (currentPage.equals(("/carrello.jsp"))) {
       cssFile = "carrello.css";
       AdditionalCss = true;
+    }else if (currentPage.equals(("/datipersonali.jsp"))) {
+      cssFile = "datipersonali.css";
+      AdditionalCss = true;
+    }else if (currentPage.equals(("/indirizzo.jsp"))) {
+      cssFile = "indirizzo.css";
+      AdditionalCss = true;
+    }else if (currentPage.equals(("/prodotto.jsp"))) {
+      cssFile = "prodotto.css";
+      AdditionalCss = true;
+    }else if (currentPage.equals(("/ordine.jsp"))) {
+      cssFile = "ordine.css";
+      AdditionalCss = true;
     }
   %>
   <% if(AdditionalCss){%>

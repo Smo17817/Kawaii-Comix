@@ -38,6 +38,7 @@ public class LogOutServlet extends HttpServlet {
             } else  {
                 Carrello carrello = (Carrello) session.getAttribute("carrello");
                 carrelloIDS.doSvuotaCarrello(carrello);
+                carrello.empty();
                 if (carrello.getListaProdotti().isEmpty()) {
                     session.invalidate();
                     response.sendRedirect("login.jsp");

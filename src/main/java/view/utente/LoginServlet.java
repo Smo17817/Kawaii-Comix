@@ -48,8 +48,9 @@ public class LoginServlet extends HttpServlet {
                 User user = userDAO.doRetrieveUser(email, password);
                 if (user != null) {
                     Carrello carrello = carrelloDAO.doRetrieveCarrello(user.getId());
-
                     carrelloDAO.doRetrieveProdottiCarrello(carrello);
+
+                    carrelloDAO.doDeleteProdottiCarrello(carrello);
 
                     session.setAttribute("user", user);
                     session.setAttribute("carrello", carrello);

@@ -24,24 +24,28 @@ public class OrdineIDS implements OrdineDAO {
 	@Override
 	public void doSaveOrdine(Ordine ordine) throws SQLException {
 		String query = "INSERT INTO " + OrdineIDS.TABLE
-				+ " (data, totale, site_user_id, stato_ordine_id, metodo_spedizione_id) VALUES (?, ?, ?, ?, ?)";
+				+ " (id ,data, totale, site_user_id, stato_ordine_id, metodo_spedizione_id) VALUES (?,?, ?, ?, ?, ?)";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
+
 			java.sql.Date sqlDate = new java.sql.Date(ordine.getJavaDate().getTime());
 
-			preparedStatement.setDate(1, sqlDate);
-			preparedStatement.setDouble(2, ordine.getTotale());
-			preparedStatement.setInt(3, ordine.getUserId());
-			preparedStatement.setInt(4, ordine.getStato());
-			preparedStatement.setInt(5, ordine.getMetodoSpedizione());
+			preparedStatement.setInt(1 , ordine.getId());
+			preparedStatement.setDate(2, sqlDate);
+			preparedStatement.setDouble(3, ordine.getTotale());
+			preparedStatement.setInt(4, ordine.getUserId());
+			preparedStatement.setInt(5, ordine.getStato());
+			preparedStatement.setInt(6, ordine.getMetodoSpedizione());
+
+			preparedStatement.executeUpdate();
 
 			// Salva tutti i singoli ordini associati all'ordine cumulativo
 			for (OrdineSingolo ordineSingolo : ordine.getOrdiniSingoli())
 				doSaveOrdineSingoloAssociato(ordineSingolo);
 
-			preparedStatement.executeUpdate();
+
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -129,11 +133,12 @@ public class OrdineIDS implements OrdineDAO {
 
 	@Override
 	public Collection<Ordine> doRetrieveById(Integer id) throws SQLException {
-		String query = "SELECT * FROM " + OrdineIDS.TABLE + " WHERE id = ?";
+		String query = "SELECT * FROM " + OrdineIDS.TABLE + " WHERE id= ?";
 		ArrayList<Ordine> ordini = new ArrayList<>();
 
+
 		try (Connection connection = ds.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			 PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setInt(1,  id);
 			ResultSet rs = preparedStatement.executeQuery();
 
@@ -143,14 +148,50 @@ public class OrdineIDS implements OrdineDAO {
 				Integer userId = rs.getInt(USER_ID);
 				Integer stato = rs.getInt(STATO);
 				Integer metodoSpedizione = rs.getInt(METODO_SPEDIZIONE);
-				
+
 				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
-				// Aggiunge la lista dei singoli ordini associati 
+				// Aggiunge la lista dei singoli ordini associati
 				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) doRetrieveAllOrdiniSingoli(ordine));
 
 				ordini.add(ordine) ;
 			}
+			rs.close();
 
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
+
+		return ordini;
+	}
+	@Override
+	public Collection<Ordine> doRetrieveByUserId(Integer userid) throws SQLException {
+		String query = "SELECT * FROM " + OrdineIDS.TABLE + " WHERE site_user_id= ?";
+		ArrayList<Ordine> ordini = new ArrayList<>();
+
+
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			preparedStatement.setInt(1,  userid);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Integer id = rs.getInt(ID);
+				Date data = new Date(rs.getDate(DATA).getTime());
+				Double totale = rs.getDouble(TOTALE);
+				Integer userId = rs.getInt(USER_ID);
+				Integer stato = rs.getInt(STATO);
+				Integer metodoSpedizione = rs.getInt(METODO_SPEDIZIONE);
+				
+				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
+				// Aggiunge la lista dei singoli ordini associati
+				OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
+				System.out.println(ordine.getId());
+				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) ordineSingoloIDS.doRetrieveAllByOrdineId(ordine.getId()));
+
+				System.out.println(ordine);
+
+				ordini.add(ordine) ;
+			}
 			rs.close();
 
 		} catch (SQLException e) {

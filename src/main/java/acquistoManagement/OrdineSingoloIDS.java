@@ -117,7 +117,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 	@Override
 	public Collection<OrdineSingolo> doRetrieveAllByOrdineId(Integer ordineId) throws SQLException {
-		String query = "SELECT * FROM " + OrdineSingoloIDS.TABLE + " WHERE ordine_id = ?";
+		String query = "SELECT * FROM " + OrdineSingoloIDS.TABLE + " WHERE ordini_id = ?";
 
 		ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
 		ProdottoIDS prodottoIDS = new ProdottoIDS(ds);

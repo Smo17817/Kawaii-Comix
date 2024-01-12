@@ -107,6 +107,30 @@ public class CarrelloIDS implements CarrelloDAO {
 	}
 
 	@Override
+	public void doDeleteProdottiCarrello(Carrello carrello){
+		HashSet<Prodotto> prodotti = (HashSet<Prodotto>) carrello.getListaProdotti();
+		System.out.println(prodotti);
+		ArrayList<String> isbnList = new ArrayList<>();
+
+		for(Prodotto prodotto : prodotti){
+			isbnList.add(prodotto.getIsbn());
+		}
+
+		String query = "DELETE FROM " + CarrelloIDS.TABLE2 + " WHERE prodotto_isbn = ?";
+
+		try (Connection connection = ds.getConnection();
+			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			for (String isbn : isbnList) {
+				preparedStatement.setString(1 , isbn);
+				System.out.println(preparedStatement);
+				preparedStatement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			logger.log(Level.ALL, error, e);
+        }
+    }
+
+	@Override
 	public Carrello doRetrieveProdottiCarrello(Carrello carrello) {
 		String query = "SELECT * FROM " + CarrelloIDS.TABLE2 + " WHERE carrello_id = ?";
 		try (Connection connection = ds.getConnection();

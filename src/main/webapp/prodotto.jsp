@@ -3,30 +3,31 @@
 <html lang="it">
 	<jsp:include page="./header.jsp" flush="true"/>
 	<body>
+		<script src="./Script/dynamicCode.js"></script>
+		<script src="./Script/carrello.js"></script>
 		<jsp:include page="./nav.jsp" flush="true"/>
 
 		<% Prodotto p = (Prodotto) request.getAttribute("prodotto");%>
-		<script src="./Script/dynamicCode.js"></script>
 		<script>
-		var disponibilita = '';
-		<%	if(p.getQuantita() == 0){%>
-				disponibilita = "Esaurito";
-		<%	}else if(p.getQuantita() <= 10){%>
-				disponibilita = "Quasi Esaurito";
-		<%	}else{%>
-			disponibilita = "Disponibile";
-		<%}%>
+			var disponibilita = '';
+			<%	if(p.getQuantita() == 0){%>
+					disponibilita = "Esaurito";
+			<%	}else if(p.getQuantita() <= 10){%>
+					disponibilita = "Quasi Esaurito";
+			<%	}else{%>
+				disponibilita = "Disponibile";
+			<%}%>
 
-		$(document).ready(function(){
-			document.getElementById("disponibilita").innerHTML = disponibilita ;
-			if(disponibilita == "Esaurito")
-				document.getElementById("disponibilita").style.color = 'red' ;
-			else if(disponibilita == "Quasi Esaurito")
-				document.getElementById("disponibilita").style.color = 'orange';
-			else
-				document.getElementById("disponibilita").style.color = 'green';
-		});
-
+			$(document).ready(function(){
+				document.getElementById("disponibilita").innerHTML = disponibilita ;
+				if(disponibilita == "Esaurito")
+					document.getElementById("disponibilita").style.color = 'red' ;
+				else if(disponibilita == "Quasi Esaurito")
+					document.getElementById("disponibilita").style.color = 'orange';
+				else
+					document.getElementById("disponibilita").style.color = 'green';
+			});
+			//TODO aggiugere modulo di IA  per sistema di raccomandazione
 		</script>
 		<main>
 			<section id="prodotto">

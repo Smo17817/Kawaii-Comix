@@ -32,8 +32,8 @@ public class ProdottoServlet extends HttpServlet {
 		try {
 			request.setAttribute("prodotto", prodottoIDS.doRetrieveByIsbn(isbn));
 			session.setAttribute("prodotto", prodottoIDS.doRetrieveByIsbn(isbn)); // velocizza le cose in caso di acquisto
-			//TODO aggiungere la jsp di destinazione
-			RequestDispatcher dispatcher = request.getRequestDispatcher(""); 
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("prodotto.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);

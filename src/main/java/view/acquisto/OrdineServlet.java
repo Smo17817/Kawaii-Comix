@@ -22,29 +22,34 @@ import acquistoManagement.Ordine;
 import acquistoManagement.OrdineComparator;
 import acquistoManagement.OrdineIDS;
 import acquistoManagement.OrdineSingolo;
+import utenteManagement.User;
 
 @WebServlet("/OrdineServlet")
 public class OrdineServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
 
 		try {
 			OrdineIDS ordineIDS = new OrdineIDS(ds);
 			ArrayList<Ordine> ordini = new ArrayList<>();
-			
-			// Recupero tutti gli ordini dal Database (per i singoli ordini ci pensa l'IDS)
-			for(Ordine ordine : ordineIDS.doRetrieveAllOrdini()) 
-				ordini.add(ordine);		
-			
-			// Li ordino in base alla data
-			Collections.sort(ordini, new OrdineComparator());
+
+			User user = (User) session.getAttribute("user");
+
+			// Recupero tutti gli ordini dal Database (per i singoli ordini ci pensa l'IDS)(non ha senso)
+			for(Ordine ordine : ordineIDS.doRetrieveByUserId(user.getId()))
+				ordini.add(ordine);
+
+			if(!ordini.isEmpty()) {
+				Collections.sort(ordini, new OrdineComparator());
+			}
 			
 			session.setAttribute("ordini", ordini);
 			dispatcher = request.getRequestDispatcher("ordine.jsp");
