@@ -1,7 +1,6 @@
 package view.catalogo;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -10,10 +9,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import com.google.gson.Gson;
@@ -22,6 +23,11 @@ import catalogoManagement.Prodotto;
 import catalogoManagement.ProdottoIDS;
 
 @WebServlet("/UpdateProdottoServlet")
+@MultipartConfig(
+		fileSizeThreshold = 1024 * 1024,
+		maxFileSize = 1024 * 1024 * 10,
+		maxRequestSize = 1024 * 1024 * 11
+)
 public class UpdateProdottoServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -32,11 +38,11 @@ public class UpdateProdottoServlet extends HttpServlet{
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		Gson json = new Gson();
 
+
 		String prodottoScelto = request.getParameter("scelta");
 		String nome = request.getParameter("nome");
 		String autore = request.getParameter("autore");
 		String descrizione = request.getParameter("descrizione");
-		String immagine = request.getParameter("immagine");
 		String prezzoString = request.getParameter("prezzo");
 		String quantitaString = request.getParameter("quantita");
 		String genere = request.getParameter("genere");
@@ -65,23 +71,30 @@ public class UpdateProdottoServlet extends HttpServlet{
 		        return;
 		    }
 
-			Pattern regex = Pattern.compile(PATTERN);
-			Matcher matcher = regex.matcher(immagine);
+			Part imagePart = request.getPart("file");
+			System.out.println(imagePart);
+			String fileName =  imagePart.getSubmittedFileName();
+			String imagePath = "./images/" + fileName;
 
-			if (!immagine.equals("") && !(matcher.matches())) {
-				HashMap<String, String> responseMap = new HashMap<>();
-				responseMap.put(STATUS, "Invalid_path");
-				String jsonResponse = json.toJson(responseMap);
-				response.setContentType(CONTENT_TYPE);
-				out.write(jsonResponse);
-				out.flush();
-				return;
+
+			InputStream is = imagePart.getInputStream();
+			String tempPath = getServletContext().getRealPath("/" +"images"+ File.separator + fileName);
+			boolean test1 = uploadFile(is , tempPath);
+			String partedaRimuovere = "target/kawaii-Comix/";
+			String realPath = tempPath.replace(partedaRimuovere , "src/main/webapp/");
+
+
+			boolean test = uploadFile(is,realPath);
+			if(test){
+				//stampa alert avvenuta con successo;
+			}else{
+				out.println("something wrong");//stampa alert verificatosi un errore
 			}
 
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			Prodotto prodotto = prodottoIDS.doRetrieveByNome(prodottoScelto);
 			// Setta solo i valori non vuoti, gli altri rimangono come prima
-			prodotto.setNotEmpty(nome, autore, descrizione, immagine, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
+			prodotto.setNotEmpty(nome, autore, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
 			boolean checkUpdate = prodottoIDS.doUpdateProdotto(prodotto);
 			
 			// Controlla che l'update del prodotto si sia verificato
@@ -105,6 +118,26 @@ public class UpdateProdottoServlet extends HttpServlet{
 		} catch (SQLException | IOException | NumberFormatException e) {
 			logger.log(Level.ALL, ERROR, e);
 		} 
+	}
+
+	public boolean uploadFile(InputStream is, String path){
+		boolean test = false;
+		try{
+			byte[] byt = new byte[is.available()];
+			is.read(byt);
+
+			FileOutputStream fops = new FileOutputStream(path);
+			fops.write(byt);
+			fops.flush();
+			fops.close();
+
+			test = true;
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return test;
 	}
 	
 	/*** MACRO ***/

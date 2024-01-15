@@ -23,7 +23,7 @@ public class ProdottoIDS implements ProdottoDAO {
 	@Override
 	public void doSaveProdotto(Prodotto prodotto) throws SQLException {
 		String query = "INSERT INTO " + ProdottoIDS.TABLE
-				+ " (isbn, nome, autore, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (isbn, nome, autore, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome ,copie_vendute) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?)";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -36,7 +36,8 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setDouble(6, prodotto.getPrezzo());
 			preparedStatement.setInt(7, prodotto.getQuantita());
 			preparedStatement.setString(8, prodotto.getGenere());
-			preparedStatement.setString(9, prodotto.getCategoria());
+			preparedStatement.setString(9 ,prodotto.getCategoria());
+			preparedStatement.setInt(10 , prodotto.getCopieVendute());
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -65,7 +66,7 @@ public class ProdottoIDS implements ProdottoDAO {
 	@Override
 	public Boolean doUpdateProdotto(Prodotto prodotto) throws SQLException {
 		String query = "UPDATE " + ProdottoIDS.TABLE
-				+ "SET nome = ?, autore = ?, descrizione = ?, immagine_prod = ?, prezzo = ?, quantita = ?, categoria_nome = ?, genere_nome = ? "
+				+ "SET nome = ?, autore = ?, descrizione = ?, immagine_prod = ?, prezzo = ?, quantita = ?, categoria_nome = ?, genere_nome = ?"
 				+ "WHERE isbn = ?";
 
 		try (Connection connection = ds.getConnection();
@@ -79,7 +80,7 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setInt(6, prodotto.getQuantita());
 			preparedStatement.setString(7, prodotto.getGenere());
 			preparedStatement.setString(8, prodotto.getCategoria());
-			preparedStatement.setString(9, prodotto.getIsbn());
+			preparedStatement.setString(9  ,prodotto.getIsbn());
 
 			preparedStatement.executeUpdate();
 			return true;
@@ -279,6 +280,27 @@ public class ProdottoIDS implements ProdottoDAO {
 
 		return prodotti;
 	}
+
+	@Override
+	public ArrayList<String> doRetrieveAllProductsName(){
+		String query = "SELECT nome FROM " + ProdottoIDS.TABLE + " ORDER BY nome";
+		ArrayList<String>  nomiList = new ArrayList<>();
+
+		try (Connection connection = ds.getConnection();
+			 PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()){
+				nomiList.add(rs.getString(NOME));
+			}
+
+			return  nomiList;
+		} catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 	
 	/*** MACRO ***/
 	private static final String TABLE = "prodotti";

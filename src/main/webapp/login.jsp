@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  String contextPath = request.getContextPath();
+%>
 <html>
   <jsp:include page="./header.jsp" flush="true"></jsp:include>
   <body>
@@ -13,7 +16,7 @@
     <main>
       <section id="login">
         <div class="login-img">
-          <img src="./images/anya.jpg" alt="anya image (fantasy character from anime Spy x Family)">
+          <img src="<%=contextPath%>/images/anya.jpg" alt="anya image (fantasy character from anime Spy x Family)">
         </div>
         <div class="form-wrapper">
           <h3>Accedi al tuo Account</h3>

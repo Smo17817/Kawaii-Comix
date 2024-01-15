@@ -91,6 +91,7 @@ function dynamicCart(url) {
 	});
 }
 
+
 function dynamicCatalog(url) {
 	$.ajax({
 		url: url,

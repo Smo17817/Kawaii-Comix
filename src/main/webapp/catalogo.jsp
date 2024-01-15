@@ -3,6 +3,9 @@
 <html>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<%
+    String contextPath = request.getContextPath();
+%>
 <body>
     <jsp:include page="./nav.jsp" flush="true"></jsp:include>
     <script src="./Script/dynamicCode.js"></script>

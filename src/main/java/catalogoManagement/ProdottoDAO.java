@@ -1,6 +1,7 @@
 package catalogoManagement;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public interface ProdottoDAO {
@@ -17,6 +18,8 @@ public interface ProdottoDAO {
 	public Prodotto doRetrieveByNome(String nome) throws SQLException;
 	//Restituisce gli ultimi cinque prodotti aggiunti
 	public Collection<Prodotto> lastSaved() throws SQLException;
+
+	public ArrayList<String> doRetrieveAllProductsName();
 	//Restituisce le copie aggiornate
 	public Integer updateCopieVendute(Prodotto prodotto) throws  SQLException;
 	//Restituisce i prodotti più venduti

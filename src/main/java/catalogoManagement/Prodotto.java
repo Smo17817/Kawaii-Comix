@@ -54,7 +54,7 @@ public class Prodotto implements Serializable{
 	}
 	
 	public void setNotEmpty(String nome, String autore, String descrizione, String immagine, Double prezzo,
-			Integer quantita, String genere, String categoria) {
+							Integer quantita, String genere, String categoria) {
 		if(!nome.equals(""))
 			this.nome = nome;
 		if(!autore.equals(""))
@@ -63,14 +63,15 @@ public class Prodotto implements Serializable{
 			this.descrizione = descrizione;
 		if(!immagine.equals(""))
 			this.immagine = immagine;
-		if(prezzo >= 0.0)
+		if(prezzo > 0.0)
 			this.prezzo = prezzo;
 		if(quantita >= 0)
 			this.quantita = quantita;
 		if(!genere.equals(""))
 			this.genere = genere;
 		if(!categoria.equals(""))
-			this.categoria = categoria;	
+			this.categoria = categoria;
+
 	}
 	
 	public Integer sommaQuantita(Integer quantita) {

@@ -1,0 +1,170 @@
+#new_product{
+    min-height: 90vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper{
+    min-width: 60vw;
+    background: rgba(255,255,255, 0.9);
+    border-radius : 4rem;
+    display:flex;
+    flex-direction:column;
+    padding: 2rem;
+    justify-content : space-between;
+    flex-wrap: wrap;
+    margin: 1rem;
+    box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
+}
+
+.form-wrapper h2{
+    text-align: center;
+    padding:2rem 0rem;
+}
+
+.form-row label{
+    flex: 1 1 40rem;
+    margin : 0rem 1rem;
+
+}
+
+.form-row input{
+    flex: 1 1 40rem;
+    padding: 0.5rem 4rem;
+    max-width: 50%;
+}
+
+.sub-class{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-wrapper button{
+    align-self : center;
+    border: none;
+    font-size: 2rem;
+    width: 70%;
+    padding : 1rem;
+    border-radius: 2rem;
+    background-color: #ff6f88;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out;
+}
+
+.form-wrapper button:hover{
+    background:#c83c54;
+
+}
+
+.form-row, .file-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem;
+}
+
+.file-row label{
+    flex: 1 1 1rem;
+    margin : 0rem 1rem;
+}
+.file-row input{
+    flex: 2 1 1rem;
+
+}
+
+.form-row select{
+    flex: 1 1 10rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.5rem 4rem;
+    min-width: fit-content;
+    border: none;
+}
+
+.form-row textarea{
+    height: 10rem;
+    min-width: 35vw;
+    padding: 1rem 2rem;
+    border: 2px solid #ccc;
+    border-radius: 1rem;
+    background-color: #f8f8f8;
+    font-size: 1.6rem;
+    resize: none;
+}
+
+.input_container {
+    border: 1px solid #e5e5e5;
+}
+
+input[type=file]::file-selector-button {
+    background-color: #fff;
+    color: #000;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+    padding: 10px 15px;
+    margin-right: 20px;
+
+    transition: all .5s ease-in-out;
+
+}
+
+input[type=file]::file-selector-button:hover {
+    background-color: #eee;
+    border: 0px;
+    border-right: 1px solid #e5e5e5;
+}
+
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+    html {
+        font-size: 45%;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+    html {
+        font-size: 45%;
+    }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+
+    html {
+        font-size: 45%;
+    }
+
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+
+    html {
+        font-size: 45%;
+    }
+
+
+}

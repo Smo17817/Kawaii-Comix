@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <body>
@@ -16,7 +17,7 @@
             <img src="./images/anya-admin3.jpg" alt="anya image (fantasy character from anime Spy x Family)">
         </div>
         <div class="form-wrapper">
-            <h3>Accedi al tuo Account <br> Da Admin</h3>
+            <h3>Accedi al tuo Account <br> Da Gestore</h3>
             <form action="LoginServlet" method="post">
                 <input type="hidden" name="jspName" value="loginAdmin">
                 <input type="email" name="email" placeholder="E-mail">

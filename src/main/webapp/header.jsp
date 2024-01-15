@@ -54,6 +54,12 @@
     }else if (currentPage.equals(("/ordine.jsp"))) {
       cssFile = "ordine.css";
       AdditionalCss = true;
+    }else if (currentPage.equals(("/aggiungiProdotto.jsp"))) {
+      cssFile = "aggiungiProdotto.css";
+      AdditionalCss = true;
+    }else if (currentPage.equals(("/modificaProdotto.jsp"))) {
+      cssFile = "modificaProdotto.css";
+      AdditionalCss = true;
     }
   %>
   <% if(AdditionalCss){%>
