@@ -133,11 +133,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
         </div>
         <div class="form-row">
           <label for="prezzo">Prezzo: </label>
-          <input type="number" step="0.01" min="0"  id="prezzo"name="prezzo">
+          <input type="number" value="0" step="0.01" min="0"  id="prezzo"name="prezzo">
         </div>
         <div class="form-row">
           <label for="quantita">Quantità: </label>
-          <input type="number" min="0" name="quantita" id ="quantita">
+          <input type="number" value="0" min="0" name="quantita" id ="quantita">
         </div>
         <div class="form-row">
           <label for="genere">Genere: </label>
@@ -183,8 +183,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
             <option>Manhwa</option>
             <option>Novel</option>
             <option>Seinen</option>
-            <option>Shoujo</option>
-            <option>Shoujo-Ai</option>
+            <option>Shojo</option>
             <option>Shonen</option>
             <option>Web Comic</option>
             <option>Manga Magazine</option>

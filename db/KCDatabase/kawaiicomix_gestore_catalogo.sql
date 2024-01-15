@@ -37,6 +37,7 @@ CREATE TABLE `gestore_catalogo` (
 
 LOCK TABLES `gestore_catalogo` WRITE;
 /*!40000 ALTER TABLE `gestore_catalogo` DISABLE KEYS */;
+INSERT INTO `gestore_catalogo` VALUES ('simone.dassisi@gmail.com','Simone','D\'Assisi','1234');
 /*!40000 ALTER TABLE `gestore_catalogo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-10 10:46:58
+-- Dump completed on 2024-01-15 18:53:21

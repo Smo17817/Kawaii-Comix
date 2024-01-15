@@ -55,7 +55,7 @@ public class ProdottoIDS implements ProdottoDAO {
 
 			preparedStatement.setString(1, isbn);
 			
-			if(preparedStatement.executeUpdate() > 0);
+			if(preparedStatement.executeUpdate() > 0)
 				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
@@ -66,12 +66,13 @@ public class ProdottoIDS implements ProdottoDAO {
 	@Override
 	public Boolean doUpdateProdotto(Prodotto prodotto) throws SQLException {
 		String query = "UPDATE " + ProdottoIDS.TABLE
-				+ "SET nome = ?, autore = ?, descrizione = ?, immagine_prod = ?, prezzo = ?, quantita = ?, categoria_nome = ?, genere_nome = ?"
-				+ "WHERE isbn = ?";
+				+ " SET nome = ?, autore = ?, descrizione = ?, immagine_prod = ?, prezzo = ?, quantita = ?, categoria_nome = ?, genere_nome = ?"
+				+ " WHERE isbn = ?";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-
+			
+			
 			preparedStatement.setString(1, prodotto.getNome());
 			preparedStatement.setString(2, prodotto.getAutore());
 			preparedStatement.setString(3, prodotto.getDescrizione());
@@ -81,7 +82,8 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setString(7, prodotto.getGenere());
 			preparedStatement.setString(8, prodotto.getCategoria());
 			preparedStatement.setString(9  ,prodotto.getIsbn());
-
+			
+			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e) {

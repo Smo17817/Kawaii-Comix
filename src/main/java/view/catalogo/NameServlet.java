@@ -1,16 +1,11 @@
-package controller;
+package view.catalogo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +15,6 @@ import javax.sql.DataSource;
 
 import catalogoManagement.ProdottoIDS;
 import com.google.gson.Gson;
-import view.catalogo.AddProdottoServlet;
 
 @WebServlet("/NameServlet")
 public class NameServlet extends HttpServlet {
@@ -30,7 +24,6 @@ public class NameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-        RequestDispatcher dispatcher = null;
         Gson json = new Gson();
 
 

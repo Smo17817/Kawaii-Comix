@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +38,6 @@ public class CarrelloServlet extends HttpServlet {
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
-		RequestDispatcher requestDispatcher = null;
 
 		try {
 			PrintWriter out = response.getWriter();

@@ -85,14 +85,12 @@ public class AddProdottoServlet extends HttpServlet {
 
 	public boolean uploadFile(InputStream is, String path){
 		boolean test = false;
-		try{
+		try(FileOutputStream fops = new FileOutputStream(path);){
 			byte[] byt = new byte[is.available()];
 			is.read(byt);
-
-			FileOutputStream fops = new FileOutputStream(path);
+	
 			fops.write(byt);
 			fops.flush();
-			fops.close();
 
 			test = true;
 

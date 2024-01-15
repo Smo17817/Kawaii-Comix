@@ -4,7 +4,6 @@ import catalogoManagement.Prodotto;
 import catalogoManagement.ProdottoDAO;
 import catalogoManagement.ProdottoIDS;
 import com.google.gson.Gson;
-import view.utente.LoginServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,29 +15,25 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet("/IndexServlet")
 public class IndexServlet  extends HttpServlet {
 
-    private static final String STATUS = "status";
-
-    /*** LOGGER ***/
-    private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
-    private static final String ERROR = "Errore";
-
-    @Override
+	private static final long serialVersionUID = 1L;
+	
+	@Override
     protected void doGet(HttpServletRequest request , HttpServletResponse response)
             throws ServletException, IOException {
         Gson json = new Gson();
         DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
-        ProdottoDAO prodottoDAO = new ProdottoIDS(ds);
-        PrintWriter out = response.getWriter();
+        ProdottoDAO prodottoDAO = new ProdottoIDS(ds);     
 
         String tipo = request.getParameter("tipo");
         try {
+        	PrintWriter out = response.getWriter();
+        	
             if("lastSaved".equals(tipo)){
                 ArrayList<Prodotto> lastSaved =  (ArrayList<Prodotto>) prodottoDAO.lastSaved();
                 out.write(json.toJson(lastSaved));
@@ -46,11 +41,9 @@ public class IndexServlet  extends HttpServlet {
                 ArrayList<Prodotto> bestSellers = (ArrayList<Prodotto>) prodottoDAO.bestSellers();
                 out.write(json.toJson(bestSellers));
             }
-
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            
+        } catch (SQLException | IOException e) {
+        	logger.log(Level.ALL, ERROR, e);
         }
 
     }
@@ -60,11 +53,13 @@ public class IndexServlet  extends HttpServlet {
             throws ServletException, IOException {
         try {
             doGet(request, response);
-        } catch (ServletException e) {
+        } catch (ServletException | IOException e) {
             logger.log(Level.ALL, ERROR, e);
-        } catch (IOException e) {
-            logger.log(Level.ALL, ERROR, e);
-        }
+        } 
     }
+
+    /*** LOGGER ***/
+    private static final Logger logger = Logger.getLogger(IndexServlet.class.getName());
+    private static final String ERROR = "Errore";
 }
 

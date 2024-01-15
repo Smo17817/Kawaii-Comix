@@ -34,7 +34,7 @@ CREATE TABLE `genere` (
 
 LOCK TABLES `genere` WRITE;
 /*!40000 ALTER TABLE `genere` DISABLE KEYS */;
-INSERT INTO `genere` VALUES ('Avventura'),('Azione'),('Combattimento'),('Commedia'),('Crimine'),('Drammatico'),('Fantascienza'),('Fantastico'),('Fantasy'),('Gang Giovanili'),('Giallo'),('Guerra'),('Horror'),('Magia'),('Mecha'),('Mistero'),('Musicale'),('Polizesco'),('Psicologico'),('Scolastico'),('Sentimentale'),('Sportivo'),('Storico'),('Supereroi'),('Thriller');
+INSERT INTO `genere` VALUES ('Avventura'),('Azione'),('Combattimento'),('Commedia'),('Crimine'),('Drammatico'),('Fantascienza'),('Fantastico'),('Fantasy'),('Gang Giovanili'),('Giallo'),('Guerra'),('Horror'),('Magia'),('Mecha'),('Mistero'),('Musicale'),('Poliziesco'),('Psicologico'),('Scolastico'),('Sentimentale'),('Sportivo'),('Storico'),('Supereroi'),('Thriller');
 /*!40000 ALTER TABLE `genere` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-10 10:46:58
+-- Dump completed on 2024-01-15 18:53:21

@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,6 +17,8 @@ import javax.sql.DataSource;
 
 import com.google.gson.Gson;
 
+import catalogoManagement.CategoriaIDS;
+import catalogoManagement.GenereIDS;
 import catalogoManagement.Prodotto;
 import catalogoManagement.ProdottoIDS;
 
@@ -72,14 +72,13 @@ public class UpdateProdottoServlet extends HttpServlet{
 		    }
 
 			Part imagePart = request.getPart("file");
-			System.out.println(imagePart);
 			String fileName =  imagePart.getSubmittedFileName();
 			String imagePath = "./images/" + fileName;
 
 
 			InputStream is = imagePart.getInputStream();
 			String tempPath = getServletContext().getRealPath("/" +"images"+ File.separator + fileName);
-			boolean test1 = uploadFile(is , tempPath);
+			//boolean test1 = uploadFile(is , tempPath);
 			String partedaRimuovere = "target/kawaii-Comix/";
 			String realPath = tempPath.replace(partedaRimuovere , "src/main/webapp/");
 
@@ -93,9 +92,22 @@ public class UpdateProdottoServlet extends HttpServlet{
 
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			Prodotto prodotto = prodottoIDS.doRetrieveByNome(prodottoScelto);
+			
+			GenereIDS genereIDS = new GenereIDS(ds);
+			CategoriaIDS categoriaIDS = new CategoriaIDS(ds);
+			
+			if(!genereIDS.checkGenereName(genere))
+				genere = "";
+			if(!categoriaIDS.checkCategoriaName(categoria))
+				categoria = "";
+			if(imagePath.equals("./images/null"))
+				imagePath = "";
+			
 			// Setta solo i valori non vuoti, gli altri rimangono come prima
 			prodotto.setNotEmpty(nome, autore, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
+			
 			boolean checkUpdate = prodottoIDS.doUpdateProdotto(prodotto);
+			
 			
 			// Controlla che l'update del prodotto si sia verificato
 			if (checkUpdate) {
@@ -122,14 +134,12 @@ public class UpdateProdottoServlet extends HttpServlet{
 
 	public boolean uploadFile(InputStream is, String path){
 		boolean test = false;
-		try{
+		try(FileOutputStream fops = new FileOutputStream(path);){
 			byte[] byt = new byte[is.available()];
 			is.read(byt);
-
-			FileOutputStream fops = new FileOutputStream(path);
+		
 			fops.write(byt);
 			fops.flush();
-			fops.close();
 
 			test = true;
 
@@ -141,7 +151,6 @@ public class UpdateProdottoServlet extends HttpServlet{
 	}
 	
 	/*** MACRO ***/
-	private static final String PATTERN = "\\./images/[^/]+\\.[a-zA-Z]{3,4}";
 	private static final String STATUS = "status";
 	private static final String CONTENT_TYPE = "application/json";
 	
