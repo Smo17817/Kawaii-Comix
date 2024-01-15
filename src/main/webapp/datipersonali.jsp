@@ -10,7 +10,8 @@
 <% User user = (User) session.getAttribute("user");
   if (user == null) {
     response.sendRedirect("login.jsp");
-    return;%>
+    return;}%>
+  
 <body>
 <jsp:include page="./nav.jsp" flush="true"></jsp:include>
 <main>

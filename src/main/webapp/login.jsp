@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: davidedelfranconatale
@@ -6,9 +7,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-  String contextPath = request.getContextPath();
-%>
 <html>
   <jsp:include page="./header.jsp" flush="true"></jsp:include>
   <body>
@@ -16,15 +14,15 @@
     <main>
       <section id="login">
         <div class="login-img">
-          <img src="<%=contextPath%>/images/anya.jpg" alt="anya image (fantasy character from anime Spy x Family)">
+          <img src="./images/anya.jpg" alt="anya image (fantasy character from anime Spy x Family)">
         </div>
         <div class="form-wrapper">
           <h3>Accedi al tuo Account</h3>
           <form action="LoginServlet" method="post">
             <input type="hidden" name="jspName" value="login">
-            <input type="email" name="email" placeholder="E-mail">
-            <input type="password" name="password" placeholder="Password">
-            <button type="submit">Invia</button>
+            <input type="email" name="email" placeholder="E-mail" id="email">
+            <input type="password" name="password" placeholder="Password" id = "password">
+            <button type="submit" id="loginButton">Invia</button>
           </form>
         </div>
         <div class="links">

@@ -11,6 +11,7 @@
     if (user == null) {
         response.sendRedirect("login.jsp");
         return;
+    }
 %>
 <body>
 <jsp:include page="./nav.jsp" flush="true"></jsp:include>
