@@ -184,26 +184,42 @@ function dynamicConsigliati(url) {
 function dynamicCheckOrders(url) {
 	$.ajax({
 		url: url,
-		type: 'GET',
+		type: 'POST',
 		contentType: 'application/json; charset=utf-8'
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHtml = "";
-		let stato = "Annullato";
-
+		let stato1 = "";
+		let stato2 = "";
+		let stato3 = "";
+		
 		for (const o of response) {
 			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + o.data + "'>";
 			contenutoHtml += "<td> <h4>" + o.data + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
 			contenutoHtml += "<td>";
-			for (const os of o.singoli)
-				contenutoHtml += "<p>" + os.prodottoNome + "</p>";
+			for (const os of o.ordiniSingoli)
+				contenutoHtml += "<p>" + os.prodotto.nome + "</p>";
 			contenutoHtml += "</td>";
 			contenutoHtml += "<td> &#8364 " + o.totale.toFixed(2) + "</td>";
-			if (o.stato == 1) stato = "Completato";
-			contenutoHtml += "<td>" + stato + "</td>";
-			contenutoHtml += "<td> <button onclick=\"annullaordine(this)\"> Annulla </button> </td> </tr>";
+			if (o.stato == 1) {
+				stato1 = "Confermato";
+				stato2 = "Spedito";
+				stato3 = "Annullato"
+			}else if (o.stato == 2) {
+				stato1 = "Spedito";
+				stato2 = "Confermato";
+				stato3 = "Annullato";
+			}else if (o.stato == 3) {
+				stato1 = "Annullato";
+				stato2 = "Confermato";
+				stato3 = "Annullato"
+			}				
+			contenutoHtml += "<td> <select class=\"newStato\"> <option>" + stato1 + "</option>";
+			contenutoHtml += "<option>" + stato2 + "</option>";
+			contenutoHtml += "<option>" + stato3 + "</option> </select> </td>";
+			contenutoHtml += "<td> <button onclick=\"cambiaStatoOrdine(this)\"> Save </button> </td> </tr>";
 		}
 
 		$("#container").append(contenutoHtml);

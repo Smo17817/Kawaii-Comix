@@ -1,8 +1,13 @@
 
-function annullaordine(button) {
+function cambiaStatoOrdine(button) {
 	let tr = button.parentNode.parentNode;
-	let id = tr.getElementsByTagName("td")[2].getElementsByTagName("h4")[0].innerText;
-	window.location.replace("AnnullaOrdineServlet?id=" + id);
+	let orderId = tr.getElementsByTagName("td")[2].getElementsByTagName("h4")[0].innerText;
+	
+	let select = tr.getElementsByClassName("newStato")[0];
+	let stato = select.value;
+	
+	console.log(stato);
+	window.location.replace("ModificaStatoOrdineServlet?stato=" + stato + "&orderId=" + orderId);
 }
 
 function filterRows() {

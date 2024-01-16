@@ -60,7 +60,11 @@
     }else if (currentPage.equals(("/modificaProdotto.jsp"))) {
       cssFile = "modificaProdotto.css";
       AdditionalCss = true;
+    }else if (currentPage.equals(("/controllaOrdini.jsp"))) {
+      cssFile = "controllaOrdini.css";
+      AdditionalCss = true;
     }
+   
   %>
   <% if(AdditionalCss){%>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/global.css">

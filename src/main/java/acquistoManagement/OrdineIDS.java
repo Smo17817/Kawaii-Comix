@@ -96,6 +96,26 @@ public class OrdineIDS implements OrdineDAO {
 		}
 		return false;
 	}
+	
+	@Override
+	public Boolean doUpdateStatoById(Integer id, Integer stato) throws SQLException {
+		String query = "UPDATE " + OrdineIDS.TABLE
+				+ " SET stato_ordine_id = ? "
+				+ " WHERE id = ?";
+
+		try (Connection connection = ds.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+
+			preparedStatement.setInt(1, stato);
+			preparedStatement.setInt(2, id);
+
+			if (preparedStatement.executeUpdate() > 0)
+				return true;
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
+		return false;
+	}
 
 	@Override
 	public Collection<Ordine> doRetrieveAllOrdini() throws SQLException {
@@ -227,5 +247,4 @@ public class OrdineIDS implements OrdineDAO {
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(OrdineIDS.class.getName());
 	private static final String ERROR = "Errore";
-
 }

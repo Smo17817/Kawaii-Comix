@@ -45,7 +45,7 @@
   <%}else if(user instanceof  GestoreOrdini){%>
   $(document).ready(function() {
     let contenutoHtml = '';
-    contenutoHtml += '<li> <a href="controllaordini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
+    contenutoHtml += '<li> <a href="controllaOrdini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
     contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
     document.getElementById("admin").innerHTML = contenutoHtml;
   });

@@ -11,6 +11,8 @@ public interface OrdineDAO {
 
 	public Boolean doUpdateOrdine(Integer id, Date data, Double totale, Integer userId, Integer stato,
 			Integer metodoSpedizione) throws SQLException;
+	
+	public Boolean doUpdateStatoById(Integer id, Integer stato) throws SQLException;;
 
 	public Collection<Ordine> doRetrieveAllOrdini() throws SQLException;
 
