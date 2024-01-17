@@ -229,15 +229,6 @@ function dynamicCheckOrders(url) {
 		let stato3 = "";
 
 		for (const o of response) {
-			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + o.data + "'>";
-			contenutoHtml += "<td> <h4>" + o.data + "</h4> </td>";
-			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
-			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
-			contenutoHtml += "<td>";
-			for (const os of o.ordiniSingoli)
-				contenutoHtml += "<p>" + os.prodotto.nome + "</p>";
-			contenutoHtml += "</td>";
-			contenutoHtml += "<td> &#8364 " + o.totale.toFixed(2) + "</td>";
 			if (o.stato == 1) {
 				stato1 = "Confermato";
 				stato2 = "Spedito";
@@ -251,10 +242,20 @@ function dynamicCheckOrders(url) {
 				stato2 = "Confermato";
 				stato3 = "Annullato"
 			}
+			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + o.data + "' stato ='" + stato1 + "'>";
+			contenutoHtml += "<td> <h4>" + convertiData(o.data) + "</h4> </td>";
+			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
+			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
+			contenutoHtml += "<td>";
+			for (const os of o.ordiniSingoli)
+				contenutoHtml += "<p>" + os.prodotto.nome + "</p>";
+			contenutoHtml += "</td>";
+			contenutoHtml += "<td> &#8364 " + o.totale.toFixed(2) + "</td>";
+			
 			contenutoHtml += "<td> <select class=\"newStato\"> <option>" + stato1 + "</option>";
 			contenutoHtml += "<option>" + stato2 + "</option>";
 			contenutoHtml += "<option>" + stato3 + "</option> </select> </td>";
-			contenutoHtml += "<td> <button onclick=\"cambiaStatoOrdine(this)\"> Save </button> </td> </tr>";
+			contenutoHtml += "<td> <button onclick=\"cambiaStatoOrdine(this)\"> <img src=\"./icons/save.ico\" alt=\"\"> </button> </td> </tr>";
 		}
 
 		$("#container").append(contenutoHtml);
@@ -278,7 +279,7 @@ function dynamicModificaProdotto(url) {
 }
 
 
-//Pagination
+/*** PAGINATION ***/
 const itemsPerPage = 20;
 let currentPage = 1;
 
@@ -312,4 +313,23 @@ function createPaginationLinks(totalPages) {
 
 		paginationContainer.appendChild(pageLink);
 	}
+}
+
+/*** FORMATTAZIONE DATA ***/
+function convertiData(dataString) {
+  // Crea un oggetto Data dalla stringa di data
+  var data = new Date(dataString);
+
+  // Verifica se la conversione è riuscita
+  if (isNaN(data.getTime())) {
+    console.error("Stringa di data non valida");
+    return null;
+  }
+
+  // Configura il formato della data
+  var opzioniFormattazione = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  var formatoData = new Intl.DateTimeFormat('it-IT', opzioniFormattazione);
+
+  // Applica il formato alla data e restituisci la stringa formattata
+  return formatoData.format(data);
 }

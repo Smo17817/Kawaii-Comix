@@ -2,11 +2,10 @@
 function cambiaStatoOrdine(button) {
 	let tr = button.parentNode.parentNode;
 	let orderId = tr.getElementsByTagName("td")[2].getElementsByTagName("h4")[0].innerText;
-	
+
 	let select = tr.getElementsByClassName("newStato")[0];
 	let stato = select.value;
-	
-	console.log(stato);
+
 	window.location.replace("ModificaStatoOrdineServlet?stato=" + stato + "&orderId=" + orderId);
 }
 
@@ -14,6 +13,7 @@ function filterRows() {
 	let input = document.getElementById("searchInput").value.toLowerCase();
 	let startDateString = document.getElementById("startDateInput").value;
 	let endDateString = document.getElementById("endDateInput").value;
+	let statoFilter= document.getElementById("statoOrdine").value;
 	let rows = document.querySelectorAll("#container tr");
 
 	let startDate = new Date(startDateString);
@@ -21,9 +21,11 @@ function filterRows() {
 	let formattedStartDate = formatDate(startDate);
 	let formattedEndDate = formatDate(endDate);
 
+
 	for (const row of rows) {
 		let userId = row.getAttribute("data-utente");
 		let giorno = row.getAttribute("data-giorno");
+		let stato = row.getAttribute("stato");
 		let showRow = true;
 
 		if (input && !userId.toLowerCase().includes(input)) {
@@ -34,8 +36,10 @@ function filterRows() {
 		}
 		if (endDateString && giorno > formattedEndDate) {
 			showRow = false;
+		} 
+		if (statoFilter !== stato) {
+			showRow = false;
 		}
-
 		row.style.display = showRow ? "" : "none";
 	}
 }

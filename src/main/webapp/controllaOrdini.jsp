@@ -19,14 +19,14 @@
 		<div id="filtri">
 			<h5>Filtri</h5>
 			<div class="user-search">
-				<label>E-mail</label> <input type="text" id="searchInput"
-					placeholder="Cerca per e-mail" onkeyup="filterRows()">
+				<label>Id: </label> <input type="text" id="searchInput"
+					placeholder="inserire l'id utente..." onkeyup="filterRows()">
 			</div>
 			<div>
 				<label>da </label> <input type="date" id="startDateInput"
 					onchange="filterRows()" /> <label>a </label> <input type="date"
 					id="endDateInput" onchange="filterRows()" /> <label>Stato
-				</label> <select name="statoOrdine" id="statoOrdine">
+				</label> <select name="statoOrdine" id="statoOrdine" onchange="filterRows()">
 					<option>-scegliere stato-</option>
 					<option>Confermato</option>
 					<option>Spedito</option>
