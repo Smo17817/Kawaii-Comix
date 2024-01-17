@@ -1,4 +1,4 @@
-<%--
+<%@ page import="utenteManagement.User" %><%--
   Created by IntelliJ IDEA.
   User: davidedelfranconatale
   Date: 14/01/24
@@ -8,6 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
+<%
+  Object user = session.getAttribute("user");
+  if(user == null || (user instanceof User))
+    response.sendRedirect("loginAdmin.jsp");
+%>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js

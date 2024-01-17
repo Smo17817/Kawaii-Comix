@@ -54,7 +54,7 @@ public class ProdottoIDS implements ProdottoDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 
 			preparedStatement.setString(1, isbn);
-			
+
 			if(preparedStatement.executeUpdate() > 0)
 				return true;
 		} catch (SQLException e) {
@@ -79,11 +79,10 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setString(4, prodotto.getImmagine());
 			preparedStatement.setDouble(5, prodotto.getPrezzo());
 			preparedStatement.setInt(6, prodotto.getQuantita());
-			preparedStatement.setString(7, prodotto.getGenere());
-			preparedStatement.setString(8, prodotto.getCategoria());
+			preparedStatement.setString(7, prodotto.getCategoria());
+			preparedStatement.setString(8, prodotto.getGenere());
 			preparedStatement.setString(9  ,prodotto.getIsbn());
-			
-			System.out.println(preparedStatement);
+
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e) {

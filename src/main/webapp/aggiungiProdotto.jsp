@@ -1,4 +1,4 @@
-<%--
+<%@ page import="utenteManagement.User" %><%--
   Created by IntelliJ IDEA.
   User: davidedelfranconatale
   Date: 13/01/24
@@ -6,7 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<%
+  Object user = session.getAttribute("user");
+  if(user == null || (user instanceof User))
+    response.sendRedirect("loginAdmin.jsp");
+%>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
+
 <body>
 <jsp:include page="./nav.jsp" flush="true"></jsp:include>
 <section id="new_product">
@@ -85,8 +92,7 @@
           <option>Manhwa</option>
           <option>Novel</option>
           <option>Seinen</option>
-          <option>Shoujo</option>
-          <option>Shoujo-Ai</option>
+          <option>Shojo</option>
           <option>Shonen</option>
           <option>Web Comic</option>
           <option>Manga Magazine</option>

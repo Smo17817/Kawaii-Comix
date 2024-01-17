@@ -113,7 +113,7 @@ public class UpdateProdottoServlet extends HttpServlet{
 			if (checkUpdate) {
 				HashMap<String, String> responseMap = new HashMap<>();
 				responseMap.put(STATUS, "success");
-				responseMap.put("url", "profilo.jsp");
+				responseMap.put("url", "modificaProdotto.jsp");
 				String jsonResponse = json.toJson(responseMap);
 				response.setContentType(CONTENT_TYPE);
 				out.write(jsonResponse);

@@ -1,0 +1,126 @@
+body{
+    font-size: 2rem;
+}
+
+#new_product{
+    min-height: 85vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper{
+    min-width: 60vw;
+    background: rgba(255,255,255, 0.9);
+    border-radius : 4rem;
+    display:flex;
+    flex-direction:column;
+    padding: 2rem;
+    justify-content : space-between;
+    flex-wrap: wrap;
+    margin: 1rem;
+    box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
+}
+
+.form-wrapper h2{
+    text-align: center;
+    padding:2rem 0rem;
+}
+
+.form-row label{
+    flex: 1 1 40rem;
+    margin : 0rem 1rem;
+
+}
+
+
+.sub-class{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-wrapper button{
+    align-self : center;
+    border: none;
+    font-size: 2rem;
+    width: 70%;
+    padding : 1rem;
+    border-radius: 2rem;
+    background-color: #ff6f88;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out;
+}
+
+.form-wrapper button:hover{
+    background:#c83c54;
+
+}
+
+.form-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem;
+}
+
+.form-row select{
+    flex: 1 1 10rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.5rem 4rem;
+    min-width: fit-content;
+    border: none;
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+    html {
+        font-size: 45%;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+    html {
+        font-size: 45%;
+    }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+
+    html {
+        font-size: 45%;
+    }
+
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+
+    html {
+        font-size: 45%;
+    }
+
+
+}
