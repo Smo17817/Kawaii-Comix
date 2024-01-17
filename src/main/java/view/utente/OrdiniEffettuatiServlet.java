@@ -3,13 +3,13 @@
 package view.utente;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import com.google.gson.Gson;
 
 import acquistoManagement.Ordine;
 import acquistoManagement.OrdineComparator;
@@ -27,32 +29,29 @@ import utenteManagement.User;
 public class OrdiniEffettuatiServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	private final DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher = null;
-
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		Gson json = new Gson();
+		
 		try {
+			PrintWriter out = response.getWriter();
 			OrdineIDS ordineIDS = new OrdineIDS(ds);
-			ArrayList<Ordine> ordini = new ArrayList<>();
-			
-			User user = (User) session.getAttribute("user");
+			User user = (User) session.getAttribute("user");		
 			
 			// Recupero tutti gli ordini dello user dal Database
-			for(Ordine ordine : (ArrayList<Ordine>) ordineIDS.doRetrieveById(user.getId())) 
-				ordini.add(ordine);			
+			ArrayList<Ordine> ordini = (ArrayList<Ordine>)ordineIDS.doRetrieveByUserId(user.getId());
 			
 			// Li ordino in base alla data
 			Collections.sort(ordini, new OrdineComparator());
-			
-			session.setAttribute("ordini", ordini);
-			dispatcher = request.getRequestDispatcher("ordine.jsp");
-			dispatcher.forward(request, response);
+			Collections.reverse(ordini);			
 
-		} catch (SQLException | ServletException | IOException e) {
+			out.write(json.toJson(ordini));
+
+		} catch (SQLException | IOException e) {
 			logger.log(Level.ALL, ERROR, e);
 		} 
 	}

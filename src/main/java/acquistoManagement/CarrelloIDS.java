@@ -32,7 +32,7 @@ public class CarrelloIDS implements CarrelloDAO {
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class CarrelloIDS implements CarrelloDAO {
 				return true;
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -74,7 +74,7 @@ public class CarrelloIDS implements CarrelloDAO {
 
 			carrello.empty();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 	}
@@ -100,7 +100,7 @@ public class CarrelloIDS implements CarrelloDAO {
 				carrello = new Carrello(rs.getInt("id"));
 			}
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return carrello;
@@ -109,7 +109,6 @@ public class CarrelloIDS implements CarrelloDAO {
 	@Override
 	public void doDeleteProdottiCarrello(Carrello carrello){
 		HashSet<Prodotto> prodotti = (HashSet<Prodotto>) carrello.getListaProdotti();
-		System.out.println(prodotti);
 		ArrayList<String> isbnList = new ArrayList<>();
 
 		for(Prodotto prodotto : prodotti){
@@ -122,11 +121,10 @@ public class CarrelloIDS implements CarrelloDAO {
 			 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			for (String isbn : isbnList) {
 				preparedStatement.setString(1 , isbn);
-				System.out.println(preparedStatement);
 				preparedStatement.executeUpdate();
 			}
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
         }
     }
 
@@ -177,7 +175,7 @@ public class CarrelloIDS implements CarrelloDAO {
 			carrello.setListaProdotti(prodottiCarrello);
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return carrello;
@@ -190,5 +188,5 @@ public class CarrelloIDS implements CarrelloDAO {
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(CarrelloIDS.class.getName());
-	private static final String error = "Errore";
+	private static final String ERROR = "Errore";
 }

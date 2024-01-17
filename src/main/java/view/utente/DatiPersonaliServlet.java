@@ -53,7 +53,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 				return;
 			}
 			
-			if (userIDS.EmailExists(email)) { //TODO va aggiunto anche alla registrazione
+			if (userIDS.emailExists(email)) {
 				request.setAttribute(STATUS, "Invalid_email");
 				dispatcher = request.getRequestDispatcher(URL);
 				dispatcher.forward(request, response);

@@ -205,10 +205,8 @@ public class OrdineIDS implements OrdineDAO {
 				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
 				// Aggiunge la lista dei singoli ordini associati
 				OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
-				System.out.println(ordine.getId());
 				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) ordineSingoloIDS.doRetrieveAllByOrdineId(ordine.getId()));
 
-				System.out.println(ordine);
 
 				ordini.add(ordine) ;
 			}

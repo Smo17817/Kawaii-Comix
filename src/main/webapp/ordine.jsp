@@ -17,50 +17,12 @@
 
 %>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
-<%
-    ArrayList<Ordine> ordini = (ArrayList<Ordine>) session.getAttribute("ordini");
-    if (ordini.isEmpty()) {
-%><script>
-    $(document).ready(function () {
-        $("#container").html("<div id='no-item'><img src='./images/noOrdini-anya1.jpg' alt='Nessun ordine disponibile'></div><h3>Non ci sono ancora ordini...</h3>");
-    });
-</script>
-<%
-} else {
 
-        Collections.reverse(ordini);
-        String stato = "Annullato";
-
-        String contenutoHtml = "";
-        for (Ordine o : ordini) {
-            if (o.getUserId() == user.getId()) {
-                contenutoHtml += "<div class=\"ordine\">";
-                if (o.getStato() == 1) stato = "Completato";
-                contenutoHtml += "<h3> ID: " + o.getId() + " - Data: " + o.getData() + " (" + stato + ") </h3>";
-                for (OrdineSingolo os : o.getOrdiniSingoli()) {
-                    System.out.println(os.getProdotto().getNome());
-                    contenutoHtml += "<div class=\"product\">";
-                    contenutoHtml += "<img class=\"orderImg\" src=\"" + os.getProdotto().getImmagine() + "\">";
-                    contenutoHtml += "<ul class=\"info\">";
-                    contenutoHtml += "<li> Nome: " + os.getProdotto().getNome() + " x" + os.getQuantita() + "</li>";
-                    contenutoHtml += "<li> Totale Prodotti: &#8364 " + String.format("%.2f", os.getTotParziale()) + "</li>";
-                    contenutoHtml += "</ul> </div>";
-                }
-                contenutoHtml += "<h4> Totale: &#8364 " + String.format("%.2f", o.getTotale()) + "</li>";
-                contenutoHtml += "</div>";
-            }
-        }
-%>
-    <script>
-        const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
-        $(document).ready(function(){
-            document.getElementById("container").innerHTML = content;
-        });
-    </script>
-<%
-    }
-%>
 <body>
+<script src="./Script/dynamicCode.js"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", dynamicShowOrders("<%=request.getContextPath()%>/OrdiniEffettuatiServlet"));
+	</script>
 <jsp:include page="./nav.jsp" flush="true"></jsp:include>
 <main>
   <h2>I miei ordini</h2>

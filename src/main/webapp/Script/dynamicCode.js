@@ -36,7 +36,7 @@ function dynamicIndex2(url) {
 		for (const prodotto of response) {
 			const medalClass = getMedalClass(contatore);
 			contenutoHtml += "<div class=\"scheda\">";
-			contenutoHtml += "<div class=\"nuovo " + medalClass + "\"> <h6> "+ contatore +" </h6> </div>";
+			contenutoHtml += "<div class=\"nuovo " + medalClass + "\"> <h6> " + contatore + " </h6> </div>";
 			contenutoHtml += "<a href=\"ProdottoServlet?isbn=" + prodotto.isbn + "\"><img src=\"" + prodotto.immagine + "\"> </a>";
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
@@ -107,7 +107,7 @@ function dynamicCatalog(url) {
 			contenutoHtml += "<div class=\"info\">" + "\n";
 			contenutoHtml += "<h4 class=\"pname\">" + p.nome + "</h4>" + "\n";
 			contenutoHtml += "<p> &#8364 " + p.prezzo.toFixed(2) + "</p>" + "\n";
-			contenutoHtml +=  "<a onclick=\"addCart(" + p.quantita + ", '" + p.isbn + "')\"> Carrello</a>";
+			contenutoHtml += "<a onclick=\"addCart(" + p.quantita + ", '" + p.isbn + "')\"> Carrello</a>";
 			contenutoHtml += "</div>";
 			contenutoHtml += "</div>";
 		}
@@ -181,6 +181,41 @@ function dynamicConsigliati(url) {
 	});
 }
 
+function dynamicShowOrders(url) {
+	$.ajax({
+		url: url,
+		type: 'GET',
+		contentType: 'application/json; charset=utf-8'
+	}).done((response) => {
+		response = JSON.parse(response);
+		let contenutoHtml = "";
+
+		if (response.length === 0)
+			contenutoHtml += "<div id='no-item'><img src='./images/noOrdini-anya1.jpg' alt='Nessun ordine disponibile'></div><h3>Non ci sono ancora ordini...</h3>";
+		else {
+			for (const ordine of response) {
+				contenutoHtml += "<div class=\"ordine\">";
+				if (ordine.stato == 1) stato = "Confermato";
+				else if (ordine.stato == 2) stato = "Spedito";
+				else stato = "Annullato";
+				contenutoHtml += "<h3> ID: " + ordine.id + " - Data: " + ordine.data + " (" + stato + ") </h3>";
+				for (const os of ordine.ordiniSingoli) {
+					contenutoHtml += "<div class=\"product\">";
+					contenutoHtml += "<img class=\"orderImg\" src=\"" + os.prodotto.immagine + "\">";
+					contenutoHtml += "<ul class=\"info\">";
+					contenutoHtml += "<li> Nome: " + os.prodotto.nome + " x" + os.quantita + "</li>";
+					contenutoHtml += "<li> Totale Prodotti: &#8364 " + os.totParziale.toFixed(2) + "</li>";
+					contenutoHtml += "</ul> </div>";
+				}
+				contenutoHtml += "<h4> Totale: &#8364 " + ordine.totale.toFixed(2) + "</li>";
+				contenutoHtml += "</div>";
+			}
+		}
+
+		$("#container").append(contenutoHtml);
+	});
+}
+
 function dynamicCheckOrders(url) {
 	$.ajax({
 		url: url,
@@ -192,7 +227,7 @@ function dynamicCheckOrders(url) {
 		let stato1 = "";
 		let stato2 = "";
 		let stato3 = "";
-		
+
 		for (const o of response) {
 			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + o.data + "'>";
 			contenutoHtml += "<td> <h4>" + o.data + "</h4> </td>";
@@ -207,15 +242,15 @@ function dynamicCheckOrders(url) {
 				stato1 = "Confermato";
 				stato2 = "Spedito";
 				stato3 = "Annullato"
-			}else if (o.stato == 2) {
+			} else if (o.stato == 2) {
 				stato1 = "Spedito";
 				stato2 = "Confermato";
 				stato3 = "Annullato";
-			}else if (o.stato == 3) {
+			} else if (o.stato == 3) {
 				stato1 = "Annullato";
 				stato2 = "Confermato";
 				stato3 = "Annullato"
-			}				
+			}
 			contenutoHtml += "<td> <select class=\"newStato\"> <option>" + stato1 + "</option>";
 			contenutoHtml += "<option>" + stato2 + "</option>";
 			contenutoHtml += "<option>" + stato3 + "</option> </select> </td>";

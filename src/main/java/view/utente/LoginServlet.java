@@ -55,10 +55,10 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("user", user);
                     session.setAttribute("carrello", carrello);
 
-                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                    requestDispatcher = request.getRequestDispatcher(INDEX);
                 } else {
                     request.setAttribute(STATUS, "failed");
-                    requestDispatcher = request.getRequestDispatcher("login.jsp");
+                    requestDispatcher = request.getRequestDispatcher(LOGIN);
                 }
             } else if (jspFileName.equals("loginAdmin")) {
                 GestoreCatalogo gestoreCatalogo = gestoreCatalogoDAO.doRetrieveByAuthentication(email , password);
@@ -67,25 +67,28 @@ public class LoginServlet extends HttpServlet {
                 if(gestoreCatalogo != null && gestoreOrdini !=null) {
                     session.setAttribute("user", gestoreCatalogo);
                     session.setAttribute("BOTH" , true);
-                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                    requestDispatcher = request.getRequestDispatcher(INDEX);
                 }else if(gestoreCatalogo != null){
                     session.setAttribute("user", gestoreCatalogo);
-                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                    requestDispatcher = request.getRequestDispatcher(INDEX);
                 } else if (gestoreOrdini != null) {
                     session.setAttribute("user", gestoreOrdini);
-                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+                    requestDispatcher = request.getRequestDispatcher(INDEX);
                 }else{
-                    requestDispatcher = request.getRequestDispatcher("loginAdmin.jsp");
+                    requestDispatcher = request.getRequestDispatcher(LOGIN_ADMIN);
                 }
             }
             requestDispatcher.forward(request ,response);
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
         	logger.log(Level.ALL, ERROR, e);
         }
     }
     
     /*** MACRO ***/
     private static final String STATUS = "status";
+    private static final String INDEX = "index.jsp";
+    private static final String LOGIN = "login.jsp";
+    private static final String LOGIN_ADMIN = "loginAdmin.jsp";
     
     /*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());

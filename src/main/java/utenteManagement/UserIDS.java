@@ -42,7 +42,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 	}
@@ -59,7 +59,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -87,7 +87,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return false;
@@ -123,7 +123,7 @@ public class UserIDS implements UserDAO {
 
 			return users;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return users;
@@ -155,7 +155,7 @@ public class UserIDS implements UserDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return null;
@@ -188,14 +188,14 @@ public class UserIDS implements UserDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return null;
 	}
 
 	@Override
-	public boolean EmailExists(String email) throws SQLException {
+	public boolean emailExists(String email) throws SQLException {
 
 		String query = "SELECT * FROM site_user WHERE email_address = ?";
 
@@ -207,7 +207,7 @@ public class UserIDS implements UserDAO {
 			return resultSet.next();
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return false;
@@ -229,6 +229,6 @@ public class UserIDS implements UserDAO {
 
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(UserIDS.class.getName());
-	private static final String error = "Errore";
+	private static final String ERROR = "Errore";
 
 }
