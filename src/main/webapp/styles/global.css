@@ -13,7 +13,7 @@ html{
     --header4: calc(1.5rem + 1vw);
     --text: calc(1rem + 0.7vw);
     --link: calc(1rem + 0.7vw);
-    --icon: calc(4rem + 1vw);
+    --icon: calc(2rem + 1vw);
     --big: calc(6rem + 1vw);
     --image: calc(30rem + 1vw);
     --special-color: #ff6f88;
@@ -109,9 +109,15 @@ nav ul{
     align-items: center;
 }
 
+li a{
+	display: flex;
+	align-items: center;
+}
+
 nav img{
     height: var(--icon);
     width: var(--icon);
+    margin-right: 1rem;
 }
 
 /*** FOOTER SECTION ***/

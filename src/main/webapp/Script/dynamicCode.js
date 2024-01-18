@@ -198,7 +198,7 @@ function dynamicShowOrders(url) {
 				if (ordine.stato == 1) stato = "Confermato";
 				else if (ordine.stato == 2) stato = "Spedito";
 				else stato = "Annullato";
-				contenutoHtml += "<h3> ID: " + ordine.id + " - Data: " + ordine.data + " (" + stato + ") </h3>";
+				contenutoHtml += "<h3> ID: " + ordine.id + " - Data: " + formatDate(ordine.data) + " (" + stato + ") </h3>";
 				for (const os of ordine.ordiniSingoli) {
 					contenutoHtml += "<div class=\"product\">";
 					contenutoHtml += "<img class=\"orderImg\" src=\"" + os.prodotto.immagine + "\">";
@@ -242,8 +242,8 @@ function dynamicCheckOrders(url) {
 				stato2 = "Confermato";
 				stato3 = "Annullato"
 			}
-			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + convertiData(o.data) + "' stato ='" + stato1 + "'>";
-			contenutoHtml += "<td> <h4>" + convertiData(o.data) + "</h4> </td>";
+			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + formatDate(o.data) + "' stato ='" + stato1 + "'>";
+			contenutoHtml += "<td> <h4>" + formatDate(o.data) + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
 			contenutoHtml += "<td>";
@@ -316,7 +316,7 @@ function createPaginationLinks(totalPages) {
 }
 
 /*** FORMATTAZIONE DATA ***/
-function convertiData(dataString) {
+function formatDate(dataString) {
   // Crea un oggetto Data dalla stringa di data
   var data = new Date(dataString);
 

@@ -28,9 +28,11 @@ public class UserIDS implements UserDAO {
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-
+			
+			String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
+			
 			preparedStatement.setString(1, user.getEmail());
-			preparedStatement.setString(2, user.getPassword());
+			preparedStatement.setString(2, hashedPassword);
 			preparedStatement.setString(3, user.getNome());
 			preparedStatement.setString(4, user.getCognome());
 			preparedStatement.setString(5, user.getIndirizzo());
@@ -72,17 +74,19 @@ public class UserIDS implements UserDAO {
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-
+			
+			String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
+			
 			preparedStatement.setString(1, user.getEmail());
-			preparedStatement.setString(2, user.getPassword());
+			preparedStatement.setString(2, hashedPassword);
 			preparedStatement.setString(3, user.getNome());
 			preparedStatement.setString(4, user.getCognome());
 			preparedStatement.setString(5, user.getIndirizzo());
 			preparedStatement.setString(6, user.getCitta());
-			preparedStatement.setString(8, user.getCap());
-			preparedStatement.setString(9, user.getProvincia());
-			preparedStatement.setString(10, user.getNazione());
-			preparedStatement.setInt(11, user.getId());
+			preparedStatement.setString(7, user.getCap());
+			preparedStatement.setString(8, user.getProvincia());
+			preparedStatement.setString(9, user.getNazione());
+			preparedStatement.setInt(10, user.getId());
 
 			preparedStatement.executeUpdate();
 			return true;
@@ -163,16 +167,16 @@ public class UserIDS implements UserDAO {
 
 	@Override
 	public User doRetrieveUser(String email, String password) throws SQLException {
-		String query = "SELECT * FROM " + UserIDS.TABLE + " WHERE email_address = ? and password = ?";
+		String query = "SELECT * FROM " + UserIDS.TABLE + " WHERE email_address = ?";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, password);
 
 			ResultSet rs = preparedStatement.executeQuery();
-			if (rs.next()) {
-
+			
+			//Se esisteun utente con quella mail e il cui hash della password corriposnde...
+			if (rs.next() && PasswordUtils.verifyPassword(password, rs.getString(PASSWORD))) {
 				Integer id = rs.getInt(ID);
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
@@ -213,6 +217,7 @@ public class UserIDS implements UserDAO {
 		return false;
 
 	}
+	
 
 	/*** MACRO ***/
 	private static final String TABLE = "site_user";
