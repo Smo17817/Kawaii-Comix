@@ -242,7 +242,7 @@ function dynamicCheckOrders(url) {
 				stato2 = "Confermato";
 				stato3 = "Annullato"
 			}
-			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + o.data + "' stato ='" + stato1 + "'>";
+			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + convertiData(o.data) + "' stato ='" + stato1 + "'>";
 			contenutoHtml += "<td> <h4>" + convertiData(o.data) + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";

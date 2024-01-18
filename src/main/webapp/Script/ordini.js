@@ -37,7 +37,7 @@ function filterRows() {
 		if (endDateString && giorno > formattedEndDate) {
 			showRow = false;
 		} 
-		if (statoFilter !== stato) {
+		if (statoFilter !== "-scegliere stato-" && statoFilter !== stato) {
 			showRow = false;
 		}
 		row.style.display = showRow ? "" : "none";
