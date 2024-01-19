@@ -109,9 +109,13 @@ nav ul{
     align-items: center;
 }
 
-li a{
-	display: flex;
-	align-items: center;
+nav li{
+    padding: 1rem;
+}
+
+nav li a{
+    display: flex;
+    align-items: center;
 }
 
 nav img{

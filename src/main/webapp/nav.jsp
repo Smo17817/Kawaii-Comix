@@ -12,7 +12,7 @@
       <ul>
         <li><a href="./index.jsp"><img src="./icons/home_icon-icons.com_64840.ico" title="Homepage">Home</a></li>
         <li><a href="./catalogo.jsp"><img src="./icons/book.ico" title="Catalogo">Catalogo</a></li>
-        <li><a href="./areapersonale.jsp"><img src="./icons/user1.ico" title="Area Personale"> <%= text %> </a></li>
+        <li><a href="./areapersonale.jsp"><img src="./icons/user1.ico" title="<%=text%>"> <%= text %> </a></li>
         <li><a href="./carrello.jsp"><img src="./icons/cart1.ico" title="Carrello">Carrello</a></li>
       </ul>
     </nav>

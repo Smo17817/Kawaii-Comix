@@ -79,12 +79,6 @@
     transition: 0.2s;
 }
 
-a:hover {
-    text-decoration: none;
-    color: #ff6f88;
-    opacity: 1;
-}
-
 #admin li{
     display: flex;
     flex-direction: column;
