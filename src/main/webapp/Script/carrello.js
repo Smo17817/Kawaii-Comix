@@ -72,3 +72,32 @@ function checkout(url) {
 	if (numericValue > 0)
 		window.location.href = "AddOrdineServlet?totale=" + numericValue + "&quantita=" + quantita;
 }
+
+function toggleSummary() {
+	var summary = document.getElementById('summary');
+	var darkGradient = document.getElementById('dark-gradient');
+	var closeIcon = document.getElementById('closeIcon');
+
+	// Verifica lo stato attuale di visibilità
+	var isVisible = darkGradient.style.visibility === 'visible';
+
+	// Inverti lo stato di visibilità
+	darkGradient.style.visibility = isVisible ? 'hidden' : 'visible';
+	summary.style.visibility = isVisible ? 'hidden' : 'visible';
+
+	// Aggiungi l'event listener all'icona
+	if (closeIcon) {
+		closeIcon.addEventListener('click', toggleSummary);
+	}
+}
+
+function svuotaCampo() {
+	let mioElemento = document.getElementById("summary-product");
+	mioElemento.innerHTML = "";
+}
+
+function onClickHandler() {
+	svuotaCampo();
+	dynamicCheckout();
+	toggleSummary();
+}

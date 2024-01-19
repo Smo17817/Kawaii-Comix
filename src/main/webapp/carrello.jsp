@@ -68,7 +68,7 @@
 
         <p class="totCumul">&#8364 totale</p>
       </div>
-      <button onclick="toggleSummary()"> Procedi al Pagamento</button>
+      <button onclick="onClickHandler()"> Procedi al Pagamento</button>
     </div>
 
     <div id="summary">
@@ -102,46 +102,28 @@
 
   </section>
 </main>
-<script>
-  function toggleSummary() {
-    var summary = document.getElementById('summary');
-    var darkGradient = document.getElementById('dark-gradient');
-    var closeIcon = document.getElementById('closeIcon');
-
-    // Verifica lo stato attuale di visibilità
-    var isVisible = darkGradient.style.visibility === 'visible';
-
-    // Inverti lo stato di visibilità
-    darkGradient.style.visibility = isVisible ? 'hidden' : 'visible';
-    summary.style.visibility = isVisible ? 'hidden' : 'visible';
-
-    // Aggiungi l'event listener all'icona
-    if (closeIcon) {
-      closeIcon.addEventListener('click', toggleSummary);
-    }
-  }
-</script>
 
 <script>
+
+let i = 0;
+
   let contenutoHtml ="";
   <% for (Prodotto prodotto : listaProdotti) { %>
-  contenutoHtml += "<div id=\"product-row\">";
-  contenutoHtml += "<div id=\"img-product\">";
-  contenutoHtml += "<img src='<%=prodotto.getImmagine()%>'>";
-  contenutoHtml += " </div>";
-  contenutoHtml += "<div id=\"info-product\">";
-  contenutoHtml += "<p>" + '<%=prodotto.getNome()%>' + " x " + document.querySelectorAll('.quantita') + " </p> <br>";
-  contenutoHtml += "<p>"+ totaleParziale() + "</p>";
-  contenutoHtml += "</div>";
-  contenutoHtml += "</div>"
-  contenutoHtml += "<hr>";
-  contenutoHtml += "<div id=\"final-price\">";
-  contenutoHtml += "<p>Totale:</p>";
-  contenutoHtml += "<p>"+ totaleParziale() + "</p>";
-  contenutoHtml += "</div>";
+  	contenutoHtml += "<div id=\"product-row\">";
+  	contenutoHtml += "<div id=\"img-product\">";
+  	contenutoHtml += "<img src='<%=prodotto.getImmagine()%>'>";
+  	contenutoHtml += " </div>";
+  	contenutoHtml += "<div id=\"info-product\">";
+  	contenutoHtml += "<p> <%=prodotto.getNome()%> x </p> <br>";
+  	contenutoHtml += "<p>"+ <%=prodotto.getPrezzo()%> + "</p>";
+  	contenutoHtml += "</div>";
+  	contenutoHtml += "</div>"
+  	contenutoHtml += "<hr>";
+  	contenutoHtml += "<div id=\"final-price\">";
+  	contenutoHtml += "<p>Totale:</p>";
+  	contenutoHtml += "<p>"+ totaleParziale() + "</p>";
+  	contenutoHtml += "</div>";
 
-
-  $("#summary-product").append(contenutoHtml);
   <% } %>
 </script>
 

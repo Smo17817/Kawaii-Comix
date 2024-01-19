@@ -74,12 +74,12 @@ function dynamicCart(url) {
 
 		if (response.url === undefined) {
 			for (const p of response) {
-				contenutoHtml += "<tr>";
+				contenutoHtml += "<tr class=\"row\">";
 				contenutoHtml += "<td> <button data-isbn='" + p.isbn + "'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
 				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.immagine + "\"></td>";
 				contenutoHtml += "<td>" + p.nome + "</td>";
 				contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
-				contenutoHtml += "<td> <h5> <input type=number min=1 max=" + p.quantita + " class=quantita id=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";
+				contenutoHtml += "<td> <h5> <input type=number min=1 max=" + p.quantita + " class=\"quantita\" onchange=totaleParziale() value=\"1\"> </h5> </td>";
 				contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
 				contenutoHtml += "</tr>";
 			}
@@ -89,6 +89,39 @@ function dynamicCart(url) {
 			window.location.assign(response.url);
 		}
 	});
+}
+
+function dynamicCheckout() {
+	
+	let rows = document.getElementsByClassName("row");
+	let contenutoHtml = "";
+	
+	for (const row of rows) {
+		let immagineProdotto = row.getElementsByClassName("thumbnail")[0].src;
+		let nomeProdotto = row.getElementsByTagName("td")[2].textContent;
+		let quantita = row.getElementsByClassName("quantita")[0].value;
+		let totParziale = row.getElementsByTagName("td")[5].textContent;
+
+		contenutoHtml += "<div id=\"product-row\">";
+		contenutoHtml += "<div id=\"img-product\"> <img src=\"" + immagineProdotto + "\"></div>";
+		contenutoHtml += "<div id=\"info-product\">";
+		contenutoHtml += "<p> " + nomeProdotto + " x " + quantita + "</p> <br>";
+		contenutoHtml += "<p>" + totParziale + "</p>";
+		contenutoHtml += "</div>";
+		contenutoHtml += "</div>"
+
+	}
+	
+	let totale = document.getElementsByClassName("totCumul")[0].textContent;
+	console.log(totale);
+	contenutoHtml += "<hr>";
+	contenutoHtml += "<div id=\"final-price\">";
+	contenutoHtml += "<p>Totale:</p>";
+	contenutoHtml += "<p>" + totale + "</p>";
+	contenutoHtml += "</div>";
+
+	$("#summary-product").append(contenutoHtml);
+
 }
 
 
@@ -251,7 +284,7 @@ function dynamicCheckOrders(url) {
 				contenutoHtml += "<p>" + os.prodotto.nome + "</p>";
 			contenutoHtml += "</td>";
 			contenutoHtml += "<td> &#8364 " + o.totale.toFixed(2) + "</td>";
-			
+
 			contenutoHtml += "<td> <select class=\"newStato\"> <option>" + stato1 + "</option>";
 			contenutoHtml += "<option>" + stato2 + "</option>";
 			contenutoHtml += "<option>" + stato3 + "</option> </select> </td>";
@@ -317,19 +350,19 @@ function createPaginationLinks(totalPages) {
 
 /*** FORMATTAZIONE DATA ***/
 function formatDate(dataString) {
-  // Crea un oggetto Data dalla stringa di data
-  var data = new Date(dataString);
+	// Crea un oggetto Data dalla stringa di data
+	var data = new Date(dataString);
 
-  // Verifica se la conversione è riuscita
-  if (isNaN(data.getTime())) {
-    console.error("Stringa di data non valida");
-    return null;
-  }
+	// Verifica se la conversione è riuscita
+	if (isNaN(data.getTime())) {
+		console.error("Stringa di data non valida");
+		return null;
+	}
 
-  // Configura il formato della data
-  var opzioniFormattazione = { year: 'numeric', month: '2-digit', day: '2-digit' };
-  var formatoData = new Intl.DateTimeFormat('it-IT', opzioniFormattazione);
+	// Configura il formato della data
+	var opzioniFormattazione = { year: 'numeric', month: '2-digit', day: '2-digit' };
+	var formatoData = new Intl.DateTimeFormat('it-IT', opzioniFormattazione);
 
-  // Applica il formato alla data e restituisci la stringa formattata
-  return formatoData.format(data);
+	// Applica il formato alla data e restituisci la stringa formattata
+	return formatoData.format(data);
 }
