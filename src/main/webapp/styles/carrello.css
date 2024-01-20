@@ -124,19 +124,40 @@ td, th {
 #summary header h3{
    flex: 2 1 30rem;
     color: var(--special-color);
+    margin: 0rem 1rem;
 }
 
 #summary header h4{
     flex: 1 1 30rem;
-    justify-self: end;
     text-align: end;
-
+    margin: 0rem 1rem;
 }
 
 #summary-userdata{
     flex: 4 1 30rem;
     padding: 2rem;
     margin: 1rem;
+}
+
+#summary-userdata-address{
+    min-height: 40vh;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.summary-userdata-address-row{
+    display: flex;
+    padding: 1rem;
+    margin: 1rem 0rem;
+    align-items: center;
+}
+
+.summary-userdata-address-row p{
+    flex: 1 1 30rem;
+}
+
+.summary-userdata-address-row h4{
+    flex: 1 1 30rem;
 }
 
 #card-form-wrapper{
@@ -146,6 +167,26 @@ td, th {
     flex-direction: column;
 }
 
+
+#erro-section{
+    min-height: 8vh;
+    padding: 1rem;
+    width: 90%;
+    margin: auto;
+}
+
+#card-number-error{
+    font-size: 12px;
+    color: red;
+}
+#cvv-number-error{
+    font-size: 12px;
+    color: red;
+}
+#expiry-date-error{
+    font-size: 12px;
+    color: red;
+}
 #card-form-wrapper form{
     display: grid;
     grid-template-columns: repeat(
@@ -160,7 +201,6 @@ td, th {
     padding: 2rem;
     margin: 1rem;
 }
-
 
 #summary-orderdata{
     flex: 2 1 30rem;

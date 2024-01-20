@@ -55,22 +55,107 @@ function eliminaRiga(button) {
 	});
 }
 
+let validNumber;
+let validCvv;
+let validDate;
+function checkCard() {
+	var numberCardInput = document.getElementById("card-number");
+	var numberCard = numberCardInput.value;
+	var cardNumberError = document.getElementById("card-number-error");
 
-function checkout(url) {
-	let element = document.getElementsByClassName("totCumul")[0];
-	let text = element.textContent;
-	let numericValue = parseFloat(text.split(' ')[1]);
+	var cvvNumber = document.getElementById("cvv").value;
+	var cvvNumberError = document.getElementById("cvv-number-error");
 
-	let query = document.querySelectorAll('.quantita');
-	let quantita = "";
-	for (let i = 0; i < query.length; i++) {
-		quantita += query[i].value;
-		if (query[i + 1] != null)
-			quantita += ",";
+	var expiryDateInput = document.getElementById("expiry-date");
+	var expiryDate = expiryDateInput.value;
+	var expiryDateError = document.getElementById("expiry-date-error");
+
+	// Controllo sul numero della carta
+	var cleanCardNumber = numberCard.replace(/[^0-9]/g, ""); // Rimuovi caratteri non numerici
+	numberCardInput.value = cleanCardNumber;
+	var formattedCardNumber = cleanCardNumber.replace(/(.{4})/g, "$1-"); // Aggiungi "-" ogni 4 cifre
+
+	if (cleanCardNumber.length !== 16 || !/^\d+$/.test(cleanCardNumber)) {
+		document.getElementById("card-number").style.border = "2px solid red";
+		cardNumberError.textContent =
+			"Il numero della carta deve essere lungo 16 caratteri e contenere solo numeri.";
+		validNumber = false;
+	} else {
+		document.getElementById("card-number").style.border = "2px solid green";
+		cardNumberError.textContent = "";
+		validNumber = true;
+		// Rimuovi l'ultimo trattino nel numero della carta
+		document.getElementById("card-number").value = formattedCardNumber.slice(0, -1);
 	}
 
-	if (numericValue > 0)
-		window.location.href = "AddOrdineServlet?totale=" + numericValue + "&quantita=" + quantita;
+
+	// Controllo sul CVV
+	if (cvvNumber.length !== 3 || !/^\d+$/.test(cvvNumber)) {
+		document.getElementById("cvv").style.border = "2px solid red";
+		cvvNumberError.textContent =
+			"Il numero del CVV deve essere lungo 3 caratteri e contenere solo numeri.";
+		validCvv = false;
+	} else {
+		document.getElementById("cvv").style.border = "2px solid green";
+		cvvNumberError.textContent = "";
+		validCvv = true;
+	}
+
+	// Controllo sulla data
+	var currentDate = new Date();
+	var currentYear = currentDate.getFullYear() % 100; // Prendi solo gli ultimi due numeri dell'anno
+
+	// Rimuovi tutti i caratteri non numerici dalla data
+
+	var cleanExpiryDate = expiryDate.replace(/[^\d/]/g, "");
+
+	expiryDateInput.value = cleanExpiryDate;
+
+	if (!/^\d{2}\/\d{2}$/.test(cleanExpiryDate)) {
+		// La data non rispetta il formato MM/YY
+		expiryDateInput.style.border = "2px solid red";
+		expiryDateError.textContent = "Inserisci una data nel formato MM/YY valido.";
+		validDate = false;
+	} else {
+		var enteredMonth = parseInt(cleanExpiryDate.slice(0, 2));
+		var enteredYear = parseInt(cleanExpiryDate.slice(3, 5));
+
+
+
+		if (enteredMonth < 1 || enteredMonth > 12 || enteredYear < currentYear) {
+			expiryDateInput.style.border = "2px solid red";
+			expiryDateError.textContent = "Inserisci una data di scadenza valida.";
+			validDate = false;
+		}else{
+			expiryDateInput.style.border = "2px solid green";
+			expiryDateError.textContent = "";
+			validDate = true;
+		}
+
+
+	}
+
+}
+
+function checkout(url) {
+	if(validDate && validNumber && validCvv) {
+		let element = document.getElementsByClassName("totCumul")[0];
+		let text = element.textContent;
+		let numericValue = parseFloat(text.split(' ')[1]);
+
+		let query = document.querySelectorAll('.quantita');
+		let quantita = "";
+		for (let i = 0; i < query.length; i++) {
+			quantita += query[i].value;
+			if (query[i + 1] != null)
+				quantita += ",";
+		}
+
+		if (numericValue > 0)
+			window.location.href = "AddOrdineServlet?totale=" + numericValue + "&quantita=" + quantita;
+	}else{
+		Swal.fire('Errore!','Inserire i Dati Della Carta','error');
+	}
 }
 
 function toggleSummary() {
@@ -101,3 +186,5 @@ function onClickHandler() {
 	dynamicCheckout();
 	toggleSummary();
 }
+
+

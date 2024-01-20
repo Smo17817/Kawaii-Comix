@@ -4,6 +4,7 @@ import acquistoManagement.*;
 import catalogoManagement.GestoreCatalogo;
 import catalogoManagement.GestoreCatalogoDAO;
 import catalogoManagement.GestoreCatalogoIDS;
+import com.google.gson.Gson;
 import utenteManagement.User;
 import utenteManagement.UserDAO;
 import utenteManagement.UserIDS;
@@ -17,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,6 +38,8 @@ public class LoginServlet extends HttpServlet {
         GestoreOrdiniDAO gestoreOrdiniDAO = new GestoreOrdiniIDS(ds);
         CarrelloDAO carrelloDAO = new CarrelloIDS(ds);
 
+        Gson json = new Gson();
+        PrintWriter out = response.getWriter();
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -42,6 +47,23 @@ public class LoginServlet extends HttpServlet {
         HttpSession session  = request.getSession();
         RequestDispatcher requestDispatcher = null;
 
+        if (email == null || email.trim().isEmpty()) {
+            HashMap<String, String> responseMap = new HashMap<>();
+            responseMap.put(STATUS, "Blank_Mail");
+            String jsonResponse = json.toJson(responseMap);
+            response.setContentType(contentType);
+            out.write(jsonResponse);
+            out.flush();
+            return;
+        } else if (!(email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"))){
+            HashMap<String, String> responseMap = new HashMap<>();
+            responseMap.put(STATUS, "Invalid_Mail");
+            String jsonResponse = json.toJson(responseMap);
+            response.setContentType(contentType);
+            out.write(jsonResponse);
+            out.flush();
+            return;
+        }
 
         try{
             if(jspFileName.equals("login")) {
@@ -75,6 +97,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("user", gestoreOrdini);
                     requestDispatcher = request.getRequestDispatcher(INDEX);
                 }else{
+                    request.setAttribute(STATUS, "failed");
                     requestDispatcher = request.getRequestDispatcher(LOGIN_ADMIN);
                 }
             }
@@ -93,6 +116,8 @@ public class LoginServlet extends HttpServlet {
     /*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
     private static final String ERROR = "Errore";
+
+    private static final String contentType = "application/json";
 
 }
 

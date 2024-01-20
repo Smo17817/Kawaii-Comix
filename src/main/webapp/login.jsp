@@ -1,4 +1,4 @@
-
+<%@ page import="view.utente.LoginServlet" %>
 <%--
   Created by IntelliJ IDEA.
   User: davidedelfranconatale
@@ -7,9 +7,41 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%String status = (String) request.getAttribute("status");%>
+<!DOCTYPE html>
 <html>
   <jsp:include page="./header.jsp" flush="true"></jsp:include>
   <body>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
+    " rel="stylesheet">
+    <script>
+        function confermaLogin(event){
+          event.preventDefault();
+
+          var email = document.getElementById('email').value;
+          var password = document.getElementById('password').value;
+          $.ajax({
+            url: '<%=request.getContextPath()%>/LoginServlet',
+            type: 'POST',
+            data:{
+              email : email,
+              password : password
+            },
+          }).done(function (response){
+            var status = response.status
+            if(status === 'Invalid_Mail'){
+              Swal.fire("E-MAIL NON VALIDA ", "L'email inserita non è in un formato corretto", "error");
+            }else if(status == 'Blank_Mail'){
+              Swal.fire("CAMPO VUOTO", "Inserire una Email in un formato corretto", "error");
+            }
+          })
+
+        }
+    </script>
     <jsp:include page="./nav.jsp" flush="true"></jsp:include>
     <main>
       <section id="login">
@@ -18,9 +50,9 @@
         </div>
         <div class="form-wrapper">
           <h3>Accedi al tuo Account</h3>
-          <form action="LoginServlet" method="post">
+          <form onsubmit="confermaLogin(event)" method="post">
             <input type="hidden" name="jspName" value="login">
-            <input type="email" name="email" placeholder="E-mail" id="email">
+            <input  name="email" placeholder="E-mail" id="email">
             <input type="password" name="password" placeholder="Password" id = "password">
             <button type="submit" id="loginButton">Invia</button>
           </form>
