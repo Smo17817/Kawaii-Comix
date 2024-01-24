@@ -77,7 +77,14 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("user", user);
                     session.setAttribute("carrello", carrello);
 
-                    requestDispatcher = request.getRequestDispatcher(INDEX);
+                    System.out.println("ciao");
+                    HashMap<String, String> responseMap = new HashMap<>();
+                    responseMap.put("status", "success");
+                    responseMap.put("url", "index.jsp");
+                    String jsonResponse = json.toJson(responseMap);
+                    response.setContentType(contentType);
+                    out.write(jsonResponse);
+                    out.flush();
                 } else {
                     request.setAttribute(STATUS, "failed");
                     requestDispatcher = request.getRequestDispatcher(LOGIN);

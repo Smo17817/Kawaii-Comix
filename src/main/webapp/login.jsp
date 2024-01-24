@@ -24,19 +24,25 @@
 
           var email = document.getElementById('email').value;
           var password = document.getElementById('password').value;
+          var jspName = document.getElementById('jspName').value;
           $.ajax({
             url: '<%=request.getContextPath()%>/LoginServlet',
             type: 'POST',
             data:{
               email : email,
-              password : password
+              password : password,
+              jspName : jspName
+
             },
           }).done(function (response){
-            var status = response.status
+            var status = response.status;
+            console.log(status);
             if(status === 'Invalid_Mail'){
               Swal.fire("E-MAIL NON VALIDA ", "L'email inserita non è in un formato corretto", "error");
             }else if(status == 'Blank_Mail'){
               Swal.fire("CAMPO VUOTO", "Inserire una Email in un formato corretto", "error");
+            }else if(status === 'success'){
+              window.location.assign(response.url);
             }
           })
 
@@ -51,7 +57,7 @@
         <div class="form-wrapper">
           <h3>Accedi al tuo Account</h3>
           <form onsubmit="confermaLogin(event)" method="post">
-            <input type="hidden" name="jspName" value="login">
+            <input type="hidden" name="jspName" value="login" id="jspName">
             <input  name="email" placeholder="E-mail" id="email">
             <input type="password" name="password" placeholder="Password" id = "password">
             <button type="submit" id="loginButton">Invia</button>
