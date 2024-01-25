@@ -199,6 +199,27 @@ public class UserIDS implements UserDAO {
 	}
 
 	@Override
+	public Boolean doUpdateUserPassword(String mail, String password){
+		String query = "UPDATE " + UserIDS.TABLE + " SET password = ? WHERE email_address = ?";
+
+		try (Connection connection = ds.getConnection();
+			 PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+
+			preparedStatement.setString(1, password);
+			preparedStatement.setString(2, mail);
+
+			if(preparedStatement.executeUpdate() > 1){
+				return  true;
+			}
+
+		} catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+		return false;
+    }
+
+	@Override
 	public boolean emailExists(String email) throws SQLException {
 
 		String query = "SELECT * FROM site_user WHERE email_address = ?";

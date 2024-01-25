@@ -10,6 +10,8 @@ public interface UserDAO {
 
 	public Boolean doUpdateUser(User user) throws SQLException;
 
+	public Boolean doUpdateUserPassword(String mail, String password) throws  SQLException;
+
 	public Collection<User> doRetrieveAllUsers() throws SQLException;
 
 	public User doRetrieveById(Integer id) throws SQLException;

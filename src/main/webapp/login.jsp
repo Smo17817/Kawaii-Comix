@@ -32,15 +32,16 @@
               email : email,
               password : password,
               jspName : jspName
-
             },
           }).done(function (response){
             var status = response.status;
             console.log(status);
             if(status === 'Invalid_Mail'){
               Swal.fire("E-MAIL NON VALIDA ", "L'email inserita non è in un formato corretto", "error");
-            }else if(status == 'Blank_Mail'){
-              Swal.fire("CAMPO VUOTO", "Inserire una Email in un formato corretto", "error");
+            }else if(status == 'Blank'){
+              Swal.fire("CAMPO VUOTO", "Inserire un valore nel campo", "error");
+            }else if(status === 'failed'){
+              Swal.fire("CREDENZIALI NON VALIDE", "E-mail o Password errati", "error");
             }else if(status === 'success'){
               window.location.assign(response.url);
             }

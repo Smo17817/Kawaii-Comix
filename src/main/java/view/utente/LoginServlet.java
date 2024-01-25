@@ -47,9 +47,9 @@ public class LoginServlet extends HttpServlet {
         HttpSession session  = request.getSession();
         RequestDispatcher requestDispatcher = null;
 
-        if (email == null || email.trim().isEmpty()) {
+        if ((email == null || email.trim().isEmpty() || (password == null || password.trim().isEmpty()))) {
             HashMap<String, String> responseMap = new HashMap<>();
-            responseMap.put(STATUS, "Blank_Mail");
+            responseMap.put(STATUS, "Blank");
             String jsonResponse = json.toJson(responseMap);
             response.setContentType(contentType);
             out.write(jsonResponse);
@@ -65,6 +65,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+
         try{
             if(jspFileName.equals("login")) {
                 User user = userDAO.doRetrieveUser(email, password);
@@ -77,7 +78,6 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("user", user);
                     session.setAttribute("carrello", carrello);
 
-                    System.out.println("ciao");
                     HashMap<String, String> responseMap = new HashMap<>();
                     responseMap.put("status", "success");
                     responseMap.put("url", "index.jsp");
@@ -86,8 +86,12 @@ public class LoginServlet extends HttpServlet {
                     out.write(jsonResponse);
                     out.flush();
                 } else {
-                    request.setAttribute(STATUS, "failed");
-                    requestDispatcher = request.getRequestDispatcher(LOGIN);
+                    HashMap<String, String> responseMap = new HashMap<>();
+                    responseMap.put("status", "failed");
+                    String jsonResponse = json.toJson(responseMap);
+                    response.setContentType(contentType);
+                    out.write(jsonResponse);
+                    out.flush();
                 }
             } else if (jspFileName.equals("loginAdmin")) {
                 GestoreCatalogo gestoreCatalogo = gestoreCatalogoDAO.doRetrieveByAuthentication(email , password);
@@ -96,24 +100,48 @@ public class LoginServlet extends HttpServlet {
                 if(gestoreCatalogo != null && gestoreOrdini !=null) {
                     session.setAttribute("user", gestoreCatalogo);
                     session.setAttribute("BOTH" , true);
-                    requestDispatcher = request.getRequestDispatcher(INDEX);
+                    HashMap<String, String> responseMap = new HashMap<>();
+                    responseMap.put("status", "success");
+                    responseMap.put("url", "areapersonale.jsp");
+                    String jsonResponse = json.toJson(responseMap);
+                    response.setContentType(contentType);
+                    out.write(jsonResponse);
+                    out.flush();
                 }else if(gestoreCatalogo != null){
                     session.setAttribute("user", gestoreCatalogo);
-                    requestDispatcher = request.getRequestDispatcher(INDEX);
+                    HashMap<String, String> responseMap = new HashMap<>();
+                    responseMap.put("status", "success");
+                    responseMap.put("url", "areapersonale.jsp");
+                    String jsonResponse = json.toJson(responseMap);
+                    response.setContentType(contentType);
+                    out.write(jsonResponse);
+                    out.flush();
                 } else if (gestoreOrdini != null) {
                     session.setAttribute("user", gestoreOrdini);
-                    requestDispatcher = request.getRequestDispatcher(INDEX);
+                    HashMap<String, String> responseMap = new HashMap<>();
+                    responseMap.put("status", "success");
+                    responseMap.put("url", "areapersonale.jsp");
+                    String jsonResponse = json.toJson(responseMap);
+                    response.setContentType(contentType);
+                    out.write(jsonResponse);
+                    out.flush();
                 }else{
-                    request.setAttribute(STATUS, "failed");
-                    requestDispatcher = request.getRequestDispatcher(LOGIN_ADMIN);
+                    HashMap<String, String> responseMap = new HashMap<>();
+                    responseMap.put("status", "failed");
+                    responseMap.put("url", "loginAdmin.jsp");
+                    String jsonResponse = json.toJson(responseMap);
+                    response.setContentType(contentType);
+                    out.write(jsonResponse);
+                    out.flush();
                 }
             }
-            requestDispatcher.forward(request ,response);
         } catch (SQLException | NullPointerException e) {
         	logger.log(Level.ALL, ERROR, e);
         }
+
     }
-    
+
+
     /*** MACRO ***/
     private static final String STATUS = "status";
     private static final String INDEX = "index.jsp";
