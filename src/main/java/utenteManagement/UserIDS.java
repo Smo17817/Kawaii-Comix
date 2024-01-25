@@ -202,13 +202,14 @@ public class UserIDS implements UserDAO {
 	public Boolean doUpdateUserPassword(String mail, String password){
 		String query = "UPDATE " + UserIDS.TABLE + " SET password = ? WHERE email_address = ?";
 
+		String hashedPassword = PasswordUtils.hashPassword(password);
 		try (Connection connection = ds.getConnection();
 			 PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 
-			preparedStatement.setString(1, password);
+			preparedStatement.setString(1, hashedPassword);
 			preparedStatement.setString(2, mail);
 
-			if(preparedStatement.executeUpdate() > 1){
+			if(preparedStatement.executeUpdate() == 1){
 				return  true;
 			}
 

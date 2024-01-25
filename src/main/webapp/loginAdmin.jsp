@@ -33,7 +33,6 @@
             },
         }).done(function (response){
             var status = response.status;
-            console.log(status);
             if(status === 'Invalid_Mail'){
                 Swal.fire("E-MAIL NON VALIDA ", "L'email inserita non è in un formato corretto", "error");
             }else if(status == 'Blank'){

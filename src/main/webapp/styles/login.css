@@ -39,10 +39,31 @@ main{
 }
 .form-wrapper input{
     padding: 1.5rem 4rem;
-    width: 60%;
-   margin: 1rem;
+    margin: 1rem;
+    width: calc(60% - 35px);
 }
 
+.password-row {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.password-row input{
+    padding: 1.5rem 4rem;
+    margin: 1rem;
+    width: calc(60% - 35px);
+}
+.password-row img {
+    position: absolute;
+    width: 25px;
+    cursor: pointer;
+    right: 135px; /* Regola la posizione dell'icona */
+    top: 50%; /* Posiziona verticalmente al centro */
+    transform: translateY(-50%); /* Centra verticalmente */
+}
 .form-wrapper button{
     width: 60%;
     background: var(--special-color);

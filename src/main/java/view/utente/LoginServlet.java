@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException , IOException{
     	DataSource ds = (DataSource)  getServletContext().getAttribute("DataSource");
         UserDAO userDAO = new UserIDS(ds);
+        HashMap<String, String> responseMap = new HashMap<>();
         GestoreCatalogoDAO gestoreCatalogoDAO = new GestoreCatalogoIDS(ds);
         GestoreOrdiniDAO gestoreOrdiniDAO = new GestoreOrdiniIDS(ds);
         CarrelloDAO carrelloDAO = new CarrelloIDS(ds);
@@ -45,10 +46,9 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         String jspFileName =request.getParameter("jspName");
         HttpSession session  = request.getSession();
-        RequestDispatcher requestDispatcher = null;
+
 
         if ((email == null || email.trim().isEmpty() || (password == null || password.trim().isEmpty()))) {
-            HashMap<String, String> responseMap = new HashMap<>();
             responseMap.put(STATUS, "Blank");
             String jsonResponse = json.toJson(responseMap);
             response.setContentType(contentType);
@@ -56,7 +56,6 @@ public class LoginServlet extends HttpServlet {
             out.flush();
             return;
         } else if (!(email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"))){
-            HashMap<String, String> responseMap = new HashMap<>();
             responseMap.put(STATUS, "Invalid_Mail");
             String jsonResponse = json.toJson(responseMap);
             response.setContentType(contentType);
@@ -78,16 +77,14 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("user", user);
                     session.setAttribute("carrello", carrello);
 
-                    HashMap<String, String> responseMap = new HashMap<>();
-                    responseMap.put("status", "success");
-                    responseMap.put("url", "index.jsp");
+                    responseMap.put(STATUS, "success");
+                    responseMap.put(URL, INDEX);
                     String jsonResponse = json.toJson(responseMap);
                     response.setContentType(contentType);
                     out.write(jsonResponse);
                     out.flush();
                 } else {
-                    HashMap<String, String> responseMap = new HashMap<>();
-                    responseMap.put("status", "failed");
+                    responseMap.put(STATUS, "failed");
                     String jsonResponse = json.toJson(responseMap);
                     response.setContentType(contentType);
                     out.write(jsonResponse);
@@ -100,35 +97,35 @@ public class LoginServlet extends HttpServlet {
                 if(gestoreCatalogo != null && gestoreOrdini !=null) {
                     session.setAttribute("user", gestoreCatalogo);
                     session.setAttribute("BOTH" , true);
-                    HashMap<String, String> responseMap = new HashMap<>();
-                    responseMap.put("status", "success");
-                    responseMap.put("url", "areapersonale.jsp");
+
+                    responseMap.put(STATUS, "success");
+                    responseMap.put(URL, AREA_PERSONALE);
                     String jsonResponse = json.toJson(responseMap);
                     response.setContentType(contentType);
                     out.write(jsonResponse);
                     out.flush();
                 }else if(gestoreCatalogo != null){
                     session.setAttribute("user", gestoreCatalogo);
-                    HashMap<String, String> responseMap = new HashMap<>();
-                    responseMap.put("status", "success");
-                    responseMap.put("url", "areapersonale.jsp");
+
+                    responseMap.put(STATUS, "success");
+                    responseMap.put(URL, AREA_PERSONALE);
                     String jsonResponse = json.toJson(responseMap);
                     response.setContentType(contentType);
                     out.write(jsonResponse);
                     out.flush();
                 } else if (gestoreOrdini != null) {
                     session.setAttribute("user", gestoreOrdini);
-                    HashMap<String, String> responseMap = new HashMap<>();
-                    responseMap.put("status", "success");
-                    responseMap.put("url", "areapersonale.jsp");
+
+                    responseMap.put(STATUS, "success");
+                    responseMap.put(URL, AREA_PERSONALE);
                     String jsonResponse = json.toJson(responseMap);
                     response.setContentType(contentType);
                     out.write(jsonResponse);
                     out.flush();
                 }else{
-                    HashMap<String, String> responseMap = new HashMap<>();
-                    responseMap.put("status", "failed");
-                    responseMap.put("url", "loginAdmin.jsp");
+
+                    responseMap.put(STATUS, "failed");
+                    responseMap.put(URL, LOGIN_ADMIN);
                     String jsonResponse = json.toJson(responseMap);
                     response.setContentType(contentType);
                     out.write(jsonResponse);
@@ -141,11 +138,12 @@ public class LoginServlet extends HttpServlet {
 
     }
 
-
     /*** MACRO ***/
     private static final String STATUS = "status";
+
+    private static final String URL = "url";
     private static final String INDEX = "index.jsp";
-    private static final String LOGIN = "login.jsp";
+    private static final String AREA_PERSONALE = "areapersonale.jsp";
     private static final String LOGIN_ADMIN = "loginAdmin.jsp";
     
     /*** LOGGER ***/

@@ -1,12 +1,11 @@
 package controller;
 
+import com.google.gson.Gson;
 import utenteManagement.UserIDS;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
+import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -19,54 +18,85 @@ import javax.sql.DataSource;
 
 @WebServlet("/ForgotPasswordServlet")
 public class ForgotPasswordServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(ForgotPasswordServlet.class.getName());
-    private static final String error = "Errore";
-    private static final String status = "status";
-    private static final String url = "richiestapassword.jsp";
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+                throws ServletException, IOException {
+            DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+            Gson json = new Gson();
+            HashMap<String, String> responseMap = new HashMap<>();
+            PrintWriter out = response.getWriter();
 
-        String email = request.getParameter("email");
-        String password1 = request.getParameter("password");
-        String password2 = request.getParameter("conf-password");
+            String email = request.getParameter("email");
+            String password1 = request.getParameter("password1");
+            String password2 = request.getParameter("password2");
 
-        UserIDS userIDS = new UserIDS(ds);
-
-        RequestDispatcher dispatcher = null;
+            UserIDS userIDS = new UserIDS(ds);
 
 
-        if (email.equals("")) {
-            request.setAttribute(status, "Invalid_email");
-            request.setAttribute("emailValue", email);
-            dispatcher = request.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
-            return;
+            if ((email == null || email.trim().isEmpty()) || (password1 == null || password1.trim().isEmpty()) || (password2 == null || password2.trim().isEmpty())) {
+                responseMap.put(STATUS, "Blank");
+                String jsonResponse = json.toJson(responseMap);
+                response.setContentType(contentType);
+                out.write(jsonResponse);
+                out.flush();
+                return;
+            }
+
+            if(!(email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"))) {
+                responseMap.put(STATUS, "Invalid_Mail");
+                String jsonResponse = json.toJson(responseMap);
+                response.setContentType(contentType);
+                out.write(jsonResponse);
+                out.flush();
+                return;
+            }
+
+            if(password1.length() < 8){
+                responseMap.put(STATUS, "Invalid_Password_length");
+                String jsonResponse = json.toJson(responseMap);
+                response.setContentType(contentType);
+                out.write(jsonResponse);
+                out.flush();
+                return;
+            }
+
+            if (!(password1.equals(password2))) {
+                responseMap.put(STATUS, "Invalid_Password");
+                String jsonResponse = json.toJson(responseMap);
+                response.setContentType(contentType);
+                out.write(jsonResponse);
+                out.flush();
+                return;
+            }
+
+
+            if (userIDS.doUpdateUserPassword(email, password1)) {
+                responseMap.put(STATUS, "success");
+                responseMap.put(URL , "login.jsp");
+                String jsonResponse = json.toJson(responseMap);
+                response.setContentType(contentType);
+                out.write(jsonResponse);
+                out.flush();
+            }
+            else{
+                responseMap.put(STATUS, "failed");
+                String jsonResponse = json.toJson(responseMap);
+                response.setContentType(contentType);
+                out.write(jsonResponse);
+                out.flush();
+            }
+
         }
-        if (password1.equals("") || password2.equals("")) {
-            request.setAttribute(status, "Invalid_password");
-            dispatcher = request.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
-            return;
-        }
-        if (!(password1.equals(password2))) {
-            request.setAttribute(status, "Invalid_password2");
-            dispatcher = request.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
-            return;
-        }
 
 
-            if (userIDS.doUpdateUserPassword(email , password1))
-                request.setAttribute(status, "success");
-            else
-                request.setAttribute(status, "failed");
+    private static final long serialVersionUID = 1L;
+    private static final Logger logger = Logger.getLogger(ForgotPasswordServlet.class.getName());
+    private static final String error = "Errore";
+    private static final String STATUS = "status";
+    private static final String contentType = "application/json";
+    private static final String URL = "url";
 
-            dispatcher = request.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
     }
 
-}

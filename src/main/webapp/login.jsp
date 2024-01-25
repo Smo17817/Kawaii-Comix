@@ -60,7 +60,10 @@
           <form onsubmit="confermaLogin(event)" method="post">
             <input type="hidden" name="jspName" value="login" id="jspName">
             <input  name="email" placeholder="E-mail" id="email">
-            <input type="password" name="password" placeholder="Password" id = "password">
+            <div class="password-row">
+              <input type="password" name="password" placeholder="Password" id = "password">
+              <img src="./icons/eye-close.png" alt="" id="eye-icon">
+            </div>
             <button type="submit" id="loginButton">Invia</button>
           </form>
         </div>
@@ -73,4 +76,18 @@
     </main>
     <jsp:include page="./footer.jsp" flush="true"></jsp:include>
   </body>
+<script>
+  let eyeicon = document.getElementById("eye-icon");
+  let password = document.getElementById("password");
+  eyeicon.onclick = function(){
+    if(password. type == "password" ) {
+      password.type = "text";
+      eyeicon.src = "./icons/eye-open.png";
+    }
+    else{
+      password. type = "password";
+      eyeicon.src = "./icons/eye-close.png";
+    }
+  }
+</script>
 </html>
