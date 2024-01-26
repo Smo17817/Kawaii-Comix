@@ -63,6 +63,8 @@ public class SignupServlet extends HttpServlet {
 			return;
 		}
 
+
+
 		if(password.length() < 8){
 			responseMap.put(STATUS, "Invalid_Password_length");
 			String jsonResponse = json.toJson(responseMap);
