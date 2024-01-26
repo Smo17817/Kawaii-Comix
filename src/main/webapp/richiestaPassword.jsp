@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
-<body><script src="
+<body>
+<script src="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
     "></script>
 <link href="

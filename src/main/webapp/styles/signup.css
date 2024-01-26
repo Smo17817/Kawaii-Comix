@@ -78,3 +78,25 @@ main{
     padding: 0.5rem 3rem;
     flex: 1 1 20rem;
 }
+
+
+.password-row {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.password-row input{
+    padding: 0.5rem 3rem;
+    margin: 0rem 1rem;
+}
+.password-row img {
+    position: absolute;
+    width: 25px;
+    cursor: pointer;
+    right: 13px; /* Regola la posizione dell'icona */
+    top: 50%; /* Posiziona verticalmente al centro */
+    transform: translateY(-50%); /* Centra verticalmente */
+}
