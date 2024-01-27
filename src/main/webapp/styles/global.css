@@ -111,6 +111,7 @@ nav ul{
 
 nav li{
     padding: 1rem;
+    position: relative;
 }
 
 nav li a{
@@ -122,6 +123,25 @@ nav img{
     height: var(--icon);
     width: var(--icon);
     margin-right: 1rem;
+}
+
+#counter{
+    position: absolute;
+    background: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: 0;
+    left: 45px;
+    transform: translate(-45%, 0);
+    padding: 1rem;
+}
+
+#counter  p{
+    position: absolute;
+    top: -6px;
+    right: 50%;
+    transform: translateX(50%);
 }
 
 /*** FOOTER SECTION ***/

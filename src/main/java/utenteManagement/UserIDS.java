@@ -69,8 +69,8 @@ public class UserIDS implements UserDAO {
 	@Override
 	public Boolean doUpdateUser(User user) throws SQLException {
 		String query = "UPDATE " + UserIDS.TABLE
-				+ "SET email_address = ?, password = ?, nome = ?, cognome = ?, indirizzo = ?, citta = ?, codice_postale = ?, provincia = ?, nazione = ? "
-				+ "WHERE id = ?";
+				+ " SET email_address = ?, password = ?, nome = ?, cognome = ?, indirizzo = ?, citta = ?, codice_postale = ?, provincia = ?, nazione = ? "
+				+ " WHERE id = ?";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {

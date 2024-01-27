@@ -156,7 +156,6 @@ public class SignupServlet extends HttpServlet {
 			}else {
 				User user = new User(email, password, nome, cognome, formattedIndirizzo(indirizzo), formattedCitta(citta), cap, provincia.toUpperCase(), nazione);
 				userIDS.doSaveUser(user);
-				System.out.println(user);
 				responseMap.put(STATUS, "success");
 				responseMap.put(URL, "login.jsp");
 				String jsonResponse = json.toJson(responseMap);

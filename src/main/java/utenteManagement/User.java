@@ -70,6 +70,7 @@ public class User implements Serializable {
 			this.provincia = provincia;
 		if(!nazione.equals(""))
 			this.nazione = nazione;
+
 	}
 
 	public Integer getId() {

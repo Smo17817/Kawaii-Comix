@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import acquistoManagement.Carrello;
 import catalogoManagement.*;
+import com.google.gson.JsonObject;
 import utenteManagement.User;
 
 @WebServlet("/CarrelloServlet")
@@ -34,7 +35,7 @@ public class CarrelloServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Gson json = new Gson();
 
-
+		HashMap<String, String> hashMap = new HashMap<>();
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
@@ -43,14 +44,19 @@ public class CarrelloServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 
 			if (isbn == null) {
-				HashMap<String, String> hashMap = new HashMap<>();
-				hashMap.put("url", "carrello.jsp");
-				out.write(json.toJson(hashMap));
+				JsonObject jsonResponse = new JsonObject();
+				jsonResponse.addProperty("url", "carrello.jsp");
+				response.setContentType("application/json");
+				out.write(jsonResponse.toString());
 				return;
 			}
 
-			if (user == null)
-				response.sendRedirect("login.jsp");
+			if (user == null) {
+				JsonObject jsonResponse = new JsonObject();
+				jsonResponse.addProperty("url", "login.jsp");
+				response.setContentType("application/json");
+				out.write(jsonResponse.toString());
+			}
 			else {
 
 				ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
@@ -60,9 +66,17 @@ public class CarrelloServlet extends HttpServlet {
 					carrello.add(prodotto);
 					session.setAttribute("carrello" , carrello);
 				}
+
+
+				int numeroProdottiNelCarrello = carrello.getListaProdotti().size();
+
+				JsonObject jsonResponse = new JsonObject();
+				jsonResponse.addProperty("numeroProdotti", numeroProdottiNelCarrello);
+				jsonResponse.add("listaProdotti", json.toJsonTree(carrello.getListaProdotti())); // Converti la lista di prodotti in un JsonArray
+				response.setContentType("application/json");
+				out.write(jsonResponse.toString());
 			}
 
-			out.write(json.toJson(carrello.getListaProdotti()));
 
 		} catch (SQLException | IOException e) {
 			logger.log(Level.ALL, ERROR, e);

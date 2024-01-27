@@ -69,11 +69,11 @@ function dynamicCart(url) {
 		type: 'POST',
 		contentType: 'application/json; charset=utf-8'
 	}).done((response) => {
-		response = JSON.parse(response);
+		const listaProdotti = response.listaProdotti;
 		let contenutoHtml = "";
 
 		if (response.url === undefined) {
-			for (const p of response) {
+			for (const p of listaProdotti) {
 				contenutoHtml += "<tr class=\"row\">";
 				contenutoHtml += "<td> <button data-isbn='" + p.isbn + "'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
 				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.immagine + "\"></td>";
@@ -82,6 +82,8 @@ function dynamicCart(url) {
 				contenutoHtml += "<td> <h5> <input type=number min=1 max=" + p.quantita + " class=\"quantita\" onchange=totaleParziale() value=\"1\"> </h5> </td>";
 				contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
 				contenutoHtml += "</tr>";
+
+				updateCounter(response)
 			}
 			$("#dinamico").append(contenutoHtml);
 			totaleParziale();
@@ -89,6 +91,15 @@ function dynamicCart(url) {
 			window.location.assign(response.url);
 		}
 	});
+}
+
+function updateCounter(response) {
+	try {
+		var numeroProdotti = response.numeroProdotti;
+		$('#counter p').text(numeroProdotti);
+	} catch (e) {
+		console.error('Errore nell\'aggiornamento del contatore:', e);
+	}
 }
 
 function dynamicCheckout() {
