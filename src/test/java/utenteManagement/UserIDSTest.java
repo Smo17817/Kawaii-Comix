@@ -114,7 +114,7 @@ public class UserIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doSaveTestSalva")
+    @DisplayName("TCU doSaveUserTestSalva")
     public void doSaveTestSalva() throws Exception {
     	ITable expectedTable = new FlatXmlDataSetBuilder()
                 .build(UserIDSTest.class.getClassLoader().getResourceAsStream(expectedPath + "doSaveUser.xml"))
@@ -134,7 +134,7 @@ public class UserIDSTest {
     }
     
     @ParameterizedTest
-    @MethodSource("doSaveTestProvider")
+    @MethodSource("doSaveUserTestProvider")
     @DisplayName("TCU doSaveTestNonSalva")
     public void doSaveTestNonSalva(String email,String password, String nome, String cognome, String indirizzo, String citta, String codice_postale, String provincia, String nazione) {
     	assertThrows(SQLException.class, () -> {

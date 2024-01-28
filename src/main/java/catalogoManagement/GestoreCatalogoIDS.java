@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
+import utenteManagement.PasswordUtils;
+
 public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 	
 	private DataSource ds = null;
@@ -25,11 +27,14 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			
+			String hashedPassword = PasswordUtils.hashPassword(gestoreCatalogo.getPassword());
+
 
 			preparedStatement.setString(1, gestoreCatalogo.getEmail());
 			preparedStatement.setString(2, gestoreCatalogo.getNome());
 			preparedStatement.setString(3, gestoreCatalogo.getCognome());
-			preparedStatement.setString(4, gestoreCatalogo.getPassword());
+			preparedStatement.setString(4, hashedPassword);
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -45,10 +50,12 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			
+			String hashedPassword = PasswordUtils.hashPassword(gestoreCatalogo.getPassword());
 
 			preparedStatement.setString(1, gestoreCatalogo.getNome());
 			preparedStatement.setString(2, gestoreCatalogo.getCognome());
-			preparedStatement.setString(3, gestoreCatalogo.getPassword());
+			preparedStatement.setString(3, hashedPassword);
 			preparedStatement.setString(4, gestoreCatalogo.getEmail());
 
 			preparedStatement.executeUpdate();
@@ -85,8 +92,11 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			
+			String hashedPassword = PasswordUtils.hashPassword(password);
+			
 			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, password);
+			preparedStatement.setString(2, hashedPassword);
 
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) {

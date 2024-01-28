@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
+import utenteManagement.PasswordUtils;
+
 public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 	
 	private DataSource ds = null;
@@ -26,10 +28,13 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 
+			String hashedPassword = PasswordUtils.hashPassword(gestoreOrdini.getPassword());
+
+			
 			preparedStatement.setString(1, gestoreOrdini.getEmail());
 			preparedStatement.setString(2, gestoreOrdini.getNome());
 			preparedStatement.setString(3, gestoreOrdini.getCognome());
-			preparedStatement.setString(4, gestoreOrdini.getPassword());
+			preparedStatement.setString(4, hashedPassword);
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -45,10 +50,12 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			
+			String hashedPassword = PasswordUtils.hashPassword(gestoreOrdini.getPassword());
 
 			preparedStatement.setString(1, gestoreOrdini.getNome());
 			preparedStatement.setString(2, gestoreOrdini.getCognome());
-			preparedStatement.setString(3, gestoreOrdini.getPassword());
+			preparedStatement.setString(3, hashedPassword);
 			preparedStatement.setString(4, gestoreOrdini.getEmail());
 
 			preparedStatement.executeUpdate();
@@ -85,8 +92,12 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			
+			String hashedPassword = PasswordUtils.hashPassword(password);
+
+			
 			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, password);
+			preparedStatement.setString(2, hashedPassword);
 
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) {
