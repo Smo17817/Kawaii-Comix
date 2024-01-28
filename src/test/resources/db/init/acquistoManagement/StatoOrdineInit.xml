@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<stato_ordine id="1" stato="Confermato"/>
+	<stato_ordine id="2" stato="Spedito"/>
+	<stato_ordine id="3" stato="Annullato"/>
+</dataset>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<prodotti isbn="10000000000000005" nome="My Hero Academia 1" autore="Kohei Horikoshi" descrizione="Izuku Midoriya è un ragazzo normale che vive in un mondo in cui la stragrande maggioranza delle persone possiede un Quirk, un potere speciale." immagine_prod="" prezzo="5.45" quantita="0" genere_nome="Scolastico" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000034" nome="Death Note Extra" autore="Tsugumi Oba" descrizione="Capitolo di presentazione al pubblico della serie campione d'incassi Death Note." immagine_prod="" prezzo="7.99" quantita="16" genere_nome="Crimine" categoria_nome="Character Book" copie_vendute="0"/>
+	<prodotti isbn="10000000000000038" nome="Monster 4" autore="Naoki Urasawa" descrizione="Il dottor Kenzo Tenma, un talentuoso neurochirurgo, è al centro della storia." immagine_prod="" prezzo="12.99" quantita="33" genere_nome="Psicologico" categoria_nome="Seinen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000046" nome="K-On! 2" autore="Kakifly" descrizione="Si unisce al club Azusa Nakano, una talentuosa chitarrista che porta una nuova dinamicità al gruppo." immagine_prod="" prezzo="5.45" quantita="43" genere_nome="Musicale" categoria_nome="Seinen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000047" nome="The Promise" autore="Mauro Cao" descrizione="Fin da ragazzino Mario frequenta la palestra di judo del padre dell'amica, innamorandosene perdutamente. Ma il tempo gioca strani scherzi e Martina sembra non capire le intenzioni di Mario, traducendo il suo grande impegno al dojo in passione per il judo." immagine_prod="" prezzo="5.45" quantita="27" genere_nome="Sportivo" categoria_nome="Manga Italiani" copie_vendute="0"/>
+	<prodotti isbn="10000000000000048" nome="Paradise Kiss 1" autore="Ai Yazawa" descrizione="La storia ruota attorno a Yukari 'Caroline' Hayasaka, una studentessa modello con un futuro programmato che viene coinvolta in un incontro casuale con un gruppo di studenti di moda chiamato 'Paradise Kiss'." immagine_prod="" prezzo="6.99" quantita="15" genere_nome="Sentimentale" categoria_nome="Josei" copie_vendute="0"/>
+	<prodotti isbn="10000000000000051" nome="Doraemon 1" autore="Fujiko F. Fujio" descrizione="Il primo volume di Doraemon introduce i protagonisti principali della storia, Nobita Nobi e il gatto-robot Doraemon. Nobita è un ragazzino pigro e impacciato che fa fatica a scuola e nella vita quotidiana." immagine_prod="" prezzo="4.99" quantita="22" genere_nome="Commedia" categoria_nome="Kodomo" copie_vendute="0"/>
+	<prodotti isbn="10000000000000053" nome="Solo Leveling 1" autore="Chugong" descrizione="Sung Jin-Woo è un Cacciatore di Rango E, un avventuriero di basso livello nel mondo in cui la caccia ai mostri è comune. Durante una spedizione in un dungeon, Jin-Woo si ritrova in una situazione critica e ottiene un'abilità unica chiamata 'System'." immagine_prod="" prezzo="8.99" quantita="34" genere_nome="Fantasy" categoria_nome="Manhwa" copie_vendute="0"/>
+	<prodotti isbn="10000000000000056" nome="Death Note - Another Note" autore="Nisio Isin" descrizione="Il romanzo segue le vicende di Mello e Near, due personaggi chiave nella serie di Death Note, prima degli eventi principali della trama. La storia è ambientata tre anni prima degli eventi di Death Note e si concentra su un caso misterioso noto come Los Angeles BB Murder Cases." immagine_prod="" prezzo="19.99" quantita="6" genere_nome="Poliziesco" categoria_nome="Novel" copie_vendute="0"/>
+	<prodotti isbn="10000000000000057" nome="Sailor Moon 1" autore="Naoko Takeuchi" descrizione="Usagi Tsukino è una normale studentessa delle medie finché non incontra Luna, un gatto parlante che le rivela il suo destino di combattere come Sailor Guardian." immagine_prod="" prezzo="5.45" quantita="14" genere_nome="Magia" categoria_nome="Shojo" copie_vendute="0"/>
+	<prodotti isbn="10000000000000061" nome="Ranking of Kings 1" autore="Sosuke Toka" descrizione="La storia segue la vita di un giovane ragazzo di nome Bojji, che è nato sordo e considerato inadatto per diventare re. Nonostante le sfide che incontra, Bojji ha una personalità gentile e il desiderio di dimostrare il suo valore." immagine_prod="" prezzo="5.45" quantita="37" genere_nome="Avventura" categoria_nome="Web Comic" copie_vendute="0"/>
+	<prodotti isbn="10000000000000066" nome="Bleach 1" autore="Tite Kubo" descrizione="Ichigo Kurosaki è uno studente delle superiori con la capacità di vedere i fantasmi. Un giorno, viene coinvolto in un incidente in cui entra in contatto con Rukia Kuchiki, un Shinigami (Divinità della Morte) che caccia gli Hollow, spiriti maligni che attaccano gli esseri umani. Durante l'incidente, Rukia trasferisce temporaneamente i suoi poteri a Ichigo, che diventa così un Shinigami." immagine_prod="" prezzo="5.45" quantita="23" genere_nome="Azione" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000071" nome="My Home Hero Bundle (Vol. 1-2)" autore="Masashi Asaki" descrizione="My Home Hero segue la storia di Tetsuo, un uomo di mezza età che è un normale impiegato e padre di famiglia. Tetsuo scopre che sua figlia, Aya, è coinvolta con un uomo violento e pericoloso. Per proteggere la sua famiglia, Tetsuo prende una decisione drastica: uccide l'uomo per difendere sua figlia." immagine_prod="" prezzo="9.99" quantita="7" genere_nome="Drammatico" categoria_nome="Seinen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000072" nome="Dragon Ball A Visual History" autore="Akira Toriyama" descrizione="Un compendio che mostra il lavoro di Akira Toriyama e il suo best seller Dragon Ball" immagine_prod="" prezzo="17.99" quantita="5" genere_nome="Combattimento" categoria_nome="Art Book" copie_vendute="0"/>
+	<prodotti isbn="10000000000000073" nome="One Punch Man 1" autore="Yusuke Murata" descrizione="Saitama è un giovane uomo con un aspetto ordinario, ma ha un incredibile potere: è in grado di sconfiggere qualsiasi nemico con un solo pugno. Nonostante la sua forza straordinaria, Saitama è annoiato e non riesce a trovare sfide che lo stimolino." immagine_prod="" prezzo="5.45" quantita="51" genere_nome="Supereroi" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000082" nome="All You Need Is Kill 1" autore="Hiroshi Sakurazaka" descrizione="La storia di All You Need Is Kill si svolge in un futuro prossimo, in cui la Terra è attaccata da una razza aliena chiamata Mimics. Il protagonista, Keiji Kiriya, è un giovane soldato che viene reclutato nella lotta contro i Mimics. Durante la sua prima battaglia, Keiji viene ucciso, ma si risveglia nel tempo e torna indietro al giorno prima della sua morte." immagine_prod="" prezzo="6.45" quantita="15" genere_nome="Fantascienza" categoria_nome="Seinen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000084" nome="The Seven Deadly Sins 1" autore="Nakaba Suzuki" descrizione="La storia si svolge in un regno chiamato Britannia, dove i Sette Peccati Capitali erano un gruppo di cavalieri molto potenti che si ribellarono contro il regno, ma alla fine furono sconfitti dai Cavalieri Sacri." immagine_prod="" prezzo="5.45" quantita="24" genere_nome="Fantastico" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000088" nome="Great Teacher Onizuka (GTO) 2" autore="Tooru Fujisawa" descrizione="Onizuka continua la sua missione di insegnare e fare la differenza nella vita dei suoi studenti. Affronta sfide come bullismo, discriminazione, problemi familiari e conflitti personali dei suoi alunni." immagine_prod="" prezzo="5.45" quantita="12" genere_nome="Gang Giovanili" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000090" nome="Detective Conan 1" autore="Gosho Aoyama" descrizione="Shinichi Kudo è un brillante liceale e appassionato detective. Durante una visita a un parco divertimenti, Shinichi assiste a un misterioso scambio tra persone sospette e viene colpito alla testa da un uomo misterioso. " immagine_prod="" prezzo="14.99" quantita="10" genere_nome="Giallo" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000093" nome="Kingdom 1" autore="Yasuhisa Hara" descrizione="Xin, un giovane ambizioso, diventa un soldato di Qin per proteggere il principe Ying Zheng e unificare il regno." immagine_prod="" prezzo="5.45" quantita="13" genere_nome="Guerra" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000094" nome="Tomie" autore="Junji Ito" descrizione="La trama di 'Tomie' ruota attorno al personaggio omonimo, una ragazza bellissima e misteriosa che ha la capacità di far innamorare e ossessionare gli uomini. Tuttavia, Tomie è anche immortale e può rigenerarsi anche dopo essere stata uccisa in modi terribili." immagine_prod="" prezzo="9.99" quantita="32" genere_nome="Horror" categoria_nome="Novel" copie_vendute="0"/>
+	<prodotti isbn="10000000000000095" nome="Gundam 00 vol.1" autore="Kouzoh Ohmori" descrizione="La serie segue le vicende dei quattro piloti Gundam di Celestial Being: Setsuna F. Seiei, Lockon Stratos, Allelujah Haptism e Tieria Erde. Ognuno di loro pilota un mobile suit Gundam ad alta tecnologia e si impegna in missioni per neutralizzare conflitti militari e forze ostili." immagine_prod="" prezzo="14.99" quantita="0" genere_nome="Mecha" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000097" nome="Il Mistero di Ron Kamonohashi 1" autore="Akira Amano" descrizione="Totomaru Isshiki è un giovane poliziotto della squadra omicidi, pieno di volontà ma ancora inesperto. Quando gli capita tra le mani una serie di casi all’apparenza irrisolvibili, gli viene consigliato di chiedere aiuto a un collega ormai ritiratosi, il brillante ma solitario Ron Kamonohashi." immagine_prod="" prezzo="6.49" quantita="10" genere_nome="Mistero" categoria_nome="Shonen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000103" nome="Historie 1" autore="Hitoshi Iwaaki" descrizione="La storia segue la vita di Eumenes, un giovane schiavo che aspira a diventare un grande generale nell'antica Grecia. Dopo aver assistito all'assassinio del suo padrone, Eumenes decide di fuggire e cercare la sua strada nella vita." immagine_prod="./images/historie1.jpg" prezzo="7.99" quantita="10" genere_nome="Storico" categoria_nome="Seinen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000105" nome="Bloody Monday 1" autore="Megumi Koji" descrizione="Il protagonista, Takagi Fujimaru, è uno studente delle scuole superiori con abilità eccezionali nell'hacking e nella programmazione. Tuttavia, la sua vita prende una svolta drammatica quando suo padre, un brillante ricercatore, viene coinvolto in un complotto terroristico." immagine_prod="./images/bm1.jpg" prezzo="5.45" quantita="18" genere_nome="Thriller" categoria_nome="Seinen" copie_vendute="0"/>
+	<prodotti isbn="10000000000000106" nome="Shonen Jump Maggio 2023" autore="Shueisha" descrizione="Mensile con tutte le novità sui manga." immagine_prod="./images/sjmay.jpg" prezzo="19.99" quantita="0" genere_nome="Avventura" categoria_nome="Manga Magazine" copie_vendute="0"/>
+
+	<categoria nome="Art Book"/>
+	<categoria nome="Character Book"/>
+	<categoria nome="Josei"/>
+	<categoria nome="Kodomo"/>
+	<categoria nome="Manga Italiani"/>
+	<categoria nome="Manga Magazine"/>
+	<categoria nome="Manhwa"/>
+	<categoria nome="Novel"/>
+	<categoria nome="Seinen"/>
+	<categoria nome="Shojo"/>
+	<categoria nome="Shonen"/>
+	<categoria nome="Web Comic"/>
+
+	<genere nome="Avventura"/>
+	<genere nome="Azione"/>
+	<genere nome="Combattimento"/>
+	<genere nome="Commedia"/>
+	<genere nome="Crimine"/>
+	<genere nome="Drammatico"/>
+	<genere nome="Fantascienza"/>
+	<genere nome="Fantastico"/>
+	<genere nome="Fantasy"/>
+	<genere nome="Gang Giovanili"/>
+	<genere nome="Giallo"/>
+	<genere nome="Guerra"/>
+	<genere nome="Horror"/>
+	<genere nome="Magia"/>
+	<genere nome="Mecha"/>
+	<genere nome="Mistero"/>
+	<genere nome="Musicale"/>
+	<genere nome="Poliziesco"/>
+	<genere nome="Psicologico"/>
+	<genere nome="Scolastico"/>
+	<genere nome="Sentimentale"/>
+	<genere nome="Sportivo"/>
+	<genere nome="Storico"/>
+	<genere nome="Supereroi"/>
+	<genere nome="Thriller"/>
+</dataset>

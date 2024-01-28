@@ -45,6 +45,7 @@ public class UserIDS implements UserDAO {
 			
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
+			throw e;
 		}
 
 	}

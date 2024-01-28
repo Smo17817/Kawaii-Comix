@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+	<ordine_singolo id="1" quantita="1" totale_parziale="5.45" ordini_id="67996" prodotti_isbn="10000000000000005"/>
+	<ordine_singolo id="2" quantita="1" totale_parziale="7.49" ordini_id="67996" prodotti_isbn="10000000000000099"/>
+	<ordine_singolo id="3" quantita="1" totale_parziale="7.49" ordini_id="67996" prodotti_isbn="10000000000000100"/>
+	<ordine_singolo id="4" quantita="1" totale_parziale="5.45" ordini_id="88569" prodotti_isbn="10000000000000001"/>
+	<ordine_singolo id="5" quantita="1" totale_parziale="4.99" ordini_id="18182" prodotti_isbn="10000000000000051"/>
+	<ordine_singolo id="6" quantita="1" totale_parziale="5.45" ordini_id="18182" prodotti_isbn="10000000000000087"/>
+	
+</dataset>

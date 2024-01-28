@@ -1,6 +1,7 @@
 package utenteManagement;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class User implements Serializable {
 
@@ -159,5 +160,28 @@ public class User implements Serializable {
 				+ cognome + ", indirizzo=" + indirizzo + ", citta=" + citta + ", cap=" + cap + ", provincia="
 				+ provincia + ", nazione=" + nazione + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cap, citta, cognome, email, id, indirizzo, nazione, nome, password, provincia);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(cap, other.cap) && Objects.equals(citta, other.citta)
+				&& Objects.equals(cognome, other.cognome) && Objects.equals(email, other.email)
+				&& Objects.equals(id, other.id) && Objects.equals(indirizzo, other.indirizzo)
+				&& Objects.equals(nazione, other.nazione) && Objects.equals(nome, other.nome)
+				&& Objects.equals(password, other.password) && Objects.equals(provincia, other.provincia);
+	}
+	
+	
 
 }

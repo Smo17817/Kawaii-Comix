@@ -13,11 +13,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+    		<groupId>junit</groupId>
+    		<artifactId>junit</artifactId>
+    		<version>4.13.2</version>
+    		<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -38,7 +39,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>4.16.1</version> <!-- Sostituisci con l'ultima versione disponibile -->
+			<version>4.16.1</version> 
 		</dependency>
 		<dependency>
     		<groupId>commons-codec</groupId>
@@ -50,6 +51,80 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.12.0</version>
 		</dependency>
+		
+		<!-- JUnit-->
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.10.1</version>
+    <scope>test</scope>
+</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.10.1</version>
+    <scope>test</scope>
+</dependency>
+
+    	<dependency>
+        	<groupId>org.junit.platform</groupId>
+        	<artifactId>junit-platform-commons</artifactId>
+        	<version>1.10.1</version>
+        	<scope>test</scope>
+    	</dependency>
+    	<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-launcher</artifactId>
+    <version>1.8.2</version>
+    <scope>test</scope>
+</dependency>
+
+    	<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone -->
+		<dependency>
+    		<groupId>org.junit.platform</groupId>
+    		<artifactId>junit-platform-console-standalone</artifactId>
+    		<version>1.10.1</version>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+ 			<groupId>org.mockito</groupId>
+ 			<artifactId>mockito-core</artifactId>
+ 			<version>4.9.0</version>
+ 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+    		<groupId>org.slf4j</groupId>
+    		<artifactId>slf4j-api</artifactId>
+    		<version>2.0.11</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>2.0.11</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+    		<groupId>com.h2database</groupId>
+    		<artifactId>h2</artifactId>
+    		<version>2.2.224</version>
+    		<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.dbunit/dbunit -->
+		<dependency>
+    		<groupId>org.dbunit</groupId>
+    		<artifactId>dbunit</artifactId>
+    		<version>2.7.3</version>
+    		<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>kawaii-Comix</finalName>
