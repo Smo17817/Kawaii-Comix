@@ -86,7 +86,7 @@ public class UserIDSTest {
     }
     
     //casi di formato errato registrazione
-    private static Stream<Arguments> doSaveTestProvider(){
+    private static Stream<Arguments> doSaveUserTestProvider(){
     	return Stream.of(
     			//formato email non corretto
     			Arguments.of("mariorossi@gmail", "Prova123" ,"Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia"),
@@ -115,7 +115,7 @@ public class UserIDSTest {
     
     @Test
     @DisplayName("TCU doSaveUserTestSalva")
-    public void doSaveTestSalva() throws Exception {
+    public void doSaveUserTestSalva() throws Exception {
     	ITable expectedTable = new FlatXmlDataSetBuilder()
                 .build(UserIDSTest.class.getClassLoader().getResourceAsStream(expectedPath + "doSaveUser.xml"))
                 .getTable(table);
@@ -145,7 +145,7 @@ public class UserIDSTest {
     
     @Test
     @DisplayName("TCU doRetrieveByIdTestPresente")
-    public void doRetrieveByKeyTestPresente() {
+    public void doRetrieveByIdTestPresente() {
     	User expected = new User(1,"giovanni.sicilia02@gmail.com","fba5bfdc4286af5e784464fd15615ab20a810e5b58bffa13d25bb57e3e0166de", "Giovanni", "Sicilia", "Via Nazario Sauro 3","Salerno","84135","SA", "Italia");
     	User actual = null;
     	try {
