@@ -6,12 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="./header.jsp" flush="true"></jsp:include>
-<% User user = (User) session.getAttribute("user");
-  if (user == null) {
+<%
+  User user = (User) session.getAttribute("user");
+  if(user == null) {
     response.sendRedirect("login.jsp");
-    return;}%>
-  
+    return;
+  }
+%>
+<jsp:include page="./header.jsp" flush="true"></jsp:include>
 <body>
 <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
@@ -54,7 +56,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
       }else if(status === 'failed'){
         Swal.fire("ERRORE", "Non è stato possibile aggiornare i dati, riprovare più tardi", "error");
       }else if(status === 'success'){
-        Swal.fire("COMPLIMENTI", "Registrazione avvenuta con successo", "success");
+        Swal.fire("COMPLIMENTI", "Camio dati avvenuta con successo", "success");
         setTimeout(function() {
           window.location.assign(response.url);
         }, 2000); // Ritardo di 2 secondi (2000 millisecondi)
