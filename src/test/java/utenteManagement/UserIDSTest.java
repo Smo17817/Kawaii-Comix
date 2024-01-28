@@ -142,4 +142,30 @@ public class UserIDSTest {
 			userIDS.doSaveUser(user);
     	});
     }
+    
+    @Test
+    @DisplayName("TCU doRetrieveByIdTestPresente")
+    public void doRetrieveByKeyTestPresente() {
+    	User expected = new User(1,"giovanni.sicilia02@gmail.com","fba5bfdc4286af5e784464fd15615ab20a810e5b58bffa13d25bb57e3e0166de", "Giovanni", "Sicilia", "Via Nazario Sauro 3","Salerno","84135","SA", "Italia");
+    	User actual = null;
+    	try {
+			actual = userIDS.doRetrieveById(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	assertEquals(expected, actual);
+    }
+    
+    @Test
+    @DisplayName("TCU doRetrieveUserPresente")
+    public void doRetrieveByUserPresente() {
+    	User expected = new User(1,"giovanni.sicilia02@gmail.com","fba5bfdc4286af5e784464fd15615ab20a810e5b58bffa13d25bb57e3e0166de", "Giovanni", "Sicilia", "Via Nazario Sauro 3","Salerno","84135","SA", "Italia");
+    	User actual = null;
+    	try {
+			actual = userIDS.doRetrieveUser("giovanni.sicilia02@gmail.com","Giov@nnino1!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	assertEquals(expected, actual);
+    }
 }

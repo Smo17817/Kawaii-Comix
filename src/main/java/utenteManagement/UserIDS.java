@@ -173,7 +173,7 @@ public class UserIDS implements UserDAO {
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setString(1, email);
-
+			
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			//Se esisteun utente con quella mail e il cui hash della password corriposnde...
