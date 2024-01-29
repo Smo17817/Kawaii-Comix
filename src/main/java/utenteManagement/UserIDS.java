@@ -12,23 +12,40 @@ import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 public class UserIDS implements UserDAO {
-
+ 
 	private DataSource ds = null;
+	
+	private Connection connection = null;
 
 	public UserIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public UserIDS(DataSource ds,Connection connection) {
+		super();
+		this.ds = ds;
+		this.connection = connection;
 	}
 
 	@Override
 	public void doSaveUser(User user) throws SQLException {
 		
+		
+		
 		String query = "INSERT INTO " + UserIDS.TABLE
 				+ " (email_address, password, nome, cognome, indirizzo, citta, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		try (Connection connection = ds.getConnection();
+		try (
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-			
+				
 			String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
 			
 			preparedStatement.setString(1, user.getEmail());
@@ -42,6 +59,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(9, user.getNazione());
 
 			preparedStatement.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
