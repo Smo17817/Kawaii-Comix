@@ -31,6 +31,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
 			preparedStatement.setInt(1, ordineSingolo.getQuantita());
 			preparedStatement.setDouble(2, ordineSingolo.getTotParziale());
 			preparedStatement.setInt(3, ordineSingolo.getOrdineId());

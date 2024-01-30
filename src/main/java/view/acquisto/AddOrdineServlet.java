@@ -75,6 +75,7 @@ public class AddOrdineServlet extends HttpServlet {
 				prodotto.sommaQuantita(-quantitaScelta);
 				prodotto.sommaCopieVendute(quantitaScelta);
 				prodottoIDS.doUpdateProdotto(prodotto);
+				prodottoIDS.updateCopieVendute(prodotto);
 
 				ordiniSingoli.add(new OrdineSingolo(quantitaScelta, totParziale, ordineId, prodotto));
 				// Passa alla prossima quantità nella stringa con le quantità

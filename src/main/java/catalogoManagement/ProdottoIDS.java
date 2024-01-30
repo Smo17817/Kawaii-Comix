@@ -79,7 +79,7 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setString(3, prodotto.getDescrizione());
 			preparedStatement.setString(4, prodotto.getImmagine());
 			preparedStatement.setDouble(5, prodotto.getPrezzo());
-			preparedStatement.setInt(6, prodotto.getQuantita() + scorte.getQuantita());
+			preparedStatement.setInt(6, prodotto.getQuantita());
 			preparedStatement.setString(7, prodotto.getCategoria());
 			preparedStatement.setString(8, prodotto.getGenere());
 			preparedStatement.setString(9  ,prodotto.getIsbn());
@@ -230,8 +230,10 @@ public class ProdottoIDS implements ProdottoDAO {
 
 	@Override
 	public Integer updateCopieVendute(Prodotto prodotto) {
-		String query = "UPDATE " + ProdottoIDS.TABLE + "copie_vendute = ? WHERE isbn = ?";
-		prodotto.setCopieVendute(prodotto.getCopieVendute() + 1);
+		String query = "UPDATE " + ProdottoIDS.TABLE 
+				+ " SET copie_vendute = ?"
+				+ " WHERE isbn = ?";
+		prodotto.setCopieVendute(prodotto.getCopieVendute());
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {

@@ -242,7 +242,7 @@ function dynamicShowOrders(url) {
 				if (ordine.stato == 1) stato = "Confermato";
 				else if (ordine.stato == 2) stato = "Spedito";
 				else stato = "Annullato";
-				contenutoHtml += "<h3> ID: " + ordine.id + " - Data: " + formatDate(ordine.data) + " (" + stato + ") </h3>";
+				contenutoHtml += "<h3> ID: " + ordine.id + " - Data: " + formatDateIta(ordine.data) + " (" + stato + ") </h3>";
 				for (const os of ordine.ordiniSingoli) {
 					contenutoHtml += "<div class=\"product\">";
 					contenutoHtml += "<img class=\"orderImg\" src=\"" + os.prodotto.immagine + "\">";
