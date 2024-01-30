@@ -92,7 +92,6 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-			
 			String hashedPassword = PasswordUtils.hashPassword(password);
 			
 			preparedStatement.setString(1, email);

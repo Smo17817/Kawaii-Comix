@@ -28,12 +28,6 @@ public class UserIDS implements UserDAO {
 		}
 	}
 	
-	
-	public UserIDS(DataSource ds,Connection connection) {
-		super();
-		this.ds = ds;
-		this.connection = connection;
-	}
 
 	@Override
 	public void doSaveUser(User user) throws SQLException {
@@ -45,7 +39,7 @@ public class UserIDS implements UserDAO {
 
 		try (
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-				
+
 			String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
 			
 			preparedStatement.setString(1, user.getEmail());
@@ -57,7 +51,7 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(7, user.getCap());
 			preparedStatement.setString(8, user.getProvincia());
 			preparedStatement.setString(9, user.getNazione());
-
+			
 			preparedStatement.executeUpdate();
 			
 			

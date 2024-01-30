@@ -28,6 +28,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import org.dbunit.Assertion;
@@ -54,7 +55,6 @@ public class UserIDSTest {
         ds = Mockito.mock(DataSource.class);
         Mockito.when(ds.getConnection())
                 .thenReturn(connection = mock(Connection.class));
-
         userIDS = new UserIDS(ds);
     }
 
@@ -64,8 +64,7 @@ public class UserIDSTest {
     public void doSaveUserTestSalva() throws Exception {
         // Mock del preparedStatement
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-
-
+        
      // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
 
@@ -92,8 +91,7 @@ public class UserIDSTest {
     @DisplayName("TCU doRetrieveByIdTest")
     public void doRetrieveByIdTest() throws Exception {
         // Mock del preparedStatement
-    	
-    	
+            	
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
 
@@ -153,7 +151,6 @@ public class UserIDSTest {
         ResultSet resultSet = Mockito.mock(ResultSet.class);
 
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
 
         // Configura il mock per ritornare false quando next() è chiamato, simulando l'assenza di risultati
