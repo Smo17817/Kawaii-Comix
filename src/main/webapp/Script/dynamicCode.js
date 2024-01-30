@@ -126,9 +126,13 @@ function dynamicCheckout() {
 	let totale = document.getElementsByClassName("totCumul")[0].textContent;
 	contenutoHtml += "<hr>";
 	contenutoHtml += "<div id=\"final-price\">";
+	contenutoHtml += "<div>"
 	contenutoHtml += "<p>Spedizione: </p> <p>&#8364 10</p>"
+	contenutoHtml += "</div>"
+	contenutoHtml += "<div>"
 	contenutoHtml += "<p>Totale:</p>";
 	contenutoHtml += "<p>" + totale + "</p>";
+	contenutoHtml += "</div>"
 	contenutoHtml += "</div>";
 
 	$("#summary-product").append(contenutoHtml);

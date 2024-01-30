@@ -261,12 +261,12 @@ td, th {
 #final-price{
     display: flex;
     align-items: center;
+    justify-content: end;
     padding: 2rem;
     margin: 1rem;
 }
-#final-price p{
+#final-price div{
     flex: 2 1 30rem;
-    text-align: center;
 }
 
 

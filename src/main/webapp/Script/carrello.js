@@ -173,6 +173,7 @@ function checkout(url) {
 				timer: 5000,
 				timerProgressBar: true,
 				allowOutsideClick: false,
+				showConfirmButton: false
 			}).then((result) => {
 				if (result.dismiss === Swal.DismissReason.timer) {
 					Swal.fire({
