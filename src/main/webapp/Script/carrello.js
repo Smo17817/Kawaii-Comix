@@ -12,6 +12,8 @@ function addCart(quantita, isbn) {
 				dynamicCart(url);
 			}
 		});
+	}else{
+		Swal.fire('SIAMO SPIACENTI =(' , 'Il prodotto è momentaneamente esaurito , faremo scorte al più presto!!!', 'error');
 	}
 }
 
@@ -164,7 +166,26 @@ function checkout(url) {
 		}
 
 		if (numericValue > 0)
-			window.location.href = "AddOrdineServlet?totale=" + numericValue + "&quantita=" + quantita;
+			// Simula un breve ritardo (5 secondi) prima di reindirizzare l'utente
+			Swal.fire({
+				title: 'Attendere',
+				html: 'Stiamo elaborando il pagamento...',
+				timer: 5000,
+				timerProgressBar: true,
+				allowOutsideClick: false,
+			}).then((result) => {
+				if (result.dismiss === Swal.DismissReason.timer) {
+					Swal.fire({
+						icon: 'success',
+						title: 'Pagamento Effettuato!',
+						text: 'Il pagamento è stato elaborato con successo.',
+						footer : 'Puoi vedere l\'ordine dentro la tua pagina personale degli ordini',
+						allowOutsideClick: false
+					}).then(() => {
+						window.location.href = "AddOrdineServlet?totale=" + numericValue + "&quantita=" + quantita;
+					});
+				}
+			});
 	}else{
 		Swal.fire('Errore!','Inserire i Dati Della Carta','error');
 	}

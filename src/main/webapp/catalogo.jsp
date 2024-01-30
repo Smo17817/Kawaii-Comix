@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -7,7 +6,14 @@
     String contextPath = request.getContextPath();
 %>
 <body>
-    <jsp:include page="./nav.jsp" flush="true"></jsp:include>
+<jsp:include page="./nav.jsp" flush="true"></jsp:include>
+<script src="
+	https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
+	"></script>
+<link href="
+	https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
+	" rel="stylesheet">
+
     <script src="./Script/dynamicCode.js"></script>
     <script src="./Script/carrello.js"></script>
     <script>

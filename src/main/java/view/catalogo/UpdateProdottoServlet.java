@@ -37,7 +37,7 @@ public class UpdateProdottoServlet extends HttpServlet{
 			throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		Gson json = new Gson();
-
+		HashMap<String, String> responseMap = new HashMap<>();
 
 		String prodottoScelto = request.getParameter("scelta");
 		String nome = request.getParameter("nome");
@@ -48,33 +48,53 @@ public class UpdateProdottoServlet extends HttpServlet{
 		String genere = request.getParameter("genere");
 		String categoria = request.getParameter("categoria");
 
+		Part imagePart = request.getPart("file");
+		String fileName =  imagePart.getSubmittedFileName();
 		try {			
 			PrintWriter out = response.getWriter();
 
 			if (prodottoScelto.equals("") || prodottoScelto.equals("-seleziona un prodotto-")) {
-				HashMap<String, String> responseMap = new HashMap<>();
-				responseMap.put(STATUS, "Invalid_prodotto");
-				String jsonResponse = json.toJson(responseMap);
-				response.setContentType(CONTENT_TYPE);
-				out.write(jsonResponse);
-				out.flush();
+				setStatus(response , responseMap , json , out , "Invalid_prodotto");
 				return;
 			}
-			
-		    if (nome.matches(".*[^a-zA-Z0-9 ].*")) {
-		        HashMap<String, String> responseMap = new HashMap<>();
-		        responseMap.put(STATUS, "Invalid_nome_caratteri_speciali");
-		        String jsonResponse = json.toJson(responseMap);
-		        response.setContentType(CONTENT_TYPE);
-		        out.write(jsonResponse);
-		        out.flush();
-		        return;
-		    }
 
-			Part imagePart = request.getPart("file");
-			String fileName =  imagePart.getSubmittedFileName();
+			if((nome == null || nome.trim().isEmpty()) && (autore == null || autore.trim().isEmpty()) && (descrizione == null || descrizione.trim().isEmpty()) && (prezzoString == null || prezzoString.trim().isEmpty()) && (quantitaString == null || quantitaString.trim().isEmpty()) && (genere == null || genere.trim().isEmpty() || genere.equals("-scegliere genere-")) && (categoria == null || categoria.trim().isEmpty() || categoria.equals("-scegliere categoria-")) && (fileName == null || fileName.trim().isEmpty())){
+				setStatus(response , responseMap , json , out , "Blank");
+				return;
+			}
+
+			if(!(nome.matches("^[a-zA-Z0-9\\s]+$"))){
+				setStatus(response , responseMap ,json , out, "Invalid_nome" );
+				return;
+			}
+			if(!(autore.matches("^[a-zA-Z0-9\\s]+$"))){
+				setStatus(response , responseMap ,json , out, "Invalid_autore" );
+				return;
+			}
+
+			if(Double.parseDouble(prezzoString) <= 0.00){
+				setStatus(response , responseMap ,json , out, "Invalid_prezzo" );
+				return;
+			}
+
+			if(Integer.parseInt(quantitaString) < 0){
+				setStatus(response , responseMap ,json , out, "Invalid_quantita" );
+				return;
+			}
+
+			if(genere.equals("-scegliere genere-")){
+				setStatus(response , responseMap ,json , out, "Invalid_genere" );
+				return;
+			}
+
+			if(categoria.equals("-scegliere categoria-")){
+				setStatus(response , responseMap ,json , out, "Invalid_categoria" );
+				return;
+			}
+
+
+
 			String imagePath = "./images/" + fileName;
-
 
 			InputStream is = imagePart.getInputStream();
 			String tempPath = getServletContext().getRealPath("/" +"images"+ File.separator + fileName);
@@ -84,11 +104,9 @@ public class UpdateProdottoServlet extends HttpServlet{
 
 
 			boolean test = uploadFile(is,realPath);
-			if(test){
-				//stampa alert avvenuta con successo;
-			}else{
-				out.println("something wrong");//stampa alert verificatosi un errore
-			}
+			if(!test)
+				setStatus(response , responseMap ,json , out, "File_Non_Caricato" );
+
 
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			Prodotto prodotto = prodottoIDS.doRetrieveByNome(prodottoScelto);
@@ -111,20 +129,10 @@ public class UpdateProdottoServlet extends HttpServlet{
 			
 			// Controlla che l'update del prodotto si sia verificato
 			if (checkUpdate) {
-				HashMap<String, String> responseMap = new HashMap<>();
-				responseMap.put(STATUS, "success");
-				responseMap.put("url", "modificaProdotto.jsp");
-				String jsonResponse = json.toJson(responseMap);
-				response.setContentType(CONTENT_TYPE);
-				out.write(jsonResponse);
-				out.flush();
+				setStatusAndUrl(response ,responseMap , json ,out , "success" , "modificaProdotto.jsp");
+
 			} else {
-				HashMap<String, String> responseMap = new HashMap<>();
-				responseMap.put(STATUS, "failed");
-				String jsonResponse = json.toJson(responseMap);
-				response.setContentType(CONTENT_TYPE);
-				out.write(jsonResponse);
-				out.flush();
+				setStatus(response ,responseMap , json ,out , "failed");
 			}
 
 		} catch (SQLException | IOException | NumberFormatException e) {
@@ -149,10 +157,29 @@ public class UpdateProdottoServlet extends HttpServlet{
 
 		return test;
 	}
+
+	private static void setStatus(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato) {
+		responseMap.put(STATUS, stato);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
+	}
+
+	private static void setStatusAndUrl(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato , String url) {
+		responseMap.put(STATUS, stato);
+		responseMap.put(URL , url);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
+	}
 	
 	/*** MACRO ***/
 	private static final String STATUS = "status";
-	private static final String CONTENT_TYPE = "application/json";
+
+	private static  final  String URL = "url";
+	private static final String contentType = "application/json";
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(UpdateProdottoServlet.class.getName());

@@ -313,7 +313,7 @@ function dynamicModificaProdotto(url) {
 		contentType: 'application/json; charset=utf-8'
 	}).done((response) => {
 		response = JSON.parse(response);
-		let contenutoHtml = "<option> -seleziona un prodotto- </option>";
+		let contenutoHtml = "<option  disabled selected value> -seleziona un prodotto- </option>";
 
 		for (const n of response)
 			contenutoHtml += '<option>' + n + '</option>'

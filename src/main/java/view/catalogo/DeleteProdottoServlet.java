@@ -29,17 +29,13 @@ public class DeleteProdottoServlet extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		String prodottoScelto = request.getParameter("scelta");
 		Gson json = new Gson();
+		HashMap<String, String> responseMap = new HashMap<>();
 
 		try {
 			PrintWriter out = response.getWriter();
 			
 			if (prodottoScelto.equals("") || prodottoScelto.equals("-seleziona un prodotto-")) {
-				HashMap<String, String> responseMap = new HashMap<>();
-				responseMap.put(STATUS, "Invalid_Manga");
-				String jsonResponse = json.toJson(responseMap);
-				response.setContentType(CONTENT_TYPE);
-				out.write(jsonResponse);
-				out.flush();
+				setStatus(response , responseMap , json , out , "Invalid_Manga");
 				return;
 			}
 			
@@ -49,20 +45,9 @@ public class DeleteProdottoServlet extends HttpServlet {
 
 			if (request.getParameter("risposta").equals("conferma")) {
 				if (checkDelete) {
-					HashMap<String, String> responseMap = new HashMap<>();
-					responseMap.put("url", "modificaProdotto.jsp");
-					responseMap.put(STATUS, "success");
-					String jsonResponse = json.toJson(responseMap);
-					response.setContentType(CONTENT_TYPE);
-					out.write(jsonResponse);
-					out.flush();
+					setStatusAndUrl(response , responseMap , json , out , "success" , "eliminaProdotto.jsp");
 				} else {
-					HashMap<String, String> responseMap = new HashMap<>();
-					responseMap.put(STATUS, "failed");
-					String jsonResponse = json.toJson(responseMap);
-					response.setContentType(CONTENT_TYPE);
-					out.write(jsonResponse);
-					out.flush();
+					setStatus(response , responseMap , json , out ,"failed");
 				}
 			}
 
@@ -70,10 +55,29 @@ public class DeleteProdottoServlet extends HttpServlet {
 			logger.log(Level.ALL, ERROR, e);
 		}
 	}
+
+	private static void setStatus(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato) {
+		responseMap.put(STATUS, stato);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
+	}
+
+	private static void setStatusAndUrl(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato , String url) {
+		responseMap.put(STATUS, stato);
+		responseMap.put(URL , url);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
+	}
 	
 	/*** MACRO ***/
 	private static final String STATUS = "status";
-	private static final String CONTENT_TYPE = "application/json";
+	private static final String contentType = "application/json";
+
+	private  static  final  String URL = "url";
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(DeleteProdottoServlet.class.getName());

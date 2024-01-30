@@ -69,6 +69,7 @@ public class ProdottoIDS implements ProdottoDAO {
 				+ " SET nome = ?, autore = ?, descrizione = ?, immagine_prod = ?, prezzo = ?, quantita = ?, categoria_nome = ?, genere_nome = ?"
 				+ " WHERE isbn = ?";
 
+		Prodotto scorte = this.doRetrieveByIsbn(prodotto.getIsbn());
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			
@@ -78,7 +79,7 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setString(3, prodotto.getDescrizione());
 			preparedStatement.setString(4, prodotto.getImmagine());
 			preparedStatement.setDouble(5, prodotto.getPrezzo());
-			preparedStatement.setInt(6, prodotto.getQuantita());
+			preparedStatement.setInt(6, prodotto.getQuantita() + scorte.getQuantita());
 			preparedStatement.setString(7, prodotto.getCategoria());
 			preparedStatement.setString(8, prodotto.getGenere());
 			preparedStatement.setString(9  ,prodotto.getIsbn());

@@ -38,7 +38,7 @@
       contenutoHtml += '<li> <a href="aggiungiProdotto.jsp"> <img class=\"adimg\" src="./icons/upload.ico"> Aggiungi Prodotto <p> (ADMIN) </p></a> </li>';
       contenutoHtml += '<li> <a href="modificaProdotto.jsp"> <img class=\"adimg\" src="./icons/edit.ico"> Modifica Prodotto <p> (ADMIN) </p></a> </li>';
       contenutoHtml += '<li> <a href="eliminaProdotto.jsp"> <img class=\"adimg\" src="./icons/delete.ico"> Elimina Prodotto <p> (ADMIN) </p></a> </li>';
-      contenutoHtml += '<li> <a href="controllaordini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
+      contenutoHtml += '<li> <a href="controllaOrdini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
       contenutoHtml += '<li> <a href="LogOutServlet"><img class="proimg" alt="" src="./icons/exit.ico">Esci</a></li>';
       document.getElementById("admin").innerHTML = contenutoHtml;
     });
@@ -61,7 +61,9 @@
   <%}%>
 </script>
   <main>
-    <jsp:include page="./nav.jsp" flush="true"></jsp:include>
+    <%if(user instanceof User){%>
+      <jsp:include page="./nav.jsp" flush="true"></jsp:include>
+    <%}%>
     <section class="mid" id="mid">
       <h2>Il mio Account</h2>
       <div class="banner">
@@ -76,7 +78,9 @@
         </ul>
       </div>
     </section>
-    <jsp:include page="./footer.jsp" flush="true"></jsp:include>
+    <%if(user instanceof User){%>
+      <jsp:include page="./footer.jsp" flush="true"></jsp:include>
+    <%}%>
   </main>
 </body>
 </html>

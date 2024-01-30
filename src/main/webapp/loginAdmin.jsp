@@ -46,7 +46,6 @@
 
     }
 </script>
-<jsp:include page="./nav.jsp" flush="true"></jsp:include>
 <main>
     <section id="login">
         <div class="login-img">

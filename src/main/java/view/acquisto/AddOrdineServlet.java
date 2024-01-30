@@ -1,11 +1,13 @@
 package view.acquisto;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.SecureRandom;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +26,7 @@ import acquistoManagement.OrdineIDS;
 import acquistoManagement.OrdineSingolo;
 import catalogoManagement.Prodotto;
 import catalogoManagement.ProdottoIDS;
+import com.google.gson.Gson;
 import utenteManagement.User;
 
 @WebServlet("/AddOrdineServlet")
@@ -41,6 +44,8 @@ public class AddOrdineServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
+
+
 
 		try {
 			// Serve per ottenere la data al momento dell'ordine
@@ -68,7 +73,7 @@ public class AddOrdineServlet extends HttpServlet {
 				// Modifica la quantità del prodotto in magazzino e le copie vendute in base
 				// all'acquisto attuale
 				prodotto.sommaQuantita(-quantitaScelta);
-				prodotto.sommaCopieVendute(+quantitaScelta);
+				prodotto.sommaCopieVendute(quantitaScelta);
 				prodottoIDS.doUpdateProdotto(prodotto);
 
 				ordiniSingoli.add(new OrdineSingolo(quantitaScelta, totParziale, ordineId, prodotto));
@@ -90,7 +95,13 @@ public class AddOrdineServlet extends HttpServlet {
 		}
 	}
 
+
 	/*** LOGGER ***/
+	private  static  final String STATUS = "status";
+
+	private static final  String contentType = "application/json";
+
+	private static  final String URL = "url";
 	private static final Logger logger = Logger.getLogger(AddOrdineServlet.class.getName());
 	private static final String ERROR = "Errore";
 }

@@ -2,6 +2,7 @@ package view.catalogo;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,9 +18,7 @@ import javax.sql.DataSource;
 
 import catalogoManagement.Prodotto;
 import catalogoManagement.ProdottoIDS;
-
-import static view.catalogo.AddProdottoServlet.DIRECTORY;
-
+import com.google.gson.Gson;
 @MultipartConfig(
 		fileSizeThreshold = 1024 * 1024,
 		maxFileSize = 1024 * 1024 * 10,
@@ -36,6 +35,8 @@ public class AddProdottoServlet extends HttpServlet {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		RequestDispatcher dispatcher = null;
 
+		HashMap<String, String> responseMap = new HashMap<>();
+		Gson json = new Gson();
 		try(PrintWriter out = response.getWriter();) {
 			String isbn = request.getParameter(ISBN);
 			String nome = request.getParameter(NOME);
@@ -45,15 +46,52 @@ public class AddProdottoServlet extends HttpServlet {
 			String quantitaString = (request.getParameter(QUANTITA));
 			String genere = request.getParameter(GENERE);
 			String categoria = request.getParameter(CATEGORIA);
-
-
-			//TODO aggiunta controlli sui vari o con java o solo con javascript
-			
-			//Salva l'immagine nella directory finale
 			Part imagePart = request.getPart("file");
 			String fileName =  imagePart.getSubmittedFileName();
-			String imagePath = "./images/" + fileName;
 
+			if((isbn == null || isbn.trim().isEmpty()) || (nome == null || nome.trim().isEmpty()) || (autore == null || autore.trim().isEmpty()) || (descrizione == null || descrizione.trim().isEmpty()) || (prezzoString == null || prezzoString.trim().isEmpty()) || (quantitaString == null || quantitaString.trim().isEmpty()) || (genere == null || genere.trim().isEmpty()) || (categoria == null || categoria.trim().isEmpty()) || (fileName == null || fileName.trim().isEmpty())){
+				setStatus(response , responseMap , json , out , "Blank");
+				return;
+			}
+			if(!(isbn.matches("^\\d{17}$"))){
+				setStatus(response , responseMap ,json , out, "Invalid_isbn" );
+				return;
+			}
+
+			if(!(nome.matches("^[a-zA-Z0-9\\s]+$"))){
+				setStatus(response , responseMap ,json , out, "Invalid_nome" );
+				return;
+			}
+			if(!(autore.matches("^[a-zA-Z0-9\\s]+$"))){
+				setStatus(response , responseMap ,json , out, "Invalid_autore" );
+				return;
+			}
+
+			if(Double.parseDouble(prezzoString) <= 0.00){
+				setStatus(response , responseMap ,json , out, "Invalid_prezzo" );
+				return;
+			}
+
+			if(Integer.parseInt(quantitaString) < 0){
+				setStatus(response , responseMap ,json , out, "Invalid_quantita" );
+				return;
+			}
+
+			if(genere.equals("-scegliere genere-")){
+				setStatus(response , responseMap ,json , out, "Invalid_genere" );
+				return;
+			}
+
+			if(categoria.equals("-scegliere categoria-")){
+				setStatus(response , responseMap ,json , out, "Invalid_categoria" );
+				return;
+			}
+
+
+
+			
+			//Salva l'immagine nella directory finale
+			String imagePath = "./images/" + fileName;
 			Prodotto prodotto = new Prodotto(isbn, autore, nome, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
 
 			InputStream is = imagePart.getInputStream();
@@ -64,17 +102,14 @@ public class AddProdottoServlet extends HttpServlet {
 
 
 			boolean test = uploadFile(is,realPath);
-			if(test){
-				//stampa alert avvenuta con successo;
-			}else{
-				out.println("something wrong");//stampa alert verificatosi un errore
-			}
+			if(!test)
+				setStatus(response , responseMap ,json , out, "File_Non_Caricato" );
+
 
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			prodottoIDS.doSaveProdotto(prodotto);
 
-			dispatcher = request.getRequestDispatcher("aggiungiProdotto.jsp");
-			dispatcher.forward(request, response);
+			setStatusAndUrl(response , responseMap ,json , out, "success" , "aggiungiProdotto.jsp");
 		} catch (SQLException | ServletException | IOException | NumberFormatException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -100,9 +135,26 @@ public class AddProdottoServlet extends HttpServlet {
 
 		return test;
 	}
+
+	private static void setStatus(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato) {
+		responseMap.put(STATUS, stato);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
+	}
+
+	private static void setStatusAndUrl(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato , String url) {
+		responseMap.put(STATUS, stato);
+		responseMap.put(URL , url);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
+	}
 	
 	/*** MACRO ***/
-	public static final String DIRECTORY = "/Users/davidedelfranconatale/Downloads/kawaii-Comix/src/main/webapp/images";
+
 	private static final String ISBN = "isbn";
 	private static final String NOME = "nome";
 	private static final String AUTORE = "autore";
@@ -111,6 +163,12 @@ public class AddProdottoServlet extends HttpServlet {
 	private static final String QUANTITA = "quantita";
 	private static final String GENERE = "genere";
 	private static final String CATEGORIA = "categoria";
+
+	private static final String STATUS = "status";
+
+	private static final String URL = "url";
+
+	private static final String contentType = "application/json";
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(AddProdottoServlet.class.getName());

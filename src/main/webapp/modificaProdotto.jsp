@@ -61,31 +61,26 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
           data: formData,
         }).done(function (response) {
           var status = response.status;
-          if (typeof status !== 'undefined') {
-            status = status.trim();
-          }
-          else{
-            Swal.fire('errore falliti del cazzo','','error');
-          }
-          status = status.replace(/[\u0000-\u001F]+/g, '');
-
           if(status == 'Invalid_prodotto'){
             Swal.fire('Scegliere un prodotto da modificare','','error')
-          }
-          else if(status =='Invalid_nome'){
-            Swal.fire('Scegliere un nome!','','error')
+          }else if(status === 'Blank'){
+            Swal.fire("CAMPO VUOTO" , "Inserire almeno un valore da modificare", "error");
+          }else if(status === 'Invalid_nome'){
+            Swal.fire({
+              icon: 'error', title: 'ERRORE DI FORMATO', text: 'Inserire un nome valido', footer: 'Un nome è  valido è senza caratteri speciali.'
+            });
           }else if(status =='Invalid_nome_caratteri_speciali'){
             Swal.fire('Scegliere un nome senza caratteri speciali!','','error')
           }else if(status =='Invalid_descrizione'){
             Swal.fire('Descrivere il prodotto!','','error')
-          }else if(status =='Invalid_path'){
-            Swal.fire('Inserire un path valido!','','error')
           }else if(status =='Invalid_prezzo'){
             Swal.fire('Inserire un prezzo!','','error')
           }else if(status =='Invalid_quantita'){
             Swal.fire('Inserire almeno una quantità!','','error')
           }else if(status =='Invalid_genere'){
             Swal.fire('Scegliere genere prodotto!','','error')
+          }else if(status =='File_Non_Caricato'){
+            Swal.fire('ERRORE','Si è verificato un problema e l\'immagine non  è stata caricata con successo','error');
           }else if(status =='Invalid_categoria'){
             Swal.fire('Scegliere categoria!','','error')
           }else if(status =='success'){
@@ -105,7 +100,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
   }
 </script>
 <body>
-  <jsp:include page="./nav.jsp" flush="true"/>
+  <button id="torna-indietro" onclick="window.location.assign('areapersonale.jsp')">
+    <div class="bar"></div>
+  </button>
   <script src="./Script/dynamicCode.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", dynamicModificaProdotto("<%=request.getContextPath()%>/NameServlet"));
@@ -138,16 +135,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
         </div>
         <div class="form-row">
           <label for="prezzo">Prezzo: </label>
-          <input type="number" value="0" step="0.01" min="0"  id="prezzo"name="prezzo">
+          <input type="number"  step="0.01" min="0"  id="prezzo"name="prezzo">
         </div>
         <div class="form-row">
           <label for="quantita">Quantità: </label>
-          <input type="number" value="0" min="0" name="quantita" id ="quantita">
+          <input type="number"  min="0" name="quantita" id ="quantita">
         </div>
         <div class="form-row">
           <label for="genere">Genere: </label>
           <select name="genere" id ="genere">
-            <option>-scegliere genere-</option>
+            <option disabled selected value>-scegliere genere-</option>
             <option>Avventura</option>
             <option>Azione</option>
             <option>Combattimento</option>
@@ -178,7 +175,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
         <div class="form-row">
           <label for="categoria">Categoria: </label>
           <select name="categoria" id ="categoria">
-            <option>-scegliere categoria-</option>
+            <option disabled selected value>-scegliere categoria-</option>
             <option>Art Book</option>
             <option>Character Book</option>
             <option>Josei</option>
@@ -200,6 +197,5 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
       </form>
     </div>
   </section>
-  <jsp:include page="./footer.jsp" flush="true" />
 </body>
 </html>

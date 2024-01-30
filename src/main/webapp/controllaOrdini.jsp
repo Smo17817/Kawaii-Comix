@@ -7,13 +7,14 @@
 
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <body>
-	
+	<button id="torna-indietro" onclick="window.location.assign('areapersonale.jsp')">
+		<div class="bar"></div>
+	</button>
 	<script src="./Script/dynamicCode.js"></script>
 	<script>
 	document.addEventListener("DOMContentLoaded", dynamicCheckOrders("<%=request.getContextPath()%>/ControllaOrdiniServlet"));
 	</script>
 
-	<jsp:include page="./nav.jsp" flush="true" />
 	<section>
 		<h2>Controlla Ordini</h2>
 		<div id="filtri">
@@ -51,11 +52,6 @@
 			</tbody>
 		</table>
 	</section>
-
-
-
 <script src="./Script/ordini.js"></script>
-	<jsp:include page="./footer.jsp" flush="true" />
-	
 </body>
 </html>

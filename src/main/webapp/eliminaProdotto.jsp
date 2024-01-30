@@ -43,8 +43,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
                     },
                 }).done(function (response) {
                     var status = response.status;
-                    status = status.trim();
-                    status = status.replace(/[\u0000-\u001F]+/g, '');
                     if(status == 'success'){
                         Swal.fire('Prodotto eliminato correttamente','','success')
                         setTimeout(function() {
@@ -66,7 +64,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 
 </script>
 <body>
-<jsp:include page="./nav.jsp" flush="true"></jsp:include>
+<button id="torna-indietro" onclick="window.location.assign('areapersonale.jsp')">
+    <div class="bar"></div>
+</button>
 <script src="./Script/dynamicCode.js"></script>
 <script>
 
@@ -90,6 +90,5 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
         </form>
     </div>
 </section>
-<jsp:include page="./footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

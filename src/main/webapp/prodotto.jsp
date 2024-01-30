@@ -1,8 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*, catalogoManagement.*"%>
+<%@ page import="catalogoManagement.Prodotto" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="it">
 	<jsp:include page="./header.jsp" flush="true"/>
 	<body>
+		<script src="
+	https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
+	"></script>
+		<link href="
+	https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
+	" rel="stylesheet">
 		<script src="./Script/dynamicCode.js"></script>
 		<script src="./Script/carrello.js"></script>
 		<jsp:include page="./nav.jsp" flush="true"/>

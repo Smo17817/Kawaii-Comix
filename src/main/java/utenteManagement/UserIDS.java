@@ -30,7 +30,7 @@ public class UserIDS implements UserDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			
 			String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
-			
+
 			preparedStatement.setString(1, user.getEmail());
 			preparedStatement.setString(2, hashedPassword);
 			preparedStatement.setString(3, user.getNome());
@@ -173,7 +173,7 @@ public class UserIDS implements UserDAO {
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setString(1, email);
-			
+
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			//Se esisteun utente con quella mail e il cui hash della password corriposnde...
@@ -186,6 +186,7 @@ public class UserIDS implements UserDAO {
 				String cap = rs.getString(CAP);
 				String provincia = rs.getString(PROVINCIA);
 				String nazione = rs.getString(NAZIONE);
+
 
 				return new User(id, email, password, nome, cognome, indirizzo, citta, cap, provincia, nazione);
 			}
