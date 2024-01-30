@@ -63,54 +63,70 @@ public class UpdateProdottoServlet extends HttpServlet{
 				return;
 			}
 
-			if(!(nome.matches("^[a-zA-Z0-9\\s]+$"))){
-				setStatus(response , responseMap ,json , out, "Invalid_nome" );
-				return;
-			}
-			if(!(autore.matches("^[a-zA-Z0-9\\s]+$"))){
-				setStatus(response , responseMap ,json , out, "Invalid_autore" );
-				return;
+			if(!(nome == null || nome.trim().isEmpty())){
+				if (!(nome.matches("^[a-zA-Z0-9\\s]+$"))) {
+					setStatus(response, responseMap, json, out, "Invalid_nome");
+					return;
+				}
 			}
 
-			if(Double.parseDouble(prezzoString) <= 0.00){
-				setStatus(response , responseMap ,json , out, "Invalid_prezzo" );
-				return;
+			if(!(autore == null || autore.trim().isEmpty())) {
+				if (!(autore.matches("^[a-zA-Z0-9\\s]+$"))) {
+					setStatus(response, responseMap, json, out, "Invalid_autore");
+					return;
+				}
 			}
 
-			if(Integer.parseInt(quantitaString) < 0){
-				setStatus(response , responseMap ,json , out, "Invalid_quantita" );
-				return;
+			if(!(prezzoString == null || prezzoString.trim().isEmpty())) {
+				if (Double.parseDouble(prezzoString) <= 0.00) {
+					setStatus(response, responseMap, json, out, "Invalid_prezzo");
+					return;
+				}
 			}
 
-			if(genere.equals("-scegliere genere-")){
-				setStatus(response , responseMap ,json , out, "Invalid_genere" );
-				return;
+			if(!(quantitaString == null || quantitaString.trim().isEmpty())) {
+				if (Integer.parseInt(quantitaString) < 0) {
+					setStatus(response, responseMap, json, out, "Invalid_quantita");
+					return;
+				}
 			}
 
-			if(categoria.equals("-scegliere categoria-")){
-				setStatus(response , responseMap ,json , out, "Invalid_categoria" );
-				return;
+			if(!(genere == null || genere.trim().isEmpty())){
+				if (genere.equals("-scegliere genere-")) {
+					setStatus(response, responseMap, json, out, "Invalid_genere");
+					return;
+				}
+			}
+
+			if(!(categoria == null || categoria.trim().isEmpty())) {
+				if (categoria.equals("-scegliere categoria-")) {
+					setStatus(response, responseMap, json, out, "Invalid_categoria");
+					return;
+				}
 			}
 
 
 
-			String imagePath = "./images/" + fileName;
+			String imagePath = "";
+			if(!(fileName == null || fileName.trim().isEmpty())) {
+				imagePath = "./images/" + fileName;
 
-			InputStream is = imagePart.getInputStream();
-			String tempPath = getServletContext().getRealPath("/" +"images"+ File.separator + fileName);
-			//boolean test1 = uploadFile(is , tempPath);
-			String partedaRimuovere = "target/kawaii-Comix/";
-			String realPath = tempPath.replace(partedaRimuovere , "src/main/webapp/");
+				InputStream is = imagePart.getInputStream();
+				String tempPath = getServletContext().getRealPath("/" + "images" + File.separator + fileName);
+				//boolean test1 = uploadFile(is , tempPath);
+				String partedaRimuovere = "target/kawaii-Comix/";
+				String realPath = tempPath.replace(partedaRimuovere, "src/main/webapp/");
 
 
-			boolean test = uploadFile(is,realPath);
-			if(!test)
-				setStatus(response , responseMap ,json , out, "File_Non_Caricato" );
+				boolean test = uploadFile(is, realPath);
+				if (!test)
+					setStatus(response, responseMap, json, out, "File_Non_Caricato");
 
+			}
 
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			Prodotto prodotto = prodottoIDS.doRetrieveByNome(prodottoScelto);
-			
+
 			GenereIDS genereIDS = new GenereIDS(ds);
 			CategoriaIDS categoriaIDS = new CategoriaIDS(ds);
 			
@@ -120,13 +136,20 @@ public class UpdateProdottoServlet extends HttpServlet{
 				categoria = "";
 			if(imagePath.equals("./images/null"))
 				imagePath = "";
-			
+
+
+			if(quantitaString.isEmpty()){
+				quantitaString = "0";
+			}
+
+			if(prezzoString.isEmpty()){
+				prezzoString = "0";
+			}
 			// Setta solo i valori non vuoti, gli altri rimangono come prima
-			prodotto.setNotEmpty(nome, autore, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
-			
+			prodotto.setNotEmpty(nome, autore, descrizione, imagePath, Double.parseDouble(prezzoString), prodotto.sommaQuantita(Integer.parseInt(quantitaString)), genere, categoria);
+
 			boolean checkUpdate = prodottoIDS.doUpdateProdotto(prodotto);
-			
-			
+
 			// Controlla che l'update del prodotto si sia verificato
 			if (checkUpdate) {
 				setStatusAndUrl(response ,responseMap , json ,out , "success" , "modificaProdotto.jsp");

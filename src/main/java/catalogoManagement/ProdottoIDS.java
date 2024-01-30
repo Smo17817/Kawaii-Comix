@@ -69,7 +69,7 @@ public class ProdottoIDS implements ProdottoDAO {
 				+ " SET nome = ?, autore = ?, descrizione = ?, immagine_prod = ?, prezzo = ?, quantita = ?, categoria_nome = ?, genere_nome = ?"
 				+ " WHERE isbn = ?";
 
-		Prodotto scorte = this.doRetrieveByIsbn(prodotto.getIsbn());
+
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			

@@ -61,21 +61,22 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
           data: formData,
         }).done(function (response) {
           var status = response.status;
+          console.log(status)
           if(status == 'Invalid_prodotto'){
             Swal.fire('Scegliere un prodotto da modificare','','error')
           }else if(status === 'Blank'){
             Swal.fire("CAMPO VUOTO" , "Inserire almeno un valore da modificare", "error");
           }else if(status === 'Invalid_nome'){
             Swal.fire({
-              icon: 'error', title: 'ERRORE DI FORMATO', text: 'Inserire un nome valido', footer: 'Un nome è  valido è senza caratteri speciali.'
+              icon: 'error', title: 'ERRORE DI FORMATO', text: 'Inserire un nome valido', footer: 'Un nome è  valido senza caratteri speciali.'
             });
-          }else if(status =='Invalid_nome_caratteri_speciali'){
-            Swal.fire('Scegliere un nome senza caratteri speciali!','','error')
-          }else if(status =='Invalid_descrizione'){
-            Swal.fire('Descrivere il prodotto!','','error')
           }else if(status =='Invalid_prezzo'){
             Swal.fire('Inserire un prezzo!','','error')
-          }else if(status =='Invalid_quantita'){
+          }else if(status =='Invalid_autore'){
+            Swal.fire({
+              icon: 'error', title: 'ERRORE DI FORMATO', text: 'Inserire un autore valido', footer: 'Un autore è  valido è senza caratteri speciali.'
+            });
+          } else if(status =='Invalid_quantita'){
             Swal.fire('Inserire almeno una quantità!','','error')
           }else if(status =='Invalid_genere'){
             Swal.fire('Scegliere genere prodotto!','','error')
