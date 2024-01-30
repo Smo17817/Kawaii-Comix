@@ -215,6 +215,10 @@ function svuotaCampo() {
 }
 
 function onClickHandler() {
+	if ($("#dinamico tr").length === 0) {
+		Swal.fire('Errore!', 'Inserire almeno un prodotto nel carrello', 'error');
+		return; // Esce dalla funzione se non ci sono righe nel carrello
+	}
 	svuotaCampo();
 	dynamicCheckout();
 	toggleSummary();
