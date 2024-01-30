@@ -24,7 +24,7 @@ function filterRows() {
 
 	for (const row of rows) {
 		let userId = row.getAttribute("data-utente");
-		let giorno = row.getAttribute("data-giorno");
+		let giorno = formatDate(row.getAttribute("data-giorno"));
 		let stato = row.getAttribute("stato");
 		let showRow = true;
 
@@ -44,10 +44,16 @@ function filterRows() {
 	}
 }
 
-function formatDate(date) {
+/*** FORMATTAZIONE DATA PER CONFRONTO ***/
+function formatDate(dataString) {
+	let date = new Date(dataString);
+	
+	if (!(date instanceof Date)) 
+        return 'Formato data non valido';
+    
 	let day = String(date.getDate()).padStart(2, '0');
 	let month = String(date.getMonth() + 1).padStart(2, '0');
 	let year = date.getFullYear();
 
-	return `${day}/${month}/${year}`;
+	return `${year}/${month}/${day}`;
 }

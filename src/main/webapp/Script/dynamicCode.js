@@ -287,7 +287,7 @@ function dynamicCheckOrders(url) {
 				stato3 = "Annullato"
 			}
 			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + formatDate(o.data) + "' stato ='" + stato1 + "'>";
-			contenutoHtml += "<td> <h4>" + formatDate(o.data) + "</h4> </td>";
+			contenutoHtml += "<td> <h4>" + formatDateIta(o.data) + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
 			contenutoHtml += "<td>";
@@ -359,21 +359,17 @@ function createPaginationLinks(totalPages) {
 	}
 }
 
-/*** FORMATTAZIONE DATA ***/
-function formatDate(dataString) {
-	// Crea un oggetto Data dalla stringa di data
-	var data = new Date(dataString);
+/*** FORMATTAZIONE DATA ITALIANO***/
+function formatDateIta(dataString) {
+	let data = new Date(dataString);
 
-	// Verifica se la conversione è riuscita
 	if (isNaN(data.getTime())) {
 		console.error("Stringa di data non valida");
 		return null;
 	}
 
-	// Configura il formato della data
-	var opzioniFormattazione = { year: 'numeric', month: '2-digit', day: '2-digit' };
-	var formatoData = new Intl.DateTimeFormat('it-IT', opzioniFormattazione);
+	let opzioniFormattazione = { year: 'numeric', month: '2-digit', day: '2-digit' };
+	let formatoData = new Intl.DateTimeFormat('it-IT', opzioniFormattazione);
 
-	// Applica il formato alla data e restituisci la stringa formattata
 	return formatoData.format(data);
 }
