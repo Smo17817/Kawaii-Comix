@@ -92,7 +92,7 @@ public class AddProdottoServlet extends HttpServlet {
 			
 			//Salva l'immagine nella directory finale
 			String imagePath = "./images/" + fileName;
-			Prodotto prodotto = new Prodotto(isbn, autore, nome, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
+			Prodotto prodotto = new Prodotto(isbn, nome, autore, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
 
 			InputStream is = imagePart.getInputStream();
 			String tempPath = getServletContext().getRealPath("/" +"images"+ File.separator + fileName);
