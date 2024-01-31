@@ -62,11 +62,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
           data: formData,
         }).done(function (response) {
           var status = response.status;
-          console.log(status)
           if(status === 'Blank'){
             Swal.fire('CAMPO VUOTO','Inserire un valore nel campo','error');
-          }else if(status === 'Blank'){
-            Swal.fire("CAMPO VUOTO" , "Inserire un valore nel campo", "error");
+          }else if(status === 'Already_Registered'){
+            Swal.fire("ATTENZIONE" , "L'ISBN inserito risulta appartenere ad un prodotto già presente sul sito", "error");
           }else if(status === 'Invalid_isbn'){
             Swal.fire({
               icon: 'error', title: 'ERRORE DI FORMATO', text: 'Inserire un ISBN valido', footer: 'Un ISBN valido è costituito da 17 cifre numeriche.'

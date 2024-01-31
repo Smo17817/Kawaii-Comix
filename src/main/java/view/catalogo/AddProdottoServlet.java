@@ -33,7 +33,7 @@ public class AddProdottoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-		RequestDispatcher dispatcher = null;
+		ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 
 		HashMap<String, String> responseMap = new HashMap<>();
 		Gson json = new Gson();
@@ -48,6 +48,7 @@ public class AddProdottoServlet extends HttpServlet {
 			String categoria = request.getParameter(CATEGORIA);
 			Part imagePart = request.getPart("file");
 			String fileName =  imagePart.getSubmittedFileName();
+			Prodotto prodotto = null;
 
 			if((isbn == null || isbn.trim().isEmpty()) || (nome == null || nome.trim().isEmpty()) || (autore == null || autore.trim().isEmpty()) || (descrizione == null || descrizione.trim().isEmpty()) || (prezzoString == null || prezzoString.trim().isEmpty()) || (quantitaString == null || quantitaString.trim().isEmpty()) || (genere == null || genere.trim().isEmpty()) || (categoria == null || categoria.trim().isEmpty()) || (fileName == null || fileName.trim().isEmpty())){
 				setStatus(response , responseMap , json , out , "Blank");
@@ -55,6 +56,12 @@ public class AddProdottoServlet extends HttpServlet {
 			}
 			if(!(isbn.matches("^\\d{17}$"))){
 				setStatus(response , responseMap ,json , out, "Invalid_isbn" );
+				return;
+			}
+
+			 prodotto = prodottoIDS.doRetrieveByIsbn(isbn);
+			if(!(prodotto == null)){
+				setStatus(response , responseMap , json , out , "Already_Registered");
 				return;
 			}
 
@@ -92,7 +99,7 @@ public class AddProdottoServlet extends HttpServlet {
 			
 			//Salva l'immagine nella directory finale
 			String imagePath = "./images/" + fileName;
-			Prodotto prodotto = new Prodotto(isbn, nome, autore, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
+			prodotto = new Prodotto(isbn, nome, autore, descrizione, imagePath, Double.parseDouble(prezzoString), Integer.parseInt(quantitaString), genere, categoria);
 
 			InputStream is = imagePart.getInputStream();
 			String tempPath = getServletContext().getRealPath("/" +"images"+ File.separator + fileName);
@@ -106,7 +113,6 @@ public class AddProdottoServlet extends HttpServlet {
 				setStatus(response , responseMap ,json , out, "File_Non_Caricato" );
 
 
-			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 			prodottoIDS.doSaveProdotto(prodotto);
 
 			setStatusAndUrl(response , responseMap ,json , out, "success" , "aggiungiProdotto.jsp");

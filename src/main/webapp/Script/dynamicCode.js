@@ -85,7 +85,7 @@ function dynamicCart(url, quantita) {
 				confirmButtonText: 'OK'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					window.location.assign('http://localhost:8080/kawaii_Comix_war_exploded/'+response.url);
+					window.location.assign(response.url);
 				}
 			});
 			return;
