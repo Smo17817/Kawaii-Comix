@@ -29,7 +29,10 @@ import utenteManagement.User;
 public class CarrelloServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	
 
+	public CarrelloServlet() {}
+		
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

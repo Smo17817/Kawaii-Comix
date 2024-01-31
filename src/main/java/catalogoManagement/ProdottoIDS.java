@@ -14,10 +14,19 @@ import javax.sql.DataSource;
 public class ProdottoIDS implements ProdottoDAO {
 
 	private DataSource ds = null;
+	private Connection connection = null;
 
+	
+	
 	public ProdottoIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
