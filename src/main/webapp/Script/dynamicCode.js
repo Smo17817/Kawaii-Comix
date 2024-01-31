@@ -67,11 +67,16 @@ function dynamicCart(url, quantita) {
 	$.ajax({
 		url: url,
 		type: 'POST',
+		data:{
+			quantita :quantita
+		},
 		contentType: 'application/json; charset=utf-8'
 	}).done((response) => {
 		const listaProdotti = response.listaProdotti;
+		console.log(listaProdotti)
 		let contenutoHtml = "";
 
+		console.log(response.quantita);
 		if(response.user === null){
 			Swal.fire({
 				title: 'Attenzione',
@@ -85,8 +90,9 @@ function dynamicCart(url, quantita) {
 				}
 			});
 			return;
-		}else if(quantita === 0){
+		}else if(response.quantita === 'Invalid_quantita'){
 			Swal.fire('SIAMO SPIACENTI =(' , 'Il prodotto è momentaneamente esaurito , faremo scorte al più presto!!!', 'error');
+			return;
 		}
 
 		if (response.url === undefined) {

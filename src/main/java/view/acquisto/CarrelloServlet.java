@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,7 @@ import com.google.gson.Gson;
 import acquistoManagement.Carrello;
 import catalogoManagement.*;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import utenteManagement.User;
 
 @WebServlet("/CarrelloServlet")
@@ -35,10 +38,12 @@ public class CarrelloServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Gson json = new Gson();
 
-		HashMap<String, String> hashMap = new HashMap<>();
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
+
+		String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+		String quantita = requestBody.split("=")[1];
 
 		try {
 			PrintWriter out = response.getWriter();
@@ -58,8 +63,14 @@ public class CarrelloServlet extends HttpServlet {
 				response.setContentType("application/json");
 				out.write(jsonResponse.toString());
 			}
-			else {
-
+			else if(Integer.valueOf(quantita) == 0){
+				System.out.println("ciao");
+				JsonObject jsonResponse = new JsonObject();
+				jsonResponse.addProperty("quantita", "Invalid_quantita");
+				response.setContentType("application/json");
+				out.write(jsonResponse.toString());
+			}else {
+				
 				ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(isbn);
 

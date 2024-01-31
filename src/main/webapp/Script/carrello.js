@@ -56,7 +56,7 @@ function eliminaRiga(button) {
 			// Rimuovi la riga del prodotto dal carrello nell'interfaccia utente
 			row.parentNode.removeChild(row);
 
-			dynamicCart(contextPath + "/CarrelloServlet");
+			dynamicCart(contextPath + "/CarrelloServlet", "2");
 			// Aggiorna i totali
 			totaleParziale();
 		},

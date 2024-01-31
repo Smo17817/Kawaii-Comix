@@ -32,7 +32,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 <jsp:include page="./nav.jsp" flush="true"></jsp:include>
 <script src="./Script/dynamicCode.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", dynamicCart("<%=request.getContextPath()%>/CarrelloServlet?isbn=<%=request.getParameter("isbn")%>"));
+  document.addEventListener("DOMContentLoaded", dynamicCart("<%=request.getContextPath()%>/CarrelloServlet?isbn=<%=request.getParameter("isbn")%>", "2"));
 </script>
 <main>
   <section id="container">
