@@ -64,13 +64,12 @@ public class CarrelloServlet extends HttpServlet {
 				out.write(jsonResponse.toString());
 			}
 			else if(Integer.valueOf(quantita) == 0){
-				System.out.println("ciao");
 				JsonObject jsonResponse = new JsonObject();
 				jsonResponse.addProperty("quantita", "Invalid_quantita");
 				response.setContentType("application/json");
 				out.write(jsonResponse.toString());
 			}else {
-				
+
 				ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(isbn);
 

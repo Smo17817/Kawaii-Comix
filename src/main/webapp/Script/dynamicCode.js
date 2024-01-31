@@ -73,20 +73,19 @@ function dynamicCart(url, quantita) {
 		contentType: 'application/json; charset=utf-8'
 	}).done((response) => {
 		const listaProdotti = response.listaProdotti;
-		console.log(listaProdotti)
 		let contenutoHtml = "";
 
-		console.log(response.quantita);
 		if(response.user === null){
 			Swal.fire({
 				title: 'Attenzione',
 				text: 'Per aggiungere un prodotto al carrello devi essere loggato!',
 				icon: 'warning',
 				showCancelButton: false,
+				allowOutsideClick: false,
 				confirmButtonText: 'OK'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					window.location.assign(response.url);
+					window.location.assign('http://localhost:8080/kawaii_Comix_war_exploded/'+response.url);
 				}
 			});
 			return;
