@@ -54,6 +54,7 @@ public class CarrelloServlet extends HttpServlet {
 			if (user == null) {
 				JsonObject jsonResponse = new JsonObject();
 				jsonResponse.addProperty("url", "login.jsp");
+				jsonResponse.add("user", json.toJsonTree(user));
 				response.setContentType("application/json");
 				out.write(jsonResponse.toString());
 			}

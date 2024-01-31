@@ -3,19 +3,15 @@ function addCart(quantita, isbn) {
 	let contextPath = '/' + pathArray[1];
 	let url = contextPath + "/CarrelloServlet?isbn=" + isbn;
 
-	if (quantita != 0){
+	$.ajax({
+		url: "carrello.jsp",
+		type: "POST",
+		data: { isbn: isbn },
+		success: function(response) {
+			dynamicCart(url , quantita);
+		}
+	});
 
-		$.ajax({
-			url: "carrello.jsp",
-			type: "POST",
-			data: { isbn: isbn },
-			success: function(response) {
-				dynamicCart(url);
-			}
-		});
-	}else{
-		Swal.fire('SIAMO SPIACENTI =(' , 'Il prodotto è momentaneamente esaurito , faremo scorte al più presto!!!', 'error');
-	}
 }
 
 

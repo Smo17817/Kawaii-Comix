@@ -63,7 +63,7 @@ function dynamicIndex2(url) {
 	}
 }
 
-function dynamicCart(url) {
+function dynamicCart(url, quantita) {
 	$.ajax({
 		url: url,
 		type: 'POST',
@@ -71,6 +71,23 @@ function dynamicCart(url) {
 	}).done((response) => {
 		const listaProdotti = response.listaProdotti;
 		let contenutoHtml = "";
+
+		if(response.user === null){
+			Swal.fire({
+				title: 'Attenzione',
+				text: 'Per aggiungere un prodotto al carrello devi essere loggato!',
+				icon: 'warning',
+				showCancelButton: false,
+				confirmButtonText: 'OK'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.assign(response.url);
+				}
+			});
+			return;
+		}else if(quantita === 0){
+			Swal.fire('SIAMO SPIACENTI =(' , 'Il prodotto è momentaneamente esaurito , faremo scorte al più presto!!!', 'error');
+		}
 
 		if (response.url === undefined) {
 			for (const p of listaProdotti) {
