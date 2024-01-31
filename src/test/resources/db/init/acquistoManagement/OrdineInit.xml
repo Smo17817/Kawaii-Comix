@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<dataset>
-
-	<ordini id="67996" data="2024/01/20" totale="20.43" site_user_id="1" stato_ordine_id="1" metodo_spedizione_id="1"/>
-	<ordini id="88569" data="2024/01/24" totale="5.45" site_user_id="2" stato_ordine_id="1" metodo_spedizione_id="1"/>
-	<ordini id="18182" data="2024/01/28" totale="10.44" site_user_id="3" stato_ordine_id="1" metodo_spedizione_id="1"/>
-	
-</dataset>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<dataset>
-	
-	<gestore_ordini email="emailGestoreOrdini@gmail.com" nome="Simone" cognome="D'Assisi" password="0b0bf82b76ad1be66dccc75fec1a78531ab442f2913dbeeca9ed7f80b7d04a79"/>
-	<gestore_ordini email="emailGestoreOrdiniECatalogo@gmail.com" nome="Davide" cognome="Del Franco Natale" password="aa4222108e87ec74e39bde07715bd90f70d9db8c4b823d1bada90cf33fdb198b"/>
-	
-
-</dataset>

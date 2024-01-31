@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<dataset>
-
-	<site_user id="1" email="giovanniSicilia@gmail.com" password="e35556bdab49c2b4b04fdd4ac9876dfceb0b9f9709240b0fa52199a4260bc6a4" nome="Giulio" cognome="Cesare" indirizzo="Via Roma 4" citta="Roma" codice_postale="00118" provincia="RM" nazione="Italia"/>
-	<site_user id="2" email="Simone.dAssisi@gmail.com" password="ca6e8602c44fe8bfc87512d69f619849f2d9700cd1d5c4256fa0f412f7a58f90" nome="Simone" cognome="D'Assisi" indirizzo="Via Pasquale Vitiello 10" citta="Scafati" codice_postale="84018" provincia="SA" nazione="Italia"/>
-	<site_user id="3" email="ddfn@gmail.com" password="cc7d8c88fe977b1a8d5d4182b79462a834965d7e445ffe948c67a5b813b8617b" nome="Davide" cognome="Del Franco Natale" indirizzo="Via Francesco Giancola 94" citta="Avellino" codice_postale="83100" provincia="AV" nazione="Italia"/>
-
-</dataset>
