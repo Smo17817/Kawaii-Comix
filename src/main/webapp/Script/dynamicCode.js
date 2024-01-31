@@ -88,18 +88,7 @@ function dynamicCart(url) {
 			$("#dinamico").append(contenutoHtml);
 			totaleParziale();
 		} else {
-			Swal.fire({
-				title: 'Attenzione',
-				text: 'Per aggiungere un prodotto al carrello devi essere loggato!',
-				icon: 'warning',
-				showCancelButton: false,
-				allowOutsideClick : false,
-				confirmButtonText: 'OK'
-			}).then((result) => {
-				if (result.isConfirmed) {
-					window.location.assign(response.url);
-				}
-			});
+			window.location.assign(response.url);
 		}
 	});
 }

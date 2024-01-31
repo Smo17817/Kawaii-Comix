@@ -2,6 +2,7 @@ function addCart(quantita, isbn) {
 	let pathArray = window.location.pathname.split('/');
 	let contextPath = '/' + pathArray[1];
 	let url = contextPath + "/CarrelloServlet?isbn=" + isbn;
+
 	if (quantita != 0){
 
 		$.ajax({
