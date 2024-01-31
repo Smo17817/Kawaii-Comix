@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<dataset>
-	
-	<gestore_catalogo email="emailGestoreOrdiniECatalogo@gmail.com" nome="Davide" cognome="Del Franco Natale" password="aa4222108e87ec74e39bde07715bd90f70d9db8c4b823d1bada90cf33fdb198b"/>
-	<gestore_catalogo email="emailGestoreCatalogo@gmail.com" nome="Giovanni" cognome="Sicilia" password="f6c6afc3b0b0f623bad3145a73fb6ef265c5a380f311d4dc60b2423f71e07024"/>
-
-</dataset>
