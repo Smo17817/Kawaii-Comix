@@ -76,7 +76,6 @@ public class LoginServlet extends HttpServlet {
 
                     session.setAttribute("user", user);
                     session.setAttribute("carrello", carrello);
-
                     responseMap.put(STATUS, "success");
                     responseMap.put(URL, INDEX);
                     String jsonResponse = json.toJson(responseMap);
@@ -97,7 +96,7 @@ public class LoginServlet extends HttpServlet {
                 if(gestoreCatalogo != null && gestoreOrdini !=null) {
                     session.setAttribute("user", gestoreCatalogo);
                     session.setAttribute("BOTH" , true);
-
+                    
                     responseMap.put(STATUS, "success");
                     responseMap.put(URL, AREA_PERSONALE);
                     String jsonResponse = json.toJson(responseMap);
