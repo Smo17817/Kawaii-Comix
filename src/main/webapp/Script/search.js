@@ -45,6 +45,11 @@ function searchAndFilter() {
     }
 
   }
+  const filteredProducts = Array.from(document.querySelectorAll('.scheda')).filter(item => item.style.display !== 'none');
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+  // Aggiorna la paginazione
+  createPaginationLinks(totalPages)
 }
 
 

@@ -357,8 +357,9 @@ function showItemsForPage(page) {
 	const startIndex = (page - 1) * itemsPerPage;
 	const endIndex = startIndex + itemsPerPage;
 
-	const allItems = document.querySelectorAll('.scheda');
-	allItems.forEach((item, index) => {
+	const filteredProducts = Array.from(document.querySelectorAll('.scheda')).filter(item => item.style.display !== 'none');
+
+	filteredProducts.forEach((item, index) => {
 		if (index >= startIndex && index < endIndex) {
 			item.style.display = 'block';
 		} else {
