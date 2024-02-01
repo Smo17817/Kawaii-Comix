@@ -17,10 +17,15 @@ import java.util.logging.Logger;
 public class CarrelloIDS implements CarrelloDAO {
 
 	private DataSource ds = null;
-
+	private Connection connection = null;
 	public CarrelloIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
 	}
 
 	@Override

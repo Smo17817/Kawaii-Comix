@@ -14,10 +14,17 @@ import utenteManagement.PasswordUtils;
 public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 	
 	private DataSource ds = null;
+	private Connection connection = null;
 
 	public GestoreOrdiniIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
+		
 	}
 
 	@Override

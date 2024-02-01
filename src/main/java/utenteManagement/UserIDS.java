@@ -22,8 +22,7 @@ public class UserIDS implements UserDAO {
 		try {
 			connection = ds.getConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.ALL, ERROR, e);
 		}
 	}
 	
