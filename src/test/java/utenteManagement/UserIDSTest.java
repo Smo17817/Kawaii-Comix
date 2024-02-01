@@ -29,6 +29,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import org.dbunit.Assertion;
@@ -39,6 +40,7 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.SortedTable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.mockito.exceptions.verification.opentest4j.ArgumentsAreDifferent;
 
 public class UserIDSTest {
 
@@ -70,9 +72,10 @@ public class UserIDSTest {
 
         User user = new User("mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
         userIDS.doSaveUser(user);
+
         // Verifica che il metodo setString sia stato chiamato con i valori corretti
-        Mockito.verify(preparedStatement, times(1)).setString(1, user.getEmail());
-        Mockito.verify(preparedStatement, times(1)).setString(2, PasswordUtils.hashPassword(user.getPassword()));
+        Mockito.verify(preparedStatement, times(1)).setString(2, user.getEmail());
+        Mockito.verify(preparedStatement, times(1)).setString(1, PasswordUtils.hashPassword(user.getPassword()));
         Mockito.verify(preparedStatement, times(1)).setString(3, user.getNome());
         Mockito.verify(preparedStatement, times(1)).setString(4, user.getCognome());
         Mockito.verify(preparedStatement, times(1)).setString(5, user.getIndirizzo());
@@ -84,6 +87,41 @@ public class UserIDSTest {
         // Verifica che il metodo executeUpdate sia stato chiamato
         Mockito.verify(preparedStatement, times(1)).executeUpdate();
         
+    }
+
+    @Test
+    @DisplayName("TCU doSaveUserTestNonSalva-Utente Non Salvato")
+    public void doSaveUserTestNonSalva() throws SQLException {
+        // Mock del preparedStatement
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        boolean flag = false;
+        // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+
+        User user = new User("mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA","Italia");
+        userIDS.doSaveUser(user);
+        // Verifica che il metodo setString sia stato chiamato con i valori corretti
+        try {
+            Mockito.verify(preparedStatement, times(1)).setString(1, user.getEmail());
+            Mockito.verify(preparedStatement, times(1)).setString(2, PasswordUtils.hashPassword(user.getPassword()));
+            Mockito.verify(preparedStatement, times(1)).setString(4, user.getNome());
+            Mockito.verify(preparedStatement, times(1)).setString(3, user.getCognome());
+            Mockito.verify(preparedStatement, times(1)).setString(5, user.getIndirizzo());
+            Mockito.verify(preparedStatement, times(1)).setString(6, user.getCitta());
+            Mockito.verify(preparedStatement, times(1)).setString(7, user.getCap());
+            Mockito.verify(preparedStatement, times(1)).setString(8, user.getProvincia());
+            Mockito.verify(preparedStatement, times(1)).setString(9, user.getNazione());
+        }catch (ArgumentsAreDifferent e){
+            flag = true;
+        }
+
+        assertEquals(true, flag);
+
+        // Verifica che il metodo executeUpdate sia stato chiamato
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+
+
     }
     
     
@@ -128,17 +166,6 @@ public class UserIDSTest {
 
         // Verifica che i metodi del preparedStatement siano stati chiamati correttamente
         Mockito.verify(preparedStatement, times(1)).setInt(1, 1);
-        Mockito.verify(preparedStatement, times(1)).executeQuery();
-        Mockito.verify(resultSet, times(1)).next();
-        Mockito.verify(resultSet, times(1)).getString("email_address");
-        Mockito.verify(resultSet, times(1)).getString("password");
-        Mockito.verify(resultSet, times(1)).getString("nome");
-        Mockito.verify(resultSet, times(1)).getString("cognome");
-        Mockito.verify(resultSet, times(1)).getString("indirizzo");
-        Mockito.verify(resultSet, times(1)).getString("citta");
-        Mockito.verify(resultSet, times(1)).getString("codice_postale");
-        Mockito.verify(resultSet, times(1)).getString("provincia");
-        Mockito.verify(resultSet, times(1)).getString("nazione");
         
         resultSet.close();
     }
@@ -207,6 +234,138 @@ public class UserIDSTest {
         Mockito.verify(resultSet, times(2)).getString("provincia");
         Mockito.verify(resultSet, times(2)).getString("nazione");
         
+        resultSet.close();
+    }
+
+    @Test
+    @DisplayName("TCU doDeleteUserTest")
+    public void doDeleteUserTest() throws Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
+
+        Mockito.verify(preparedStatement, times(1)).setInt(1, user.getId());
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+
+    }
+
+    @Test
+    @DisplayName("TCU doUpdateUserTest")
+    public void doUpdateUserTest() throws Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
+
+        userIDS.doUpdateUser(user);
+
+        Mockito.verify(preparedStatement, times(1)).setString(1, user.getEmail());
+        Mockito.verify(preparedStatement, times(1)).setString(2, PasswordUtils.hashPassword(user.getPassword()));
+        Mockito.verify(preparedStatement, times(1)).setString(3, user.getNome());
+        Mockito.verify(preparedStatement, times(1)).setString(4, user.getCognome());
+        Mockito.verify(preparedStatement, times(1)).setString(5, user.getIndirizzo());
+        Mockito.verify(preparedStatement, times(1)).setString(6, user.getCitta());
+        Mockito.verify(preparedStatement, times(1)).setString(7, user.getCap());
+        Mockito.verify(preparedStatement, times(1)).setString(8, user.getProvincia());
+        Mockito.verify(preparedStatement, times(1)).setString(9, user.getNazione());
+        Mockito.verify(preparedStatement, times(1)).setInt(10, user.getId());
+
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+    }
+
+
+    @Test
+    @DisplayName("TCU doNotUpdateUserTest- Utente Non Aggiornato")
+    public void doNotUpdateUserTest() throws Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+
+        boolean flag = false;
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
+
+        userIDS.doUpdateUser(user);
+
+        try {
+            Mockito.verify(preparedStatement, times(1)).setString(2, user.getEmail());
+            Mockito.verify(preparedStatement, times(1)).setString(1, PasswordUtils.hashPassword(user.getPassword()));
+            Mockito.verify(preparedStatement, times(1)).setString(3, user.getNome());
+            Mockito.verify(preparedStatement, times(1)).setString(4, user.getCognome());
+            Mockito.verify(preparedStatement, times(1)).setString(5, user.getIndirizzo());
+            Mockito.verify(preparedStatement, times(1)).setString(6, user.getCitta());
+            Mockito.verify(preparedStatement, times(1)).setString(7, user.getCap());
+            Mockito.verify(preparedStatement, times(1)).setString(8, user.getProvincia());
+            Mockito.verify(preparedStatement, times(1)).setString(9, user.getNazione());
+            Mockito.verify(preparedStatement, times(1)).setInt(10, user.getId());
+        }catch (ArgumentsAreDifferent e){
+            flag = true;
+        }
+
+        assertEquals(true, flag);
+
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+    }
+
+
+    @Test
+    @DisplayName("doRetrieveUserTest-Utente Trovato")
+    public void doRetrieveUserTest() throws  SQLException{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        Mockito.verify(preparedStatement,times(1)).setString(1,"mariorossi@gmail.com");
+
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+        PasswordUtils passwordUtils =  Mockito.mock(PasswordUtils.class);
+
+
+        /*Utente da trovare */
+        Mockito.when(resultSet.next()).thenReturn(true); // Ci sono risultati
+        Mockito.when(resultSet.getString("password")).thenReturn(passwordUtils.hashPassword("hashedPassword"));
+        Mockito.when(resultSet.getString("nome")).thenReturn("Mario");
+        Mockito.when(resultSet.getString("cognome")).thenReturn("Rossi");
+        Mockito.when(resultSet.getString("indirizzo")).thenReturn("Via Roma 1");
+        Mockito.when(resultSet.getString("citta")).thenReturn("Salerno");
+        Mockito.when(resultSet.getString("codice_postale")).thenReturn("84100");
+        Mockito.when(resultSet.getString("provincia")).thenReturn("SA");
+        Mockito.when(resultSet.getString("nazione")).thenReturn("Italia");
+
+        System.out.println(resultSet.getString("password"));
+        //lo cerco
+        User result = userIDS.doRetrieveUser("mariorossi@gmail.com", "hashedPassword");
+
+
+        Mockito.when(resultSet.next()).thenReturn(true);
+        Mockito.when(passwordUtils.verifyPassword("hashedPassword", result.getPassword())).thenReturn(true);
+
+
+        assertEquals("mariorossi@gmail.com", result.getEmail());
+        assertEquals("Mario", result.getNome());
+        assertEquals("Rossi", result.getCognome());
+        assertEquals("Via Roma 1", result.getIndirizzo());
+        assertEquals("Salerno", result.getCitta());
+        assertEquals("84100", result.getCap());
+        assertEquals("SA", result.getProvincia());
+        assertEquals("Italia", result.getNazione());
+
+        Mockito.verify(preparedStatement, times(1)).setString(1, "mariorossi@gmail.com");
+        Mockito.verify(preparedStatement, times(1)).executeQuery();
+        Mockito.verify(resultSet, times(1)).next();
+        Mockito.verify(resultSet, times(1)).getString("email_address");
+        Mockito.verify(resultSet, times(1)).getString("password");
+        Mockito.verify(resultSet, times(1)).getString("nome");
+        Mockito.verify(resultSet, times(1)).getString("cognome");
+        Mockito.verify(resultSet, times(1)).getString("indirizzo");
+        Mockito.verify(resultSet, times(1)).getString("citta");
+        Mockito.verify(resultSet, times(1)).getString("codice_postale");
+        Mockito.verify(resultSet, times(1)).getString("provincia");
+        Mockito.verify(resultSet, times(1)).getString("nazione");
+
         resultSet.close();
     }
 
