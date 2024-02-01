@@ -16,6 +16,7 @@ public class PasswordUtils {
     public static boolean verifyPassword(String inputPassword, String hashedPassword) {
         // Hash della password immessa dall'utente e confronto con l'hash memorizzato
         String inputPasswordHash = hashPassword(inputPassword);
+
         return inputPasswordHash.equals(hashedPassword);
     }
 }

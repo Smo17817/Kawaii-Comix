@@ -193,7 +193,7 @@ public class UserIDS implements UserDAO {
 				String nazione = rs.getString(NAZIONE);
 
 
-				return new User(id, email, password, nome, cognome, indirizzo, citta, cap, provincia, nazione);
+				return new User(id, email, rs.getString(PASSWORD), nome, cognome, indirizzo, citta, cap, provincia, nazione);
 			}
 
 			rs.close();

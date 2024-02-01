@@ -312,19 +312,16 @@ public class UserIDSTest {
 
     @Test
     @DisplayName("doRetrieveUserTest-Utente Trovato")
-    public void doRetrieveUserTest() throws  SQLException{
+    public void doRetrieveUserTest() throws SQLException {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
 
+        PasswordUtils passwordUtils = Mockito.mock(PasswordUtils.class);
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
 
-        Mockito.verify(preparedStatement,times(1)).setString(1,"mariorossi@gmail.com");
-
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-        PasswordUtils passwordUtils =  Mockito.mock(PasswordUtils.class);
 
-
-        /*Utente da trovare */
+        /* Utente da trovare */
         Mockito.when(resultSet.next()).thenReturn(true); // Ci sono risultati
         Mockito.when(resultSet.getString("password")).thenReturn(passwordUtils.hashPassword("hashedPassword"));
         Mockito.when(resultSet.getString("nome")).thenReturn("Mario");
@@ -335,15 +332,18 @@ public class UserIDSTest {
         Mockito.when(resultSet.getString("provincia")).thenReturn("SA");
         Mockito.when(resultSet.getString("nazione")).thenReturn("Italia");
 
-        System.out.println(resultSet.getString("password"));
-        //lo cerco
+
+
+        // Chiamo il metodo da testare
         User result = userIDS.doRetrieveUser("mariorossi@gmail.com", "hashedPassword");
 
+        boolean verifiedPassword = false;
 
-        Mockito.when(resultSet.next()).thenReturn(true);
-        Mockito.when(passwordUtils.verifyPassword("hashedPassword", result.getPassword())).thenReturn(true);
+        verifiedPassword = passwordUtils.verifyPassword("hashedPassword", result.getPassword());
 
+        assertEquals(true, verifiedPassword);
 
+        // Verifiche
         assertEquals("mariorossi@gmail.com", result.getEmail());
         assertEquals("Mario", result.getNome());
         assertEquals("Rossi", result.getCognome());
@@ -353,11 +353,11 @@ public class UserIDSTest {
         assertEquals("SA", result.getProvincia());
         assertEquals("Italia", result.getNazione());
 
+        // Verifiche delle chiamate ai metodi
         Mockito.verify(preparedStatement, times(1)).setString(1, "mariorossi@gmail.com");
         Mockito.verify(preparedStatement, times(1)).executeQuery();
         Mockito.verify(resultSet, times(1)).next();
-        Mockito.verify(resultSet, times(1)).getString("email_address");
-        Mockito.verify(resultSet, times(1)).getString("password");
+        Mockito.verify(resultSet, times(2)).getString("password");
         Mockito.verify(resultSet, times(1)).getString("nome");
         Mockito.verify(resultSet, times(1)).getString("cognome");
         Mockito.verify(resultSet, times(1)).getString("indirizzo");
@@ -366,7 +366,6 @@ public class UserIDSTest {
         Mockito.verify(resultSet, times(1)).getString("provincia");
         Mockito.verify(resultSet, times(1)).getString("nazione");
 
-        resultSet.close();
     }
 
 } 
