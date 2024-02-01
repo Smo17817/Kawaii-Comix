@@ -15,10 +15,15 @@ import javax.sql.DataSource;
 public class OrdineIDS implements OrdineDAO {
 
 	private DataSource ds = null;
-
+	private Connection connection = null;
 	public OrdineIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
 	}
 
 	@Override

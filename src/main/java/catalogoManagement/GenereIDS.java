@@ -14,10 +14,18 @@ import javax.sql.DataSource;
 public class GenereIDS implements GenereDAO{
 	
 	private DataSource ds = null;
+	private Connection connection;
 
 	public GenereIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+
+			logger.log(Level.ALL, ERROR, e);
+		}
 	}
 
 	@Override
@@ -35,7 +43,7 @@ public class GenereIDS implements GenereDAO{
 			rs.close();
 			return generi;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return generi;
@@ -55,7 +63,7 @@ public class GenereIDS implements GenereDAO{
 				return true;
 			}
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return false;
@@ -66,5 +74,5 @@ public class GenereIDS implements GenereDAO{
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(GenereIDS.class.getName());
-	private static final String error = "Errore";
+	private static final String ERROR = "Errore";
 }

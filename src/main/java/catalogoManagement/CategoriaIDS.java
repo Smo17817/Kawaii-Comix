@@ -14,10 +14,16 @@ import javax.sql.DataSource;
 public class CategoriaIDS implements CategoriaDAO{
 	
 	private DataSource ds = null;
+	private Connection connection;
 
 	public CategoriaIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
 	}
 
 	@Override
@@ -35,7 +41,7 @@ public class CategoriaIDS implements CategoriaDAO{
 			rs.close();
 			return categorie;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return categorie;
@@ -55,7 +61,7 @@ public class CategoriaIDS implements CategoriaDAO{
 				return true;
 			}
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return false;
@@ -66,5 +72,5 @@ public class CategoriaIDS implements CategoriaDAO{
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(CategoriaIDS.class.getName());
-	private static final String error = "Errore";
+	private static final String ERROR = "Errore";
 }

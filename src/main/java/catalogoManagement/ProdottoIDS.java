@@ -24,8 +24,7 @@ public class ProdottoIDS implements ProdottoDAO {
 		try {
 			connection = ds.getConnection();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.log(Level.ALL, ERROR, e);
 		}
 	}
 
@@ -50,7 +49,7 @@ public class ProdottoIDS implements ProdottoDAO {
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 	}
@@ -67,7 +66,7 @@ public class ProdottoIDS implements ProdottoDAO {
 			if(preparedStatement.executeUpdate() > 0)
 				return true;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -96,7 +95,7 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -131,7 +130,7 @@ public class ProdottoIDS implements ProdottoDAO {
 
 			return prodotti;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return prodotti;
@@ -163,7 +162,7 @@ public class ProdottoIDS implements ProdottoDAO {
 
 			rs.close();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return null;
@@ -195,7 +194,7 @@ public class ProdottoIDS implements ProdottoDAO {
 
 			rs.close();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return null;
@@ -231,7 +230,7 @@ public class ProdottoIDS implements ProdottoDAO {
 			rs.close();
 			return prodotti;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return prodotti;
@@ -252,7 +251,7 @@ public class ProdottoIDS implements ProdottoDAO {
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return prodotto.getCopieVendute();
@@ -288,7 +287,7 @@ public class ProdottoIDS implements ProdottoDAO {
 			rs.close();
 			return prodotti;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return prodotti;
@@ -330,6 +329,6 @@ public class ProdottoIDS implements ProdottoDAO {
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(ProdottoIDS.class.getName());
-	private static final String error = "Errore";
+	private static final String ERROR = "Errore";
 
 }

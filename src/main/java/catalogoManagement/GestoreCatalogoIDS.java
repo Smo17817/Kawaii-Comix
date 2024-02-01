@@ -14,10 +14,16 @@ import utenteManagement.PasswordUtils;
 public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 	
 	private DataSource ds = null;
+	private Connection connection = null;
 
 	public GestoreCatalogoIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
 	}
 
 	@Override

@@ -17,10 +17,16 @@ import catalogoManagement.ProdottoIDS;
 public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 	private DataSource ds = null;
+	private Connection connection = null;
 
 	public OrdineSingoloIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e) {
+			logger.log(Level.ALL, ERROR, e);
+		}
 	}
 
 	@Override
@@ -39,7 +45,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 	}
@@ -58,7 +64,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 				return true;
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -81,7 +87,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 			if (preparedStatement.executeUpdate() > 0)
 				return true;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 		return false;
 	}
@@ -110,7 +116,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 			return ordiniSingoli;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return ordiniSingoli;
@@ -141,7 +147,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 			return ordiniSingoli;
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return ordiniSingoli;
@@ -170,7 +176,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 			rs.close();
 
 		} catch (SQLException e) {
-			logger.log(Level.ALL, error, e);
+			logger.log(Level.ALL, ERROR, e);
 		}
 
 		return null;
@@ -186,5 +192,5 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(OrdineSingoloIDS.class.getName());
-	private static final String error = "Errore";
+	private static final String ERROR = "Errore";
 }
