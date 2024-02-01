@@ -1,5 +1,4 @@
 package utenteManagement;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,11 +33,9 @@ public class UserIDS implements UserDAO {
 		
 		
 		String query = "INSERT INTO " + UserIDS.TABLE
-				+ " (email_address, password, nome, cognome, indirizzo, citta, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (email_address, password, nome, cognome, indirizzo, citta, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-		try (
-				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-
+		try (PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
 
 			preparedStatement.setString(1, user.getEmail());
@@ -50,25 +47,22 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(7, user.getCap());
 			preparedStatement.setString(8, user.getProvincia());
 			preparedStatement.setString(9, user.getNazione());
-			
+
 			preparedStatement.executeUpdate();
-			
-			
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
-			throw e;
 		}
 
 	}
 
 	@Override
-	public Boolean doDeleteUser(String id) throws SQLException {
+	public Boolean doDeleteUser(Integer id) throws SQLException {
 		String query = "DELETE FROM " + UserIDS.TABLE + " WHERE id = ?";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 
-			preparedStatement.setString(1, id);
+			preparedStatement.setInt(1, id);
 
 			preparedStatement.executeUpdate();
 			return true;

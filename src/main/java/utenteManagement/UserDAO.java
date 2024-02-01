@@ -6,7 +6,7 @@ import java.util.Collection;
 public interface UserDAO {
 	public void doSaveUser(User user) throws SQLException;
 
-	public Boolean doDeleteUser(String id) throws SQLException;
+	public Boolean doDeleteUser(Integer id) throws SQLException;
 
 	public Boolean doUpdateUser(User user) throws SQLException;
 
