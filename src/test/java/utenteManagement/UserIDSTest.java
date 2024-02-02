@@ -1,6 +1,6 @@
 package utenteManagement;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -30,6 +30,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import org.mockito.exceptions.verification.opentest4j.ArgumentsAreDifferent;
 
 public class UserIDSTest {
 
@@ -200,9 +201,9 @@ public class UserIDSTest {
         
         resultSet.close();
     }
-    
+
     @Test
-    @DisplayName("TCU doDeleteUserTest")
+    @DisplayName("TCU doDeleteUserTest- Utente Cancellato")
     public void doDeleteUserTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -210,13 +211,35 @@ public class UserIDSTest {
 
         User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
 
+        boolean check = userIDS.doDeleteUser(user.getId());
+
+        assertEquals(true, check);
         Mockito.verify(preparedStatement, times(1)).setInt(1, user.getId());
         Mockito.verify(preparedStatement, times(1)).executeUpdate();
 
     }
 
     @Test
-    @DisplayName("TCU doUpdateUserTest")
+    @DisplayName("TCU doNotDeleteUserTest- Utente Non Cancellato")
+    public void doNotDeleteUserTest() throws Exception {
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+
+        // Configura il mock per restituire 0 quando executeUpdate() viene chiamato
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
+
+        boolean check = userIDS.doDeleteUser(user.getId());
+
+        assertFalse(check); // Verifica che il metodo restituisca false
+        Mockito.verify(preparedStatement, times(1)).setInt(1, user.getId());
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+    }
+
+    @Test
+    @DisplayName("TCU doUpdateUserTest- Utente Aggiornato")
     public void doUpdateUserTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -224,7 +247,9 @@ public class UserIDSTest {
 
         User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
 
-        userIDS.doUpdateUser(user);
+        boolean check = userIDS.doUpdateUser(user);
+
+        assertEquals(true, check);
 
         Mockito.verify(preparedStatement, times(1)).setString(1, user.getEmail());
         Mockito.verify(preparedStatement, times(1)).setString(2, PasswordUtils.hashPassword(user.getPassword()));
@@ -301,7 +326,7 @@ public class UserIDSTest {
         // Chiamo il metodo da testare
         User result = userIDS.doRetrieveUser("mariorossi@gmail.com", "hashedPassword");
 
-        boolean verifiedPassword = false;
+        boolean verifiedPassword;
 
         verifiedPassword = passwordUtils.verifyPassword("hashedPassword", result.getPassword());
 
@@ -331,5 +356,145 @@ public class UserIDSTest {
         Mockito.verify(resultSet, times(1)).getString("nazione");
 
     }
+
+    @Test
+    @DisplayName("doRetrieveUserTest-Utente Non Trovato")
+    public void doRetrieveUserNonTrovatoTest() throws SQLException {
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        /* Utente da trovare */
+        Mockito.when(resultSet.next()).thenReturn(false); // Non ci sono risultati
+
+        // Chiamo il metodo da testare
+        User result = userIDS.doRetrieveUser("mariorossi@gmail.com", "hashedPassword");
+
+        assertNull(result);
+
+
+        Mockito.verify(preparedStatement, times(1)).setString(1, "mariorossi@gmail.com");
+        Mockito.verify(preparedStatement, times(1)).executeQuery();
+        Mockito.verify(resultSet, times(1)).next();
+    }
+
+    @Test
+    @DisplayName("doRetrieveUserTest-Utente Non Trovato Password Errata")
+    public void doRetrieveUserPasswordErrataTest() throws SQLException {
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        PasswordUtils passwordUtils = Mockito.mock(PasswordUtils.class);
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        /* Utente da trovare */
+        Mockito.when(resultSet.next()).thenReturn(true); // Ci sono risultati
+        Mockito.when(resultSet.getString("password")).thenReturn(passwordUtils.hashPassword("giovannisicilia"));
+        Mockito.when(resultSet.getString("nome")).thenReturn("Mario");
+        Mockito.when(resultSet.getString("cognome")).thenReturn("Rossi");
+        Mockito.when(resultSet.getString("indirizzo")).thenReturn("Via Roma 1");
+        Mockito.when(resultSet.getString("citta")).thenReturn("Salerno");
+        Mockito.when(resultSet.getString("codice_postale")).thenReturn("84100");
+        Mockito.when(resultSet.getString("provincia")).thenReturn("SA");
+        Mockito.when(resultSet.getString("nazione")).thenReturn("Italia");
+
+
+        User result = userIDS.doRetrieveUser("mariorossi@gmail.com", "hashedPassword");
+
+        assertNull(result);
+
+
+        // Verifiche delle chiamate ai metodi
+        Mockito.verify(preparedStatement, times(1)).setString(1, "mariorossi@gmail.com");
+        Mockito.verify(preparedStatement, times(1)).executeQuery();
+        Mockito.verify(resultSet, times(1)).next();
+        Mockito.verify(resultSet, times(1)).getString("password");
+
+
+    }
+
+
+    @Test
+    @DisplayName("doUpdateUserPasswordTest- Utente presente")
+    public void doUpdateUserPasswordTest() throws Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        PasswordUtils passwordUtils = Mockito.mock(PasswordUtils.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        userIDS.doUpdateUserPassword("mariorossi@gmail.com", "hashedPassword");
+
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+        Mockito.verify(preparedStatement, times(1)).setString(1, passwordUtils.hashPassword("hashedPassword"));
+        Mockito.verify(preparedStatement, times(1)).setString(2, "mariorossi@gmail.com");
+    }
+
+    @Test
+    @DisplayName("doNotUpdateUserPasswordTest- Utente Non presente")
+    public void doNotUpdateUserPasswordTest() throws Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        PasswordUtils passwordUtils = Mockito.mock(PasswordUtils.class);
+        boolean flag= false;
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        userIDS.doUpdateUserPassword("mariorossi@gmail.com", "hashedPassword");
+        try{
+            Mockito.verify(preparedStatement, times(1)).executeUpdate();
+            Mockito.verify(preparedStatement, times(1)).setString(2, passwordUtils.hashPassword("hashedPassword"));
+            Mockito.verify(preparedStatement, times(1)).setString(1, "mariorossi@gmail.com");
+        }catch (ArgumentsAreDifferent e){
+            flag = true;
+        }
+
+        assertEquals(true, flag);
+    }
+
+
+    @Test
+    @DisplayName("emailExist- Email Presente")
+    public void emailExists() throws Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        Mockito.when(resultSet.next()).thenReturn(true);
+        //ci sono risultati
+        assertTrue(userIDS.emailExists("mariorossi@gmail.com"));
+
+        Mockito.verify(preparedStatement, times(1)).executeQuery();
+        Mockito.verify(preparedStatement, times(1)).setString(1, "mariorossi@gmail.com");
+        Mockito.verify(resultSet, times(1)).next();
+
+    }
+
+    @Test
+    @DisplayName("emailExist- Email Non Presente")
+    public void emailNotExists() throws Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        Mockito.when(resultSet.next()).thenReturn(false);
+        //ci sono risultati
+        assertFalse(userIDS.emailExists("mariorossi@gmail.com"));
+
+        Mockito.verify(preparedStatement, times(1)).executeQuery();
+        Mockito.verify(preparedStatement, times(1)).setString(1, "mariorossi@gmail.com");
+        Mockito.verify(resultSet, times(1)).next();
+
+    }
+
+
 
 } 

@@ -4,7 +4,9 @@ import utenteManagement.UserIDS;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -33,7 +35,7 @@ public class ForgotPasswordServlet extends HttpServlet {
 
             UserIDS userIDS = new UserIDS(ds);
 
-
+        try {
             if ((email == null || email.trim().isEmpty()) || (password1 == null || password1.trim().isEmpty()) || (password2 == null || password2.trim().isEmpty())) {
                 responseMap.put(STATUS, "Blank");
                 String jsonResponse = json.toJson(responseMap);
@@ -43,7 +45,7 @@ public class ForgotPasswordServlet extends HttpServlet {
                 return;
             }
 
-            if(!(email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"))) {
+            if (!(email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"))) {
                 responseMap.put(STATUS, "Invalid_Mail");
                 String jsonResponse = json.toJson(responseMap);
                 response.setContentType(contentType);
@@ -52,7 +54,16 @@ public class ForgotPasswordServlet extends HttpServlet {
                 return;
             }
 
-            if(password1.length() < 8){
+            if (!userIDS.emailExists(email)) {
+                responseMap.put(STATUS, "Mail_Non_Presente");
+                String jsonResponse = json.toJson(responseMap);
+                response.setContentType(contentType);
+                out.write(jsonResponse);
+                out.flush();
+                return;
+            }
+
+            if (password1.length() < 8) {
                 responseMap.put(STATUS, "Invalid_Password_length");
                 String jsonResponse = json.toJson(responseMap);
                 response.setContentType(contentType);
@@ -73,19 +84,21 @@ public class ForgotPasswordServlet extends HttpServlet {
 
             if (userIDS.doUpdateUserPassword(email, password1)) {
                 responseMap.put(STATUS, "success");
-                responseMap.put(URL , "login.jsp");
+                responseMap.put(URL, "login.jsp");
                 String jsonResponse = json.toJson(responseMap);
                 response.setContentType(contentType);
                 out.write(jsonResponse);
                 out.flush();
-            }
-            else{
+            } else {
                 responseMap.put(STATUS, "failed");
                 String jsonResponse = json.toJson(responseMap);
                 response.setContentType(contentType);
                 out.write(jsonResponse);
                 out.flush();
             }
+        }catch (SQLException e){
+            logger.log(Level.ALL, error ,e);
+        }
 
         }
 

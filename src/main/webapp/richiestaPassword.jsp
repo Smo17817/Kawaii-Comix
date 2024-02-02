@@ -39,6 +39,8 @@
         Swal.fire("CAMPO VUOTO", "Inserire un valore nel campo", "error");
       }else if(status === 'Invalid_Password'){
         Swal.fire("PASSWORD DIVERSE", "Controllare che le password siano uguali", "error");
+      } else if(status === 'Mail_Non_Presente'){
+          Swal.fire("ATTENZIONE", "Non puoi richiedere il cambio password con una E-mail non presente", "error");
       }else if(status === 'Invalid_Password_length'){
         Swal.fire("PASSWORD TROPPO CORTA", "La password deve essere almeno di 8 caratteri" , "error");
       }else if(status === 'failed'){
