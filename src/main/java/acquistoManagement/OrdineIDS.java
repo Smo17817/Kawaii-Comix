@@ -84,7 +84,6 @@ public class OrdineIDS implements OrdineDAO {
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-
 			java.sql.Date sqlDate = new java.sql.Date(data.getTime());
 
 			preparedStatement.setDate(1, sqlDate);
@@ -92,7 +91,7 @@ public class OrdineIDS implements OrdineDAO {
 			preparedStatement.setInt(3, userId);
 			preparedStatement.setInt(4, stato);
 			preparedStatement.setInt(5, metodoSpedizione);
-			preparedStatement.setInt(5, id);
+			preparedStatement.setInt(6, id);
 
 			if (preparedStatement.executeUpdate() > 0)
 				return true;
