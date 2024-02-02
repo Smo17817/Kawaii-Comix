@@ -65,6 +65,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
 				setTimeout(function() {
 					window.location.assign(response.url);
 				}, 2000); // Ritardo di 2 secondi (2000 millisecondi)
+			}else{
+				Swal.fire("SIAMO SPIACENTI", "Sembrano esserci dei problemi interni , riprovare più tardi , GRAZIE", "error");
 			}
 		})
 

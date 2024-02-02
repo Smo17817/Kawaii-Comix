@@ -33,7 +33,7 @@ public class UserIDS implements UserDAO {
 		
 		
 		String query = "INSERT INTO " + UserIDS.TABLE
-				+ " (email_address, password, nome, cognome, indirizzo, citta, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " (email_address, password, nome, cognome, indirizzo, citta, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			String hashedPassword = PasswordUtils.hashPassword(user.getPassword());
@@ -48,8 +48,9 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(8, user.getProvincia());
 			preparedStatement.setString(9, user.getNazione());
 
-			if((preparedStatement.executeUpdate() > 0))
-				return  true;
+			if((preparedStatement.executeUpdate() > 0)) {
+				return true;
+			}
 
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
