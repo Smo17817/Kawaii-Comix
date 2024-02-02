@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 public interface UserDAO {
-	public void doSaveUser(User user) throws SQLException;
+	public boolean doSaveUser(User user) throws SQLException;
 
 	public Boolean doDeleteUser(Integer id) throws SQLException;
 

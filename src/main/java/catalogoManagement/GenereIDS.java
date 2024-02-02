@@ -41,7 +41,6 @@ public class GenereIDS implements GenereDAO{
 				generi.add(rs.getString("nome"));
 			
 			rs.close();
-			return generi;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}

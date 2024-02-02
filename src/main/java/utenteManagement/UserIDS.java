@@ -28,7 +28,7 @@ public class UserIDS implements UserDAO {
 	
 
 	@Override
-	public void doSaveUser(User user) throws SQLException {
+	public boolean doSaveUser(User user) throws SQLException {
 		
 		
 		
@@ -48,12 +48,16 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(8, user.getProvincia());
 			preparedStatement.setString(9, user.getNazione());
 
-			preparedStatement.executeUpdate();
+			if((preparedStatement.executeUpdate() > 0))
+				return  true;
+
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
+		return  false;
 
 	}
+
 
 	@Override
 	public Boolean doDeleteUser(Integer id) throws SQLException {
@@ -94,8 +98,8 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(9, user.getNazione());
 			preparedStatement.setInt(10, user.getId());
 
-			preparedStatement.executeUpdate();
-			return true;
+			if(preparedStatement.executeUpdate() > 0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
