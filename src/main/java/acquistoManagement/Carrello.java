@@ -39,4 +39,11 @@ public class Carrello implements Serializable{
         this.listaProdotti.clear();
     }
 
+    @Override
+    public String toString() {
+        return "Carrello{" +
+                "carrelloId=" + carrelloId +
+                ", listaProdotti=" + listaProdotti +
+                '}';
+    }
 }

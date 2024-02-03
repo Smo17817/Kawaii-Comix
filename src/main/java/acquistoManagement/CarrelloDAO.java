@@ -8,7 +8,7 @@ public interface CarrelloDAO {
 
 	public void doDeleteProdottiCarrello(Carrello carrello);
 
-	public void doCreateCarrello(int userId);
+	public Boolean doCreateCarrello(int userId);
 
 	public Boolean doDeleteCarrello(int carrelloId);
 

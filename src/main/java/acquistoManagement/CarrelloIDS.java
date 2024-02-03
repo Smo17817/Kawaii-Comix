@@ -29,16 +29,18 @@ public class CarrelloIDS implements CarrelloDAO {
 	}
 
 	@Override
-	public void doCreateCarrello(int userId) {
+	public Boolean doCreateCarrello(int userId) {
 		String query = "INSERT INTO " + CarrelloIDS.TABLE + " (user_id) VALUES (?)";
 		try (Connection connection = ds.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			preparedStatement.setInt(1, userId);
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate() >0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
+		return false;
 	}
 
 	@Override
@@ -149,36 +151,17 @@ public class CarrelloIDS implements CarrelloDAO {
 			}
 
 			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
-			Collection<Prodotto> allProducts = prodottoIDS.doRetreiveAllProdotti();
 
-			for (Prodotto prodotto : allProducts) {
-				if (isbnList.contains(prodotto.getIsbn())) {
-					String nomeprod = prodotto.getNome();
-					String autore = prodotto.getAutore();
-					String descrizione = prodotto.getDescrizione();
-					String img = prodotto.getImmagine();
-					String genere = prodotto.getGenere();
-					String categoria = prodotto.getCategoria();
-					Integer quantita = prodotto.getQuantita();
-					Double prezzo = prodotto.getPrezzo();
-					Integer copieVendute = prodotto.getCopieVendute();
-					Prodotto prodotto1 = new Prodotto(prodotto.getIsbn(), nomeprod, autore, descrizione, img, prezzo,
-							quantita, genere, categoria, copieVendute);
+			for (String isbn : isbnList) {
+				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(isbn);
+				if(prodotto != null) {
+					Prodotto prodotto1 = new Prodotto(prodotto.getIsbn(), prodotto.getNome(), prodotto.getAutore(), prodotto.getDescrizione(), prodotto.getImmagine(), prodotto.getPrezzo(),
+							prodotto.getQuantita(), prodotto.getGenere(), prodotto.getCategoria(), prodotto.getCopieVendute());
 					prodottiCarrello.add(prodotto1);
 				}
 			}
-
-			for (String isbn : isbnList) {
-				query = "DELETE FROM " + CarrelloIDS.TABLE2 + " WHERE prodotto_isbn = ?";
-				connection.prepareStatement(query);
-
-				preparedStatement.setString(1, isbn);
-
-				preparedStatement.executeUpdate();
-			}
-
 			carrello.setListaProdotti(prodottiCarrello);
-
+			this.doDeleteProdottiCarrello(carrello);
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
