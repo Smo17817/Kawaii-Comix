@@ -6,7 +6,7 @@ import java.util.Collection;
 import catalogoManagement.Prodotto;
 
 public interface OrdineSingoloDAO {
-	public void doSaveOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException;
+	public Boolean doSaveOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException;
 
 	public Boolean doDeleteOrdineSingolo(Integer id) throws SQLException;
 

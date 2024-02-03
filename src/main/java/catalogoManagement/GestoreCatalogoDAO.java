@@ -3,7 +3,7 @@ package catalogoManagement;
 import java.sql.SQLException;
 
 public interface GestoreCatalogoDAO {
-	public void doSaveGestore(GestoreCatalogo gestoreCatalogo) throws SQLException;
+	public Boolean doSaveGestore(GestoreCatalogo gestoreCatalogo) throws SQLException;
 
 	public Boolean doUpdateGestore(GestoreCatalogo gestoreOrdini) throws SQLException;
 

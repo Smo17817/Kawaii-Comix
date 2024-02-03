@@ -30,7 +30,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	}
 
 	@Override
-	public void doSaveOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException {
+	public Boolean doSaveOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException {
 
 		String query = "INSERT INTO " + OrdineSingoloIDS.TABLE
 				+ " (quantità, totale_parziale, ordini_id, prodotti_isbn) VALUES (?, ?, ?, ?)";
@@ -43,10 +43,12 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 			preparedStatement.setInt(3, ordineSingolo.getOrdineId());
 			preparedStatement.setString(4, ordineSingolo.getProdotto().getIsbn());
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate()>0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
+		return false;
 
 	}
 

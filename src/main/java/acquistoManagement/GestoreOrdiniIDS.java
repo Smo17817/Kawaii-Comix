@@ -28,7 +28,7 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 	}
 
 	@Override
-	public void doSaveGestore(GestoreOrdini gestoreOrdini) throws SQLException {
+	public Boolean doSaveGestore(GestoreOrdini gestoreOrdini) throws SQLException {
 		String query = "INSERT INTO " + GestoreOrdiniIDS.TABLE
 				+ " (email_address, nome, cognome, password) VALUES (?, ?, ?, ?)";
 
@@ -43,10 +43,12 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 			preparedStatement.setString(3, gestoreOrdini.getCognome());
 			preparedStatement.setString(4, hashedPassword);
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate()>0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
+		return false;
 	}
 
 	@Override
@@ -65,7 +67,7 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 			preparedStatement.setString(3, hashedPassword);
 			preparedStatement.setString(4, gestoreOrdini.getEmail());
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate()>0)
 			return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
@@ -84,8 +86,8 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 
 			preparedStatement.setString(1, email);
 
-			preparedStatement.executeUpdate();
-			return true;
+			if(preparedStatement.executeUpdate()>0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -110,8 +112,7 @@ public class GestoreOrdiniIDS implements GestoreOrdiniDAO{
 			if(rs.next()) {
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
-
-				return new GestoreOrdini(email, nome, cognome, password);
+				return new GestoreOrdini(email, nome, cognome, hashedPassword);
 			}
 
 			rs.close();

@@ -27,7 +27,7 @@ public class OrdineIDS implements OrdineDAO {
 	}
 
 	@Override
-	public void doSaveOrdine(Ordine ordine) throws SQLException {
+	public Boolean doSaveOrdine(Ordine ordine) throws SQLException {
 		String query = "INSERT INTO " + OrdineIDS.TABLE
 				+ " (id ,data, totale, site_user_id, stato_ordine_id, metodo_spedizione_id) VALUES (?,?, ?, ?, ?, ?)";
 
@@ -44,16 +44,17 @@ public class OrdineIDS implements OrdineDAO {
 			preparedStatement.setInt(5, ordine.getStato());
 			preparedStatement.setInt(6, ordine.getMetodoSpedizione());
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate()>0) {
 
 			// Salva tutti i singoli ordini associati all'ordine cumulativo
 			for (OrdineSingolo ordineSingolo : ordine.getOrdiniSingoli())
 				doSaveOrdineSingoloAssociato(ordineSingolo);
-
-
+			return true;
+			}
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
+		return false;
 	}
 
 	@Override

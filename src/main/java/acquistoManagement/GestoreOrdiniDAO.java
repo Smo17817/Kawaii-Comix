@@ -3,7 +3,7 @@ package acquistoManagement;
 import java.sql.SQLException;
 
 public interface GestoreOrdiniDAO {
-	public void doSaveGestore(GestoreOrdini gestoreOrdini) throws SQLException;
+	public Boolean doSaveGestore(GestoreOrdini gestoreOrdini) throws SQLException;
 
 	public Boolean doUpdateGestore(GestoreOrdini gestoreOrdini) throws SQLException;
 

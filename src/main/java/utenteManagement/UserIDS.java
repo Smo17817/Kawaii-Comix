@@ -48,6 +48,10 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(8, user.getProvincia());
 			preparedStatement.setString(9, user.getNazione());
 
+
+			if((preparedStatement.executeUpdate() > 0))
+				return  true;
+
 			if((preparedStatement.executeUpdate() > 0)) {
 				return true;
 			}
@@ -196,7 +200,6 @@ public class UserIDS implements UserDAO {
 				String cap = rs.getString(CAP);
 				String provincia = rs.getString(PROVINCIA);
 				String nazione = rs.getString(NAZIONE);
-
 
 				return new User(id, email, rs.getString(PASSWORD), nome, cognome, indirizzo, citta, cap, provincia, nazione);
 			}
