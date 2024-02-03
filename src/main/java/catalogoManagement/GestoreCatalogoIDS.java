@@ -27,7 +27,7 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 	}
 
 	@Override
-	public void doSaveGestore(GestoreCatalogo gestoreCatalogo) throws SQLException {
+	public Boolean doSaveGestore(GestoreCatalogo gestoreCatalogo) throws SQLException {
 		String query = "INSERT INTO " + GestoreCatalogoIDS.TABLE
 				+ " (email_address, nome, cognome, password) VALUES (?, ?, ?, ?)";
 
@@ -42,10 +42,12 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 			preparedStatement.setString(3, gestoreCatalogo.getCognome());
 			preparedStatement.setString(4, hashedPassword);
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate()>0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
+		return false;
 	}
 
 	@Override
@@ -64,7 +66,7 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 			preparedStatement.setString(3, hashedPassword);
 			preparedStatement.setString(4, gestoreCatalogo.getEmail());
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate()>0)
 			return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
@@ -83,7 +85,7 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 
 			preparedStatement.setString(1, email);
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate()>0)
 			return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
@@ -108,7 +110,7 @@ public class GestoreCatalogoIDS implements GestoreCatalogoDAO{
 				String nome = rs.getString(NOME);
 				String cognome = rs.getString(COGNOME);
 
-				return new GestoreCatalogo(email, nome, cognome, password);
+				return new GestoreCatalogo(email, nome, cognome, hashedPassword);
 			}
 
 			rs.close();

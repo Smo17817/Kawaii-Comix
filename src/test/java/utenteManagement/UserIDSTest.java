@@ -235,7 +235,6 @@ public class UserIDSTest {
         Mockito.verify(resultSet, times(2)).getString("provincia");
         Mockito.verify(resultSet, times(2)).getString("nazione");
         
-        resultSet.close();
     }
 
     @Test
@@ -386,8 +385,6 @@ public class UserIDSTest {
         Mockito.verify(resultSet, times(1)).getString("codice_postale");
         Mockito.verify(resultSet, times(1)).getString("provincia");
         Mockito.verify(resultSet, times(1)).getString("nazione");
-
-        resultSet.close();
 
     }
 
