@@ -48,9 +48,13 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(8, user.getProvincia());
 			preparedStatement.setString(9, user.getNazione());
 
+
 			if((preparedStatement.executeUpdate() > 0))
 				return  true;
-			
+
+			if((preparedStatement.executeUpdate() > 0)) {
+				return true;
+			}
 
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);

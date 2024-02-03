@@ -37,8 +37,8 @@ public class GenereIDSTest {
 
 
     @Test
-    @DisplayName("doRetrieveAll- Generi Trovati")
-    public void doRetrieveAll() throws Exception {
+    @DisplayName("doRetrieveAllTest- Generi Trovati")
+    public void doRetrieveAllTest() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
 
@@ -63,8 +63,8 @@ public class GenereIDSTest {
     }
 
     @Test
-    @DisplayName("doRetrieveAll- Generi Non Trovati")
-    public void doRetrieveAll_NotFound() throws Exception {
+    @DisplayName("doRetrieveAllTest- Generi Non Trovati")
+    public void doRetrieveAllTest_NotFound() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
 
@@ -88,8 +88,8 @@ public class GenereIDSTest {
     }
 
     @Test
-    @DisplayName("checkGenereName- Genere Presente")
-    public void checkGenereName() throws Exception{
+    @DisplayName("checkGenereNameTest- Genere Presente")
+    public void checkGenereNameTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
 
@@ -110,8 +110,8 @@ public class GenereIDSTest {
     }
 
     @Test
-    @DisplayName("checkGenereName- Genere Non Presente")
-    public void checkGenereName_NotFound() throws Exception{
+    @DisplayName("checkGenereNameTest- Genere Non Presente")
+    public void checkGenereNameTest_NotFound() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
 

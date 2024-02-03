@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public interface ProdottoDAO {
-	public void doSaveProdotto(Prodotto prodotto) throws SQLException;
+	public Boolean doSaveProdotto(Prodotto prodotto) throws SQLException;
 
 	public Boolean doDeleteProdotto(String isbn) throws SQLException;
 
@@ -21,7 +21,7 @@ public interface ProdottoDAO {
 
 	public ArrayList<String> doRetrieveAllProductsName();
 	//Restituisce le copie aggiornate
-	public Integer updateCopieVendute(Prodotto prodotto) throws  SQLException;
+	public Boolean updateCopieVendute(Prodotto prodotto) throws  SQLException;
 	//Restituisce i prodotti più venduti
 	public Collection<Prodotto> bestSellers() throws SQLException;
 }

@@ -282,9 +282,7 @@ public class UserIDSTest {
         Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
         User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
 
-        boolean check = userIDS.doUpdateUser(user);
-
-        assertEquals(true, check);
+         assertTrue(userIDS.doUpdateUser(user));
 
         Mockito.verify(preparedStatement, times(1)).setString(1, user.getEmail());
         Mockito.verify(preparedStatement, times(1)).setString(2, PasswordUtils.hashPassword(user.getPassword()));

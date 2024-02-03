@@ -29,7 +29,7 @@ public class ProdottoIDS implements ProdottoDAO {
 	}
 
 	@Override
-	public void doSaveProdotto(Prodotto prodotto) throws SQLException {
+	public Boolean doSaveProdotto(Prodotto prodotto) throws SQLException {
 		String query = "INSERT INTO " + ProdottoIDS.TABLE
 				+ " (isbn, nome, autore, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome ,copie_vendute) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?)";
 
@@ -47,11 +47,14 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setString(9 ,prodotto.getCategoria());
 			preparedStatement.setInt(10 , prodotto.getCopieVendute());
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate() > 0)
+				return  true;
+
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
 
+		return  false;
 	}
 
 	@Override
@@ -92,8 +95,8 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setString(8, prodotto.getGenere());
 			preparedStatement.setString(9  ,prodotto.getIsbn());
 
-			preparedStatement.executeUpdate();
-			return true;
+			if(preparedStatement.executeUpdate() > 0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -125,10 +128,7 @@ public class ProdottoIDS implements ProdottoDAO {
 						categoria, copieVendute);
 				prodotti.add(prodotto);
 			}
-
 			rs.close();
-
-			return prodotti;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -188,6 +188,7 @@ public class ProdottoIDS implements ProdottoDAO {
 				String categoria = rs.getString(CATEGORIA);
 				Integer copieVendute = rs.getInt(COPIE_VENDUTE);
 
+
 				return new Prodotto(isbn, nome, autore, descrizione, img, prezzo, quantita, genere, categoria,
 						copieVendute);
 			}
@@ -228,7 +229,6 @@ public class ProdottoIDS implements ProdottoDAO {
 			}
 
 			rs.close();
-			return prodotti;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -237,11 +237,10 @@ public class ProdottoIDS implements ProdottoDAO {
 	}
 
 	@Override
-	public Integer updateCopieVendute(Prodotto prodotto) {
+	public Boolean updateCopieVendute(Prodotto prodotto) {
 		String query = "UPDATE " + ProdottoIDS.TABLE 
 				+ " SET copie_vendute = ?"
 				+ " WHERE isbn = ?";
-		prodotto.setCopieVendute(prodotto.getCopieVendute());
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -249,12 +248,13 @@ public class ProdottoIDS implements ProdottoDAO {
 			preparedStatement.setInt(1, prodotto.getCopieVendute());
 			preparedStatement.setString(2, prodotto.getIsbn());
 
-			preparedStatement.executeUpdate();
+			if(preparedStatement.executeUpdate() > 0)
+				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
 
-		return prodotto.getCopieVendute();
+		return  false;
 	}
 
 	@Override
@@ -285,7 +285,6 @@ public class ProdottoIDS implements ProdottoDAO {
 			}
 
 			rs.close();
-			return prodotti;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -307,10 +306,10 @@ public class ProdottoIDS implements ProdottoDAO {
 				nomiList.add(rs.getString(NOME));
 			}
 
-			return  nomiList;
 		} catch (SQLException e) {
-            throw new RuntimeException(e);
+			logger.log(Level.ALL, ERROR, e);
         }
+		return  nomiList;
     }
 
 	

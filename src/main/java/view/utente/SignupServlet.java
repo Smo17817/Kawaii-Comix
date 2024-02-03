@@ -46,101 +46,61 @@ public class SignupServlet extends HttpServlet {
 
 
 		if((nome == null || nome.trim().isEmpty()) || (cognome == null || cognome.trim().isEmpty()) || (email == null || email.trim().isEmpty()) || (password == null || password.trim().isEmpty()) || (indirizzo == null || indirizzo.trim().isEmpty()) || (citta == null || citta.trim().isEmpty()) || (cap == null || cap.trim().isEmpty()) || (provincia == null || provincia.trim().isEmpty()) ||(nazione == null || nazione.trim().isEmpty())){
-			responseMap.put(STATUS, "Blank");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Blank");
 			return;
 		}
 
 		if(!(email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"))){
-			responseMap.put(STATUS, "Invalid_Mail");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Invalid_Mail");
 			return;
 		}
 
 
 
 		if(password.length() < 8){
-			responseMap.put(STATUS, "Invalid_Password_length");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Invalid_Password_length");
 			return;
 		}
 
 
 		// Verifica che l'indirizzo contenga solo lettere, numeri e spazi
 		if (!(indirizzo.matches("[a-zA-Z0-9\\s]+"))) {
-			responseMap.put(STATUS, "Invalid_Indirizzo");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Invalid_Indirizzo");
 			return;
 		}
 
 		// Verifica che ci siano anche caratteri alfabetici nell'indirizzo quando ci sono solo numeri e caratteri speciali
 		if (indirizzo.matches("[0-9.\\s]+") && !indirizzo.matches(".*[a-zA-Z].*")) {
-			responseMap.put(STATUS, "Indirizzo_Solo_Numeri");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Indirizzo_Solo_Numeri");
 			return;
 		}
 
 		// Verifica che l'indirizzo contenga almeno un numero (numero civico)
 		if (!indirizzo.matches(".*\\d+.*")) {
-			responseMap.put(STATUS, "Numero_Civico_Mancante");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Numero_Civico_Mancante");
 			return;
 		}
 
 
 
 		if(!(citta.matches("[a-zA-Z]+"))){
-			responseMap.put(STATUS, "Invalid_Citta");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Invalid_Citta");
 			return;
 		}
 
 		if (!(cap.matches("\\d{5}"))){
-			responseMap.put(STATUS, "Invalid_Cap");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Invalid_Cap");
 			return;
 		}
 
 		if(!(provincia.matches("[a-zA-Z]{2}"))){
-			responseMap.put(STATUS, "Invalid_Provincia");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Invalid_Provincia");
 			return;
 		}
 
 
 		if(nazione.equals("-effettua una scelta-")){
-			responseMap.put(STATUS, "Invalid_Nazione");
-			String jsonResponse = json.toJson(responseMap);
-			response.setContentType(contentType);
-			out.write(jsonResponse);
-			out.flush();
+			setStatus(response , responseMap , json , out , "Invalid_Nazione");
 			return;
 		}
 
@@ -148,20 +108,15 @@ public class SignupServlet extends HttpServlet {
 
 		try {
 			if (userIDS.emailExists(email)) {
-				responseMap.put(STATUS, "Duplicate");
-				String jsonResponse = json.toJson(responseMap);
-				response.setContentType(contentType);
-				out.write(jsonResponse);
-				out.flush();
+				setStatus(response , responseMap , json , out , "Duplicate");
 			}else {
 				User user = new User(email, password, nome, cognome, formattedIndirizzo(indirizzo), formattedCitta(citta), cap, provincia.toUpperCase(), nazione);
-				userIDS.doSaveUser(user);
-				responseMap.put(STATUS, "success");
-				responseMap.put(URL, "login.jsp");
-				String jsonResponse = json.toJson(responseMap);
-				response.setContentType(contentType);
-				out.write(jsonResponse);
-				out.flush();
+				if(userIDS.doSaveUser(user)){
+					setStatusAndUrl(response , responseMap , json , out , "success", "login.jsp");
+				}else{
+					setStatus(response , responseMap , json , out , "failed");
+				}
+
 			}
 
 		} catch (SQLException e) {
@@ -200,6 +155,23 @@ public class SignupServlet extends HttpServlet {
 		// Imposta la prima lettera della città in maiuscolo
 		citta = citta.substring(0, 1).toUpperCase() + citta.substring(1).toLowerCase();
 		return citta;
+	}
+
+	private static void setStatus(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato) {
+		responseMap.put(STATUS, stato);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
+	}
+
+	private static void setStatusAndUrl(HttpServletResponse response, HashMap<String, String> responseMap, Gson json, PrintWriter out, String stato , String url) {
+		responseMap.put(STATUS, stato);
+		responseMap.put(URL , url);
+		String jsonResponse = json.toJson(responseMap);
+		response.setContentType(contentType);
+		out.write(jsonResponse);
+		out.flush();
 	}
 
 
