@@ -154,6 +154,7 @@ public class CarrelloIDS implements CarrelloDAO {
 
 			for (String isbn : isbnList) {
 				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(isbn);
+				System.out.println(prodotto);
 				if(prodotto != null) {
 					Prodotto prodotto1 = new Prodotto(prodotto.getIsbn(), prodotto.getNome(), prodotto.getAutore(), prodotto.getDescrizione(), prodotto.getImmagine(), prodotto.getPrezzo(),
 							prodotto.getQuantita(), prodotto.getGenere(), prodotto.getCategoria(), prodotto.getCopieVendute());
@@ -161,6 +162,8 @@ public class CarrelloIDS implements CarrelloDAO {
 				}
 			}
 			carrello.setListaProdotti(prodottiCarrello);
+	        System.out.println(carrello.getListaProdotti());
+
 			this.doDeleteProdottiCarrello(carrello);
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);

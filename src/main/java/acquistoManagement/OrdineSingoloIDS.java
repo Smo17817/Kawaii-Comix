@@ -96,33 +96,33 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 	@Override
 	public Collection<OrdineSingolo> doRetrieveAllOrdineSingolo() throws SQLException {
-		String query = "SELECT * FROM " + OrdineSingoloIDS.TABLE;
-		ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
-		ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
+	    String query = "SELECT * FROM " + OrdineSingoloIDS.TABLE;
+	    ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
+	    ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 
-		try (Connection connection = ds.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-			ResultSet rs = preparedStatement.executeQuery();
+	    try (
+	            PreparedStatement preparedStatement = connection.prepareStatement(query);
+	            ResultSet rs = preparedStatement.executeQuery();) {
 
-			while (rs.next()) {
-				Integer id = rs.getInt(ID);
-				Integer quantita = rs.getInt(QUANTITA);
-				Double totParziale = rs.getDouble(TOT_PARZIALE);
-				Integer ordineId = rs.getInt(ORDINE_ID);
-				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
+	       
+	        while (rs.next()) {
+	        
+	            Integer id = rs.getInt(ID);
+	            Integer quantita = rs.getInt(QUANTITA);
+	            Double totParziale = rs.getDouble(TOT_PARZIALE);
+	            Integer ordineId = rs.getInt(ORDINE_ID);
+	            Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
+	            ordiniSingoli.add(new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto));
+	        }
 
-				ordiniSingoli.add(new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto));
-			}
+	        // La connessione viene chiusa qui, dopo aver ottenuto tutti i risultati
+	    } catch (SQLException e) {
+	        logger.log(Level.ALL, ERROR, e);
+	    }
 
-			rs.close();
-
-			return ordiniSingoli;
-		} catch (SQLException e) {
-			logger.log(Level.ALL, ERROR, e);
-		}
-
-		return ordiniSingoli;
+	    return ordiniSingoli;
 	}
+
 
 	@Override
 	public Collection<OrdineSingolo> doRetrieveAllByOrdineId(Integer ordineId) throws SQLException {
@@ -143,6 +143,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
 
 				ordiniSingoli.add(new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto));
+				
 			}
 
 			rs.close();
@@ -171,7 +172,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 				Double totParziale = rs.getDouble(TOT_PARZIALE);
 				Integer ordineId = rs.getInt(ORDINE_ID);
 				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
-				
+
 				return new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto);
 			}
 

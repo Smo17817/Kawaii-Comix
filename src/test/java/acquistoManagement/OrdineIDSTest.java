@@ -1,9 +1,12 @@
 package acquistoManagement;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -18,6 +21,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +30,7 @@ import javax.sql.DataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.mockito.exceptions.verification.opentest4j.ArgumentsAreDifferent;
 
@@ -253,7 +258,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doRetrieveAllOrdiniTest")
+    @DisplayName("TCU doRetrieveAllOrdiniTest")//TODO da vedere
     public void doRetrieveAllOrdiniTest() throws Exception {
          	
     	PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
@@ -274,11 +279,11 @@ public class OrdineIDSTest {
         Collection<Ordine> result = ordineIDS.doRetrieveAllOrdini();
         
 
-        //assertEquals(2, result.size());
+        assertEquals(2, result.size());
         
-        Mockito.verify(preparedStatement, times(3)).executeQuery();
-        Mockito.verify(resultSet, times(3)).next();
-        Mockito.verify(resultSet, times(2)).getInt("id");
+        Mockito.verify(preparedStatement, times(3)).executeQuery();//si esegue 1 volta in Ordine e 2 in OrdineSingolo
+        Mockito.verify(resultSet, times(5)).next();// si esegue 3 volte in Ordine e 2 volte in OrdineSingolo
+        Mockito.verify(resultSet, times(2)).getInt("id"); // si esegue una volta in Ordine e una in OrdineSingolo
         Mockito.verify(resultSet, times(1)).getDate("data");
         Mockito.verify(resultSet, times(1)).getDouble("totale");
         Mockito.verify(resultSet, times(1)).getInt("site_user_id");
@@ -286,6 +291,158 @@ public class OrdineIDSTest {
         Mockito.verify(resultSet, times(1)).getInt("metodo_spedizione_id");
     }
 
+    @Test
+    @DisplayName("TCU doRetrieveOrdineByIdTest")
+    public void doRetrieveOrdineByIdTest() throws Exception {
+         	
+    	PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+        
+        
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        Mockito.when(resultSet.next()).thenReturn(true);
+        Mockito.when(resultSet.getDate("data")).thenReturn(new java.sql.Date(new Date().getTime()));
+        Mockito.when(resultSet.getDouble("totale")).thenReturn(15.99);
+        Mockito.when(resultSet.getInt("site_user_id")).thenReturn(1);
+        Mockito.when(resultSet.getInt("stato_ordine_id")).thenReturn(1);
+        Mockito.when(resultSet.getInt("metodo_spedizione_id")).thenReturn(1);
+
+        Ordine result = ordineIDS.doRetrieveById(1);
+        
+
+        assertNotNull(result);
+        
+        Mockito.verify(preparedStatement, times(1)).executeQuery();
+        Mockito.verify(preparedStatement, times(1)).setInt(1, 1);
+        Mockito.verify(resultSet, times(1)).next();
+        Mockito.verify(resultSet, times(1)).getDate("data");
+        Mockito.verify(resultSet, times(1)).getDouble("totale");
+        Mockito.verify(resultSet, times(1)).getInt("site_user_id");
+        Mockito.verify(resultSet, times(1)).getInt("stato_ordine_id");
+        Mockito.verify(resultSet, times(1)).getInt("metodo_spedizione_id");
+    }
+    
+    @Test
+    @DisplayName("TCU doRetrieveOrdineByIdTest - ordineId Non Trovato")
+    public void doRetrieveOrdineByIdTestNonTrovato() throws Exception {
+         	
+    	PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+        
+        
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        Mockito.when(resultSet.next()).thenReturn(false);
+        Mockito.when(resultSet.getDate("data")).thenReturn(new java.sql.Date(new Date().getTime()));
+        Mockito.when(resultSet.getDouble("totale")).thenReturn(15.99);
+        Mockito.when(resultSet.getInt("site_user_id")).thenReturn(1);
+        Mockito.when(resultSet.getInt("stato_ordine_id")).thenReturn(1);
+        Mockito.when(resultSet.getInt("metodo_spedizione_id")).thenReturn(1);
+
+        Ordine result = ordineIDS.doRetrieveById(1);
+        
+
+        assertNull(result);
+        
+        Mockito.verify(preparedStatement, times(1)).executeQuery();
+        Mockito.verify(preparedStatement, times(1)).setInt(1, 1);
+        Mockito.verify(resultSet, times(1)).next();
+        
+    }
+    
+    @Test
+    @DisplayName("TCU doRetrieveOrdiniByUserIdTest")//TODO da vedere
+    public void doRetrieveOrdiniByUserIdTest() throws Exception {
+         	
+    	PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+        
+        
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        Mockito.when(resultSet.next()).thenReturn(true, true, false);
+        Mockito.when(resultSet.getInt("id")).thenReturn(1, 2);
+        Mockito.when(resultSet.getDate("data")).thenReturn(new java.sql.Date(new Date().getTime()),new java.sql.Date(new Date().getTime()));
+        Mockito.when(resultSet.getDouble("totale")).thenReturn(15.99, 14.01);
+        Mockito.when(resultSet.getInt("site_user_id")).thenReturn(1, 2);
+        Mockito.when(resultSet.getInt("stato_ordine_id")).thenReturn(1, 1);
+        Mockito.when(resultSet.getInt("metodo_spedizione_id")).thenReturn(1, 1);
+
+        Collection<Ordine> result = ordineIDS.doRetrieveByUserId(1);
+        
+
+        assertEquals(2, result.size());
+        
+        Mockito.verify(preparedStatement, times(3)).executeQuery();//si esegue 1 volta in Ordine e 2 in OrdineSingolo
+        Mockito.verify(preparedStatement, times(1)).setInt(1, 1);
+        Mockito.verify(resultSet, times(5)).next();// si esegue 3 volte in Ordine e 2 volte in OrdineSingolo
+        Mockito.verify(resultSet, times(2)).getInt("id"); // si esegue una volta in Ordine e una in OrdineSingolo
+        Mockito.verify(resultSet, times(1)).getDate("data");
+        Mockito.verify(resultSet, times(1)).getDouble("totale");
+        Mockito.verify(resultSet, times(1)).getInt("site_user_id");
+        Mockito.verify(resultSet, times(1)).getInt("stato_ordine_id");
+        Mockito.verify(resultSet, times(1)).getInt("metodo_spedizione_id");
+    }
+    
+    @Test
+    @DisplayName("TCU doRetrieveByUserIdTest")
+    void doRetrieveByUserIdTest() throws Exception { //TODO Da vedere (risolto retrieve all si risolve anche questo)
+        // Mock per il DataSource
+        DataSource ds = mock(DataSource.class);
+
+        // Mock per il PreparedStatement
+        PreparedStatement preparedStatement = mock(PreparedStatement.class);
+
+        // Mock per il ResultSet
+        ResultSet resultSet = mock(ResultSet.class);
+
+        // Mock per OrdineSingoloIDS
+        OrdineSingoloIDS ordineSingoloIDS = mock(OrdineSingoloIDS.class);
+
+        // Configura il mock di PreparedStatement per restituire il ResultSet mockato
+        when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+        // Configura il ResultSet mockato con il comportamento desiderato
+        when(resultSet.next()).thenReturn(true, true, false); // Simula due risultati nel ResultSet
+        when(resultSet.getInt("id")).thenReturn(1, 2);
+        when(resultSet.getDate("data")).thenReturn(new java.sql.Date(System.currentTimeMillis()));
+        when(resultSet.getDouble("totale")).thenReturn(15.99, 14.01);
+        when(resultSet.getInt("site_user_id")).thenReturn(1);
+        when(resultSet.getInt("stato_ordine_id")).thenReturn(1);
+        when(resultSet.getInt("metodo_spedizione_id")).thenReturn(1);
+
+        // Configura il mock di OrdineSingoloIDS per restituire una lista di due OrdineSingolo
+        when(ordineSingoloIDS.doRetrieveAllByOrdineId(ArgumentMatchers.anyInt()))
+        .thenAnswer(invocation -> {
+            int ordineId = invocation.getArgument(0);
+            if (ordineId == 1) {
+                return Arrays.asList(new OrdineSingolo(1,2,20.5,1004,prodotto));
+            } else if (ordineId == 2) {
+                return Arrays.asList(new OrdineSingolo(5,3,25.5,1004,prodotto));
+            } else {
+                return Collections.emptyList();
+            }
+        });
+        // Configura il DataSource mockato per restituire il PreparedStatement mockato
+        when(ds.getConnection()).thenReturn(mock(Connection.class));
+        when(ds.getConnection().prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        // Crea un'istanza di OrdineIDS con il DataSource mockato
+        OrdineIDS ordineIDS = new OrdineIDS(ds);
+
+        // Esegui il metodo da testare
+        Collection<Ordine> result = ordineIDS.doRetrieveByUserId(1);
+
+        // Verifica che il metodo abbia restituito il numero atteso di ordini
+        assertEquals(2, result.size());
+
+        // Verifica che il mock di OrdineSingoloIDS sia stato chiamato correttamente due volte
+        verify(ordineSingoloIDS, times(2)).doRetrieveAllByOrdineId(anyInt());
+    }
 
 
 }

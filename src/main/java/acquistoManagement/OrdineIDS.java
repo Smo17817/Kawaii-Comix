@@ -157,9 +157,8 @@ public class OrdineIDS implements OrdineDAO {
 	}
 
 	@Override
-	public Collection<Ordine> doRetrieveById(Integer id) throws SQLException {
+	public Ordine doRetrieveById(Integer id) throws SQLException {
 		String query = "SELECT * FROM " + OrdineIDS.TABLE + " WHERE id= ?";
-		ArrayList<Ordine> ordini = new ArrayList<>();
 
 
 		try (Connection connection = ds.getConnection();
@@ -176,9 +175,7 @@ public class OrdineIDS implements OrdineDAO {
 
 				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
 				// Aggiunge la lista dei singoli ordini associati
-				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) doRetrieveAllOrdiniSingoli(ordine));
-
-				ordini.add(ordine) ;
+				return ordine;
 			}
 			rs.close();
 
@@ -186,7 +183,7 @@ public class OrdineIDS implements OrdineDAO {
 			logger.log(Level.ALL, ERROR, e);
 		}
 
-		return ordini;
+		return null;
 	}
 	@Override
 	public Collection<Ordine> doRetrieveByUserId(Integer userid) throws SQLException {
@@ -211,7 +208,6 @@ public class OrdineIDS implements OrdineDAO {
 				// Aggiunge la lista dei singoli ordini associati
 				OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
 				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) ordineSingoloIDS.doRetrieveAllByOrdineId(ordine.getId()));
-
 
 				ordini.add(ordine) ;
 			}

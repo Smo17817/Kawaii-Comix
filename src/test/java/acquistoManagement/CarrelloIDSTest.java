@@ -24,6 +24,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
 
 public class CarrelloIDSTest {
 
@@ -209,34 +210,34 @@ public class CarrelloIDSTest {
     @Test
     @DisplayName("doRetrieveProdottiCarrelloTest")
     public void  doRetrieveProdottiCarrelloTest() throws Exception{
-        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        PreparedStatement preparedStatement=mock(PreparedStatement.class);
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
 
+        ProdottoIDS prodottoIDS = Mockito.mock(ProdottoIDS.class);
+    	
+        // Configurazione dello stubbing per il mock ProdottoIDS
+    	Prodotto prodotto = mock(Prodotto.class);
+    	
+        when(prodotto.getIsbn()).thenReturn("12345678901234567");
+
         ResultSet resultSet = Mockito.mock(ResultSet.class);
+        String isbnMock = prodotto.getIsbn();
+        when(prodottoIDS.doRetrieveByIsbn(prodotto.getIsbn())).thenReturn(prodotto);
+
+        
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
 
-        ProdottoIDS prodottoIDS = Mockito.mock(ProdottoIDS.class);
-        Prodotto prodotto = Mockito.mock(Prodotto.class);
-        Prodotto prodotto1 = new Prodotto("10000000000000016", "One Piece 2", "Eiichiro Oda", "Rufy e i Cappelli di Paglia si dirigono verso il Grand Line, una pericolosa zona piena di avventure e segreti. Durante il loro viaggio, si imbattono in nuovi alleati e nemici.", "./images/op2.jpg", 5.45, 45, "Avventura", "Shonen", 10);
-
         Mockito.when(resultSet.next()).thenReturn(true, false);
-        Mockito.when(resultSet.getString("prodotto_isbn")).thenReturn(prodotto1.getIsbn());
-
-        Mockito.when(prodotto1.getIsbn()).thenReturn("10000000000000016");
-
-
-
-        Mockito.when(prodottoIDS.doRetrieveByIsbn(prodotto1.getIsbn())).thenReturn(prodotto1);
-        Mockito.when(prodotto.getNome()).thenReturn(prodotto1.getNome());
-        Mockito.when(prodotto.getAutore()).thenReturn(prodotto1.getAutore());
-        Mockito.when(prodotto.getDescrizione()).thenReturn(prodotto1.getDescrizione());
-        Mockito.when(prodotto.getImmagine()).thenReturn(prodotto1.getImmagine());
-        Mockito.when(prodotto.getGenere()).thenReturn(prodotto1.getGenere());
-        Mockito.when(prodotto.getCategoria()).thenReturn(prodotto1.getCategoria());
-        Mockito.when(prodotto.getPrezzo()).thenReturn(prodotto1.getPrezzo());
-        Mockito.when(prodotto.getQuantita()).thenReturn(prodotto1.getQuantita());
-        Mockito.when(prodotto.getCopieVendute()).thenReturn(prodotto1.getCopieVendute());
-
+        Mockito.when(resultSet.getString("prodotto_isbn")).thenReturn(isbnMock);
+        Mockito.when(prodotto.getNome()).thenReturn("One piece");
+        Mockito.when(prodotto.getAutore()).thenReturn("Eiichiro Oda");
+        Mockito.when(prodotto.getDescrizione()).thenReturn("Mugiwara");
+        Mockito.when(prodotto.getImmagine()).thenReturn("davidoneNudo.jpeg");
+        Mockito.when(prodotto.getGenere()).thenReturn("Avventura");
+        Mockito.when(prodotto.getCategoria()).thenReturn("Shonen");
+        Mockito.when(prodotto.getPrezzo()).thenReturn(10.5);
+        Mockito.when(prodotto.getQuantita()).thenReturn(20);
+        Mockito.when(prodotto.getCopieVendute()).thenReturn(5);
 
 
 

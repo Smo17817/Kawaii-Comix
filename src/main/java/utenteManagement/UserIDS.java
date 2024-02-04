@@ -52,9 +52,6 @@ public class UserIDS implements UserDAO {
 			if((preparedStatement.executeUpdate() > 0))
 				return  true;
 
-			if((preparedStatement.executeUpdate() > 0)) {
-				return true;
-			}
 
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
