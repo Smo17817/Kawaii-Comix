@@ -19,9 +19,12 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	private DataSource ds = null;
 	private Connection connection = null;
 
+	private ProdottoIDS prodottoIDS;
+
 	public OrdineSingoloIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		this.prodottoIDS = new ProdottoIDS(ds);
 		try {
 			connection = ds.getConnection();
 		} catch (SQLException e) {
@@ -42,7 +45,6 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 			preparedStatement.setDouble(2, ordineSingolo.getTotParziale());
 			preparedStatement.setInt(3, ordineSingolo.getOrdineId());
 			preparedStatement.setString(4, ordineSingolo.getProdotto().getIsbn());
-
 			if(preparedStatement.executeUpdate()>0)
 				return true;
 		} catch (SQLException e) {
@@ -72,19 +74,19 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	}
 
 	@Override
-	public Boolean doUpdateOrdineSingolo(Integer id, Integer quantita, Double totParziale, Integer ordineId,
-			Prodotto prodotto) throws SQLException {
+	public Boolean doUpdateOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException {
 		String query = "UPDATE " + OrdineSingoloIDS.TABLE
 				+ "SET quantità = ?, totale_parziale = ?, ordini_id = ?, prodotti_isbn = ? " + "WHERE id = ?";
+
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 
-			preparedStatement.setInt(1, quantita);
-			preparedStatement.setDouble(2, totParziale);
-			preparedStatement.setInt(3, ordineId);
-			preparedStatement.setString(4, prodotto.getIsbn());
-			preparedStatement.setInt(5, id);
+			preparedStatement.setInt(1, ordineSingolo.getQuantita());
+			preparedStatement.setDouble(2, ordineSingolo.getTotParziale());
+			preparedStatement.setInt(3, ordineSingolo.getOrdineId());
+			preparedStatement.setString(4, ordineSingolo.getProdotto().getIsbn());
+			preparedStatement.setInt(5, ordineSingolo.getId());
 
 			if (preparedStatement.executeUpdate() > 0)
 				return true;
@@ -98,7 +100,6 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	public Collection<OrdineSingolo> doRetrieveAllOrdineSingolo() throws SQLException {
 	    String query = "SELECT * FROM " + OrdineSingoloIDS.TABLE;
 	    ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
-	    ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
 
 	    try (
 	            PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -106,7 +107,6 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 
 	       
 	        while (rs.next()) {
-	        
 	            Integer id = rs.getInt(ID);
 	            Integer quantita = rs.getInt(QUANTITA);
 	            Double totParziale = rs.getDouble(TOT_PARZIALE);
@@ -114,6 +114,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	            Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
 	            ordiniSingoli.add(new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto));
 	        }
+
 
 	        // La connessione viene chiusa qui, dopo aver ottenuto tutti i risultati
 	    } catch (SQLException e) {
@@ -129,7 +130,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 		String query = "SELECT * FROM " + OrdineSingoloIDS.TABLE + " WHERE ordini_id = ?";
 
 		ArrayList<OrdineSingolo> ordiniSingoli = new ArrayList<>();
-		ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
+
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -145,10 +146,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 				ordiniSingoli.add(new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto));
 				
 			}
-
 			rs.close();
-
-			return ordiniSingoli;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -159,8 +157,6 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	@Override
 	public OrdineSingolo doRetrieveById(Integer id) throws SQLException {
 		String query = "SELECT * FROM " + OrdineSingoloIDS.TABLE + " WHERE id = ?";
-		ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
-		
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {

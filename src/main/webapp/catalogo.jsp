@@ -2,6 +2,8 @@
 <html>
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet">
+
 <%
     String contextPath = request.getContextPath();
 %>
@@ -10,9 +12,6 @@
 <script src="
 	https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
 	"></script>
-<link href="
-	https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
-	" rel="stylesheet">
 
     <script src="./Script/dynamicCode.js"></script>
     <script src="./Script/carrello.js"></script>

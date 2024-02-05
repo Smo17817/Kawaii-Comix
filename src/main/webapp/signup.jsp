@@ -55,7 +55,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
 			}else if(status === 'Invalid_Cap'){
 				Swal.fire("ERRORE DI FORMATO", "Non sono ammessi caratteri speciali o lettere nel CAP", "error");
 			}else if(status === 'Invalid_Provincia'){
-				Swal.fire("ERRORE DI FORMATO", "Non sono ammessi caratteri speciali o lettere nella Provincia", "error");
+				Swal.fire("ERRORE DI FORMATO", "Non sono ammessi caratteri speciali o numeri nella Provincia", "error");
 			}else if(status === 'Invalid_Nazione') {
 				Swal.fire("ERRORE", "Scegliere una nazione", "error");
 			} else if(status === 'Duplicate'){

@@ -32,7 +32,7 @@ public class CategoriaIDSTest {
 
 
     @Test
-    @DisplayName("doRetrieveAll- Categorie Trovate")
+    @DisplayName("3_1_1 doRetrieveAll- Categorie Trovate")
     public void doRetrieveAll() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -83,7 +83,7 @@ public class CategoriaIDSTest {
     }
 
     @Test
-    @DisplayName("checkCategoriaName- Categoria Presente")
+    @DisplayName("TCU3_2_1 checkCategoriaName- Categoria Presente")
     public void checkCategoriaName() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -105,7 +105,7 @@ public class CategoriaIDSTest {
     }
 
     @Test
-    @DisplayName("checkCategoriaName- Categoria Non Presente")
+    @DisplayName("TCU3_2_2 checkCategoriaName- Categoria Non Presente")
     public void checkCategoriaName_NotFound() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);

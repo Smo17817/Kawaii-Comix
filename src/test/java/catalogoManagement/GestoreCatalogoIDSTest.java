@@ -40,7 +40,7 @@ public class GestoreCatalogoIDSTest {
     }
 	
 	@Test
-    @DisplayName("TCU doSaveGestoreTestSalva")
+    @DisplayName("TCU5_1_1 doSaveGestoreTestSalva")
     public void doSaveGestoreTestSalva() throws Exception {
         // Mock del preparedStatement
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
@@ -63,9 +63,33 @@ public class GestoreCatalogoIDSTest {
         
     }
 	
+	@Test
+    @DisplayName("TCU5_1_2 doSaveGestoreTestNonSalva")
+    public void doSaveGestoreTestNonSalva() throws Exception {
+        // Mock del preparedStatement
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
+
+     // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        GestoreCatalogo gestoreCatalogo = new GestoreCatalogo("email","nome", "cognome", "Password");
+        assertFalse(gestoreCatalogoIDS.doSaveGestore(gestoreCatalogo));
+        // Verifica che il metodo setString sia stato chiamato con i valori corretti
+        Mockito.verify(preparedStatement, times(1)).setString(1, gestoreCatalogo.getEmail());
+        Mockito.verify(preparedStatement, times(1)).setString(2, gestoreCatalogo.getNome());
+        Mockito.verify(preparedStatement, times(1)).setString(3, gestoreCatalogo.getCognome());
+        Mockito.verify(preparedStatement, times(1)).setString(4, PasswordUtils.hashPassword(gestoreCatalogo.getPassword()));
+
+        // Verifica che il metodo executeUpdate sia stato chiamato
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+        
+    }
+	
 	
 	@Test
-    @DisplayName("TCU doUpdateGestoreTest-Gestore Catalogo Aggiornato")
+    @DisplayName("TCU5_2_1 doUpdateGestoreTest-Gestore Catalogo Aggiornato")
     public void doUpdateGestoreTestAggiorna() throws Exception {
         // Mock del preparedStatement
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
@@ -90,7 +114,7 @@ public class GestoreCatalogoIDSTest {
 	
 	
 	@Test
-    @DisplayName("TCU doUpdateGestoreTest-Gestore Catalogo Eliminato")
+    @DisplayName("TCU5_2_2 doUpdateGestoreTest-Gestore Catalogo Eliminato")
     public void doDeleteGestoreTestElimina() throws Exception {
 	
         // Mock del preparedStatement
@@ -106,8 +130,10 @@ public class GestoreCatalogoIDSTest {
         Mockito.verify(preparedStatement, times(1)).executeUpdate();         
     }
 	
+	//TODO doDeleteGestore
+	
 	@Test
-    @DisplayName("doRetrieveGestoreCatalogoTest-Gestore Trovato")
+    @DisplayName("TCU5_4_1 doRetrieveGestoreCatalogoTest-Gestore Trovato")
     public void doRetrieveGestoreCatalogoTest() throws SQLException {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -147,8 +173,9 @@ public class GestoreCatalogoIDSTest {
         Mockito.verify(resultSet, times(1)).getString("nome");
         Mockito.verify(resultSet, times(1)).getString("cognome");
     }
+	
 	@Test
-    @DisplayName("doRetrieveGestoreCatalogoTest-Email o password errate")
+    @DisplayName("TCU5_4_2 doRetrieveGestoreCatalogoTest-Email o password errate")
     public void doRetrieveGestoreCatalogoDatiErrati() throws SQLException {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);

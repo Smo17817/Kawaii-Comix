@@ -10,8 +10,7 @@ public interface OrdineSingoloDAO {
 
 	public Boolean doDeleteOrdineSingolo(Integer id) throws SQLException;
 
-	public Boolean doUpdateOrdineSingolo(Integer id, Integer quantita, Double totParziale, Integer ordineId, Prodotto prodotto)
-			throws SQLException;
+	public Boolean doUpdateOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException;
 
 	public Collection<OrdineSingolo> doRetrieveAllOrdineSingolo() throws SQLException;
 
