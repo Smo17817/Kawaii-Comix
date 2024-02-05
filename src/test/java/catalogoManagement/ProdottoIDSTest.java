@@ -40,7 +40,7 @@ public class ProdottoIDSTest {
 
 
     @Test
-    @DisplayName("doSaveProdottoTest-Prodotto Salvato")
+    @DisplayName("TCU 4_1_1 doSaveProdottoTest-Prodotto Salvato")
     public void doSaveProdottoTest() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -67,7 +67,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doNotSaveProdottoTest-Prodotto Non Salvato")
+    @DisplayName("TCU4_1_2 doNotSaveProdottoTest-Prodotto Non Salvato")
     public void doNotSaveProdottoTest() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -94,7 +94,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doDeleteProdottoTest-Prodotto eliminato")
+    @DisplayName("TCU4_2_1 doDeleteProdottoTest-Prodotto eliminato")
     public void doDeleteProdottoTest() throws  Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -110,7 +110,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doNotDeleteProdottoTest-Prodotto Non eliminato")
+    @DisplayName("TCU4_2_2 doNotDeleteProdottoTest-Prodotto Non eliminato")
     public void doNotDeleteProdottoTest() throws  Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -126,7 +126,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doUpdateProdotto- Prodotto Aggiornato")
+    @DisplayName("TCU4_3_1 doUpdateProdotto- Prodotto Aggiornato")
     public  void doUpdateProdottoTest() throws  Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -152,7 +152,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doNotUpdateProdotto- Prodotto Non Aggiornato")
+    @DisplayName("TCU4_3_2 doNotUpdateProdotto- Prodotto Non Aggiornato")
     public  void doNotUpdateProdottoTest() throws  Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -178,7 +178,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doRetrieveAllProdotti")
+    @DisplayName("TCU4_4_1 doRetrieveAllProdotti")
     public void doRetrieveAllProdottiTest() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -220,7 +220,7 @@ public class ProdottoIDSTest {
 
 
     @Test
-    @DisplayName("doRetrieveByIsbnTest- Prodotto Esistente")
+    @DisplayName("TCU4_5_1 doRetrieveByIsbnTest- Prodotto Esistente")
     public void doRetrieveByIsbnTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -271,7 +271,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doRetrieveByIsbnTest- Prodotto Non Esistente")
+    @DisplayName("TCU4_5_2 doRetrieveByIsbnTest- Prodotto Non Esistente")
     public void doRetrieveByIsbnTest_NotFound() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -295,7 +295,7 @@ public class ProdottoIDSTest {
 
 
     @Test
-    @DisplayName("doRetrieveByNomeTest- Prodotto Esistente")
+    @DisplayName("TCU4_6_1 doRetrieveByNomeTest- Prodotto Esistente")
     public void doRetrieveByNomeTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -346,7 +346,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("doRetrieveByNomeTest_NotFound- Prodotto Non Esistente")
+    @DisplayName("TCU4_6_2 doRetrieveByNomeTest_NotFound- Prodotto Non Esistente")
     public void doRetrieveByNomeTest_NotFound() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -369,7 +369,7 @@ public class ProdottoIDSTest {
 
 
     @Test
-    @DisplayName("lastSavedTest")
+    @DisplayName("TCU4_7_1 lastSavedTest")
     public void lastSaved() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -408,9 +408,30 @@ public class ProdottoIDSTest {
 
         resultSet.close();
     }
+    
+    @Test
+    @DisplayName("TCU4_8_1 doRetrieveAllProductsNameTest")
+    public void doRetrieveAllProductsNameTest() throws  Exception{
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+
+
+        Mockito.when(resultSet.next()).thenReturn(true,true,true ,false);
+        Mockito.when(resultSet.getString("nome")).thenReturn("One piece 2", "Dragonball 1", "Berserk 5");
+
+        Collection<String> result = prodottoIDS.doRetrieveAllProductsName();
+        assertEquals(3, result.size());
+
+        Mockito.verify(preparedStatement,times(1)).executeQuery();
+        Mockito.verify(resultSet,times(4)).next();
+    }
+
 
     @Test
-    @DisplayName("updateCopieVenduteTest- Prodotto Aggiornato")
+    @DisplayName("4_9_1 updateCopieVenduteTest- Prodotto Aggiornato")
     public void updateCopieVenduteTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -429,7 +450,7 @@ public class ProdottoIDSTest {
     }
 
     @Test
-    @DisplayName("updateCopieVenduteTest-Prodotto Non Aggiornato")
+    @DisplayName("TCU4_9_2 updateCopieVenduteTest-Prodotto Non Aggiornato")
     public void updateCopieVenduteTest_NotFound() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -449,7 +470,7 @@ public class ProdottoIDSTest {
 
 
     @Test
-    @DisplayName("bestSellerTest")
+    @DisplayName("TCU4_10_1 bestSellerTest")
     public void bestSellerTest() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -488,26 +509,5 @@ public class ProdottoIDSTest {
 
         resultSet.close();
     }
-
-    @Test
-    @DisplayName("doRetrieveAllProductsNameTest")
-    public void doRetrieveAllProductsNameTest() throws  Exception{
-        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-        ResultSet resultSet = Mockito.mock(ResultSet.class);
-
-        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-
-
-        Mockito.when(resultSet.next()).thenReturn(true,true,true ,false);
-        Mockito.when(resultSet.getString("nome")).thenReturn("One piece 2", "Dragonball 1", "Berserk 5");
-
-        Collection<String> result = prodottoIDS.doRetrieveAllProductsName();
-        assertEquals(3, result.size());
-
-        Mockito.verify(preparedStatement,times(1)).executeQuery();
-        Mockito.verify(resultSet,times(4)).next();
-    }
-
 
 }

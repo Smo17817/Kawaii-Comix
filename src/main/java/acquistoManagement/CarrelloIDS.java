@@ -162,7 +162,6 @@ public class CarrelloIDS implements CarrelloDAO {
 				}
 			}
 			carrello.setListaProdotti(prodottiCarrello);
-	        System.out.println(carrello.getListaProdotti());
 
 			this.doDeleteProdottiCarrello(carrello);
 		} catch (SQLException e) {

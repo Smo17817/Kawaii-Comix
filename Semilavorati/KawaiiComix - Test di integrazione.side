@@ -2,7 +2,7 @@
   "id": "2284a0f4-19f4-4bdf-bd5d-7207b0477c8c",
   "version": "2.0",
   "name": "KawaiiComix - Test di integrazione",
-  "url": "http://localhost/kawaii-Comix/login.jsp",
+  "url": "http://localhost/kawaii-Comix/catalogo.jsp",
   "tests": [{
     "id": "8db47c37-eed1-4b47-8465-854b59225512",
     "name": "TC1_1_1 - Registrazione avvenuta con successo",
@@ -3866,6 +3866,203 @@
       ],
       "value": "E-mail o Password errati"
     }]
+  }, {
+    "id": "746210d6-94af-47ef-874d-f2763ed619bd",
+    "name": "TC1_3_1",
+    "commands": [{
+      "id": "fee3f9e1-c639-46fb-b270-27b94db3868b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/catalogo.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2834ea07-df82-439b-98d4-e389af795a56",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1157x562",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6e230ea0-b02a-4fa9-8ecb-1493e8a36ab8",
+      "comment": "",
+      "command": "click",
+      "target": "id=search-button",
+      "targets": [
+        ["id=search-button", "id"],
+        ["css=#search-button", "css:finder"],
+        ["xpath=//div[@id='search-button']", "xpath:attributes"],
+        ["xpath=//form[@id='search-bar']/div", "xpath:idRelative"],
+        ["xpath=//form/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c6333e3-5e46-4f7a-9b17-4f419912c93d",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=ricerca",
+      "targets": [
+        ["id=ricerca", "id"],
+        ["name=q", "name"],
+        ["css=#ricerca", "css:finder"],
+        ["xpath=//input[@id='ricerca']", "xpath:attributes"],
+        ["xpath=//form[@id='search-bar']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "7f6f4065-9ee3-405f-bd33-cf99c337138d",
+    "name": "TC1_3_2",
+    "commands": [{
+      "id": "ceda371f-4e45-4e13-959f-18ff6604babb",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/catalogo.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "013e0f04-9100-4a3d-9b87-308aa9a3f453",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1157x562",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ef32fa0-a404-4129-975f-c1e4d14e8f2e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ri-close-line",
+      "targets": [
+        ["css=.ri-close-line", "css:finder"],
+        ["xpath=//div[@id='search-button']/i[2]", "xpath:idRelative"],
+        ["xpath=//i[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6c5a5a35-34a9-40f0-af07-b6feeb78f8b1",
+      "comment": "",
+      "command": "click",
+      "target": "id=ricerca",
+      "targets": [
+        ["id=ricerca", "id"],
+        ["name=q", "name"],
+        ["css=#ricerca", "css:finder"],
+        ["xpath=//input[@id='ricerca']", "xpath:attributes"],
+        ["xpath=//form[@id='search-bar']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9fc73e88-eea2-438c-a26d-1391e9aed582",
+      "comment": "",
+      "command": "type",
+      "target": "id=ricerca",
+      "targets": [
+        ["id=ricerca", "id"],
+        ["name=q", "name"],
+        ["css=#ricerca", "css:finder"],
+        ["xpath=//input[@id='ricerca']", "xpath:attributes"],
+        ["xpath=//form[@id='search-bar']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "dra"
+    }, {
+      "id": "ba882815-e4a2-4e66-a35d-7af5a90e02db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.scheda:nth-child(33)",
+      "targets": [
+        ["css=.scheda:nth-child(33)", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[33]", "xpath:idRelative"],
+        ["xpath=//div[33]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfef21eb-a719-4a6c-be2e-5577e852ed6a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(33) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(33) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[33]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[33]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball 1')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball 1"
+    }, {
+      "id": "dbc82e1e-8502-4de3-8715-26c1e5c8a896",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(34) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(34) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[34]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[34]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball 2')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball 2"
+    }, {
+      "id": "f179149d-51f1-4213-9a29-d50b96fbd9fb",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(39) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(39) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[39]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[39]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball Completo')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball Completo"
+    }, {
+      "id": "0a2c62d9-f41b-4c7a-b13a-ff45037bb69a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(38) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(38) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[38]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[38]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball A Visual History')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball A Visual History"
+    }, {
+      "id": "0ec5625b-dd35-4b06-b4c6-dbedc6a4477d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(37) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(37) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[37]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[37]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball 5')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball 5"
+    }, {
+      "id": "27b3bfc4-5fd7-4bfe-b774-93e40ea7631d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(36) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(36) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[36]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[36]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball 4')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball 4"
+    }, {
+      "id": "259db605-c453-496f-81be-79f046413b00",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(35) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(35) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[35]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[35]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball 3')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball 3"
+    }]
   }],
   "suites": [{
     "id": "6fda69bd-c7de-43b8-b36e-d129543aef5a",
@@ -3882,6 +4079,6 @@
     "timeout": 300,
     "tests": ["a63ef81f-0324-4b27-8ca1-3bfd5d2dc19b", "988eeb72-a2a8-4c85-9889-ea0fc93fc92f", "9d36e2fc-c37d-4d25-ad90-cabd3de0a833", "3d265699-74ef-419d-ad5a-eb8eb21bc4c5"]
   }],
-  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp"],
+  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp"],
   "plugins": []
 }
