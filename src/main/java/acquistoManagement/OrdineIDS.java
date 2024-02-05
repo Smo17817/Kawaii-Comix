@@ -16,9 +16,12 @@ public class OrdineIDS implements OrdineDAO {
 
 	private DataSource ds = null;
 	private Connection connection = null;
+
+	private  OrdineSingoloIDS ordineSingoloIDS;
 	public OrdineIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		this.ordineSingoloIDS = new OrdineSingoloIDS(ds);
 		try {
 			connection = ds.getConnection();
 		} catch (SQLException e) {
@@ -77,22 +80,21 @@ public class OrdineIDS implements OrdineDAO {
 	}
 
 	@Override
-	public Boolean doUpdateOrdine(Integer id, Date data, Double totale, Integer userId, Integer stato,
-			Integer metodoSpedizione) throws SQLException {
+	public Boolean doUpdateOrdine(Ordine ordine) throws SQLException {
 		String query = "UPDATE " + OrdineIDS.TABLE
 				+ "SET data = ?, totale = ?, site_user_id = ?, stato_ordine_id = ?, metodo_spedizione_id = ? "
 				+ "WHERE id = ?";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-			java.sql.Date sqlDate = new java.sql.Date(data.getTime());
+			java.sql.Date sqlDate = new java.sql.Date(ordine.getJavaDate().getTime());
 
 			preparedStatement.setDate(1, sqlDate);
-			preparedStatement.setDouble(2, totale);
-			preparedStatement.setInt(3, userId);
-			preparedStatement.setInt(4, stato);
-			preparedStatement.setInt(5, metodoSpedizione);
-			preparedStatement.setInt(6, id);
+			preparedStatement.setDouble(2, ordine.getTotale());
+			preparedStatement.setInt(3, ordine.getUserId());
+			preparedStatement.setInt(4, ordine.getStato());
+			preparedStatement.setInt(5, ordine.getMetodoSpedizione());
+			preparedStatement.setInt(6, ordine.getId());
 
 			if (preparedStatement.executeUpdate() > 0)
 				return true;
@@ -138,11 +140,11 @@ public class OrdineIDS implements OrdineDAO {
 				Integer userId = rs.getInt(USER_ID);
 				Integer stato = rs.getInt(STATO);
 				Integer metodoSpedizione = rs.getInt(METODO_SPEDIZIONE);
-				
+
 				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
-				// Aggiunge la lista dei singoli ordini associati 
-				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) doRetrieveAllOrdiniSingoli(ordine));
-				
+				// Aggiunge la lista dei singoli ordini associati
+				ordine.setOrdiniSingoli((new ArrayList<>(doRetrieveAllOrdiniSingoli(ordine))));
+
 				ordini.add(ordine);
 			}
 
@@ -166,7 +168,7 @@ public class OrdineIDS implements OrdineDAO {
 			preparedStatement.setInt(1,  id);
 			ResultSet rs = preparedStatement.executeQuery();
 
-			while (rs.next()) {
+			if(rs.next()) {
 				Date data = new Date(rs.getDate(DATA).getTime());
 				Double totale = rs.getDouble(TOTALE);
 				Integer userId = rs.getInt(USER_ID);
@@ -174,11 +176,12 @@ public class OrdineIDS implements OrdineDAO {
 				Integer metodoSpedizione = rs.getInt(METODO_SPEDIZIONE);
 
 				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
+
+
 				// Aggiunge la lista dei singoli ordini associati
 				return ordine;
 			}
 			rs.close();
-
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
@@ -206,8 +209,7 @@ public class OrdineIDS implements OrdineDAO {
 				
 				Ordine ordine = new Ordine(id, data, totale, userId, stato, metodoSpedizione);
 				// Aggiunge la lista dei singoli ordini associati
-				OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
-				ordine.setOrdiniSingoli((ArrayList<OrdineSingolo>) ordineSingoloIDS.doRetrieveAllByOrdineId(ordine.getId()));
+				ordine.setOrdiniSingoli((new ArrayList<>(ordineSingoloIDS.doRetrieveAllByOrdineId(ordine.getId()))));
 
 				ordini.add(ordine) ;
 			}
@@ -222,15 +224,11 @@ public class OrdineIDS implements OrdineDAO {
 	
 	@Override
 	public void doSaveOrdineSingoloAssociato(OrdineSingolo ordineSingolo) throws SQLException {
-		OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
-		
 		ordineSingoloIDS.doSaveOrdineSingolo(ordineSingolo);	
 	}
 	
 	@Override
 	public Collection<OrdineSingolo> doRetrieveAllOrdiniSingoli(Ordine ordine) throws SQLException {
-		OrdineSingoloIDS ordineSingoloIDS = new OrdineSingoloIDS(ds);
-		
 		return ordineSingoloIDS.doRetrieveAllByOrdineId(ordine.getId());
 	}
 

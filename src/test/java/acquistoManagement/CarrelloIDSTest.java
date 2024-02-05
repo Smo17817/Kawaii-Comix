@@ -10,21 +10,18 @@ import org.mockito.Mockito;
 import utenteManagement.User;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.*;
 import java.util.logging.Level;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CarrelloIDSTest {
 
@@ -209,46 +206,54 @@ public class CarrelloIDSTest {
 
     @Test
     @DisplayName("doRetrieveProdottiCarrelloTest")
-    public void  doRetrieveProdottiCarrelloTest() throws Exception{
-        PreparedStatement preparedStatement=mock(PreparedStatement.class);
+    public void  doRetrieveProdottiCarrelloTest() throws Exception {
+        PreparedStatement preparedStatement = mock(PreparedStatement.class);
+        ResultSet resultSet = mock(ResultSet.class);
+
+
+        // Crea un mock di ProdottoIDS
+        ProdottoIDS mockProdottoIDS = Mockito.mock(ProdottoIDS.class);
+
+        Field field = CarrelloIDS.class.getDeclaredField("prodottoIDS");
+        field.setAccessible(true);
+        field.set(carrelloIDS, mockProdottoIDS);
+
+
+        Prodotto prodotto =  new Prodotto("10000000000000016", "One Piece 2", "Eiichiro Oda", "Rufy e i Cappelli di Paglia si dirigono verso il Grand Line, una pericolosa zona piena di avventure e segreti. Durante il loro viaggio, si imbattono in nuovi alleati e nemici.", "./images/op2.jpg", 5.45, 45, "Avventura", "Shonen", 10);
+
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-
-        ProdottoIDS prodottoIDS = Mockito.mock(ProdottoIDS.class);
-    	
-        // Configurazione dello stubbing per il mock ProdottoIDS
-    	Prodotto prodotto = mock(Prodotto.class);
-    	
-        when(prodotto.getIsbn()).thenReturn("12345678901234567");
-
-        ResultSet resultSet = Mockito.mock(ResultSet.class);
-        String isbnMock = prodotto.getIsbn();
-        when(prodottoIDS.doRetrieveByIsbn(prodotto.getIsbn())).thenReturn(prodotto);
-
-        
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-
-        Mockito.when(resultSet.next()).thenReturn(true, false);
-        Mockito.when(resultSet.getString("prodotto_isbn")).thenReturn(isbnMock);
-        Mockito.when(prodotto.getNome()).thenReturn("One piece");
-        Mockito.when(prodotto.getAutore()).thenReturn("Eiichiro Oda");
-        Mockito.when(prodotto.getDescrizione()).thenReturn("Mugiwara");
-        Mockito.when(prodotto.getImmagine()).thenReturn("davidoneNudo.jpeg");
-        Mockito.when(prodotto.getGenere()).thenReturn("Avventura");
-        Mockito.when(prodotto.getCategoria()).thenReturn("Shonen");
-        Mockito.when(prodotto.getPrezzo()).thenReturn(10.5);
-        Mockito.when(prodotto.getQuantita()).thenReturn(20);
-        Mockito.when(prodotto.getCopieVendute()).thenReturn(5);
-
-
+        when(resultSet.next()).thenReturn(true , false);
+        when(resultSet.getString("prodotto_isbn")).thenReturn("10000000000000016");
+        when(mockProdottoIDS.doRetrieveByIsbn("10000000000000016")).thenReturn(prodotto);
 
 
         Carrello carrello = new Carrello(1);
 
         carrelloIDS.doRetrieveProdottiCarrello(carrello);
 
-        System.out.println(carrello.getListaProdotti());
+        Set<Prodotto> listaProdotti = carrello.getListaProdotti();
+
+
+        verify(preparedStatement,times(1)).setInt(1, carrello.getCarrelloId());
+        verify(preparedStatement, times(1)).executeQuery();
+        verify(resultSet,times(1)).getString("prodotto_isbn");
+
 
         assertTrue(!carrello.getListaProdotti().isEmpty());
+
+        for(Prodotto prodotto1 : listaProdotti) {
+            assertEquals(prodotto.getNome(), prodotto1.getNome());
+            assertEquals(prodotto.getAutore(), prodotto1.getAutore());
+            assertEquals(prodotto.getDescrizione(), prodotto1.getDescrizione());
+            assertEquals(prodotto.getIsbn(), prodotto1.getIsbn());
+            assertEquals(prodotto.getImmagine(), prodotto1.getImmagine());
+            assertEquals(prodotto.getCategoria(), prodotto1.getCategoria());
+            assertEquals(prodotto.getGenere(), prodotto1.getGenere());
+            assertEquals(prodotto.getPrezzo(), prodotto1.getPrezzo());
+            assertEquals(prodotto.getCopieVendute(), prodotto1.getCopieVendute());
+            assertEquals(prodotto.getQuantita(), prodotto1.getQuantita());
+        }
 
     }
 

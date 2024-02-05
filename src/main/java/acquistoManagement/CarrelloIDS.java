@@ -18,15 +18,19 @@ public class CarrelloIDS implements CarrelloDAO {
 
 	private DataSource ds = null;
 	private Connection connection = null;
+
+	private ProdottoIDS prodottoIDS;
 	public CarrelloIDS(DataSource ds) {
 		super();
 		this.ds = ds;
+		this.prodottoIDS = new ProdottoIDS(ds);
 		try {
 			connection = ds.getConnection();
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
 		}
 	}
+
 
 	@Override
 	public Boolean doCreateCarrello(int userId) {
@@ -150,11 +154,8 @@ public class CarrelloIDS implements CarrelloDAO {
 				isbnList.add(rs.getString(("prodotto_isbn")));
 			}
 
-			ProdottoIDS prodottoIDS = new ProdottoIDS(ds);
-
 			for (String isbn : isbnList) {
 				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(isbn);
-				System.out.println(prodotto);
 				if(prodotto != null) {
 					Prodotto prodotto1 = new Prodotto(prodotto.getIsbn(), prodotto.getNome(), prodotto.getAutore(), prodotto.getDescrizione(), prodotto.getImmagine(), prodotto.getPrezzo(),
 							prodotto.getQuantita(), prodotto.getGenere(), prodotto.getCategoria(), prodotto.getCopieVendute());
@@ -162,7 +163,6 @@ public class CarrelloIDS implements CarrelloDAO {
 				}
 			}
 			carrello.setListaProdotti(prodottiCarrello);
-	        System.out.println(carrello.getListaProdotti());
 
 			this.doDeleteProdottiCarrello(carrello);
 		} catch (SQLException e) {
