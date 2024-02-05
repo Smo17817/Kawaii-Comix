@@ -74,7 +74,6 @@ public class OrdineSingoloIDSTest {
         Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
      // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-
         OrdineSingolo ordineSingolo = new OrdineSingolo(1, 10.0, 1, prodotto);
 
         assertTrue(ordineSingoloIDS.doSaveOrdineSingolo(ordineSingolo));

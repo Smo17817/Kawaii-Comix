@@ -42,7 +42,6 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 			preparedStatement.setDouble(2, ordineSingolo.getTotParziale());
 			preparedStatement.setInt(3, ordineSingolo.getOrdineId());
 			preparedStatement.setString(4, ordineSingolo.getProdotto().getIsbn());
-
 			if(preparedStatement.executeUpdate()>0)
 				return true;
 		} catch (SQLException e) {
