@@ -1,64 +1,30 @@
 function searchAndFilter() {
-  let input, filter, schede, product;
+  let input, filter;
   input = document.getElementById("ricerca");
   filter = input.value.toUpperCase();
-  schede = document.getElementById("schedeProdotto");
-  product = schede.querySelectorAll(".scheda");
 
+  // Filtra il catalogo completo in base al testo di ricerca
+  filteredProducts = catalogo.filter(product => {
+    const textValue = product.nome.toUpperCase();
+    return textValue.includes(filter);
+  });
+
+  // Applica i filtri per categoria e genere (se sono selezionati)
   const selectedCategories = Array.from(document.querySelectorAll('input.cat:checked')).map(input => input.value);
   const selectedGenres = Array.from(document.querySelectorAll('input.gen:checked')).map(input => input.value);
 
-  for (const item of product) {
-    let a = item.querySelector(".pname");
-    let textValue = a.textContent || a.innerText;
-    const prodottoCategoria = item.dataset.categoria;
-    const prodottoGenere = item.dataset.genere;
+  filteredProducts = filteredProducts.filter(product => {
+    const categoryMatches = selectedCategories.length === 0 || selectedCategories.includes(product.categoria);
+    const genreMatches = selectedGenres.length === 0 || selectedGenres.includes(product.genere);
+    return categoryMatches && genreMatches;
+  });
 
-    const nameMatches = textValue.toUpperCase().indexOf(filter) > -1;
-    const categoryMatches = selectedCategories.length === 0 || selectedCategories.includes(prodottoCategoria);
-    const genreMatches = selectedGenres.length === 0 || selectedGenres.includes(prodottoGenere);
+  // Calcola il numero totale di pagine basato sui prodotti filtrati
+  totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-    if (filter && (selectedCategories.length > 0 || selectedGenres.length > 0)) {
-      // Se è presente una ricerca per nome e filtri attivi, considera solo i prodotti che corrispondono a entrambi
-      if (nameMatches && categoryMatches && genreMatches) {
-        item.style.display = "";
-      } else {
-        item.style.display = "none";
-      }
-    } else if (filter) {
-      // Se è presente solo una ricerca per nome, considera solo i prodotti che corrispondono al nome
-      if (nameMatches) {
-        item.style.display = "";
-      } else {
-        item.style.display = "none";
-      }
-    } else if (selectedCategories.length > 0 || selectedGenres.length > 0) {
-      // Se ci sono solo filtri attivi, considera solo i prodotti che corrispondono ai filtri
-      if (categoryMatches && genreMatches) {
-        item.style.display = "";
-      } else {
-        item.style.display = "none";
-      }
-    } else {
-      // Se non ci sono né ricerca né filtri attivi, mostra tutti i prodotti
-      item.style.display = "";
-    }
+  // Crea le schede dei prodotti per la prima pagina dei prodotti filtrati utilizzando la funzione createProductCards2
+  createProductCards2(1, filteredProducts);
 
-  }
-  const filteredProducts = Array.from(document.querySelectorAll('.scheda')).filter(item => item.style.display !== 'none');
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
-  // Aggiorna la paginazione
-  createPaginationLinks(totalPages)
+  // Crea i link per la navigazione tra le pagine basati sul numero totale di pagine dei prodotti filtrati
+  createPaginationLinks2(totalPages);
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -75,6 +75,8 @@ function dynamicCart(url, quantita) {
 		const listaProdotti = response.listaProdotti;
 		let contenutoHtml = "";
 
+		console.log(window.location);
+		console.log(response.user);
 		if(response.user === null){
 			Swal.fire({
 				title: 'Attenzione',
@@ -125,10 +127,10 @@ function updateCounter(response) {
 }
 
 function dynamicCheckout() {
-	
+
 	let rows = document.getElementsByClassName("row");
 	let contenutoHtml = "";
-	
+
 	for (const row of rows) {
 		let immagineProdotto = row.getElementsByClassName("thumbnail")[0].src;
 		let nomeProdotto = row.getElementsByTagName("td")[2].textContent;
@@ -144,7 +146,7 @@ function dynamicCheckout() {
 		contenutoHtml += "</div>"
 
 	}
-	
+
 	let totale = document.getElementsByClassName("totCumul")[0].textContent;
 	contenutoHtml += "<hr>";
 	contenutoHtml += "<div id=\"final-price\">";
@@ -162,33 +164,95 @@ function dynamicCheckout() {
 }
 
 
+/*** PAGINATION ***/
+let itemsPerPage = 20;
+let catalogo = []; // Variabile globale per memorizzare il catalogo di prodotti
+let filteredProducts = []; // Prodotti filtrati
+let totalPages = 0; // Numero totale di pagine dei prodotti filtrati
+let currentPage = 1; // Pagina corrente
+
+// Funzione per creare le schede dei prodotti per una pagina specifica
+function createProductCards(pageNumber) {
+	const startIndex = (pageNumber - 1) * itemsPerPage;
+	const endIndex = Math.min(startIndex + itemsPerPage, catalogo.length);
+
+	let newHtml = "";
+
+	for (let i = startIndex; i < endIndex; i++) {
+		const p = catalogo[i];
+		newHtml += createProductCard(p);
+	}
+
+	$("#schedeProdotto").fadeOut(400, function() {
+		$(this).html(newHtml);
+		$(this).fadeIn(400);
+	});
+}
+function createProductCards2(pageNumber, products) {
+		currentPage = pageNumber;
+		const startIndex = (pageNumber - 1) * itemsPerPage;
+		const endIndex = Math.min(startIndex + itemsPerPage, filteredProducts.length);
+
+		let newHtml = "";
+
+		for (let i = startIndex; i < endIndex; i++) {
+			const p = filteredProducts[i];
+			newHtml += createProductCard(p);
+		}
+
+		$("#schedeProdotto").fadeOut(400, function () {
+			$(this).html(newHtml);
+			$(this).fadeIn(400);
+		});
+}
+function createProductCard(product) {
+	let cardHtml = "<div class=\"scheda\" data-categoria=\"" + product.categoria + "\" data-genere=\"" + product.genere + "\">";
+	cardHtml += "<a href=\"ProdottoServlet?isbn=" + product.isbn + "\"><img src=\"" + product.immagine + "\" class=\"trash\"></a>";
+	cardHtml += "<div class=\"info\">";
+	cardHtml += "<h4 class=\"pname\">" + product.nome + "</h4>";
+	cardHtml += "<p> &#8364 " + product.prezzo.toFixed(2) + "</p>";
+	cardHtml += "<a onclick=\"addCart(" + product.quantita + ", '" + product.isbn + "')\"> Carrello</a>";
+	cardHtml += "</div></div>";
+	return cardHtml;
+}
+
+// Funzione per creare i link per la navigazione tra le pagine
+function createPaginationLinks(totalPages) {
+	let paginationHtml = "";
+	for (let i = 1; i <= totalPages; i++) {
+		paginationHtml += `<a href="#" onclick="createProductCards(${i})">${i}</a>`;
+	}
+	$("#pagination-container").html(paginationHtml);
+}
+
+// Funzione per creare i link per la navigazione tra le pagine
+function createPaginationLinks2(totalPages) {
+	let paginationHtml = "";
+	for (let i = 1; i <= totalPages; i++) {
+		paginationHtml += `<a href="#" onclick="createProductCards2(${i}, filteredProducts)">${i}</a>`;
+	}
+	$("#pagination-container").html(paginationHtml);
+}
+
+/***FINE PAGINATION***/
 function dynamicCatalog(url) {
 	$.ajax({
 		url: url,
 		type: 'GET',
 		contentType: 'application/json; charset=utf-8'
 	}).done((response) => {
-		response = JSON.parse(response);
-		let contenutoHtml = "";
+		catalogo = JSON.parse(response);
+		let currentPage = 1;
 
-		for (const p of response) {
-			contenutoHtml += "<div class=\"scheda\" data-categoria=\"" + p.categoria + "\" data-genere=\"" + p.genere + "\">";
-			contenutoHtml += "<a href=\"ProdottoServlet?isbn=" + p.isbn + "\"><img src=\"" + p.immagine + "\" class=\"trash\"></a>";
-			contenutoHtml += "<div class=\"info\">" + "\n";
-			contenutoHtml += "<h4 class=\"pname\">" + p.nome + "</h4>" + "\n";
-			contenutoHtml += "<p> &#8364 " + p.prezzo.toFixed(2) + "</p>" + "\n";
-			contenutoHtml += "<a onclick=\"addCart(" + p.quantita + ", '" + p.isbn + "')\"> Carrello</a>";
-			contenutoHtml += "</div>";
-			contenutoHtml += "</div>";
-		}
-		$("#schedeProdotto").append(contenutoHtml);
+		const totalPages = Math.ceil(catalogo.length / itemsPerPage);
 
-		showItemsForPage(currentPage);
-
-		const totalPages = Math.ceil(response.length / itemsPerPage);
+		createProductCards(currentPage);
 		createPaginationLinks(totalPages);
 	});
 }
+
+
+
 
 function dynamicCategorie(url) {
 	$.ajax({
@@ -346,44 +410,6 @@ function dynamicModificaProdotto(url) {
 
 		$("#chooseProduct").append(contenutoHtml);
 	});
-}
-
-
-/*** PAGINATION ***/
-const itemsPerPage = 20;
-let currentPage = 1;
-
-function showItemsForPage(page) {
-	const startIndex = (page - 1) * itemsPerPage;
-	const endIndex = startIndex + itemsPerPage;
-
-	const filteredProducts = Array.from(document.querySelectorAll('.scheda')).filter(item => item.style.display !== 'none');
-
-	filteredProducts.forEach((item, index) => {
-		if (index >= startIndex && index < endIndex) {
-			item.style.display = 'block';
-		} else {
-			item.style.display = 'none';
-		}
-	});
-}
-
-function createPaginationLinks(totalPages) {
-	const paginationContainer = document.getElementById('pagination-container');
-	paginationContainer.innerHTML = '';
-
-	for (let i = 1; i <= totalPages; i++) {
-		const pageLink = document.createElement('a');
-		pageLink.href = '#';
-		pageLink.textContent = i;
-
-		pageLink.addEventListener('click', () => {
-			currentPage = i;
-			showItemsForPage(currentPage);
-		});
-
-		paginationContainer.appendChild(pageLink);
-	}
 }
 
 /*** FORMATTAZIONE DATA ITALIANO***/
