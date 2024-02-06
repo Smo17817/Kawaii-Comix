@@ -26,7 +26,7 @@ CREATE TABLE `stato_ordine` (
   `id` int NOT NULL AUTO_INCREMENT,
   `stato` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `stato_ordine` (
 
 LOCK TABLES `stato_ordine` WRITE;
 /*!40000 ALTER TABLE `stato_ordine` DISABLE KEYS */;
-INSERT INTO `stato_ordine` VALUES (1,'Confermato'),(2,'Spedito'),(3,'Annullato');
+INSERT INTO `stato_ordine` VALUES (1,'In lavorazione'),(2,'Confermato'),(3,'Spedito'),(4,'Annullato');
 /*!40000 ALTER TABLE `stato_ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-15 18:53:21
+-- Dump completed on 2024-02-06 12:08:15

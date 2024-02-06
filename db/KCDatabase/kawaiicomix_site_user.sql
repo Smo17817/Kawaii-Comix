@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `site_user`;
 CREATE TABLE `site_user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email_address` varchar(70) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL,
   `indirizzo` varchar(70) NOT NULL,
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-15 18:53:21
+-- Dump completed on 2024-02-06 12:08:15

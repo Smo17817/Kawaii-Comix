@@ -26,7 +26,7 @@ CREATE TABLE `gestore_catalogo` (
   `email_address` varchar(70) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`email_address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +37,7 @@ CREATE TABLE `gestore_catalogo` (
 
 LOCK TABLES `gestore_catalogo` WRITE;
 /*!40000 ALTER TABLE `gestore_catalogo` DISABLE KEYS */;
-INSERT INTO `gestore_catalogo` VALUES ('simone.dassisi@gmail.com','Simone','D\'Assisi','1234');
+INSERT INTO `gestore_catalogo` VALUES ('doppiogestore@gmail.com','doppio','gestore','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),('gestorecatalogo@gmail.com','gestore','catalogo','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
 /*!40000 ALTER TABLE `gestore_catalogo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-15 18:53:21
+-- Dump completed on 2024-02-06 12:08:16

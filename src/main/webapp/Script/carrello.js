@@ -8,7 +8,7 @@ function addCart(quantita, isbn) {
 		type: "POST",
 		data: { isbn: isbn },
 		success: function(response) {
-			dynamicCart(url , quantita);
+		dynamicCart(url , quantita);
 		}
 	});
 

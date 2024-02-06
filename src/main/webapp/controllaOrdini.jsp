@@ -29,6 +29,7 @@
 					id="endDateInput" onchange="filterRows()" /> <label>Stato
 				</label> <select name="statoOrdine" id="statoOrdine" onchange="filterRows()">
 					<option>-scegliere stato-</option>
+					<option>In lavorazione</option>
 					<option>Confermato</option>
 					<option>Spedito</option>
 					<option>Annullato</option>

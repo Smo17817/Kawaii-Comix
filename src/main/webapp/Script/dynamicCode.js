@@ -265,8 +265,9 @@ function dynamicShowOrders(url) {
 		else {
 			for (const ordine of response) {
 				contenutoHtml += "<div class=\"ordine\">";
-				if (ordine.stato == 1) stato = "Confermato";
-				else if (ordine.stato == 2) stato = "Spedito";
+				if (ordine.stato == 1) stato = "In lavorazione";
+				else if (ordine.stato == 2) stato = "Confermato";
+				else if (ordine.stato == 3) stato = "Spedito";
 				else stato = "Annullato";
 				contenutoHtml += "<h3> ID: " + ordine.id + " - Data: " + formatDateIta(ordine.data) + " (" + stato + ") </h3>";
 				for (const os of ordine.ordiniSingoli) {
@@ -297,6 +298,7 @@ function dynamicCheckOrders(url) {
 		let stato1 = "";
 		let stato2 = "";
 		let stato3 = "";
+		let stato4 = "";//ho aggiunto solo questo, grazie simo tvb <3
 
 		for (const o of response) {
 			if (o.stato == 1) {
