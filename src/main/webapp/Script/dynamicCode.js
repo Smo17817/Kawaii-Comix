@@ -329,9 +329,12 @@ function dynamicShowOrders(url) {
 		else {
 			for (const ordine of response) {
 				contenutoHtml += "<div class=\"ordine\">";
+				
 				if (ordine.stato == 1) stato = "Confermato";
 				else if (ordine.stato == 2) stato = "Spedito";
-				else stato = "Annullato";
+				else if(ordine.stato == 3) stato = "Annullato";
+				else stato = "In Lavorazione"
+				
 				contenutoHtml += "<h3> ID: " + ordine.id + " - Data: " + formatDateIta(ordine.data) + " (" + stato + ") </h3>";
 				for (const os of ordine.ordiniSingoli) {
 					contenutoHtml += "<div class=\"product\">";
@@ -358,25 +361,30 @@ function dynamicCheckOrders(url) {
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHtml = "";
-		let stato1 = "";
-		let stato2 = "";
-		let stato3 = "";
-
+		let statoMostrato = "";
+		let stato1 = "Confermato";
+		let stato2 = "Spedito";
+		let stato3 = "Annullato";
+		let stato4 = "In Lavorazione";		
+		
 		for (const o of response) {
-			if (o.stato == 1) {
-				stato1 = "Confermato";
-				stato2 = "Spedito";
-				stato3 = "Annullato"
-			} else if (o.stato == 2) {
-				stato1 = "Spedito";
-				stato2 = "Confermato";
-				stato3 = "Annullato";
-			} else if (o.stato == 3) {
-				stato1 = "Annullato";
-				stato2 = "Confermato";
-				stato3 = "Annullato"
+			//Scelta dinamica dello stato			
+			switch(o.stato) {
+				case 1:
+					statoMostrato = stato1;
+					break;
+				case 2:
+					statoMostrato = stato2;
+					break;
+				case 3:
+					statoMostrato = stato3;
+					break;
+				default:
+					statoMostrato = stato4;
+					break;
 			}
-			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + formatDate(o.data) + "' stato ='" + stato1 + "'>";
+			
+			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + formatDate(o.data) + "' stato ='" + statoMostrato + "'>";
 			contenutoHtml += "<td> <h4>" + formatDateIta(o.data) + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
@@ -386,9 +394,11 @@ function dynamicCheckOrders(url) {
 			contenutoHtml += "</td>";
 			contenutoHtml += "<td> &#8364 " + o.totale.toFixed(2) + "</td>";
 
-			contenutoHtml += "<td> <select class=\"newStato\"> <option>" + stato1 + "</option>";
-			contenutoHtml += "<option>" + stato2 + "</option>";
-			contenutoHtml += "<option>" + stato3 + "</option> </select> </td>";
+			contenutoHtml += "<td> <select class=\"newStato\"> <option>" + statoMostrato + "</option>";	
+			//Evita ridondanza nella scelta degli stati		
+			if(statoMostrato != stato1)contenutoHtml += "<option>" + stato1 + "</option>";
+			if(statoMostrato != stato2)contenutoHtml += "<option>" + stato2 + "</option>";
+			if(statoMostrato != stato3)contenutoHtml += "<option>" + stato3 + "</option> </select> </td>";
 			contenutoHtml += "<td> <button onclick=\"cambiaStatoOrdine(this)\"> <img src=\"./icons/save.ico\" alt=\"\"> </button> </td> </tr>";
 		}
 

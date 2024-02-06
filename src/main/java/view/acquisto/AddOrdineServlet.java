@@ -83,7 +83,7 @@ public class AddOrdineServlet extends HttpServlet {
 			}
 
 
-			ordineIDS.doSaveOrdine(new Ordine(ordineId, sqlDate, totale, user.getId(), 1, 1, ordiniSingoli));
+			ordineIDS.doSaveOrdine(new Ordine(ordineId, sqlDate, totale, user.getId(), 4, 1, ordiniSingoli));
 
 
 			carrello.empty();
@@ -98,11 +98,6 @@ public class AddOrdineServlet extends HttpServlet {
 
 
 	/*** LOGGER ***/
-	private  static  final String STATUS = "status";
-
-	private static final  String contentType = "application/json";
-
-	private static  final String URL = "url";
 	private static final Logger logger = Logger.getLogger(AddOrdineServlet.class.getName());
 	private static final String ERROR = "Errore";
 }

@@ -13,14 +13,15 @@
         return;
     }
 %>
+<link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
+    " rel="stylesheet">
 <jsp:include page="./header.jsp" flush="true"></jsp:include>
 <body>
 <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
 "></script>
-<link href="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
-    " rel="stylesheet">
+
 <script>
     function confermaDatiIndirizzo(event){
         event.preventDefault();
@@ -64,7 +65,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
                 Swal.fire("COMPLIMENTI", "Cambio dati avvenuto con successo", "success");
                 setTimeout(function() {
                     window.location.assign(response.url);
-                }, 2000); // Ritardo di 2 secondi (2000 millisecondi)
+                }, 5000); // Ritardo di 5 secondi (5000 millisecondi)
             }
         })
 
