@@ -172,6 +172,8 @@ let totalPages = 0; // Numero totale di pagine dei prodotti filtrati
 let currentPage = 1; // Pagina corrente
 
 // Funzione per creare le schede dei prodotti per una pagina specifica
+let isFirstLoad = true; // Imposta la variabile isFirstLoad a true all'inizio
+
 function createProductCards(pageNumber) {
 	const startIndex = (pageNumber - 1) * itemsPerPage;
 	const endIndex = Math.min(startIndex + itemsPerPage, catalogo.length);
@@ -183,10 +185,18 @@ function createProductCards(pageNumber) {
 		newHtml += createProductCard(p);
 	}
 
-	$("#schedeProdotto").fadeOut(400, function() {
-		$(this).html(newHtml);
-		$(this).fadeIn(400);
-	});
+	// Verifica se è il primo caricamento del catalogo
+	if (isFirstLoad) {
+		// Se è il primo caricamento, aggiungi semplicemente l'HTML senza effetto fade in e fade out
+		$("#schedeProdotto").html(newHtml);
+		isFirstLoad = false; // Imposta isFirstLoad a false dopo il primo caricamento
+	} else {
+		// Se non è il primo caricamento, applica l'effetto fade in e fade out
+		$("#schedeProdotto").fadeOut(400, function() {
+			$(this).html(newHtml);
+			$(this).fadeIn(400);
+		});
+	}
 }
 function createProductCards2(pageNumber, products) {
 		currentPage = pageNumber;

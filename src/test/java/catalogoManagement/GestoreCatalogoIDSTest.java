@@ -111,26 +111,41 @@ public class GestoreCatalogoIDSTest {
         Mockito.verify(preparedStatement, times(1)).executeUpdate();
         
     }
-	
-	
-	@Test
-    @DisplayName("TCU5_2_2 doUpdateGestoreTest-Gestore Catalogo Eliminato")
+
+
+    @Test
+    @DisplayName("TCU DeleteGEstoreTest-Gestore Catalogo Eliminato")
     public void doDeleteGestoreTestElimina() throws Exception {
-	
+
         // Mock del preparedStatement
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
 
-     // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-        
+
         assertTrue(gestoreCatalogoIDS.doDeleteGestore("gestoreCatalogo@gmail.com"));
-        
-        Mockito.verify(preparedStatement, times(1)).setString(1, "gestoreCatalogo@gmail.com");
-        Mockito.verify(preparedStatement, times(1)).executeUpdate();         
+
+        Mockito.verify(preparedStatement, times(1)).setString(1, "gestoreCatalogod@gmail.com");
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
     }
-	
-	//TODO doDeleteGestore
+
+    @Test
+    @DisplayName("TCU doUpdateGestoreTest-Gestore Catalogo Non Eliminato")
+    public void doDeleteGestoreTestNonElimina() throws Exception {
+
+        // Mock del preparedStatement
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
+
+        // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        assertFalse(gestoreCatalogoIDS.doDeleteGestore("gestoreCatalogo@gmail.com"));
+
+        Mockito.verify(preparedStatement, times(1)).setString(1, "gestoreCatalogo@gmail.com");
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+    }
 	
 	@Test
     @DisplayName("TCU5_4_1 doRetrieveGestoreCatalogoTest-Gestore Trovato")

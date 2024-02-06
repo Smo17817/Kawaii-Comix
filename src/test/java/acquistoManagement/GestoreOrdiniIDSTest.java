@@ -104,7 +104,7 @@ public class GestoreOrdiniIDSTest {
 	
 	
 	@Test
-    @DisplayName("TCU doUpdateGestoreTest-Gestore Ordini Eliminato")
+    @DisplayName("TCU DeleteGEstoreTest-Gestore Ordini Eliminato")
     public void doDeleteGestoreTestElimina() throws Exception {
 	
         // Mock del preparedStatement
@@ -118,6 +118,23 @@ public class GestoreOrdiniIDSTest {
         
         Mockito.verify(preparedStatement, times(1)).setString(1, "gestoreOrdini@gmail.com");
         Mockito.verify(preparedStatement, times(1)).executeUpdate();         
+    }
+
+    @Test
+    @DisplayName("TCU doUpdateGestoreTest-Gestore Ordini Non Eliminato")
+    public void doDeleteGestoreTestNonElimina() throws Exception {
+
+        // Mock del preparedStatement
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
+
+        // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        assertFalse(gestoreOrdiniIDS.doDeleteGestore("gestoreOrdini@gmail.com"));
+
+        Mockito.verify(preparedStatement, times(1)).setString(1, "gestoreOrdini@gmail.com");
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
     }
 	
 	@Test
