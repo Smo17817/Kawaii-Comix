@@ -35,7 +35,7 @@ CREATE TABLE `stato_ordine` (
 
 LOCK TABLES `stato_ordine` WRITE;
 /*!40000 ALTER TABLE `stato_ordine` DISABLE KEYS */;
-INSERT INTO `stato_ordine` VALUES (1,'In lavorazione'),(2,'Confermato'),(3,'Spedito'),(4,'Annullato');
+INSERT INTO `stato_ordine` VALUES (1,'Confermato'),(2,'Spedito'),(3,'Annullato'),(4,'In lavorazione');
 /*!40000 ALTER TABLE `stato_ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
