@@ -47,7 +47,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
                         Swal.fire('Prodotto eliminato correttamente','','success')
                         setTimeout(function() {
                             window.location.assign(response.url);
-                        }, 2000); // Ritardo di 2 secondi (2000 millisecondi)
+                        }, 5000); // Ritardo di 5 secondi (5000 millisecondi)
                     }
                     else if(status =='Invalid_Manga'){
                         Swal.fire('Scegliere un Manga da eliminare!','Riprovare','error')

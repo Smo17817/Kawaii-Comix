@@ -71,13 +71,17 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
               icon: 'error', title: 'ERRORE DI FORMATO', text: 'Inserire un nome valido', footer: 'Un nome è  valido senza caratteri speciali.'
             });
           }else if(status =='Invalid_prezzo'){
-            Swal.fire('Inserire un prezzo!','','error')
+              Swal.fire({
+                  icon: 'error', title: 'ERRORE', text: 'Inserire un prezzo valido', footer: 'Un prezzo è valido se è maggiore di 0'
+                });
           }else if(status =='Invalid_autore'){
             Swal.fire({
               icon: 'error', title: 'ERRORE DI FORMATO', text: 'Inserire un autore valido', footer: 'Un autore è  valido è senza caratteri speciali.'
             });
           } else if(status =='Invalid_quantita'){
-            Swal.fire('Inserire almeno una quantità!','','error')
+              Swal.fire({
+                  icon: 'error', title: 'ERRORE', text: 'Inserire una quantità valida', footer: 'La quantità non può essere negativa'
+                });
           }else if(status =='Invalid_genere'){
             Swal.fire('Scegliere genere prodotto!','','error')
           }else if(status =='File_Non_Caricato'){
@@ -88,7 +92,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
             Swal.fire('Prodotto aggiornato correttamente!','','success')
             setTimeout(function() {
               window.location.assign(response.url);
-            }, 2000); // Ritardo di 2 secondi (2000 millisecondi)
+            }, 5000); // Ritardo di 5 secondi (5000 millisecondi)
           }
           else{
             Swal.fire('Errore!','Il prodotto potrebbe non essere più presente sul sito','error')
@@ -136,11 +140,11 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
         </div>
         <div class="form-row">
           <label for="prezzo">Prezzo: </label>
-          <input type="number"  step="0.01" min="0"  id="prezzo"name="prezzo">
+          <input type="number"  step="0.01" id="prezzo"name="prezzo">
         </div>
         <div class="form-row">
           <label for="quantita">Quantità: </label>
-          <input type="number"  min="0" name="quantita" id ="quantita">
+          <input type="number" name="quantita" id ="quantita">
         </div>
         <div class="form-row">
           <label for="genere">Genere: </label>
