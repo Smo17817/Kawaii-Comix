@@ -365,6 +365,7 @@ function dynamicShowOrders(url) {
 
 function dynamicCheckOrders(url) {
 	$.ajax({
+		
 		url: url,
 		type: 'POST',
 		contentType: 'application/json; charset=utf-8'

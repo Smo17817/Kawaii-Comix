@@ -2,7 +2,7 @@
   "id": "2284a0f4-19f4-4bdf-bd5d-7207b0477c8c",
   "version": "2.0",
   "name": "KawaiiComix - Test di integrazione",
-  "url": "http://localhost/kawaii-Comix/catalogo.jsp",
+  "url": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
   "tests": [{
     "id": "8db47c37-eed1-4b47-8465-854b59225512",
     "name": "TC1_1_1 - Registrazione avvenuta con successo",
@@ -11307,6 +11307,1107 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "a4ca353b-e31f-444a-84c3-ebccb7be08fc",
+    "name": "TC2_1_1 Gestione dello stato di un Ordine - Confermato",
+    "commands": [{
+      "id": "83f3405a-5a2c-42ac-a0ef-d9fad3482d48",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a296f96e-280f-45df-9e1b-0aeb4c76019c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "838x894",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2bb6f992-8f53-4eee-8253-9695d44ba995",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "84ab72dc-ad3e-4014-ba1a-2398248bde23",
+      "comment": "",
+      "command": "click",
+      "target": "css=section",
+      "targets": [
+        ["css=section", "css:finder"],
+        ["xpath=//section", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19cf53b6-fc3d-41cd-b5d7-4266f0f2991c",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": "In lavorazione"
+    }, {
+      "id": "a2a471fe-af10-4328-86e1-1e5058a7dd72",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "63a3222c-1e1d-4523-8bbb-74fd9ecbdab3",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }, {
+      "id": "bac692c2-5935-4c87-aa31-eb771773c577",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(3) img",
+      "targets": [
+        ["css=tr:nth-child(5) img", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[5]/td[7]/button/img", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[7]/button/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "019b14ce-fa7b-455f-805f-8b5d18b396b0",
+    "name": "TC2_1_2 Gestione dello stato di un Ordine - Spedito",
+    "commands": [{
+      "id": "44bf22da-c40e-44cc-966f-ac6ecbcbbcd2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6f0bbfb9-c4ce-49a0-9195-a1aa0e44484e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "838x894",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "626992ea-1f21-4766-b90a-88d3e35e0689",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(5) .newStato",
+      "targets": [
+        ["css=tr:nth-child(5) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[5]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }, {
+      "id": "77584189-7993-4ec5-9107-4bd9aea88113",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(5) .newStato",
+      "targets": [
+        ["css=tr:nth-child(5) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[5]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[6]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e785889b-b206-4f85-9755-099c170782e8",
+      "comment": "",
+      "command": "select",
+      "target": "css=tr:nth-child(5) .newStato",
+      "targets": [],
+      "value": "label=Spedito"
+    }, {
+      "id": "f2565448-7acf-40ce-8428-277c6ce3b594",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(5) .newStato",
+      "targets": [
+        ["css=tr:nth-child(5) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[5]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Spedito"
+    }, {
+      "id": "8b60b169-fb23-46d9-9a2b-462fd8185179",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(5) img",
+      "targets": [
+        ["css=tr:nth-child(5) img", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[5]/td[7]/button/img", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[7]/button/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d5c7fb16-79f6-47e5-b4b5-4230d928964d",
+    "name": "TC2_1_3 Gestione dello stato di un Ordine - Annullato",
+    "commands": [{
+      "id": "ed9f184e-60d3-4b30-984f-61948536d604",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a4d6b886-aa50-459e-b716-178e01f70680",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "838x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "31427356-8500-45e7-b10f-54ff2e48a51b",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(7) .newStato",
+      "targets": [
+        ["css=tr:nth-child(7) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[7]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Spedito"
+    }, {
+      "id": "c191fd1e-3c6f-4986-bec0-8b092a9c3cdf",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(7) .newStato",
+      "targets": [
+        ["css=tr:nth-child(7) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[7]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[6]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca875b56-88d4-495f-99e6-bdc10738fc79",
+      "comment": "",
+      "command": "select",
+      "target": "css=tr:nth-child(7) .newStato",
+      "targets": [],
+      "value": "label=Annullato"
+    }, {
+      "id": "13408b08-937f-40c1-9ea6-b571a15780ac",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(7) .newStato",
+      "targets": [
+        ["css=tr:nth-child(7) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[7]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Annullato"
+    }, {
+      "id": "47f98d14-0dfa-407f-92fb-e82ce44d4cb2",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(7) img",
+      "targets": [
+        ["css=tr:nth-child(7) img", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[7]/td[7]/button/img", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[7]/button/img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "a626480a-1966-4e39-bc54-24a4aec1d4d9",
+    "name": "TC2_2_1 Filtraggio ordini - Tutti i filtri attivi",
+    "commands": [{
+      "id": "83d11451-88b4-4753-91dd-30a8a39edff2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ce5d676f-a638-4f3b-b41e-6ee67d5df557",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d6bc11c5-2e7e-4e8e-b633-fc5e71d731bf",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f68ba43d-1204-49c0-914c-3f12b4af63b6",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "963ae70c-db36-4b08-b8f9-90e5f24a96a6",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(4) .newStato",
+      "targets": [
+        ["css=tr:nth-child(4) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[4]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }, {
+      "id": "c15dce51-6926-4229-bb51-a16c42351d43",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "608dc8fd-caf9-4d7f-aa15-35f940ec3ebe",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2024-02-01"
+    }, {
+      "id": "f45ba3db-0544-4872-aec6-ee4b44e7e1d6",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6f425c6-e520-4a91-b5eb-3d9ad1293df9",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "2024-03-01"
+    }, {
+      "id": "f9d7a727-0988-4bba-be64-8951b25140df",
+      "comment": "",
+      "command": "click",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d11ef551-cd11-444e-9f77-41b8a1291dcb",
+      "comment": "",
+      "command": "select",
+      "target": "id=statoOrdine",
+      "targets": [],
+      "value": "label=Confermato"
+    }, {
+      "id": "1db76581-9670-44ca-ad27-320ed1fe0bbb",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "0a403818-c60a-4546-a5fd-4231d706ef32",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }, {
+      "id": "40284893-aabf-4d69-ac64-0e793b1eac4e",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }]
+  }, {
+    "id": "241a9cec-858a-431c-833a-a5002a9f65ce",
+    "name": "TC2_2_2 Filtraggio ordini - Data Inizio",
+    "commands": [{
+      "id": "de5edeeb-e9f6-42b7-9669-1d7746eac9c5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "df736e38-7e48-464e-979c-9f2931078411",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3f8e3f1e-ae0c-49c9-a198-2ac51cf363c3",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0e41858-99e8-4240-b8ad-083b380ff602",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2024-02-01"
+    }]
+  }, {
+    "id": "9ab5e0ad-d2dc-4a4f-b111-0075868f20bf",
+    "name": "TC2_2_3 Filtraggio ordini - Data Fine",
+    "commands": [{
+      "id": "911f6c89-0291-4285-84da-5f9786788424",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1ad75ea0-33d3-4a5a-9d8a-a9a91ba48c24",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6860adec-e597-4ba6-825f-b01263cddf86",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "331b3cb2-6b71-4f1f-b9ab-f78f1bd24101",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2024-03-01"
+    }]
+  }, {
+    "id": "6b047132-8179-4cd1-b02d-2df9d85a865b",
+    "name": "TC2_2_4 Filtraggio ordini - UserId",
+    "commands": [{
+      "id": "aa7d6723-b5ad-487b-9a94-d109cec8ddb4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fb071687-94cc-449e-814f-edc57aa1e280",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "595b7242-5ec9-4809-b404-a0f4ee28a5be",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea32ce5f-81e5-4984-8f62-8a337fb89d1b",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "26be3949-9685-475f-af64-2efb272e590e",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "14"
+    }]
+  }, {
+    "id": "e9ebaf85-d67b-44b2-a7ae-67c2396b2bf1",
+    "name": "TC2_2_5 Filtraggio ordini - Data Inizio e Data Fine",
+    "commands": [{
+      "id": "82d4efaf-8cff-4bf8-9c38-fa198f46c194",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c326cf90-1b46-45df-8d19-d5dcfcb2eb01",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a5c55cea-04b1-4f58-b922-d6a918b91e6b",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f6e8e756-2812-48b0-b418-4005737cfd4b",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2024-02-01"
+    }, {
+      "id": "c4543e2a-75a7-4c57-b90a-fd2f39cb442e",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "32db195e-b3f7-4add-b0f4-971fd93457ce",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "2024-03-01"
+    }]
+  }, {
+    "id": "2e8a0b86-f5a4-4a2a-9cb7-99a72c23fb0b",
+    "name": "TC2_2_6 Filtraggio ordini - Stato ordine: In lavorazione",
+    "commands": [{
+      "id": "a3f5a1c0-188e-48d4-ace7-8c21484663dd",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "03098ec8-b518-443f-865b-17d729eadb2a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "26d5e718-c115-4338-bbe0-af3db3b9f2b7",
+      "comment": "",
+      "command": "click",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "29c559d9-3495-4814-9aa6-0fad27189293",
+      "comment": "",
+      "command": "click",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9c24728c-113a-4ab5-860d-8abafe0e9611",
+      "comment": "",
+      "command": "select",
+      "target": "id=statoOrdine",
+      "targets": [],
+      "value": "label=In lavorazione"
+    }, {
+      "id": "3ddfd315-0196-4097-9068-04aaacafe5c5",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(4) .newStato",
+      "targets": [
+        ["css=tr:nth-child(4) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[4]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/select", "xpath:position"]
+      ],
+      "value": "In lavorazione"
+    }, {
+      "id": "d432cd81-d098-4e37-9022-9f4cdc37cfcb",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "In lavorazione"
+    }, {
+      "id": "504904ba-564e-482d-a80f-5329d34768bc",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": "In lavorazione"
+    }]
+  }, {
+    "id": "9bd897e5-fb46-432b-a225-000f7a7c6a0c",
+    "name": "TC2_2_7 Filtraggio ordini - Stato ordine: Annullato",
+    "commands": [{
+      "id": "ab7209f6-e234-4d32-a09b-7d38df40f703",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a6f64d92-eae1-4e69-bba5-5956f32439ac",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d797b0c1-9029-42b5-8b89-1524962ab0e5",
+      "comment": "",
+      "command": "click",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc346750-76c9-4f90-b102-fffb28222600",
+      "comment": "",
+      "command": "select",
+      "target": "id=statoOrdine",
+      "targets": [],
+      "value": "label=Annullato"
+    }, {
+      "id": "5bb06126-08c3-4ef0-aaa6-725a55bff9a8",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(7) .newStato",
+      "targets": [
+        ["css=tr:nth-child(7) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[7]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Annullato"
+    }, {
+      "id": "4f1b3f5c-bbee-4007-b976-3054054c92a5",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "Annullato"
+    }, {
+      "id": "42b5061c-484e-496b-a927-3f89fa646de3",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(8) .newStato",
+      "targets": [
+        ["css=tr:nth-child(8) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[8]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Annullato"
+    }]
+  }, {
+    "id": "3c72ddaf-761e-4512-9e9c-9b2fd6b427ab",
+    "name": "TC2_2_8 Filtraggio ordini - UserId e Stato Ordine: Spedito",
+    "commands": [{
+      "id": "dff920bf-5db3-413c-a17b-df4deb429f24",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0de73a9b-5057-4003-947e-bd3de3fa8a12",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d92bd2ee-5acf-4d59-8943-01e7f30fbcd2",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0204ac8f-a4c2-4f04-9155-b62a6d96efb3",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "4b216c12-2a28-47fa-b408-9f43952a971a",
+      "comment": "",
+      "command": "select",
+      "target": "id=statoOrdine",
+      "targets": [],
+      "value": "label=Spedito"
+    }, {
+      "id": "9accaa6c-527e-4250-8e43-7205520ccc74",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "e82d3a95-6fb8-46af-be73-48a90fa31ae1",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "Spedito"
+    }, {
+      "id": "7e76f270-d6af-405d-9219-e5c7ec088fa8",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Spedito"
+    }]
+  }, {
+    "id": "fa985068-f130-429f-8227-9db1c88018db",
+    "name": "TC2_2_9 Filtraggio ordini - UserId, Data Inizio e Data Fine",
+    "commands": [{
+      "id": "1960123a-4eaf-4161-9dab-935f3cbbbe2f",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ae5f3958-df85-4268-9508-263d9832fd10",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "706f9c1c-fdb5-408a-9755-e058c337a6cb",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "abc3e4e2-da9f-4a80-a601-7ad0dedd32f4",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [
+        ["id=searchInput", "id"],
+        ["css=#searchInput", "css:finder"],
+        ["xpath=//input[@id='searchInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "90fb7989-4ad7-4d02-a661-b79e854422cd",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(1) > td:nth-child(2) > h4",
+      "targets": [
+        ["css=tr:nth-child(1) > td:nth-child(2) > h4", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr/td[2]/h4", "xpath:idRelative"],
+        ["xpath=//td[2]/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'14')]", "xpath:innerText"]
+      ],
+      "value": "14"
+    }, {
+      "id": "c30e726b-3c08-4554-9cd9-73cd1a89a217",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(3) > td:nth-child(2) > h4",
+      "targets": [
+        ["css=tr:nth-child(3) > td:nth-child(2) > h4", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[2]/h4", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[2]/h4", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "8bf5735b-4f8a-41ea-9644-daf53e6baea2",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d87b2089-984a-40ac-a4ca-dd283b11107e",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2024-02-01"
+    }, {
+      "id": "a6300d2c-bcc3-4e1c-a06e-172561bb99c4",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4fe786fc-ff99-4a91-98af-b6b282a63514",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "2024-03-01"
+    }]
+  }, {
+    "id": "92548542-1bd3-43d4-909a-dc1e1bbe2d2f",
+    "name": "TC2_2_10 Filtraggio ordini - Stato ordine : Confermato, Data Inizio e Data Fine",
+    "commands": [{
+      "id": "c43ccecc-e0fa-440f-871d-92d7dea4d7b4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "002d460a-605b-47f5-abb2-fd39b579ffb4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "934x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9363fb9a-7664-4415-add9-0f78c6ba2316",
+      "comment": "",
+      "command": "click",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "80dbb3fa-44cc-4f52-bc33-50e5576e8c0b",
+      "comment": "",
+      "command": "type",
+      "target": "id=startDateInput",
+      "targets": [
+        ["id=startDateInput", "id"],
+        ["css=#startDateInput", "css:finder"],
+        ["xpath=//input[@id='startDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "2024-02-01"
+    }, {
+      "id": "ab9bb85e-7db5-4a7f-be8f-294867ad5bf7",
+      "comment": "",
+      "command": "click",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e59d65db-ff1d-4407-94e9-9ec4104d6408",
+      "comment": "",
+      "command": "type",
+      "target": "id=endDateInput",
+      "targets": [
+        ["id=endDateInput", "id"],
+        ["css=#endDateInput", "css:finder"],
+        ["xpath=//input[@id='endDateInput']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "2024-03-01"
+    }, {
+      "id": "354878c2-4035-4f94-a232-1a2dba943510",
+      "comment": "",
+      "command": "click",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "573e1c54-f351-4bfd-b936-eecfa4d88c56",
+      "comment": "",
+      "command": "select",
+      "target": "id=statoOrdine",
+      "targets": [],
+      "value": "label=Confermato"
+    }, {
+      "id": "ffab8ad1-895a-4661-ad3d-7fa2eba503b5",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }, {
+      "id": "c5ddc77d-0f27-405d-8721-36c8c4077289",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }, {
+      "id": "b190c011-0e20-4ca0-9231-0cb54b2621f1",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [
+        ["css=tr:nth-child(3) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Confermato"
+    }]
   }],
   "suites": [{
     "id": "6fda69bd-c7de-43b8-b36e-d129543aef5a",
@@ -11364,7 +12465,14 @@
     "parallel": false,
     "timeout": 300,
     "tests": ["74337725-fad0-4a1b-bd1a-f24d01f18094", "070e957a-17cc-446c-9550-471d15d85408", "430e765c-4d91-4cac-828e-39065ff28c56", "67e9df05-b72c-4f21-b1ec-977b1296bcba", "fff256c4-fdda-41cd-9829-c3846b95e748", "35cfbd8d-81a9-4d22-877a-26fedad27bb3", "6539daae-8552-46b1-8a10-a6341ac0ef2e", "3aef43a9-4a05-44f9-b14d-63e13ccd2ca0", "74bd3bfe-e0f5-47fa-b721-7cb23a3c3503"]
+  }, {
+    "id": "4e1b6038-1419-44de-95ca-4a48b3f1ebb3",
+    "name": "1.2.1",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
   }],
-  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp"],
+  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp", "http://localhost/kawaii-Comix/controllaOrdini.jsp"],
   "plugins": []
 }
