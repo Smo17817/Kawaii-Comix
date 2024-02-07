@@ -376,7 +376,7 @@ function dynamicCheckOrders(url) {
 		let stato1 = "Confermato";
 		let stato2 = "Spedito";
 		let stato3 = "Annullato";
-		let stato4 = "In Lavorazione";		
+		let stato4 = "In lavorazione";		
 		
 		for (const o of response) {
 			//Scelta dinamica dello stato			
