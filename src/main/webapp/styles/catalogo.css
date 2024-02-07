@@ -161,6 +161,15 @@ label{
     background: var(--hover-color);
 }
 
+#no-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
 .search {
     position: relative;
     width: 76px;

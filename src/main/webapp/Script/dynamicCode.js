@@ -236,13 +236,28 @@ function createPaginationLinks(totalPages) {
 }
 
 // Funzione per creare i link per la navigazione tra le pagine
+let imageAdded = false; // Variabile per tenere traccia se l'immagine è stata aggiunta
+
 function createPaginationLinks2(totalPages) {
-	let paginationHtml = "";
-	for (let i = 1; i <= totalPages; i++) {
-		paginationHtml += `<a href="#" onclick="createProductCards2(${i}, filteredProducts)">${i}</a>`;
+	if (totalPages === 0 && !imageAdded) {
+		// Nascondi il paginator
+		$("#pagination-container").hide();
+		// Mostra l'immagine specificata all'interno di
+		let contenutoHtml = "";
+		contenutoHtml += "<img src='./images/no-morepeanuts.png'><h3>Ci dispiace ma il prodotto che stai cercando <br> non risulta nel nostro catalogo...</h3>";
+		$("#no-item").html(contenutoHtml).show();
+		imageAdded = true; // Imposta la variabile a true per indicare che l'immagine è stata aggiunta
+	} else if (totalPages > 0) {
+		let paginationHtml = "";
+		for (let i = 1; i <= totalPages; i++) {
+			paginationHtml += `<a href="#" onclick="createProductCards2(${i}, filteredProducts)">${i}</a>`;
+		}
+		$("#pagination-container").html(paginationHtml).show(); // Mostra il paginator
+		$("#no-item").hide(); // Nascondi l'immagine e l'h3
+		imageAdded = false; // Reimposta la variabile a false quando ci sono prodotti da mostrare
 	}
-	$("#pagination-container").html(paginationHtml);
 }
+
 
 /***FINE PAGINATION***/
 function dynamicCatalog(url) {

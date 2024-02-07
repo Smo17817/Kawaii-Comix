@@ -66,6 +66,7 @@
                     </form>
                 </div>
                 <div id="schedeProdotto"></div>
+                <div id="no-item"></div>
                 <div id="pagination-container" class="pagination-container"></div>
             </section>
         </section>

@@ -184,7 +184,7 @@ function checkout(url) {
 					});
 				}
 			});
-	}else{
+	}else if(!(validDate || validNumber || validCvv)){
 		Swal.fire('Errore!','Inserire i Dati Della Carta','error');
 	}
 }
