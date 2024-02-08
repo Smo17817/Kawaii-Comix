@@ -151,7 +151,7 @@ public class GestoreCatalogoIDSTest {
 
         assertTrue(gestoreCatalogoIDS.doDeleteGestore("gestoreCatalogo@gmail.com"));
 
-        Mockito.verify(preparedStatement, times(1)).setString(1, "gestoreCatalogod@gmail.com");
+        Mockito.verify(preparedStatement, times(1)).setString(1, "gestoreCatalogo@gmail.com");
         Mockito.verify(preparedStatement, times(1)).executeUpdate();
     }
 

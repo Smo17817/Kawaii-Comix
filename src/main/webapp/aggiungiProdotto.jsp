@@ -96,7 +96,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
             Swal.fire('Prodotto aggiunto correttamente!','','success')
             setTimeout(function() {
               window.location.assign(response.url);
-            }, 5000); // Ritardo di 5 secondi (5000 millisecondi)
+            }, 3500); // Ritardo di 3,5 secondi (3500 millisecondi)
           }
           else{
             Swal.fire('ERRORE DI SISTEMA!','Il prodotto non è stato aggiunto','error')
@@ -145,7 +145,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
       </div>
       <div class="form-row">
         <label for="genere">Genere: </label>
-        <select  id="genere" name="genere" required>
+        <select  id="genere" name="genere">
           <option disabled selected value>-scegliere genere-</option>
           <option>Avventura</option>
           <option>Azione</option>

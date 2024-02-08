@@ -60,7 +60,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
         Swal.fire("COMPLIMENTI", "Cambio dati avvenuta con successo", "success");
         setTimeout(function() {
           window.location.assign(response.url);
-        }, 5000); // Ritardo di 5 secondi (5000 millisecondi)
+        }, 3500); // Ritardo di 3,5 secondi (3500 millisecondi)
       }
     })
 

@@ -2,7 +2,7 @@
   "id": "2284a0f4-19f4-4bdf-bd5d-7207b0477c8c",
   "version": "2.0",
   "name": "KawaiiComix - Test di integrazione",
-  "url": "http://localhost/kawaii-Comix/catalogo.jsp",
+  "url": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
   "tests": [{
     "id": "8db47c37-eed1-4b47-8465-854b59225512",
     "name": "TC1_1_1 - Registrazione avvenuta con successo",
@@ -3838,7 +3838,7 @@
         ["xpath=//section[@id='login']/div[2]/form/div/input", "xpath:idRelative"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "Prova123"
+      "value": "Prova12"
     }, {
       "id": "d835e107-300c-429a-b046-26b33fdbf9d2",
       "comment": "",
@@ -3968,100 +3968,96 @@
       ],
       "value": "dra"
     }, {
-      "id": "ba882815-e4a2-4e66-a35d-7af5a90e02db",
+      "id": "ac1d8979-de42-4ed6-ab34-5b6e797a43fc",
       "comment": "",
-      "command": "click",
-      "target": "css=.scheda:nth-child(33)",
-      "targets": [
-        ["css=.scheda:nth-child(33)", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[33]", "xpath:idRelative"],
-        ["xpath=//div[33]", "xpath:position"]
-      ],
-      "value": ""
+      "command": "waitForText",
+      "target": "css=.scheda:nth-child(1) .pname",
+      "targets": [],
+      "value": "Dragon Ball 1"
     }, {
-      "id": "bfef21eb-a719-4a6c-be2e-5577e852ed6a",
+      "id": "351d0931-4a6b-44cc-982c-464ad206e62e",
       "comment": "",
       "command": "verifyText",
-      "target": "css=.scheda:nth-child(33) .pname",
+      "target": "css=.scheda:nth-child(1) .pname",
       "targets": [
-        ["css=.scheda:nth-child(33) .pname", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[33]/div/h4", "xpath:idRelative"],
-        ["xpath=//div[33]/div/h4", "xpath:position"],
+        ["css=.scheda:nth-child(1) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div/div/h4", "xpath:idRelative"],
+        ["xpath=//div/h4", "xpath:position"],
         ["xpath=//h4[contains(.,'Dragon Ball 1')]", "xpath:innerText"]
       ],
       "value": "Dragon Ball 1"
     }, {
-      "id": "dbc82e1e-8502-4de3-8715-26c1e5c8a896",
+      "id": "10fff411-e19a-4075-995a-ddced8371098",
       "comment": "",
       "command": "verifyText",
-      "target": "css=.scheda:nth-child(34) .pname",
+      "target": "css=.scheda:nth-child(2) .pname",
       "targets": [
-        ["css=.scheda:nth-child(34) .pname", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[34]/div/h4", "xpath:idRelative"],
-        ["xpath=//div[34]/div/h4", "xpath:position"],
+        ["css=.scheda:nth-child(2) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[2]/div/h4", "xpath:position"],
         ["xpath=//h4[contains(.,'Dragon Ball 2')]", "xpath:innerText"]
       ],
       "value": "Dragon Ball 2"
     }, {
-      "id": "f179149d-51f1-4213-9a29-d50b96fbd9fb",
+      "id": "cd2c943c-5c54-42de-86e8-485164cd22ba",
       "comment": "",
       "command": "verifyText",
-      "target": "css=.scheda:nth-child(39) .pname",
+      "target": "css=.scheda:nth-child(3) .pname",
       "targets": [
-        ["css=.scheda:nth-child(39) .pname", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[39]/div/h4", "xpath:idRelative"],
-        ["xpath=//div[39]/div/h4", "xpath:position"],
-        ["xpath=//h4[contains(.,'Dragon Ball Completo')]", "xpath:innerText"]
+        ["css=.scheda:nth-child(3) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[3]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[3]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball 3')]", "xpath:innerText"]
       ],
-      "value": "Dragon Ball Completo"
+      "value": "Dragon Ball 3"
     }, {
-      "id": "0a2c62d9-f41b-4c7a-b13a-ff45037bb69a",
+      "id": "405e22d0-e321-4370-9e19-51467b18072a",
       "comment": "",
       "command": "verifyText",
-      "target": "css=.scheda:nth-child(38) .pname",
+      "target": "css=.scheda:nth-child(4) .pname",
       "targets": [
-        ["css=.scheda:nth-child(38) .pname", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[38]/div/h4", "xpath:idRelative"],
-        ["xpath=//div[38]/div/h4", "xpath:position"],
-        ["xpath=//h4[contains(.,'Dragon Ball A Visual History')]", "xpath:innerText"]
-      ],
-      "value": "Dragon Ball A Visual History"
-    }, {
-      "id": "0ec5625b-dd35-4b06-b4c6-dbedc6a4477d",
-      "comment": "",
-      "command": "verifyText",
-      "target": "css=.scheda:nth-child(37) .pname",
-      "targets": [
-        ["css=.scheda:nth-child(37) .pname", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[37]/div/h4", "xpath:idRelative"],
-        ["xpath=//div[37]/div/h4", "xpath:position"],
-        ["xpath=//h4[contains(.,'Dragon Ball 5')]", "xpath:innerText"]
-      ],
-      "value": "Dragon Ball 5"
-    }, {
-      "id": "27b3bfc4-5fd7-4bfe-b774-93e40ea7631d",
-      "comment": "",
-      "command": "verifyText",
-      "target": "css=.scheda:nth-child(36) .pname",
-      "targets": [
-        ["css=.scheda:nth-child(36) .pname", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[36]/div/h4", "xpath:idRelative"],
-        ["xpath=//div[36]/div/h4", "xpath:position"],
+        ["css=.scheda:nth-child(4) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[4]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[4]/div/h4", "xpath:position"],
         ["xpath=//h4[contains(.,'Dragon Ball 4')]", "xpath:innerText"]
       ],
       "value": "Dragon Ball 4"
     }, {
-      "id": "259db605-c453-496f-81be-79f046413b00",
+      "id": "b3a8d448-b57c-4839-81aa-80aef213b77b",
       "comment": "",
       "command": "verifyText",
-      "target": "css=.scheda:nth-child(35) .pname",
+      "target": "css=.scheda:nth-child(5) .pname",
       "targets": [
-        ["css=.scheda:nth-child(35) .pname", "css:finder"],
-        ["xpath=//div[@id='schedeProdotto']/div[35]/div/h4", "xpath:idRelative"],
-        ["xpath=//div[35]/div/h4", "xpath:position"],
-        ["xpath=//h4[contains(.,'Dragon Ball 3')]", "xpath:innerText"]
+        ["css=.scheda:nth-child(5) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[5]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[5]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball 5')]", "xpath:innerText"]
       ],
-      "value": "Dragon Ball 3"
+      "value": "Dragon Ball 5"
+    }, {
+      "id": "5f5ea149-7569-44ea-8f10-db77d84352ab",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(6) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(6) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[6]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[6]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball A Visual History')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball A Visual History"
+    }, {
+      "id": "6d8ee8e9-df81-4440-aec2-e43262c9c160",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.scheda:nth-child(7) .pname",
+      "targets": [
+        ["css=.scheda:nth-child(7) .pname", "css:finder"],
+        ["xpath=//div[@id='schedeProdotto']/div[7]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[7]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'Dragon Ball Completo')]", "xpath:innerText"]
+      ],
+      "value": "Dragon Ball Completo"
     }]
   }, {
     "id": "13aa028f-eb8f-4627-96dd-d75291246b1c",
@@ -4249,7 +4245,14 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "bf232afb-d852-4b5a-9d36-a28ce98215e3",
+      "id": "da662e09-d7eb-4bd2-af22-fa12ab32805c",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "//tbody[@id='dinamico']//tr",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "24555c58-2169-4c3c-b525-aca65e407c70",
       "comment": "",
       "command": "click",
       "target": "css=.trash",
@@ -4258,6 +4261,13 @@
         ["xpath=//tbody[@id='dinamico']/tr/td/button/img", "xpath:idRelative"],
         ["xpath=//button/img", "xpath:position"]
       ],
+      "value": ""
+    }, {
+      "id": "9991b55e-d5d6-4293-a40c-784f533859b5",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "//tbody[@id='dinamico']//tr",
+      "targets": [],
       "value": ""
     }]
   }, {
@@ -4278,6 +4288,13 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "647f306b-d30b-42f8-bb5e-9e225ef436c8",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "//tbody[@id='dinamico']//tr[2]",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "fd692d53-5d5e-4e6a-9ff5-ba1f53a31184",
       "comment": "",
       "command": "click",
@@ -4287,6 +4304,13 @@
         ["xpath=//tbody[@id='dinamico']/tr/td/button/img", "xpath:idRelative"],
         ["xpath=//button/img", "xpath:position"]
       ],
+      "value": ""
+    }, {
+      "id": "ca939cdc-9d74-4613-9055-8602c7448b7f",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "//tbody[@id='dinamico']//tr[2]",
+      "targets": [],
       "value": ""
     }]
   }, {
@@ -5038,6 +5062,13 @@
       ],
       "value": ""
     }, {
+      "id": "a2850f73-89c6-4504-8ce7-ab90bc114975",
+      "comment": "",
+      "command": "waitForText",
+      "target": "id=swal2-html-container",
+      "targets": [],
+      "value": "Il pagamento è stato elaborato con successo."
+    }, {
       "id": "0fbdb4ac-de24-49b5-bff8-3322fc079e37",
       "comment": "",
       "command": "verifyText",
@@ -5077,10 +5108,147 @@
   }, {
     "id": "5f6fd5c0-8667-495c-983c-4656f173d799",
     "name": "TC1_8_1 Aggiornamento dei dati personali effettuati con successo",
-    "commands": []
+    "commands": [{
+      "id": "b654cf53-0c13-4790-8842-0cb4c5e37f55",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/datipersonali.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5dcb2063-d035-42be-8c75-8194743f9c83",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1222x776",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "57111579-bd66-4c7e-8708-1bab9942960b",
+      "comment": "",
+      "command": "click",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9592f7e8-4bc8-45b0-b7e0-6f02df77fbd3",
+      "comment": "",
+      "command": "type",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Maria"
+    }, {
+      "id": "60756f21-0429-41c1-8043-ef9144936091",
+      "comment": "",
+      "command": "type",
+      "target": "id=cognome",
+      "targets": [
+        ["id=cognome", "id"],
+        ["name=cognome", "name"],
+        ["css=#cognome", "css:finder"],
+        ["xpath=//input[@id='cognome']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Verdi"
+    }, {
+      "id": "09b8c4e7-e16c-49e7-a175-05abb491da24",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "mariaverdi@gmail.com"
+    }, {
+      "id": "43354005-6f20-4d0f-bba8-c96d0187625d",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password1", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "Prova1234"
+    }, {
+      "id": "c36c6ba9-5a55-4c56-9230-29ee3ca622f1",
+      "comment": "",
+      "command": "click",
+      "target": "id=conferma-pass",
+      "targets": [
+        ["id=conferma-pass", "id"],
+        ["name=password2", "name"],
+        ["css=#conferma-pass", "css:finder"],
+        ["xpath=//input[@id='conferma-pass']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c9d2861-cfa7-490a-b96b-0c5da854bda3",
+      "comment": "",
+      "command": "type",
+      "target": "id=conferma-pass",
+      "targets": [
+        ["id=conferma-pass", "id"],
+        ["name=password2", "name"],
+        ["css=#conferma-pass", "css:finder"],
+        ["xpath=//input[@id='conferma-pass']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "Prova1234"
+    }, {
+      "id": "9249a00d-abda-46b3-856a-daefec353a9b",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='personal-info']/div/form/div[6]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa753412-60b5-4929-a1f2-3433927b5133",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-html-container",
+      "targets": [
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//body/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "Cambio dati avvenuta con successo"
+    }]
   }, {
     "id": "6d89c21b-3796-4449-bead-533a7b6049c6",
-    "name": "TC1_8_2 Aggiornamento dati personali non effettuato - Presenza di campi vuoti",
+    "name": "TC1_8_2 Aggiornamento dati personali non effettuato - Tutti i campi vuoti",
     "commands": [{
       "id": "fbd586c6-5999-4b8c-93bb-1c944fe1626a",
       "comment": "",
@@ -11423,7 +11591,7 @@
       ],
       "value": "In lavorazione"
     }, {
-      "id": "a2a471fe-af10-4328-86e1-1e5058a7dd72",
+      "id": "8d75e908-2da2-4f77-a8cc-ee19377b1d66",
       "comment": "",
       "command": "click",
       "target": "css=tr:nth-child(3) .newStato",
@@ -11434,7 +11602,25 @@
       ],
       "value": ""
     }, {
-      "id": "63a3222c-1e1d-4523-8bbb-74fd9ecbdab3",
+      "id": "2071518b-3f90-47b7-b7c0-68a562e58fe1",
+      "comment": "",
+      "command": "select",
+      "target": "css=tr:nth-child(3) .newStato",
+      "targets": [],
+      "value": "label=Confermato"
+    }, {
+      "id": "0b6b3777-88ea-44a5-9d74-45ccf561ee44",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(3) img",
+      "targets": [
+        ["css=tr:nth-child(3) img", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[3]/td[7]/button/img", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[7]/button/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3c7bd8d-a00c-4ed7-b3a5-1f6c04e9da9f",
       "comment": "",
       "command": "assertValue",
       "target": "css=tr:nth-child(3) .newStato",
@@ -11444,17 +11630,6 @@
         ["xpath=//tr[3]/td[6]/select", "xpath:position"]
       ],
       "value": "Confermato"
-    }, {
-      "id": "bac692c2-5935-4c87-aa31-eb771773c577",
-      "comment": "",
-      "command": "click",
-      "target": "css=tr:nth-child(3) img",
-      "targets": [
-        ["css=tr:nth-child(5) img", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr[5]/td[7]/button/img", "xpath:idRelative"],
-        ["xpath=//tr[5]/td[7]/button/img", "xpath:position"]
-      ],
-      "value": ""
     }]
   }, {
     "id": "019b14ce-fa7b-455f-805f-8b5d18b396b0",
@@ -11524,6 +11699,17 @@
         ["xpath=//tr[5]/td[7]/button/img", "xpath:position"]
       ],
       "value": ""
+    }, {
+      "id": "5d8e2da7-38f7-49d2-a57f-6071b5a5aaab",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(5) .newStato",
+      "targets": [
+        ["css=tr:nth-child(5) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[5]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Spedito"
     }]
   }, {
     "id": "d5c7fb16-79f6-47e5-b4b5-4230d928964d",
@@ -11593,6 +11779,17 @@
         ["xpath=//tr[7]/td[7]/button/img", "xpath:position"]
       ],
       "value": ""
+    }, {
+      "id": "cc44233f-af43-41bf-a8e5-8b74a31e5358",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(7) .newStato",
+      "targets": [
+        ["css=tr:nth-child(7) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[7]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[7]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Annullato"
     }]
   }, {
     "id": "a626480a-1966-4e39-bc54-24a4aec1d4d9",
@@ -11637,17 +11834,6 @@
         ["xpath=//input", "xpath:position"]
       ],
       "value": "14"
-    }, {
-      "id": "963ae70c-db36-4b08-b8f9-90e5f24a96a6",
-      "comment": "",
-      "command": "assertValue",
-      "target": "css=tr:nth-child(4) .newStato",
-      "targets": [
-        ["css=tr:nth-child(4) .newStato", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr[4]/td[6]/select", "xpath:idRelative"],
-        ["xpath=//tr[4]/td[6]/select", "xpath:position"]
-      ],
-      "value": "Confermato"
     }, {
       "id": "c15dce51-6926-4229-bb51-a16c42351d43",
       "comment": "",
@@ -11904,6 +12090,28 @@
         ["xpath=//input", "xpath:position"]
       ],
       "value": "14"
+    }, {
+      "id": "b06039d2-03d7-4c53-a276-0e80adf39869",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(4) > td:nth-child(2) > h4",
+      "targets": [
+        ["css=tr:nth-child(4) > td:nth-child(2) > h4", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[4]/td[2]/h4", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/h4", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "146718bd-84d3-47cd-a212-4b4b9fc325da",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(6) > td:nth-child(2) > h4",
+      "targets": [
+        ["css=tr:nth-child(6) > td:nth-child(2) > h4", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[6]/td[2]/h4", "xpath:idRelative"],
+        ["xpath=//tr[6]/td[2]/h4", "xpath:position"]
+      ],
+      "value": "14"
     }]
   }, {
     "id": "e9ebaf85-d67b-44b2-a7ae-67c2396b2bf1",
@@ -11979,21 +12187,21 @@
     "id": "2e8a0b86-f5a4-4a2a-9cb7-99a72c23fb0b",
     "name": "TC2_2_6 Filtraggio ordini - Stato ordine: In lavorazione",
     "commands": [{
-      "id": "a3f5a1c0-188e-48d4-ace7-8c21484663dd",
+      "id": "f55c4222-f194-44b0-ab56-fc9321a090a0",
       "comment": "",
       "command": "open",
       "target": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
       "targets": [],
       "value": ""
     }, {
-      "id": "03098ec8-b518-443f-865b-17d729eadb2a",
+      "id": "f00bea8f-c864-40e2-b457-59014baf324c",
       "comment": "",
       "command": "setWindowSize",
       "target": "934x896",
       "targets": [],
       "value": ""
     }, {
-      "id": "26d5e718-c115-4338-bbe0-af3db3b9f2b7",
+      "id": "e3e0c224-c0fa-4d62-bdae-4044c672aa46",
       "comment": "",
       "command": "click",
       "target": "id=statoOrdine",
@@ -12007,39 +12215,14 @@
       ],
       "value": ""
     }, {
-      "id": "29c559d9-3495-4814-9aa6-0fad27189293",
-      "comment": "",
-      "command": "click",
-      "target": "id=statoOrdine",
-      "targets": [
-        ["id=statoOrdine", "id"],
-        ["name=statoOrdine", "name"],
-        ["css=#statoOrdine", "css:finder"],
-        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
-        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
-        ["xpath=//select", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "9c24728c-113a-4ab5-860d-8abafe0e9611",
+      "id": "94170fa4-2383-49d8-9f5e-3a60ecc1036f",
       "comment": "",
       "command": "select",
       "target": "id=statoOrdine",
       "targets": [],
       "value": "label=In lavorazione"
     }, {
-      "id": "3ddfd315-0196-4097-9068-04aaacafe5c5",
-      "comment": "",
-      "command": "assertValue",
-      "target": "css=tr:nth-child(4) .newStato",
-      "targets": [
-        ["css=tr:nth-child(4) .newStato", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr[4]/td[6]/select", "xpath:idRelative"],
-        ["xpath=//tr[4]/td[6]/select", "xpath:position"]
-      ],
-      "value": "In lavorazione"
-    }, {
-      "id": "d432cd81-d098-4e37-9022-9f4cdc37cfcb",
+      "id": "4722c19d-5041-4c63-9c38-1e967d602c89",
       "comment": "",
       "command": "assertValue",
       "target": "id=statoOrdine",
@@ -12053,14 +12236,25 @@
       ],
       "value": "In lavorazione"
     }, {
-      "id": "504904ba-564e-482d-a80f-5329d34768bc",
+      "id": "275c9730-987f-4f7a-bc03-8f41537122ab",
       "comment": "",
       "command": "assertValue",
-      "target": "css=tr:nth-child(3) .newStato",
+      "target": "css=tr:nth-child(1) .newStato",
       "targets": [
-        ["css=tr:nth-child(3) .newStato", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
-        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+        ["css=tr:nth-child(1) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr/td[6]/select", "xpath:idRelative"],
+        ["xpath=//td[6]/select", "xpath:position"]
+      ],
+      "value": "In lavorazione"
+    }, {
+      "id": "8053450f-5244-4227-a770-c056a84b12dd",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(2) .newStato",
+      "targets": [
+        ["css=tr:nth-child(2) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[2]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[6]/select", "xpath:position"]
       ],
       "value": "In lavorazione"
     }]
@@ -12103,18 +12297,7 @@
       "targets": [],
       "value": "label=Annullato"
     }, {
-      "id": "5bb06126-08c3-4ef0-aaa6-725a55bff9a8",
-      "comment": "",
-      "command": "assertValue",
-      "target": "css=tr:nth-child(7) .newStato",
-      "targets": [
-        ["css=tr:nth-child(7) .newStato", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr[7]/td[6]/select", "xpath:idRelative"],
-        ["xpath=//tr[7]/td[6]/select", "xpath:position"]
-      ],
-      "value": "Annullato"
-    }, {
-      "id": "4f1b3f5c-bbee-4007-b976-3054054c92a5",
+      "id": "7f6a91e0-8c90-48b9-a23f-a3a23210b289",
       "comment": "",
       "command": "assertValue",
       "target": "id=statoOrdine",
@@ -12128,7 +12311,7 @@
       ],
       "value": "Annullato"
     }, {
-      "id": "42b5061c-484e-496b-a927-3f89fa646de3",
+      "id": "f42647d1-eaa1-4011-9e8e-0d6dc5847c39",
       "comment": "",
       "command": "assertValue",
       "target": "css=tr:nth-child(8) .newStato",
@@ -12136,6 +12319,17 @@
         ["css=tr:nth-child(8) .newStato", "css:finder"],
         ["xpath=//tbody[@id='container']/tr[8]/td[6]/select", "xpath:idRelative"],
         ["xpath=//tr[8]/td[6]/select", "xpath:position"]
+      ],
+      "value": "Annullato"
+    }, {
+      "id": "3cd26a38-c65e-4beb-a85d-63e340ad5dc6",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(9) .newStato",
+      "targets": [
+        ["css=tr:nth-child(9) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[9]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[6]/select", "xpath:position"]
       ],
       "value": "Annullato"
     }]
@@ -12220,11 +12414,11 @@
       "id": "7e76f270-d6af-405d-9219-e5c7ec088fa8",
       "comment": "",
       "command": "assertValue",
-      "target": "css=tr:nth-child(3) .newStato",
+      "target": "css=tr:nth-child(11) .newStato",
       "targets": [
-        ["css=tr:nth-child(3) .newStato", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr[3]/td[6]/select", "xpath:idRelative"],
-        ["xpath=//tr[3]/td[6]/select", "xpath:position"]
+        ["css=tr:nth-child(11) .newStato", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[11]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[6]/select", "xpath:position"]
       ],
       "value": "Spedito"
     }]
@@ -12272,30 +12466,7 @@
       ],
       "value": "14"
     }, {
-      "id": "90fb7989-4ad7-4d02-a661-b79e854422cd",
-      "comment": "",
-      "command": "assertText",
-      "target": "css=tr:nth-child(1) > td:nth-child(2) > h4",
-      "targets": [
-        ["css=tr:nth-child(1) > td:nth-child(2) > h4", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr/td[2]/h4", "xpath:idRelative"],
-        ["xpath=//td[2]/h4", "xpath:position"],
-        ["xpath=//h4[contains(.,'14')]", "xpath:innerText"]
-      ],
-      "value": "14"
-    }, {
-      "id": "c30e726b-3c08-4554-9cd9-73cd1a89a217",
-      "comment": "",
-      "command": "assertText",
-      "target": "css=tr:nth-child(3) > td:nth-child(2) > h4",
-      "targets": [
-        ["css=tr:nth-child(3) > td:nth-child(2) > h4", "css:finder"],
-        ["xpath=//tbody[@id='container']/tr[3]/td[2]/h4", "xpath:idRelative"],
-        ["xpath=//tr[3]/td[2]/h4", "xpath:position"]
-      ],
-      "value": "14"
-    }, {
-      "id": "8bf5735b-4f8a-41ea-9644-daf53e6baea2",
+      "id": "0c8f1f39-cfcc-45a6-b3a9-6f373b5c75e4",
       "comment": "",
       "command": "click",
       "target": "id=startDateInput",
@@ -12308,7 +12479,7 @@
       ],
       "value": ""
     }, {
-      "id": "d87b2089-984a-40ac-a4ca-dd283b11107e",
+      "id": "5210020d-db17-4866-8001-2d2e02daece7",
       "comment": "",
       "command": "type",
       "target": "id=startDateInput",
@@ -12321,7 +12492,7 @@
       ],
       "value": "2024-02-01"
     }, {
-      "id": "a6300d2c-bcc3-4e1c-a06e-172561bb99c4",
+      "id": "e8d4bb42-fbdb-4df6-aad5-43e5d45f351e",
       "comment": "",
       "command": "click",
       "target": "id=endDateInput",
@@ -12334,7 +12505,7 @@
       ],
       "value": ""
     }, {
-      "id": "4fe786fc-ff99-4a91-98af-b6b282a63514",
+      "id": "539ab2e0-3e5c-48c3-8326-28e8a67606ac",
       "comment": "",
       "command": "type",
       "target": "id=endDateInput",
@@ -12346,6 +12517,63 @@
         ["xpath=//input[2]", "xpath:position"]
       ],
       "value": "2024-03-01"
+    }, {
+      "id": "ecac0e63-e45e-4635-8819-db6a01d2cb80",
+      "comment": "",
+      "command": "click",
+      "target": "id=statoOrdine",
+      "targets": [
+        ["id=statoOrdine", "id"],
+        ["name=statoOrdine", "name"],
+        ["css=#statoOrdine", "css:finder"],
+        ["xpath=//select[@id='statoOrdine']", "xpath:attributes"],
+        ["xpath=//div[@id='filtri']/div[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "917a03fc-10f8-48e5-a989-a1fd3ba739a4",
+      "comment": "",
+      "command": "select",
+      "target": "id=statoOrdine",
+      "targets": [],
+      "value": "label=Spedito"
+    }, {
+      "id": "6e60e684-31d8-485b-be77-d3681cde8335",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(6) > td:nth-child(2) > h4",
+      "targets": [
+        ["css=tr:nth-child(6) > td:nth-child(2) > h4", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[6]/td[2]/h4", "xpath:idRelative"],
+        ["xpath=//tr[6]/td[2]/h4", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "f857c58f-ab4f-4eb0-a0fb-316922d97cf8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(11) > td:nth-child(2) > h4",
+      "targets": [
+        ["css=tr:nth-child(11) > td:nth-child(2) > h4", "css:finder"],
+        ["xpath=//tbody[@id='container']/tr[11]/td[2]/h4", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[2]/h4", "xpath:position"]
+      ],
+      "value": "14"
+    }, {
+      "id": "a1d71ff9-c85c-497f-bc80-7c88765db668",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(6) .newStato",
+      "targets": [],
+      "value": " Spedito"
+    }, {
+      "id": "278aa49f-b355-4065-8fd3-0471b766d980",
+      "comment": "",
+      "command": "assertValue",
+      "target": "css=tr:nth-child(11) .newStato",
+      "targets": [],
+      "value": " Spedito "
     }]
   }, {
     "id": "92548542-1bd3-43d4-909a-dc1e1bbe2d2f",
@@ -12702,7 +12930,7 @@
       "targets": [],
       "value": "label=Shonen"
     }, {
-      "id": "3313f5ef-bc80-4ee3-a128-1333f36e75ef",
+      "id": "3bb8af48-a39b-490f-9330-a79c46a07503",
       "comment": "",
       "command": "click",
       "target": "css=button:nth-child(1)",
@@ -12715,7 +12943,7 @@
       ],
       "value": ""
     }, {
-      "id": "dcddad70-b0cd-4223-a27e-becdbe2d3985",
+      "id": "6e9d3be1-d547-4061-94ea-50c064221db6",
       "comment": "",
       "command": "click",
       "target": "css=.swal2-confirm",
@@ -12727,7 +12955,19 @@
       ],
       "value": ""
     }, {
-      "id": "ab4d080c-d616-45c6-94dd-2536507dffd7",
+      "id": "a950ef14-8f58-4b7b-87de-b4d7fc3ace03",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salva')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e610404-3852-423a-97e2-95272b24c7c3",
       "comment": "",
       "command": "assertText",
       "target": "id=swal2-title",
@@ -12739,18 +12979,6 @@
         ["xpath=//h2[contains(.,'Prodotto aggiunto correttamente!')]", "xpath:innerText"]
       ],
       "value": "Prodotto aggiunto correttamente!"
-    }, {
-      "id": "8960511c-f751-4756-b9b4-3732d0f50e87",
-      "comment": "",
-      "command": "click",
-      "target": "css=.swal2-confirm",
-      "targets": [
-        ["css=.swal2-confirm", "css:finder"],
-        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
-        ["xpath=//div[6]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
-      ],
-      "value": ""
     }]
   }, {
     "id": "8a30fa6f-13f3-4ba2-8cc5-b40d4a1027db",
@@ -15508,27 +15736,6 @@
       ],
       "value": "20"
     }, {
-      "id": "3d005067-970f-44db-80b4-b44951b294a8",
-      "comment": "",
-      "command": "click",
-      "target": "id=genere",
-      "targets": [
-        ["id=genere", "id"],
-        ["name=genere", "name"],
-        ["css=#genere", "css:finder"],
-        ["xpath=//select[@id='genere']", "xpath:attributes"],
-        ["xpath=//section[@id='new_product']/div/form/div[8]/select", "xpath:idRelative"],
-        ["xpath=//select", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "601e3936-c037-4e3e-b38f-a95840c438cd",
-      "comment": "",
-      "command": "select",
-      "target": "id=genere",
-      "targets": [],
-      "value": "label=Combattimento"
-    }, {
       "id": "50db5bb8-898e-47ea-a22d-11da829a0117",
       "comment": "",
       "command": "click",
@@ -15575,30 +15782,17 @@
       ],
       "value": ""
     }, {
-      "id": "7216c85a-bd86-4a9e-9732-b462a23733f7",
+      "id": "171bd4dc-0582-4138-bb3e-ce6c3d0b0188",
       "comment": "",
       "command": "assertText",
-      "target": "id=swal2-title",
+      "target": "id=swal2-html-container",
       "targets": [
-        ["id=swal2-title", "id"],
-        ["css=#swal2-title", "css:finder"],
-        ["xpath=//h2[@id='swal2-title']", "xpath:attributes"],
-        ["xpath=//div/h2", "xpath:position"],
-        ["xpath=//h2[contains(.,'Prodotto aggiunto correttamente!')]", "xpath:innerText"]
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
       ],
-      "value": "Prodotto aggiunto correttamente!"
-    }, {
-      "id": "a491914e-4c3c-4f39-93a1-152b9f0aff10",
-      "comment": "",
-      "command": "click",
-      "target": "css=.swal2-confirm",
-      "targets": [
-        ["css=.swal2-confirm", "css:finder"],
-        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
-        ["xpath=//div[6]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
-      ],
-      "value": ""
+      "value": "Inserire un valore nel campo"
     }]
   }, {
     "id": "a91156ad-a907-4a27-ba30-1ffdb910a886",
@@ -15807,27 +16001,6 @@
       "targets": [],
       "value": "label=Combattimento"
     }, {
-      "id": "266f2cc1-cffd-42f3-9452-1e71d8e4ce79",
-      "comment": "",
-      "command": "click",
-      "target": "id=categoria",
-      "targets": [
-        ["id=categoria", "id"],
-        ["name=categoria", "name"],
-        ["css=#categoria", "css:finder"],
-        ["xpath=//select[@id='categoria']", "xpath:attributes"],
-        ["xpath=//section[@id='new_product']/div/form/div[9]/select", "xpath:idRelative"],
-        ["xpath=//div[9]/select", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "7fe81c27-1eee-47ad-9446-b2296c5b4b23",
-      "comment": "",
-      "command": "select",
-      "target": "id=categoria",
-      "targets": [],
-      "value": "label=Shonen"
-    }, {
       "id": "1434f997-63c5-4830-bb75-98413d8d0a38",
       "comment": "",
       "command": "click",
@@ -15853,30 +16026,17 @@
       ],
       "value": ""
     }, {
-      "id": "a91193a9-f994-4ce0-a7f4-249d32bfa496",
+      "id": "f7de9de3-42ff-49ef-96ae-bb967b0d89f2",
       "comment": "",
       "command": "assertText",
-      "target": "id=swal2-title",
+      "target": "id=swal2-html-container",
       "targets": [
-        ["id=swal2-title", "id"],
-        ["css=#swal2-title", "css:finder"],
-        ["xpath=//h2[@id='swal2-title']", "xpath:attributes"],
-        ["xpath=//div/h2", "xpath:position"],
-        ["xpath=//h2[contains(.,'Prodotto aggiunto correttamente!')]", "xpath:innerText"]
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
       ],
-      "value": "Prodotto aggiunto correttamente!"
-    }, {
-      "id": "98e1d366-3a3c-4a12-89cc-1cfe17d03a12",
-      "comment": "",
-      "command": "click",
-      "target": "css=.swal2-confirm",
-      "targets": [
-        ["css=.swal2-confirm", "css:finder"],
-        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
-        ["xpath=//div[6]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
-      ],
-      "value": ""
+      "value": "Inserire un valore nel campo"
     }]
   }, {
     "id": "3c50e642-fd09-4413-8ff3-dd1631ffbe26",
@@ -18206,17 +18366,18 @@
       ],
       "value": ""
     }, {
-      "id": "8e090598-6cf4-428c-a2df-3aafe31d4fee",
+      "id": "2574143a-cad9-4f2a-b208-a436c756d908",
       "comment": "",
       "command": "assertText",
-      "target": "id=swal2-html-container",
+      "target": "id=swal2-title",
       "targets": [
-        ["id=swal2-html-container", "id"],
-        ["css=#swal2-html-container", "css:finder"],
-        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
-        ["xpath=//div/div[2]", "xpath:position"]
+        ["id=swal2-title", "id"],
+        ["css=#swal2-title", "css:finder"],
+        ["xpath=//h2[@id='swal2-title']", "xpath:attributes"],
+        ["xpath=//div/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Prodotto aggiornato correttamente!')]", "xpath:innerText"]
       ],
-      "value": "Inserire un prezzo valido"
+      "value": "Prodotto aggiornato correttamente!"
     }]
   }, {
     "id": "9d9c2619-1782-4dc2-938d-806d6eb7a993",
@@ -18502,7 +18663,7 @@
         ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
         ["xpath=//div/div[2]", "xpath:position"]
       ],
-      "value": "Inserire un prezzo valido"
+      "value": "Inserire una quantità valida"
     }]
   }, {
     "id": "171ce459-e7d6-40d5-a01a-ef193c17444b",
@@ -18778,17 +18939,18 @@
       ],
       "value": ""
     }, {
-      "id": "c470a0df-9c1a-4afe-8a3e-d94a3b0765be",
+      "id": "c297d2c9-4365-4e35-abfe-8da23fcb9e0f",
       "comment": "",
       "command": "assertText",
-      "target": "id=swal2-html-container",
+      "target": "id=swal2-title",
       "targets": [
-        ["id=swal2-html-container", "id"],
-        ["css=#swal2-html-container", "css:finder"],
-        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
-        ["xpath=//div/div[2]", "xpath:position"]
+        ["id=swal2-title", "id"],
+        ["css=#swal2-title", "css:finder"],
+        ["xpath=//h2[@id='swal2-title']", "xpath:attributes"],
+        ["xpath=//div/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Prodotto aggiornato correttamente!')]", "xpath:innerText"]
       ],
-      "value": "Inserire una quantità valida"
+      "value": "Prodotto aggiornato correttamente!"
     }]
   }, {
     "id": "49b0e58e-2d0a-4b12-85f0-e98048189139",
@@ -19343,7 +19505,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["3d265699-74ef-419d-ad5a-eb8eb21bc4c5", "130dc634-83b1-4b64-b137-402dbe23a6ce", "b3926ebe-ce07-471a-a599-43281b091376"]
+    "tests": ["130dc634-83b1-4b64-b137-402dbe23a6ce", "b3926ebe-ce07-471a-a599-43281b091376"]
   }, {
     "id": "0e96c7a2-347e-40f0-b66d-e6ab98c58229",
     "name": "1.1.6 Rimozione prodotto dal carrello",
@@ -19378,7 +19540,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["74337725-fad0-4a1b-bd1a-f24d01f18094", "070e957a-17cc-446c-9550-471d15d85408", "430e765c-4d91-4cac-828e-39065ff28c56", "67e9df05-b72c-4f21-b1ec-977b1296bcba", "fff256c4-fdda-41cd-9829-c3846b95e748", "35cfbd8d-81a9-4d22-877a-26fedad27bb3", "6539daae-8552-46b1-8a10-a6341ac0ef2e", "3aef43a9-4a05-44f9-b14d-63e13ccd2ca0", "74bd3bfe-e0f5-47fa-b721-7cb23a3c3503"]
+    "tests": ["74337725-fad0-4a1b-bd1a-f24d01f18094", "070e957a-17cc-446c-9550-471d15d85408", "430e765c-4d91-4cac-828e-39065ff28c56", "67e9df05-b72c-4f21-b1ec-977b1296bcba", "fff256c4-fdda-41cd-9829-c3846b95e748", "6539daae-8552-46b1-8a10-a6341ac0ef2e", "3aef43a9-4a05-44f9-b14d-63e13ccd2ca0", "74bd3bfe-e0f5-47fa-b721-7cb23a3c3503", "35cfbd8d-81a9-4d22-877a-26fedad27bb3"]
   }, {
     "id": "4e1b6038-1419-44de-95ca-4a48b3f1ebb3",
     "name": "1.2.1 Gestione stato di un ordine",
@@ -19408,6 +19570,6 @@
     "timeout": 300,
     "tests": ["3c50e642-fd09-4413-8ff3-dd1631ffbe26", "218b55b5-2906-4d51-9a7c-96cc0312e00f", "cbe6aa87-e331-4b7a-b3e6-8e65b317cc8b", "8f57ccd7-a300-453a-8f66-26ad8aacea22", "f8a90625-fc3d-4147-b3ab-31dac1293ef0", "dfe7d4ca-56e5-49c8-bada-443cb6dfd3c4", "adce4570-9704-401b-903e-9e0de6991318", "a8a52877-1984-49f5-9427-7102d0c47128", "19a88626-1839-48f4-96e2-19f256967f73", "9d9c2619-1782-4dc2-938d-806d6eb7a993", "171ce459-e7d6-40d5-a01a-ef193c17444b", "49b0e58e-2d0a-4b12-85f0-e98048189139", "cf4fbb83-397f-4650-83dc-c330d8ab6ad2"]
   }],
-  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp", "http://localhost/kawaii-Comix/controllaOrdini.jsp", "http://localhost/kawaii-Comix/aggiungiProdotto.jsp", "http://localhost/kawaii-Comix/modificaProdotto.jsp"],
+  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp", "http://localhost/kawaii-Comix/controllaOrdini.jsp", "http://localhost/kawaii-Comix/aggiungiProdotto.jsp", "http://localhost/kawaii-Comix/modificaProdotto.jsp", "http://localhost/kawaii-Comix/carrello.jsp"],
   "plugins": []
 }

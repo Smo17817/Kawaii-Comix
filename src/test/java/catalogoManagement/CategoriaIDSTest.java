@@ -32,7 +32,7 @@ public class CategoriaIDSTest {
 
 
     @Test
-    @DisplayName("3_1_1 doRetrieveAll- Categorie Trovate")
+    @DisplayName("TCU3_1_1 doRetrieveAll- Categorie Trovate")
     public void doRetrieveAll() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);

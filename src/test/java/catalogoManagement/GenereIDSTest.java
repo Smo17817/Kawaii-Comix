@@ -61,7 +61,7 @@ public class GenereIDSTest {
     }
 
     @Test
-    @DisplayName("2_2_1 checkGenereNameTest- Genere Presente")
+    @DisplayName("TCU2_2_1 checkGenereNameTest- Genere Presente")
     public void checkGenereNameTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
