@@ -22,6 +22,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
 import utenteManagement.PasswordUtils;
 
 public class GestoreCatalogoIDSTest {
@@ -111,10 +112,34 @@ public class GestoreCatalogoIDSTest {
         Mockito.verify(preparedStatement, times(1)).executeUpdate();
         
     }
+	
+	@Test
+    @DisplayName("TCU5_2_2 doUpdateGestoreTest-Gestore Catalogo non Aggiornato")
+    public void doUpdateGestoreTestNonAggiorna() throws Exception {
+        // Mock del preparedStatement
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
+
+     // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        GestoreCatalogo gestoreCatalogo = new GestoreCatalogo("gestoreCatalogo@gmail.com","gestore", "Catalogo", "PasswordGestoreCatalogo");
+        assertFalse(gestoreCatalogoIDS.doUpdateGestore(gestoreCatalogo));
+        // Verifica che il metodo setString sia stato chiamato con i valori corretti
+        Mockito.verify(preparedStatement, times(1)).setString(1, gestoreCatalogo.getNome());
+        Mockito.verify(preparedStatement, times(1)).setString(2, gestoreCatalogo.getCognome());
+        Mockito.verify(preparedStatement, times(1)).setString(3, PasswordUtils.hashPassword(gestoreCatalogo.getPassword()));
+        Mockito.verify(preparedStatement, times(1)).setString(4,  gestoreCatalogo.getEmail());
+
+
+        // Verifica che il metodo executeUpdate sia stato chiamato
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+        
+    }
 
 
     @Test
-    @DisplayName("TCU DeleteGEstoreTest-Gestore Catalogo Eliminato")
+    @DisplayName("TCU5_3_1 DeleteGestoreTest-Gestore Catalogo Eliminato")
     public void doDeleteGestoreTestElimina() throws Exception {
 
         // Mock del preparedStatement
@@ -131,7 +156,7 @@ public class GestoreCatalogoIDSTest {
     }
 
     @Test
-    @DisplayName("TCU doUpdateGestoreTest-Gestore Catalogo Non Eliminato")
+    @DisplayName("TCU5_3_2 doUpdateGestoreTest-Gestore Catalogo Non Eliminato")
     public void doDeleteGestoreTestNonElimina() throws Exception {
 
         // Mock del preparedStatement
@@ -163,12 +188,9 @@ public class GestoreCatalogoIDSTest {
         Mockito.when(resultSet.getString("nome")).thenReturn("Mario");
         Mockito.when(resultSet.getString("cognome")).thenReturn("Rossi");
 
-
-
         // Chiamo il metodo da testare
         GestoreCatalogo result = gestoreCatalogoIDS.doRetrieveByAuthentication("gestoreCatalogo@gmail.com", "hashedPassword");
 
-    
         boolean verifiedPassword;
 
         verifiedPassword = passwordUtils.verifyPassword("hashedPassword", result.getPassword());

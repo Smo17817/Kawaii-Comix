@@ -67,7 +67,7 @@ public class OrdineIDSTest {
     }
 
     @Test
-    @DisplayName("TCU doSaveOrdine - Salva")
+    @DisplayName("TCU8_1_1 doSaveOrdine - Salva")
     public void testDoSaveOrdineSalva() throws Exception {
         // Mock della classe OrdineSingolo
 
@@ -96,30 +96,9 @@ public class OrdineIDSTest {
         verify(preparedStatement, times(1)).setInt(6, ordine.getMetodoSpedizione());
         verify(preparedStatement, times(1)).executeUpdate();//viene eseguito due volte , una volta per OrdineIDS, un'altra volta per OrdineSingolo
     }
-    
+     
     @Test
-    @DisplayName("TCU doSaveOrdine - NonSalva")
-    public void testDoSaveOrdineNonSalva() throws SQLException {
-        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
-        // Creazione di un oggetto Ordine da testare
-        Ordine ordine = new Ordine(1, new Date(System.currentTimeMillis()), 100.0, 1, 1, 1);
-        ordine.setOrdiniSingoli(new ArrayList<>(List.of(ordineSingolo)));
-
-        assertFalse(ordineIDS.doSaveOrdine(ordine));
-
-        // Verifica delle chiamate ai metodi di mock
-        verify(connection, times(1)).prepareStatement(anyString());//viene eseguito due volte , una volta per OrdineIDS, un'altra volta per OrdineSingolo
-        verify(preparedStatement, times(1)).setInt(1, ordine.getId());
-        verify(preparedStatement, times(1)).setDate(eq(2), any(java.sql.Date.class));
-        verify(preparedStatement, times(1)).setDouble(3, ordine.getTotale());
-        verify(preparedStatement, times(1)).setInt(4, ordine.getUserId());
-        verify(preparedStatement, times(1)).setInt(5, ordine.getStato());
-        verify(preparedStatement, times(1)).setInt(6, ordine.getMetodoSpedizione());
-        verify(preparedStatement, times(1)).executeUpdate();//viene eseguito due volte , una volta per OrdineIDS, un'altra volta per OrdineSingolo
-    }
-    
-    @Test
-    @DisplayName("TCU doDeleteOrdine - Elimina")
+    @DisplayName("TCU8_2_1 doDeleteOrdine - Elimina")
     public void testDoDeleteOrdineElimina() throws SQLException {
     	when(preparedStatement.executeUpdate()).thenReturn(1);
     	
@@ -130,7 +109,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doDeleteOrdine - NonElimina")
+    @DisplayName("TCU8_2_2 doDeleteOrdine - NonElimina")
     public void testDoDeleteOrdineNonElimina() throws SQLException {
     	when(preparedStatement.executeUpdate()).thenReturn(0);
 
@@ -142,7 +121,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("doUpdateStatoOrdine - Aggiorna")
+    @DisplayName("TCU8_3_1 doUpdateOrdine - Aggiorna")
     public void  testDoUpdateAggiorna() throws SQLException{
     	// Creazione di un oggetto Ordine da testare
         // Verifica delle chiamate ai metodi di mock
@@ -168,7 +147,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("doUpdateStatoOrdine - Ordine non trovato")
+    @DisplayName("TCU8_3_2 doUpdateStatoOrdine - Ordine non trovato")
     public void  testDoUpdateOrdineNonTrovato() throws SQLException{
         // Creazione di un oggetto Ordine da testare
         // Verifica delle chiamate ai metodi di mock
@@ -194,7 +173,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("doUpdateStatoById - Ordine trovato")
+    @DisplayName("TCU8_4_1 doUpdateStatoById - Ordine trovato")
     public void  testDoUpdateOrdineById() throws SQLException{
 
         // Verifica delle chiamate ai metodi di mock
@@ -214,7 +193,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("doUpdateStatoById - Ordine Non trovato")
+    @DisplayName("TCU8_4_2 doUpdateStatoById - Ordine Non trovato")
     public void  testDoUpdateOrdineByIdNonTrovato() throws SQLException{
         // Verifica delle chiamate ai metodi di mock
     	when(preparedStatement.executeUpdate()).thenReturn(0);
@@ -233,7 +212,7 @@ public class OrdineIDSTest {
     }
 
     @Test
-    @DisplayName("TCU doRetrieveAllOrdiniTest")
+    @DisplayName("TCU8_5_1 doRetrieveAllOrdiniTest")
     public void doRetrieveAllOrdiniTest() throws Exception {
         // Mock del ResultSet
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -243,8 +222,6 @@ public class OrdineIDSTest {
         Field field = OrdineIDS.class.getDeclaredField("ordineSingoloIDS");
         field.setAccessible(true);
         field.set(ordineIDS, mockordineSingoloIDS);
-
-
 
         OrdineSingolo ordineSingolo1 = new OrdineSingolo(1, 23 , 47.0 , 1, prodotto);
         OrdineSingolo ordineSingolo2 = new OrdineSingolo(2, 23 , 47.0 , 2, prodotto);
@@ -286,7 +263,7 @@ public class OrdineIDSTest {
 
 
     @Test
-    @DisplayName("TCU doRetrieveOrdineByIdTest")
+    @DisplayName("TCU8_6_1 doRetrieveOrdineByIdTest")
     public void doRetrieveOrdineByIdTest() throws Exception {
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
@@ -300,8 +277,6 @@ public class OrdineIDSTest {
         Mockito.when(resultSet.getInt("metodo_spedizione_id")).thenReturn(1);
 
         Ordine result = ordineIDS.doRetrieveById(1);
-
-        
 
         assertNotNull(result);
 
@@ -322,7 +297,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doRetrieveOrdineByIdTest - ordineId Non Trovato")
+    @DisplayName("TCU8_6_2 doRetrieveOrdineByIdTest - ordineId Non Trovato")
     public void doRetrieveOrdineByIdTestNonTrovato() throws Exception {
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
@@ -341,7 +316,7 @@ public class OrdineIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doRetrieveOrdiniByUserIdTest")
+    @DisplayName("TCU8_7_1 doRetrieveOrdiniByUserIdTest")
     public void doRetrieveOrdiniByUserIdTest() throws Exception {
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);

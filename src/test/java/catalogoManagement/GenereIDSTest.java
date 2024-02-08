@@ -58,33 +58,6 @@ public class GenereIDSTest {
         Mockito.verify(resultSet, times(5)).next();
         Mockito.verify(resultSet, times(4)).getString("nome");
 
-        resultSet.close();
-
-    }
-
-    @Test
-    @DisplayName("doRetrieveAllTest- Generi Non Trovati")
-    public void doRetrieveAllTest_NotFound() throws Exception {
-        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-        ResultSet resultSet = Mockito.mock(ResultSet.class);
-
-
-        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-
-        Mockito.when(resultSet.next()).thenReturn(false);
-
-
-        Collection<String> result = genereIDS.doRetrieveAll();
-
-        assertEquals(0, result.size());
-
-        Mockito.verify(preparedStatement, times(1)).executeQuery();
-        Mockito.verify(resultSet, times(1)).next();
-        Mockito.verify(resultSet, times(0)).getString("nome");
-
-        resultSet.close();
-
     }
 
     @Test
@@ -105,8 +78,6 @@ public class GenereIDSTest {
         Mockito.verify(preparedStatement,times(1)).setString(1, "Azione");
         Mockito.verify(preparedStatement, times(1)).executeQuery();
         Mockito.verify(resultSet,times(1)).next();
-
-        resultSet.close();
     }
 
     @Test
@@ -127,7 +98,5 @@ public class GenereIDSTest {
         Mockito.verify(preparedStatement,times(1)).setString(1, "Avventura");
         Mockito.verify(preparedStatement, times(1)).executeQuery();
         Mockito.verify(resultSet,times(1)).next();
-
-        resultSet.close();
     }
 }

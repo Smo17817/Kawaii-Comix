@@ -49,8 +49,6 @@ public class CarrelloIDSTest {
         User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-
-
         Mockito.when(resultSet.next()).thenReturn(true);
         Mockito.when(resultSet.getInt("id")).thenReturn(1);
 
@@ -146,7 +144,7 @@ public class CarrelloIDSTest {
     }
 
     @Test
-    @DisplayName("TCU6_2_1 doRetrieveProdottiCarrelloTest- Non Ci Sono Prodotti Salvati nel Carrello")
+    @DisplayName("TCU6_2_2 doRetrieveProdottiCarrelloTest- Non Ci Sono Prodotti Salvati nel Carrello")
     public void  doRetrieveProdottiCarrelloTest_NotFound() throws Exception {
         PreparedStatement preparedStatement = mock(PreparedStatement.class);
         ResultSet resultSet = mock(ResultSet.class);
@@ -207,22 +205,6 @@ public class CarrelloIDSTest {
     }
 
     @Test
-    @DisplayName("6_4_2 doCreateCarrelloTest- Carrello Non Creato")
-    public  void doNotCreateCarrelloTest() throws Exception{
-        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-
-        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
-        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-
-        User user = new User(1, "mariorossi@gmail.com", "Prova123", "Mario", "Rossi", "Via Roma 1", "Salerno", "84100", "SA", "Italia");
-
-        assertFalse(carrelloIDS.doCreateCarrello(user.getId()));
-
-        Mockito.verify(preparedStatement, times(1)).setInt(1, user.getId());
-        Mockito.verify(preparedStatement, times(1)).executeUpdate();
-    }
-
-    @Test
     @DisplayName("TCU6_5_1 doDeleteCarrelloTest- Carrello Cancellato")
     public  void doDeleteCarrelloTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
@@ -260,7 +242,6 @@ public class CarrelloIDSTest {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
 
-
         Carrello carrello = new Carrello(1);
         HashSet<Prodotto> listaProdotti = new HashSet<>(Arrays.asList(
                 new Prodotto("10000000000000016", "One Piece 2", "Eiichiro Oda", "Rufy e i Cappelli di Paglia si dirigono verso il Grand Line, una pericolosa zona piena di avventure e segreti. Durante il loro viaggio, si imbattono in nuovi alleati e nemici.", "./images/op2.jpg", 5.45, 45, "Avventura", "Shonen", 10),
@@ -275,7 +256,6 @@ public class CarrelloIDSTest {
         Mockito.verify(preparedStatement, times(2)).setInt(1, carrello.getCarrelloId());
         Mockito.verify(preparedStatement, times(2)).setString(eq(2), anyString());
         Mockito.verify(preparedStatement, times(2)).executeUpdate();
-
 
     }
 

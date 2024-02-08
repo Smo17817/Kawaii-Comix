@@ -2,7 +2,7 @@
   "id": "2284a0f4-19f4-4bdf-bd5d-7207b0477c8c",
   "version": "2.0",
   "name": "KawaiiComix - Test di integrazione",
-  "url": "http://localhost/kawaii-Comix/modificaProdotto.jsp",
+  "url": "http://localhost/kawaii-Comix/catalogo.jsp",
   "tests": [{
     "id": "8db47c37-eed1-4b47-8465-854b59225512",
     "name": "TC1_1_1 - Registrazione avvenuta con successo",
@@ -4065,8 +4065,74 @@
     }]
   }, {
     "id": "13aa028f-eb8f-4627-96dd-d75291246b1c",
-    "name": "TC1_3_3 TODO Barra di ricerca con stringa non corrispondente a nessun prodotto",
-    "commands": []
+    "name": "TC1_3_3 Barra di ricerca con stringa non corrispondente a nessun prodotto",
+    "commands": [{
+      "id": "0571c4f5-3464-4971-bc0a-6a51230c89d3",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/catalogo.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "90a1478e-17b0-4b57-b3bf-1572a5f93292",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "840x894",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ef123910-ea9b-4818-935d-df431cff07ee",
+      "comment": "",
+      "command": "click",
+      "target": "id=search-button",
+      "targets": [
+        ["id=search-button", "id"],
+        ["css=#search-button", "css:finder"],
+        ["xpath=//div[@id='search-button']", "xpath:attributes"],
+        ["xpath=//form[@id='search-bar']/div", "xpath:idRelative"],
+        ["xpath=//form/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "72f337df-46dc-4449-93e3-8508d61aace5",
+      "comment": "",
+      "command": "click",
+      "target": "id=ricerca",
+      "targets": [
+        ["id=ricerca", "id"],
+        ["name=q", "name"],
+        ["css=#ricerca", "css:finder"],
+        ["xpath=//input[@id='ricerca']", "xpath:attributes"],
+        ["xpath=//form[@id='search-bar']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b9b66fd-5637-40e1-ba19-a5ab10df3530",
+      "comment": "",
+      "command": "type",
+      "target": "id=ricerca",
+      "targets": [
+        ["id=ricerca", "id"],
+        ["name=q", "name"],
+        ["css=#ricerca", "css:finder"],
+        ["xpath=//input[@id='ricerca']", "xpath:attributes"],
+        ["xpath=//form[@id='search-bar']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "?"
+    }, {
+      "id": "fe676d46-c5ab-4e09-be3f-32802622f97b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h3",
+      "targets": [
+        ["css=h3", "css:finder"],
+        ["xpath=//div[@id='no-item']/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"]
+      ],
+      "value": "Ci dispiace ma il prodotto che stai cercando\\nnon risulta nel nostro catalogo..."
+    }]
   }, {
     "id": "130dc634-83b1-4b64-b137-402dbe23a6ce",
     "name": "TC1_5_1 Aggiunta di un prodotto al carrello (prodotto esaurito)",

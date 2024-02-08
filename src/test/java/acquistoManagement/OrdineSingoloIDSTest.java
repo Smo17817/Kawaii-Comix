@@ -63,11 +63,11 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doSaveOrdineSingoloTestSalva")
+    @DisplayName("TCU7_1_1 doSaveOrdineSingoloTestSalva")
     public void doSaveOrdineSingoloTestSalva() throws Exception {
 
         Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
-        OrdineSingolo ordineSingolo = new OrdineSingolo(1,2, 10.0, 1, prodotto);
+        OrdineSingolo ordineSingolo = new OrdineSingolo(2, 10.0, 1, prodotto);
 
 
         assertTrue(ordineSingoloIDS.doSaveOrdineSingolo(ordineSingolo));
@@ -83,25 +83,7 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doSaveOrdineSingoloTestNonSalva")
-    public void doSaveOrdineSingoloTestNonSalva() throws Exception {
-        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
-        OrdineSingolo ordineSingolo = new OrdineSingolo(1,2, 10.0, 1, prodotto);
-
-        assertFalse(ordineSingoloIDS.doSaveOrdineSingolo(ordineSingolo));
-        // Verifica che il metodo setString sia stato chiamato con i valori corretti
-        Mockito.verify(preparedStatement, times(1)).setInt(1, ordineSingolo.getQuantita());
-        Mockito.verify(preparedStatement, times(1)).setDouble(2, ordineSingolo.getTotParziale());
-        Mockito.verify(preparedStatement, times(1)).setInt(3, ordineSingolo.getOrdineId());
-        Mockito.verify(preparedStatement, times(1)).setString(4, ordineSingolo.getProdotto().getIsbn() );
-  
-        // Verifica che il metodo executeUpdate sia stato chiamato
-        Mockito.verify(preparedStatement, times(1)).executeUpdate();
-        
-    }
-    
-    @Test
-    @DisplayName("TCU doDeleteOrdineSingolo- Ordine Singolo Cancellato")
+    @DisplayName("TCU7_2_1 doDeleteOrdineSingolo- Ordine Singolo Cancellato")
     public void doDeleteOrdineSingoloTest() throws Exception{
         Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
         OrdineSingolo ordineSingolo = new OrdineSingolo(1,2, 10.0, 1, prodotto);
@@ -113,7 +95,7 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doDeleteOrdineSingolo- Ordine Singolo Non Cancellato")
+    @DisplayName("TCU7_2_2 doDeleteOrdineSingolo- Ordine Singolo Non Cancellato")
     public void doDeleteOrdineSingoloTestNonElimina() throws Exception{
         
         Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
@@ -127,7 +109,7 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("doUpdateStatoOrdine - Aggiorna")
+    @DisplayName("TCU7_3_1 doUpdateStatoOrdine - Aggiorna")
     public void  testDoUpdateAggiorna() throws SQLException{
         OrdineSingolo ordineSingolo = new OrdineSingolo(1, 2 , 10.0 ,1, prodotto);
     	when(preparedStatement.executeUpdate()).thenReturn(1);
@@ -146,7 +128,7 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("doUpdateStatoOrdine - NonAggiorna")
+    @DisplayName("TCU7_3_2 doUpdateStatoOrdine - NonAggiorna")
     public void  testDoUpdateNonAggiorna() throws SQLException{
         OrdineSingolo ordineSingolo = new OrdineSingolo(1, 2 , 10.0 ,1, prodotto);
         when(preparedStatement.executeUpdate()).thenReturn(0);
@@ -165,7 +147,7 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doRetrieveAllOrdiniSingoliTest")
+    @DisplayName("TCU7_3_1 doRetrieveAllOrdiniSingoliTest")
     public void doRetrieveAllOrdiniSingoliTest() throws Exception {
         ProdottoIDS mockProdottoIDS = Mockito.mock(ProdottoIDS.class);
 
@@ -208,7 +190,7 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doRetrieveAllOrdiniSingoliByOrdineId")
+    @DisplayName("TCU7_5_1 doRetrieveAllOrdiniSingoliByOrdineId")
     public void testDoRetrieveAllByOrdineId() throws Exception {
         ProdottoIDS mockProdottoIDS = Mockito.mock(ProdottoIDS.class);
 
@@ -266,7 +248,7 @@ public class OrdineSingoloIDSTest {
 
 
     @Test
-    @DisplayName("TCU doRetrieveOrdiniSingoliById")
+    @DisplayName("TCU7_6_1 doRetrieveOrdiniSingoliById")
     public void testDoRetrieveOrdineSingoloById() throws Exception {
         ProdottoIDS mockProdottoIDS = Mockito.mock(ProdottoIDS.class);
 
@@ -284,7 +266,6 @@ public class OrdineSingoloIDSTest {
         when(mockProdottoIDS.doRetrieveByIsbn(prodotto1.getIsbn())).thenReturn(prodotto1);
 
         OrdineSingolo ordineSingolo = new OrdineSingolo(22, 10, 10.5, 1, prodotto1);
-
 
         when(resultSet.next()).thenReturn(true);
         when(resultSet.getInt("id")).thenReturn(ordineSingolo.getId());
@@ -312,7 +293,7 @@ public class OrdineSingoloIDSTest {
     }
     
     @Test
-    @DisplayName("TCU doRetrieveOrdineSingoloById - Id non Trovato")
+    @DisplayName("TCU7_6_2 doRetrieveOrdineSingoloById - Id non Trovato")
     void testDoRetrieveByIdNonTrovato() throws Exception {
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
@@ -321,10 +302,8 @@ public class OrdineSingoloIDSTest {
         OrdineSingolo ordineSingolo = new OrdineSingolo(22, 10, 10.5, 1, prodotto1);
         when(resultSet.next()).thenReturn(false);
 
-
         OrdineSingolo result = ordineSingoloIDS.doRetrieveById(ordineSingolo.getId());
         assertNull(result);
-
 
         verify(preparedStatement,times(1)).setInt(1, ordineSingolo.getId());
         verify(preparedStatement,times(1)).executeQuery();

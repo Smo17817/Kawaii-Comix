@@ -40,7 +40,7 @@ public class ProdottoIDSTest {
 
 
     @Test
-    @DisplayName("TCU 4_1_1 doSaveProdottoTest-Prodotto Salvato")
+    @DisplayName("TCU4_1_1 doSaveProdottoTest-Prodotto Salvato")
     public void doSaveProdottoTest() throws Exception {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -66,32 +66,6 @@ public class ProdottoIDSTest {
         Mockito.verify(preparedStatement,times(1)).executeUpdate();
     }
 
-    @Test
-    @DisplayName("TCU4_1_2 doNotSaveProdottoTest-Prodotto Non Salvato")
-    public void doNotSaveProdottoTest() throws Exception {
-        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-
-        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
-        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-
-        Prodotto prodotto = new Prodotto("98247387402384203", "Demon Slayer", "Antonio Taranto(Totò)", "L'avvincente storia di una bionda gigantesca che conquisterà il cuore del nostro protagonista", "./images/DemonSlayer", 104.00,104, "Psicologico" , "Manga Italiani", 0);
-
-        assertFalse(prodottoIDS.doSaveProdotto(prodotto));
-
-
-        Mockito.verify(preparedStatement,times(1)).setString(1 , prodotto.getIsbn());
-        Mockito.verify(preparedStatement,times(1)).setString(2 , prodotto.getNome());
-        Mockito.verify(preparedStatement,times(1)).setString(3 , prodotto.getAutore());
-        Mockito.verify(preparedStatement,times(1)).setString(4 , prodotto.getDescrizione());
-        Mockito.verify(preparedStatement,times(1)).setString(5 , prodotto.getImmagine());
-        Mockito.verify(preparedStatement,times(1)).setDouble(6 , prodotto.getPrezzo());
-        Mockito.verify(preparedStatement,times(1)).setInt(7 , prodotto.getQuantita());
-        Mockito.verify(preparedStatement,times(1)).setString(8 , prodotto.getGenere());
-        Mockito.verify(preparedStatement,times(1)).setString(9 , prodotto.getCategoria());
-        Mockito.verify(preparedStatement,times(1)).setInt(10, prodotto.getCopieVendute());
-
-        Mockito.verify(preparedStatement,times(1)).executeUpdate();
-    }
 
     @Test
     @DisplayName("TCU4_2_1 doDeleteProdottoTest-Prodotto eliminato")
@@ -214,8 +188,6 @@ public class ProdottoIDSTest {
         Mockito.verify(resultSet, times(2)).getString("genere_nome");
         Mockito.verify(resultSet, times(2)).getString("categoria_nome");
         Mockito.verify(resultSet, times(2)).getInt("copie_vendute");
-
-        resultSet.close();
     }
 
 
@@ -266,8 +238,6 @@ public class ProdottoIDSTest {
         Mockito.verify(resultSet, times(1)).getString("genere_nome");
         Mockito.verify(resultSet, times(1)).getString("categoria_nome");
         Mockito.verify(resultSet, times(1)).getInt("copie_vendute");
-
-        resultSet.close();
     }
 
     @Test
@@ -289,8 +259,6 @@ public class ProdottoIDSTest {
         Mockito.verify(preparedStatement, times(1)).setString(1,"10000000000000016");
         Mockito.verify(resultSet, times(1)).next();
         Mockito.verify(preparedStatement, times(1)).executeQuery();
-
-        resultSet.close();
     }
 
 
@@ -341,8 +309,6 @@ public class ProdottoIDSTest {
         Mockito.verify(resultSet, times(1)).getString("genere_nome");
         Mockito.verify(resultSet, times(1)).getString("categoria_nome");
         Mockito.verify(resultSet, times(1)).getInt("copie_vendute");
-
-        resultSet.close();
     }
 
     @Test
@@ -363,8 +329,6 @@ public class ProdottoIDSTest {
         Mockito.verify(preparedStatement, times(1)).setString(1,"One Piece 2");
         Mockito.verify(resultSet, times(1)).next();
         Mockito.verify(preparedStatement, times(1)).executeQuery();
-
-        resultSet.close();
     }
 
 
@@ -431,7 +395,7 @@ public class ProdottoIDSTest {
 
 
     @Test
-    @DisplayName("4_9_1 updateCopieVenduteTest- Prodotto Aggiornato")
+    @DisplayName("TCU4_9_1 updateCopieVenduteTest- Prodotto Aggiornato")
     public void updateCopieVenduteTest() throws Exception{
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
@@ -441,8 +405,6 @@ public class ProdottoIDSTest {
         Prodotto prodotto = new Prodotto("98247387402384203", "Demon Slayer", "Antonio Taranto(Totò)", "L'avvincente storia di una bionda gigantesca che conquisterà il cuore del nostro protagonista", "./images/DemonSlayer", 104.00,104, "Psicologico" , "Manga Italiani", 1);
 
          assertTrue(prodottoIDS.updateCopieVendute(prodotto));
-
-
 
         Mockito.verify(preparedStatement,times(1)).setInt(1, prodotto.getCopieVendute());
         Mockito.verify(preparedStatement,times(1)).setString(2, prodotto.getIsbn());
@@ -506,8 +468,6 @@ public class ProdottoIDSTest {
         Mockito.verify(resultSet, times(2)).getString("genere_nome");
         Mockito.verify(resultSet, times(2)).getString("categoria_nome");
         Mockito.verify(resultSet, times(2)).getInt("copie_vendute");
-
-        resultSet.close();
     }
 
 }

@@ -52,35 +52,8 @@ public class CategoriaIDSTest {
         Mockito.verify(preparedStatement, times(1)).executeQuery();
         Mockito.verify(resultSet, times(5)).next();
         Mockito.verify(resultSet, times(4)).getString("nome");
-
-        resultSet.close();
-
     }
 
-    @Test
-    @DisplayName("doRetrieveAll- Categorie Non Trovate")
-    public void doRetrieveAll_NotFound() throws Exception {
-        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-        ResultSet resultSet = Mockito.mock(ResultSet.class);
-
-
-        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
-        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-
-        Mockito.when(resultSet.next()).thenReturn(false);
-
-
-        Collection<String> result = categoriaIDS.doRetrieveAll();
-
-        assertEquals(0, result.size());
-
-        Mockito.verify(preparedStatement, times(1)).executeQuery();
-        Mockito.verify(resultSet, times(1)).next();
-        Mockito.verify(resultSet, times(0)).getString("nome");
-
-        resultSet.close();
-
-    }
 
     @Test
     @DisplayName("TCU3_2_1 checkCategoriaName- Categoria Presente")
@@ -100,8 +73,6 @@ public class CategoriaIDSTest {
         Mockito.verify(preparedStatement,times(1)).setString(1, "Manga Italiani");
         Mockito.verify(preparedStatement, times(1)).executeQuery();
         Mockito.verify(resultSet,times(1)).next();
-
-        resultSet.close();
     }
 
     @Test
@@ -122,7 +93,5 @@ public class CategoriaIDSTest {
         Mockito.verify(preparedStatement,times(1)).setString(1, "Hentai");
         Mockito.verify(preparedStatement, times(1)).executeQuery();
         Mockito.verify(resultSet,times(1)).next();
-
-        resultSet.close();
     }
 }

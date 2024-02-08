@@ -54,7 +54,7 @@ public class GestoreOrdiniIDSTest {
     }
 	
 	@Test
-    @DisplayName("TCU doSaveGestoreTestSalva")
+    @DisplayName("TCU9_1_1 doSaveGestoreTestSalva")
     public void doSaveGestoreTestSalva() throws Exception {
         // Mock del preparedStatement
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
@@ -77,9 +77,33 @@ public class GestoreOrdiniIDSTest {
         
     }
 	
+	@Test
+    @DisplayName("TCU9_1_2 doSaveGestoreTestNonSalva")
+    public void doSaveGestoreTestNonSalva() throws Exception {
+        // Mock del preparedStatement
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
+
+     // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        GestoreOrdini gestoreOrdini = new GestoreOrdini("email","nome", "cognome", "Password");
+        assertFalse(gestoreOrdiniIDS.doSaveGestore(gestoreOrdini));
+        // Verifica che il metodo setString sia stato chiamato con i valori corretti
+        Mockito.verify(preparedStatement, times(1)).setString(1, gestoreOrdini.getEmail());
+        Mockito.verify(preparedStatement, times(1)).setString(2, gestoreOrdini.getNome());
+        Mockito.verify(preparedStatement, times(1)).setString(3, gestoreOrdini.getCognome());
+        Mockito.verify(preparedStatement, times(1)).setString(4, PasswordUtils.hashPassword(gestoreOrdini.getPassword()));
+
+        // Verifica che il metodo executeUpdate sia stato chiamato
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+        
+    }
+	
 	
 	@Test
-    @DisplayName("TCU doUpdateGestoreTest-Gestore Ordini Aggiornato")
+    @DisplayName("TCU9_2_1 doUpdateGestoreTest-Gestore Ordini Aggiornato")
     public void doUpdateGestoreTestAggiorna() throws Exception {
         // Mock del preparedStatement
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
@@ -102,9 +126,32 @@ public class GestoreOrdiniIDSTest {
         
     }
 	
+	@Test
+    @DisplayName("TCU9_2_2 doUpdateGestoreTest-Gestore Ordini non Aggiornato")
+    public void doUpdateGestoreTestNonAggiorna() throws Exception {
+        // Mock del preparedStatement
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(0);
+
+     // Configura il mock per ritornare il preparedStatement quando il metodo prepareStatement viene chiamato sulla connessione
+        Mockito.when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
+
+        GestoreOrdini gestoreOrdini = new GestoreOrdini("gestoreOrdini@gmail.com","gestore", "ordini", "PasswordGestoreOrdini");
+        assertFalse(gestoreOrdiniIDS.doUpdateGestore(gestoreOrdini));
+        // Verifica che il metodo setString sia stato chiamato con i valori corretti
+        Mockito.verify(preparedStatement, times(1)).setString(1, gestoreOrdini.getNome());
+        Mockito.verify(preparedStatement, times(1)).setString(2, gestoreOrdini.getCognome());
+        Mockito.verify(preparedStatement, times(1)).setString(3, PasswordUtils.hashPassword(gestoreOrdini.getPassword()));
+        Mockito.verify(preparedStatement, times(1)).setString(4,  gestoreOrdini.getEmail());
+
+
+        // Verifica che il metodo executeUpdate sia stato chiamato
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();
+        
+    }
 	
 	@Test
-    @DisplayName("TCU DeleteGEstoreTest-Gestore Ordini Eliminato")
+    @DisplayName("TCU9_3_1 DeleteGestoreTest-Gestore Ordini Eliminato")
     public void doDeleteGestoreTestElimina() throws Exception {
 	
         // Mock del preparedStatement
@@ -121,7 +168,7 @@ public class GestoreOrdiniIDSTest {
     }
 
     @Test
-    @DisplayName("TCU doUpdateGestoreTest-Gestore Ordini Non Eliminato")
+    @DisplayName("TCU9_3_2 doUpdateGestoreTest-Gestore Ordini Non Eliminato")
     public void doDeleteGestoreTestNonElimina() throws Exception {
 
         // Mock del preparedStatement
@@ -138,7 +185,7 @@ public class GestoreOrdiniIDSTest {
     }
 	
 	@Test
-    @DisplayName("doRetrieveGestoreOrdiniTest-Gestore Trovato")
+    @DisplayName("TCU9_4_1 doRetrieveGestoreOrdiniTest-Gestore Trovato")
     public void doRetrieveGestoreOrdiniTest() throws SQLException {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);
@@ -153,12 +200,9 @@ public class GestoreOrdiniIDSTest {
         Mockito.when(resultSet.getString("nome")).thenReturn("Mario");
         Mockito.when(resultSet.getString("cognome")).thenReturn("Rossi");
 
-
-
         // Chiamo il metodo da testare
         GestoreOrdini result = gestoreOrdiniIDS.doRetrieveByAuthentication("gestoreOrdini@gmail.com", "hashedPassword");
 
-    
         boolean verifiedPassword;
 
         verifiedPassword = passwordUtils.verifyPassword("hashedPassword", result.getPassword());
@@ -180,7 +224,7 @@ public class GestoreOrdiniIDSTest {
     }
 	
 	@Test
-    @DisplayName("doRetrieveGestoreOrdiniTest-Email o password errate")
+    @DisplayName("TCU9_4_2 doRetrieveGestoreOrdiniTest-Email o password errate")
     public void doRetrieveGestoreOrdiniDatiErrati() throws SQLException {
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
         ResultSet resultSet = Mockito.mock(ResultSet.class);

@@ -166,6 +166,7 @@ public class CarrelloIDS implements CarrelloDAO {
 
 			this.doDeleteProdottiCarrello(carrello);
 		} catch (SQLException e) {
+			System.out.println("SQLException");
 			logger.log(Level.ALL, ERROR, e);
 		}
 
