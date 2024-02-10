@@ -18,7 +18,6 @@
 --
 -- Table structure for table `ordine_singolo`
 --
-
 DROP TABLE IF EXISTS `ordine_singolo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -35,6 +34,7 @@ CREATE TABLE `ordine_singolo` (
   CONSTRAINT `fk_prodotti_isbn` FOREIGN KEY (`prodotti_isbn`) REFERENCES `prodotti` (`isbn`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
+ALTER TABLE ordine_singolo DROP FOREIGN KEY fk_prodotti_isbn;
 
 --
 -- Dumping data for table `ordine_singolo`
