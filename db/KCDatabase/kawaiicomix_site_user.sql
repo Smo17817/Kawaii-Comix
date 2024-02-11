@@ -34,7 +34,7 @@ CREATE TABLE `site_user` (
   `provincia` char(2) NOT NULL,
   `nazione` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `site_user` (
 
 LOCK TABLES `site_user` WRITE;
 /*!40000 ALTER TABLE `site_user` DISABLE KEYS */;
-INSERT INTO `site_user` VALUES (1,'tiammazzopikachu@gmail.com','123','Simone','D\'Assisi','','','','',''),(2,'yakumo_82@yahoo.it','123','Profilo2','NonAdmin','','','','',''),(3,'frenciguasta.fg@gmail.com','FRA---00','FRANSY','Guastafierro','','','','',''),(4,'cicciomdello@gmail.com','mariaorvelli07','Angela','Savarese','','','','',''),(5,'lostprophet@gmail.com','123','Armizio','Allerta','','','','','');
+INSERT INTO `site_user` VALUES (1,'tiammazzopikachu@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','Simone','D\'Assisi','','','','',''),(2,'yakumo_82@yahoo.it','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','Profilo2','NonAdmin','','','','',''),(3,'frenciguasta.fg@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae300','FRANSY','Guastafierro','','','','',''),(4,'cicciomdello@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','Angela','Savarese','','','','',''),(5,'lostprophet@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','Armizio','Allerta','','','','',''),(6,'qwerty@gmail.com','9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd','qwerty','uiop','Via roma N.1','Qwew','12343','SA','Italia');
 /*!40000 ALTER TABLE `site_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-06 12:08:15
+-- Dump completed on 2024-02-11  1:58:27

@@ -348,7 +348,7 @@ function dynamicShowOrders(url) {
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHtml = "";
-
+	console.log(response);
 		if (response.length === 0)
 			contenutoHtml += "<div id='no-item'><img src='./images/noOrdini-anya1.jpg' alt='Nessun ordine disponibile'></div><h3>Non ci sono ancora ordini...</h3>";
 		else {

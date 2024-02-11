@@ -18,6 +18,7 @@
 --
 -- Table structure for table `ordine_singolo`
 --
+
 DROP TABLE IF EXISTS `ordine_singolo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -26,15 +27,13 @@ CREATE TABLE `ordine_singolo` (
   `quantità` int NOT NULL,
   `totale_parziale` double NOT NULL,
   `ordini_id` int NOT NULL,
-  `prodotti_isbn` char(17) NOT NULL,
+  `immagine_prodotto` varchar(100) NOT NULL,
+  `nome_prodotto` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_ordine_singolo_ordini1_idx` (`ordini_id`),
-  KEY `fk_prodotti_isbn_idx` (`prodotti_isbn`),
-  CONSTRAINT `fk_ordine_singolo_ordini1` FOREIGN KEY (`ordini_id`) REFERENCES `ordini` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_prodotti_isbn` FOREIGN KEY (`prodotti_isbn`) REFERENCES `prodotti` (`isbn`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `fk_ordine_singolo_ordini1` FOREIGN KEY (`ordini_id`) REFERENCES `ordini` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
-ALTER TABLE ordine_singolo DROP FOREIGN KEY fk_prodotti_isbn;
 
 --
 -- Dumping data for table `ordine_singolo`
@@ -42,7 +41,7 @@ ALTER TABLE ordine_singolo DROP FOREIGN KEY fk_prodotti_isbn;
 
 LOCK TABLES `ordine_singolo` WRITE;
 /*!40000 ALTER TABLE `ordine_singolo` DISABLE KEYS */;
-INSERT INTO `ordine_singolo` VALUES (14,1,5.45,88569,'10000000000000001'),(15,1,5.45,67996,'10000000000000005'),(16,1,7.49,67996,'10000000000000099'),(17,1,7.49,67996,'10000000000000100'),(18,1,7.49,22067,'10000000000000099'),(19,1,7.49,22067,'10000000000000100'),(20,1,7.49,22067,'10000000000000102'),(21,1,7.49,88607,'10000000000000099'),(22,1,6.45,46771,'10000000000000082'),(23,1,6.45,46771,'10000000000000083'),(24,1,19.99,46771,'10000000000000056'),(25,1,4.99,18182,'10000000000000051'),(26,1,5.45,18182,'10000000000000087'),(27,1,5.45,79733,'10000000000000105'),(28,1,5.45,79733,'10000000000000069'),(29,3,22.47,37619,'10000000000000099'),(30,1,7.49,37619,'10000000000000100'),(31,3,16.35,37619,'10000000000000068'),(32,1,106.59,33335,'10000000000000025'),(33,1,5.45,18285,'10000000000000045'),(34,1,5.45,18285,'10000000000000046'),(35,1,19.99,51943,'10000000000000106'),(36,10,74.9,40358,'10000000000000100'),(37,5,39.95,40358,'10000000000000034'),(38,7,55.93,40358,'10000000000000090'),(39,25,136.25,93813,'10000000000000005');
+INSERT INTO `ordine_singolo` VALUES (41,1,17.5,82097,'./images/berserk1.jpg','Berserk 1'),(42,1,6.45,24323,'./images/aynis2.jpg','All You Need Is Kill 2'),(43,1,106.59,24323,'./images/berserkDeluxe.jpg','Berserk Edizione Deluxe 1'),(44,1,9.99,24323,'./images/berserk4.jpg','Berserk 4'),(45,1,7.49,14426,'./images/akira4.jpg','Akira 4'),(46,1,7.49,14426,'./images/akira3.jpg','Akira 3'),(47,1,5.45,64670,'./images/bleach4.jpg','Bleach 4'),(48,1,19.99,64670,'./images/deathnotenovel.jpg','Death Note - Another Note'),(49,1,14.99,64670,'./images/deathnote1.jpg','Death Note 1'),(50,1,5.45,64670,'./images/bleach3.jpg','Bleach 3'),(51,1,5.45,64670,'./images/bm1.jpg','Bloody Monday 1');
 /*!40000 ALTER TABLE `ordine_singolo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-06 12:08:17
+-- Dump completed on 2024-02-11  1:58:28
