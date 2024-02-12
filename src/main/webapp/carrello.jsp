@@ -131,4 +131,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 </main>
 <jsp:include page="./footer.jsp" flush="true"></jsp:include>
 </body>
+<script>
+document.addEventListener("DOMContentLoaded", document.getElementById("quantita").addEventListener("keydown", e => e.preventDefault());
+</script>
 </html>

@@ -77,8 +77,7 @@ public class UserIDSTest {
         Mockito.verify(preparedStatement, times(1)).setString(9, user.getNazione());
 
         // Verifica che il metodo executeUpdate sia stato chiamato
-        Mockito.verify(preparedStatement, times(1)).executeUpdate();
-        
+        Mockito.verify(preparedStatement, times(1)).executeUpdate();  
     }
     
     @Test

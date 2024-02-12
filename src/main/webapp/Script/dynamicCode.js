@@ -103,7 +103,7 @@ function dynamicCart(url, quantita) {
 				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.immagine + "\"></td>";
 				contenutoHtml += "<td>" + p.nome + "</td>";
 				contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
-				contenutoHtml += "<td> <h5> <input type=number min=1 max=" + p.quantita + " class=\"quantita\" onchange=totaleParziale() value=\"1\"> </h5> </td>";
+				contenutoHtml += "<td> <h5> <input type=number min=1 max=" + p.quantita + " id =\"quantita\"class=\"quantita\" onchange=totaleParziale() value=\"1\"> </h5> </td>";
 				contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
 				contenutoHtml += "</tr>";
 

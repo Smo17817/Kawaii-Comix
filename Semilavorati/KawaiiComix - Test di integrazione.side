@@ -2,7 +2,7 @@
   "id": "2284a0f4-19f4-4bdf-bd5d-7207b0477c8c",
   "version": "2.0",
   "name": "KawaiiComix - Test di integrazione",
-  "url": "http://localhost/kawaii-Comix/eliminaProdotto.jsp",
+  "url": "http://localhost/kawaii-Comix/carrello.jsp",
   "tests": [{
     "id": "8db47c37-eed1-4b47-8465-854b59225512",
     "name": "TC1_1_1 - Registrazione avvenuta con successo",
@@ -4315,7 +4315,7 @@
     }]
   }, {
     "id": "6628b780-9bec-4601-9643-184458e86f0c",
-    "name": "TC1_7_1 Effettuare un ordine (Campi della carta vuoti)",
+    "name": "TC1_9_1 Effettuare un ordine (Campi della carta vuoti)",
     "commands": [{
       "id": "aac13cd7-a349-4c88-9f17-436e98e3b0bb",
       "comment": "",
@@ -4370,7 +4370,7 @@
     }]
   }, {
     "id": "a92347a5-fbf7-42d5-8a49-a93c747ad6ca",
-    "name": "TC1_7_2 Effettuare un ordine - Formato numero carta non corretto",
+    "name": "TC1_9_2 Effettuare un ordine - Formato numero carta non corretto",
     "commands": [{
       "id": "e3604f74-d939-4af8-b9ed-d67afaa0952d",
       "comment": "",
@@ -4518,7 +4518,7 @@
     }]
   }, {
     "id": "817bc102-b3e6-4d3d-809e-f1f7278dfcdd",
-    "name": "TC1_7_3 Effettuare un ordine - Formato CVV non corretto",
+    "name": "TC1_9_3 Effettuare un ordine - Formato CVV non corretto",
     "commands": [{
       "id": "251da724-62f1-4543-b2b9-64c11787b957",
       "comment": "",
@@ -4666,7 +4666,7 @@
     }]
   }, {
     "id": "6913e649-c6cd-4cd4-8a23-f7db520241f5",
-    "name": "TC1_7_4 Effettuare un ordine - Formato data di scadenza non corretto",
+    "name": "TC1_9_4 Effettuare un ordine - Formato data di scadenza non corretto",
     "commands": [{
       "id": "148a781e-7aeb-4ce3-97c4-3eee88c21b43",
       "comment": "",
@@ -4795,7 +4795,7 @@
     }]
   }, {
     "id": "794f8efa-6b23-42d7-ac65-d8062835e663",
-    "name": "TC1_7_5 Effettuare un ordine - Data di scadenza non valida",
+    "name": "TC1_9_5 Effettuare un ordine - Data di scadenza non valida",
     "commands": [{
       "id": "1a4f4873-7c54-487b-9364-3c0677be8226",
       "comment": "",
@@ -4917,7 +4917,7 @@
     }]
   }, {
     "id": "60e70dd2-b876-4ecf-a1c3-f80a3d72864f",
-    "name": "TC1_7_6 Ordine effettuato con successo",
+    "name": "TC1_9_6 Ordine effettuato con successo",
     "commands": [{
       "id": "d1a6a0be-57d2-491e-ac78-9c09e1c228a5",
       "comment": "",
@@ -5107,7 +5107,7 @@
     }]
   }, {
     "id": "5f6fd5c0-8667-495c-983c-4656f173d799",
-    "name": "TC1_8_1 Aggiornamento dei dati personali effettuati con successo",
+    "name": "TC1_10_1 Aggiornamento dei dati personali effettuati con successo",
     "commands": [{
       "id": "b654cf53-0c13-4790-8842-0cb4c5e37f55",
       "comment": "",
@@ -5248,7 +5248,7 @@
     }]
   }, {
     "id": "6d89c21b-3796-4449-bead-533a7b6049c6",
-    "name": "TC1_8_2 Aggiornamento dati personali non effettuato - Tutti i campi vuoti",
+    "name": "TC1_10_2 Aggiornamento dati personali non effettuato - Tutti i campi vuoti",
     "commands": [{
       "id": "fbd586c6-5999-4b8c-93bb-1c944fe1626a",
       "comment": "",
@@ -5291,7 +5291,7 @@
     }]
   }, {
     "id": "00dcd88e-1417-4074-bb4f-f8c12fa31e23",
-    "name": "TC1_8_3 Aggiornamento dati personali non effettuato - Email già presente",
+    "name": "TC1_10_3 Aggiornamento dati personali non effettuato - Email già presente",
     "commands": [{
       "id": "406ba390-fab7-4cfa-985a-8e16f2174033",
       "comment": "",
@@ -5474,7 +5474,7 @@
     }]
   }, {
     "id": "eb9d7a33-619b-4916-aa5e-6d774a60579f",
-    "name": "TC1_8_4 Aggiornamento dati personali non effettuato - Lunghezza di entrambe le password < 8",
+    "name": "TC1_10_4 Aggiornamento dati personali non effettuato - Lunghezza di entrambe le password < 8",
     "commands": [{
       "id": "77a25b51-2b2f-4497-9199-ed70ae3cc478",
       "comment": "",
@@ -5697,7 +5697,7 @@
     }]
   }, {
     "id": "bd77d34e-698f-4e28-809d-79eac16eeffd",
-    "name": "TC1_8_5 Aggiornamento dati personali non effettuato - Le password non corrispondono",
+    "name": "TC1_10_5 Aggiornamento dati personali non effettuato - Le password non corrispondono",
     "commands": [{
       "id": "6caa7c2e-f950-4f2a-83e5-99d12dd7a209",
       "comment": "",
@@ -5906,7 +5906,7 @@
     }]
   }, {
     "id": "9440c89e-f818-4ff1-bb69-be211cf82c8a",
-    "name": "TC1_8_6 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto l'email",
+    "name": "TC1_10_6 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto l'email",
     "commands": [{
       "id": "ac1dc4d1-38b1-4c00-bc19-c9653264d289",
       "comment": "",
@@ -6017,7 +6017,7 @@
     }]
   }, {
     "id": "9e059d0b-a054-40b5-b4ee-1393b7c5d996",
-    "name": "TC1_8_7 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto la password",
+    "name": "TC1_10_7 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto la password",
     "commands": [{
       "id": "62490761-8b0a-49a8-bf5d-551675bb8110",
       "comment": "",
@@ -6114,7 +6114,7 @@
     }]
   }, {
     "id": "47be36d4-3cfb-44ad-bc1e-5da71313fe40",
-    "name": "TC1_8_8 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto il nome",
+    "name": "TC1_10_8 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto il nome",
     "commands": [{
       "id": "bafeebd1-353c-41d6-b4bf-06cd1b6efaff",
       "comment": "",
@@ -6225,7 +6225,7 @@
     }]
   }, {
     "id": "b6aa7c6c-56ff-4541-abb5-baab61078205",
-    "name": "TC1_8_9 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto il cognome",
+    "name": "TC1_10_9 Aggiornamento dati personali effettuato - Tutti i campi aggiornati eccetto il cognome",
     "commands": [{
       "id": "d51d08ea-ff23-4cea-8f66-c749778969ee",
       "comment": "",
@@ -6336,7 +6336,7 @@
     }]
   }, {
     "id": "a1af4def-3aa6-4160-9ab7-17d1be390797",
-    "name": "TC1_8_10 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la via",
+    "name": "TC1_10_10 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la via",
     "commands": [{
       "id": "fe4da8ae-d6d7-41bd-9ed6-d1ef1c9c0d1c",
       "comment": "",
@@ -6448,7 +6448,7 @@
     }]
   }, {
     "id": "7515b4a7-2ea1-4b3c-99f8-f729706ec2dd",
-    "name": "TC1_8_11 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la città",
+    "name": "TC1_10_11 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la città",
     "commands": [{
       "id": "46f51beb-abf3-441b-b784-2c8959c5231a",
       "comment": "",
@@ -6560,7 +6560,7 @@
     }]
   }, {
     "id": "4b047fe2-8f29-43c3-929e-9cc307b6feb5",
-    "name": "TC1_8_12 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto il CAP",
+    "name": "TC1_10_12 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto il CAP",
     "commands": [{
       "id": "c00d0463-c280-41a5-8470-cd9e9da6bf7f",
       "comment": "",
@@ -6672,7 +6672,7 @@
     }]
   }, {
     "id": "150a27a5-6b38-47cf-8caa-b8e50b65cf93",
-    "name": "TC1_8_13 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la Provincia",
+    "name": "TC1_10_13 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la Provincia",
     "commands": [{
       "id": "0883c538-b940-464f-8746-6e0babd6b0b8",
       "comment": "",
@@ -6784,7 +6784,7 @@
     }]
   }, {
     "id": "02d79f4b-b132-4f1c-a086-98ad0ea03102",
-    "name": "TC1_8_14 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la Nazione",
+    "name": "TC1_10_14 Aggiornamento indirizzo effettuato - Tutti i campi dell' indirizzo aggiornati eccetto la Nazione",
     "commands": [{
       "id": "ccc54b66-cd63-4769-aa02-500428676996",
       "comment": "",
@@ -19638,6 +19638,746 @@
       ],
       "value": "Prodotto eliminato correttamente"
     }]
+  }, {
+    "id": "2141ab8b-f9e9-49c4-b433-6606befcdbd1",
+    "name": "TC1_11_1 Recupero password - Campi vuoti",
+    "commands": [{
+      "id": "01b49f4b-a837-444f-91c0-d7c850160f80",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/richiestaPassword.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "292d8a9a-b4ab-4570-a06e-27057c23e440",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "842x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d321a458-781f-4662-8dc4-591513970cc9",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a844c29a-18ac-4fb0-b8f6-26df15c201d4",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50dca237-9336-44e6-94bb-3efa636f360c",
+      "comment": "",
+      "command": "click",
+      "target": "id=conf-password",
+      "targets": [
+        ["id=conf-password", "id"],
+        ["name=conf-password", "name"],
+        ["css=#conf-password", "css:finder"],
+        ["xpath=//input[@id='conf-password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "047e6eda-7ce5-48bd-8cbe-3a489a363492",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=conf-password",
+      "targets": [
+        ["id=conf-password", "id"],
+        ["name=conf-password", "name"],
+        ["css=#conf-password", "css:finder"],
+        ["xpath=//input[@id='conf-password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd61df27-174e-487d-8cee-8d622866f835",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[4]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c07c4147-2ad9-4d24-b151-608040cff868",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-html-container",
+      "targets": [
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": "Inserire un valore nel campo"
+    }]
+  }, {
+    "id": "413cbac9-e756-4dfa-98c8-033c3e4cba2e",
+    "name": "TC1_11_2 Recupero password - email non esisitente",
+    "commands": [{
+      "id": "26a91e1d-cd71-4118-a8a5-2ac47326f624",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/richiestaPassword.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b299c949-3594-4fdb-8673-a49c438fbc13",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "842x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f0530368-2490-497b-b624-fb4b471f6fcc",
+      "comment": "",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd8b0244-22d7-4693-864d-6bf5a5e3a494",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "mariorossi@gmail.com"
+    }, {
+      "id": "eb5f4c8b-7a02-4869-b2c4-f72de0e6f795",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Prova123"
+    }, {
+      "id": "951e12ef-a778-43ee-9658-bcb96850e166",
+      "comment": "",
+      "command": "type",
+      "target": "id=conf-password",
+      "targets": [
+        ["id=conf-password", "id"],
+        ["name=conf-password", "name"],
+        ["css=#conf-password", "css:finder"],
+        ["xpath=//input[@id='conf-password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Prova123"
+    }, {
+      "id": "16bef52d-aa7e-4f52-b40e-4a2cd409df63",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[4]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "169063f9-a6b7-4956-93c0-6a2bcc9579e1",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-html-container",
+      "targets": [
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": "Non puoi richiedere il cambio password con una E-mail non presente"
+    }]
+  }, {
+    "id": "14b71867-2a0f-4f39-9dcb-11299c708d0c",
+    "name": "TC1_11_3 Recupero password - Password < 8",
+    "commands": [{
+      "id": "4cf3800b-a38b-4a6b-9f12-5b848542f68b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/richiestaPassword.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d742a99d-8b2b-458d-8495-9876985a3ca6",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "842x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "08f01570-6101-4e70-97bc-ec7919735f48",
+      "comment": "",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b7fe767-aedb-4325-8b56-72dfd2ded0f1",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "mariorossi@gmail.com"
+    }, {
+      "id": "bb2cdd4f-ee95-48b8-83fd-de0ba5c82c04",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Prova12"
+    }, {
+      "id": "9a3eebc7-d12a-407b-bbeb-29cbbb6bd74a",
+      "comment": "",
+      "command": "type",
+      "target": "id=conf-password",
+      "targets": [
+        ["id=conf-password", "id"],
+        ["name=conf-password", "name"],
+        ["css=#conf-password", "css:finder"],
+        ["xpath=//input[@id='conf-password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Prova12"
+    }, {
+      "id": "67c04d48-e56c-469d-a680-12f328f0608e",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[4]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e75b4102-d46e-4847-83c5-43a34694e9f5",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-html-container",
+      "targets": [
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": "La password deve essere almeno di 8 caratteri"
+    }]
+  }, {
+    "id": "dca0339b-f92d-49cb-ab43-aab48482cdfd",
+    "name": "TC1_11_4 Recupero password - Password non coincidono",
+    "commands": [{
+      "id": "7b1527ca-380b-4809-8ed0-1b35e0a66481",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/richiestaPassword.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "60346f74-fc15-4549-b71b-061bcc36916c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "842x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "89ce6d01-389a-4b85-a86f-c87d0a0a38b5",
+      "comment": "",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d18f2b9-4bde-4785-9b88-8d764c0f8084",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "mariorossi@gmail.com"
+    }, {
+      "id": "a85ccffe-dd9e-4665-8fd0-a69d166084d1",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Prova123"
+    }, {
+      "id": "586f1e40-b0fc-481b-8063-da043f65f2c1",
+      "comment": "",
+      "command": "type",
+      "target": "id=conf-password",
+      "targets": [
+        ["id=conf-password", "id"],
+        ["name=conf-password", "name"],
+        ["css=#conf-password", "css:finder"],
+        ["xpath=//input[@id='conf-password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Prova12"
+    }, {
+      "id": "733b83c2-0e90-410c-ab23-0dd7cdf6fe07",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[4]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d9a0c02-3c82-457b-b2f9-ee4db14c46d4",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-html-container",
+      "targets": [
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": "Controllare che le password siano uguali"
+    }]
+  }, {
+    "id": "4e782951-79bb-4388-af82-fb0a2bcc524d",
+    "name": "TC1_11_5 Recupero password avvenuto con successo",
+    "commands": [{
+      "id": "3498ddb0-d264-4378-9fa2-a71359d28df6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/richiestaPassword.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ad042dbd-6c28-42d5-8f84-9ac944d129ef",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "842x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1730a584-e4f8-48bc-b546-baaacdaa03b4",
+      "comment": "",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c316fa4b-86ae-41a5-871b-4c5d125b6e5d",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "mariorossi@gmail.com"
+    }, {
+      "id": "cd812f93-c9bc-4337-9abc-38f2bc0b45c3",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Prova123"
+    }, {
+      "id": "daeff316-1d64-4bde-9c6e-f214992903d9",
+      "comment": "",
+      "command": "type",
+      "target": "id=conf-password",
+      "targets": [
+        ["id=conf-password", "id"],
+        ["name=conf-password", "name"],
+        ["css=#conf-password", "css:finder"],
+        ["xpath=//input[@id='conf-password']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Prova123"
+    }, {
+      "id": "83acb1fc-f6cd-485a-ba5b-aff939ed9c35",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='reset-pass']/form/div[4]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Invia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b3bbcad-0809-4bbe-8751-5c45b2793380",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-html-container",
+      "targets": [
+        ["id=swal2-html-container", "id"],
+        ["css=#swal2-html-container", "css:finder"],
+        ["xpath=//div[@id='swal2-html-container']", "xpath:attributes"],
+        ["xpath=//div/div[2]", "xpath:position"]
+      ],
+      "value": "Cambio Password avvenuto con successo"
+    }]
+  }, {
+    "id": "3878e7e0-c2b2-4193-b75a-007810368f1a",
+    "name": "TC1_7_1 Incrementare quantità prodotto nel carrello",
+    "commands": [{
+      "id": "c07443f0-fbd6-4629-9fb0-b5881fa46fd6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/carrello.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d9766ae4-9f9a-4856-bc32-7dde704c89ef",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "842x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9c873b8e-4b86-408c-9469-29f869fac39a",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=td:nth-child(3)",
+      "targets": [
+        ["css=td:nth-child(3)", "css:finder"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[3]", "xpath:idRelative"],
+        ["xpath=//td[3]", "xpath:position"],
+        ["xpath=//td[contains(.,'Berserk 2')]", "xpath:innerText"]
+      ],
+      "value": "Berserk 2"
+    }, {
+      "id": "1e60ed63-4c71-4ee6-b7df-5709b563ae53",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "ee051588-f1f6-4773-8af4-b133cbcef51e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.totProd",
+      "targets": [
+        ["css=.totProd", "css:finder"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[6]/h5", "xpath:idRelative"],
+        ["xpath=//td[6]/h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'€ 9.99')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "935250b5-6cf5-4b62-8ec9-73dc86ee0aae",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.totProd",
+      "targets": [
+        ["css=.totProd", "css:finder"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[6]/h5", "xpath:idRelative"],
+        ["xpath=//td[6]/h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'€ 9.99')]", "xpath:innerText"]
+      ],
+      "value": "€ 9.99"
+    }, {
+      "id": "55edab82-0118-48ac-bdbc-1b54e596de11",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "b9a7a0f3-b17b-4169-aae0-7646624a654c",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60ae00dd-ba63-49d1-a927-d3c7aa14f114",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "103c9f05-c2cf-4ac0-9126-f4f74613001b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.totProd",
+      "targets": [
+        ["css=.totProd", "css:finder"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[6]/h5", "xpath:idRelative"],
+        ["xpath=//td[6]/h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'€ 19.98')]", "xpath:innerText"]
+      ],
+      "value": "€ 19.98"
+    }]
+  }, {
+    "id": "845fda09-dd33-45ec-a249-4b46d8556c33",
+    "name": "TC1_8_1 Decrementare quantità prodotto nel carrello",
+    "commands": [{
+      "id": "27e08101-78ea-46b1-9154-8bece35ad2c5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/carrello.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "da52f3b1-7aed-461d-81b1-fec3370045c4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "842x896",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b9b54e95-ae5b-4fd8-a8c8-8b8dcc17394e",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "89947a07-8ded-4208-9579-b270fd3723b4",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b11ec19b-db74-4f25-9917-d9ba02c4a675",
+      "comment": "",
+      "command": "",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "875039b3-20de-4665-a3df-fab58dd6bf08",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "5e36e587-84e5-4ba4-9ca2-ed98c0dc1be0",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.totProd",
+      "targets": [
+        ["css=.totProd", "css:finder"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[6]/h5", "xpath:idRelative"],
+        ["xpath=//td[6]/h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'€ 19.98')]", "xpath:innerText"]
+      ],
+      "value": "€ 19.98"
+    }, {
+      "id": "360d0596-d44c-448c-9236-28c7ce9e3e3b",
+      "comment": "",
+      "command": "type",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "012d3f08-15b2-43ef-9acc-28d1d6ad7fdc",
+      "comment": "",
+      "command": "click",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2781240-7453-4675-8349-64b96fdf3c8a",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=quantita",
+      "targets": [
+        ["id=quantita", "id"],
+        ["css=#quantita", "css:finder"],
+        ["xpath=//input[@id='quantita']", "xpath:attributes"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[5]/h5/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "2f0434f0-ecb5-4b43-8041-4d741505c4bc",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.totProd",
+      "targets": [
+        ["css=.totProd", "css:finder"],
+        ["xpath=//tbody[@id='dinamico']/tr/td[6]/h5", "xpath:idRelative"],
+        ["xpath=//td[6]/h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'€ 9.99')]", "xpath:innerText"]
+      ],
+      "value": "€ 9.99"
+    }]
   }],
   "suites": [{
     "id": "6fda69bd-c7de-43b8-b36e-d129543aef5a",
@@ -19669,7 +20409,7 @@
     "tests": ["a27753c4-e051-401e-aea3-f018d1bf074c", "4ff517cf-ede5-4855-ab10-885ddff245c3"]
   }, {
     "id": "39250596-ec7d-453a-bed5-b174ab025d4d",
-    "name": "1.1.7 Effettuare un ordine",
+    "name": "1.1.9 Effettuare un ordine",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
@@ -19683,7 +20423,7 @@
     "tests": ["746210d6-94af-47ef-874d-f2763ed619bd", "7f6f4065-9ee3-405f-bd33-cf99c337138d", "13aa028f-eb8f-4627-96dd-d75291246b1c"]
   }, {
     "id": "2b0db28e-cad3-4524-8ae0-682173accc54",
-    "name": "1.1.8 Aggiornamento profilo",
+    "name": "1.1.10 Aggiornamento profilo",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
@@ -19730,7 +20470,14 @@
     "parallel": false,
     "timeout": 300,
     "tests": ["1b28b4b1-e11e-4f98-8393-c00b518a0fac", "2d25c5cd-885d-428f-a166-71f347b801a8"]
+  }, {
+    "id": "846b18df-bd54-4494-8385-84eb6f784ca1",
+    "name": "1.1.11 Recupero password",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2141ab8b-f9e9-49c4-b433-6606befcdbd1", "413cbac9-e756-4dfa-98c8-033c3e4cba2e", "14b71867-2a0f-4f39-9dcb-11299c708d0c", "dca0339b-f92d-49cb-ab43-aab48482cdfd", "4e782951-79bb-4388-af82-fb0a2bcc524d"]
   }],
-  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp", "http://localhost/kawaii-Comix/controllaOrdini.jsp", "http://localhost/kawaii-Comix/aggiungiProdotto.jsp", "http://localhost/kawaii-Comix/modificaProdotto.jsp", "http://localhost/kawaii-Comix/carrello.jsp", "http://localhost/kawaii-Comix/eliminaProdotto.jsp"],
+  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp", "http://localhost/kawaii-Comix/controllaOrdini.jsp", "http://localhost/kawaii-Comix/aggiungiProdotto.jsp", "http://localhost/kawaii-Comix/modificaProdotto.jsp", "http://localhost/kawaii-Comix/carrello.jsp", "http://localhost/kawaii-Comix/eliminaProdotto.jsp", "http://localhost/kawaii-Comix/richiestaPassword.jsp"],
   "plugins": []
 }
