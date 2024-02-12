@@ -53,6 +53,14 @@ public class Prodotto implements Serializable{
 		this.copieVendute = copieVendute;
 	}
 	
+	
+	
+	public Prodotto(String nome, String immagine) {
+		super();
+		this.nome = nome;
+		this.immagine = immagine;
+	}
+
 	public void setNotEmpty(String nome, String autore, String descrizione, String immagine, Double prezzo,
 							Integer quantita, String genere, String categoria) {
 		if(!nome.equals(""))

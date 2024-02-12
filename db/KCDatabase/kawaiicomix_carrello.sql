@@ -28,7 +28,7 @@ CREATE TABLE `carrello` (
   PRIMARY KEY (`id`),
   KEY `carrello_to_user_idx` (`user_id`),
   CONSTRAINT `carrello_to_user` FOREIGN KEY (`user_id`) REFERENCES `site_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `carrello` (
 
 LOCK TABLES `carrello` WRITE;
 /*!40000 ALTER TABLE `carrello` DISABLE KEYS */;
-INSERT INTO `carrello` VALUES (2,1),(1,2),(3,3),(4,4),(5,5);
+INSERT INTO `carrello` VALUES (2,1),(1,2),(3,3),(4,4),(5,5),(6,6);
 /*!40000 ALTER TABLE `carrello` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-06 12:08:16
+-- Dump completed on 2024-02-11  1:58:27

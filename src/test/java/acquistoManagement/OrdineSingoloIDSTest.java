@@ -36,7 +36,6 @@ import org.mockito.Mockito;
 import org.mockito.exceptions.verification.opentest4j.ArgumentsAreDifferent;
 
 import catalogoManagement.Prodotto;
-import catalogoManagement.ProdottoIDS;
 import utenteManagement.PasswordUtils;
 import utenteManagement.User;
 
@@ -59,7 +58,6 @@ public class OrdineSingoloIDSTest {
         preparedStatement=mock(PreparedStatement.class);
         when(connection.prepareStatement(anyString())).thenReturn(preparedStatement);
         prodotto = mock(Prodotto.class);
-        when(prodotto.getIsbn()).thenReturn("12345678901234567");
     }
     
     @Test
@@ -75,8 +73,8 @@ public class OrdineSingoloIDSTest {
         Mockito.verify(preparedStatement, times(1)).setInt(1, ordineSingolo.getQuantita());
         Mockito.verify(preparedStatement, times(1)).setDouble(2, ordineSingolo.getTotParziale());
         Mockito.verify(preparedStatement, times(1)).setInt(3, ordineSingolo.getOrdineId());
-        Mockito.verify(preparedStatement, times(1)).setString(4, ordineSingolo.getProdotto().getIsbn() );
-  
+        Mockito.verify(preparedStatement, times(1)).setString(4, ordineSingolo.getProdotto().getImmagine() );
+        Mockito.verify(preparedStatement, times(1)).setString(5, ordineSingolo.getProdotto().getNome() );
         // Verifica che il metodo executeUpdate sia stato chiamato
         Mockito.verify(preparedStatement, times(1)).executeUpdate();
         
@@ -122,8 +120,9 @@ public class OrdineSingoloIDSTest {
         verify(preparedStatement, times(1)).setInt(1, ordineSingolo.getQuantita());
         verify(preparedStatement, times(1)).setDouble(2, ordineSingolo.getTotParziale());
         verify(preparedStatement, times(1)).setInt(3, ordineSingolo.getOrdineId());
-        verify(preparedStatement, times(1)).setString(4, ordineSingolo.getProdotto().getIsbn());
-        verify(preparedStatement,times(1)).setInt(5, ordineSingolo.getId());
+        verify(preparedStatement, times(1)).setString(4, ordineSingolo.getProdotto().getImmagine());
+        verify(preparedStatement, times(1)).setString(5, ordineSingolo.getProdotto().getNome());
+        verify(preparedStatement,times(1)).setInt(6, ordineSingolo.getId());
         verify(preparedStatement, times(1)).executeUpdate();
     }
     
@@ -141,42 +140,30 @@ public class OrdineSingoloIDSTest {
         verify(preparedStatement, times(1)).setInt(1, ordineSingolo.getQuantita());
         verify(preparedStatement, times(1)).setDouble(2, ordineSingolo.getTotParziale());
         verify(preparedStatement, times(1)).setInt(3, ordineSingolo.getOrdineId());
-        verify(preparedStatement, times(1)).setString(4, ordineSingolo.getProdotto().getIsbn());
-        verify(preparedStatement,times(1)).setInt(5, ordineSingolo.getId());
+        verify(preparedStatement, times(1)).setString(4, ordineSingolo.getProdotto().getImmagine());
+        verify(preparedStatement, times(1)).setString(5, ordineSingolo.getProdotto().getNome());
+        verify(preparedStatement,times(1)).setInt(6, ordineSingolo.getId());
         verify(preparedStatement, times(1)).executeUpdate();
     }
     
     @Test
     @DisplayName("TCU7_3_1 doRetrieveAllOrdiniSingoliTest")
     public void doRetrieveAllOrdiniSingoliTest() throws Exception {
-        ProdottoIDS mockProdottoIDS = Mockito.mock(ProdottoIDS.class);
-
-        Field field = OrdineSingoloIDS.class.getDeclaredField("prodottoIDS");
-        field.setAccessible(true);
-        field.set(ordineSingoloIDS, mockProdottoIDS);
         
-        Prodotto prodotto1 = Mockito.mock(Prodotto.class);
-        Prodotto prodotto2 = Mockito.mock(Prodotto.class);
-        
-        when(prodotto1.getIsbn()).thenReturn("12345678901234567");
-        when(prodotto2.getIsbn()).thenReturn("76543210987654321");
-        
-        String isbnMock1=prodotto1.getIsbn();
-        String isbnMock2=prodotto2.getIsbn();
         
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         when(preparedStatement.executeQuery()).thenReturn(resultSet);
         
-        when(mockProdottoIDS.doRetrieveByIsbn(prodotto1.getIsbn())).thenReturn(prodotto1);
-        when(mockProdottoIDS.doRetrieveByIsbn(prodotto2.getIsbn())).thenReturn(prodotto2);
         
         when(resultSet.next()).thenReturn(true, true, false);
         when(resultSet.getInt("id")).thenReturn(1, 2);
         when(resultSet.getInt("quantità")).thenReturn(10, 11);
         when(resultSet.getDouble("totale_parziale")).thenReturn(10.5, 9.5);
         when(resultSet.getInt("ordini_id")).thenReturn(100, 112);
-        when(resultSet.getString("prodotti_isbn")).thenReturn(isbnMock1, isbnMock2);
-
+        when(resultSet.getString("immagine_prodotto")).thenReturn("immagine1", "immagine2");
+        when(resultSet.getString("nome_prodotto")).thenReturn("nome1", "nome2");
+        
+        
         Collection<OrdineSingolo> result = ordineSingoloIDS.doRetrieveAllOrdineSingolo();
         assertEquals(2, result.size());
 
@@ -186,30 +173,22 @@ public class OrdineSingoloIDSTest {
         Mockito.verify(resultSet, times(2)).getInt("quantità");
         Mockito.verify(resultSet, times(2)).getDouble("totale_parziale");
         Mockito.verify(resultSet, times(2)).getInt("ordini_id");
-        Mockito.verify(resultSet, times(2)).getString("prodotti_isbn");
+        Mockito.verify(resultSet, times(2)).getString("immagine_prodotto");
+        Mockito.verify(resultSet, times(2)).getString("nome_prodotto");
+
     }
     
     @Test
     @DisplayName("TCU7_5_1 doRetrieveAllOrdiniSingoliByOrdineId")
     public void testDoRetrieveAllByOrdineId() throws Exception {
-        ProdottoIDS mockProdottoIDS = Mockito.mock(ProdottoIDS.class);
 
-        Field field = OrdineSingoloIDS.class.getDeclaredField("prodottoIDS");
-        field.setAccessible(true);
-        field.set(ordineSingoloIDS, mockProdottoIDS);
-
-        Prodotto prodotto1 = Mockito.mock(Prodotto.class);
-        Prodotto prodotto2 = Mockito.mock(Prodotto.class);
-
-        when(prodotto1.getIsbn()).thenReturn("12345678901234567");
-        when(prodotto2.getIsbn()).thenReturn("76543210987654321");
-
-        String isbnmock1 = prodotto1.getIsbn();
-        String isbnmock2 = prodotto2.getIsbn();
+    	
+    	Prodotto prodotto1 = new Prodotto("nome1", "immagine1");
+    	Prodotto prodotto2 = new Prodotto("nome2", "immagine2");
+    	
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-        when(mockProdottoIDS.doRetrieveByIsbn(prodotto1.getIsbn())).thenReturn(prodotto1);
-        when(mockProdottoIDS.doRetrieveByIsbn(prodotto2.getIsbn())).thenReturn(prodotto2);
+        
 
         OrdineSingolo ordineSingolo1 = new OrdineSingolo(22, 10, 10.5, 1, prodotto1);
         OrdineSingolo ordineSingolo2 = new OrdineSingolo(23, 10, 9.5, 1, prodotto2);
@@ -219,7 +198,8 @@ public class OrdineSingoloIDSTest {
         when(resultSet.getInt("quantità")).thenReturn(ordineSingolo1.getQuantita(), ordineSingolo2.getQuantita());
         when(resultSet.getDouble("totale_parziale")).thenReturn(ordineSingolo1.getTotParziale(), ordineSingolo2.getTotParziale());
         when(resultSet.getInt("ordini_id")).thenReturn(ordineSingolo1.getOrdineId(), ordineSingolo2.getOrdineId());
-        when(resultSet.getString("prodotti_isbn")).thenReturn(isbnmock1, isbnmock2);
+        when(resultSet.getString("nome_prodotto")).thenReturn(ordineSingolo1.getProdotto().getNome(), ordineSingolo2.getProdotto().getNome());
+        when(resultSet.getString("immagine_prodotto")).thenReturn(ordineSingolo1.getProdotto().getImmagine(), ordineSingolo2.getProdotto().getImmagine());
 
         Collection<OrdineSingolo> result = ordineSingoloIDS.doRetrieveAllByOrdineId(1);
 
@@ -230,10 +210,15 @@ public class OrdineSingoloIDSTest {
                 assertEquals(ordineSingolo1.getQuantita(), ordineSingolo.getQuantita());
                 assertEquals(ordineSingolo1.getTotParziale(), ordineSingolo.getTotParziale());
                 assertEquals(ordineSingolo1.getOrdineId(), ordineSingolo.getOrdineId());
+                assertEquals(ordineSingolo1.getProdotto().getImmagine(), ordineSingolo.getProdotto().getImmagine());
+                assertEquals(ordineSingolo1.getProdotto().getNome(), ordineSingolo.getProdotto().getNome());
+
             } else if (ordineSingolo.getId() == ordineSingolo2.getId()) {
                 assertEquals(ordineSingolo2.getQuantita(), ordineSingolo.getQuantita());
                 assertEquals(ordineSingolo2.getTotParziale(), ordineSingolo.getTotParziale());
                 assertEquals(ordineSingolo2.getOrdineId(), ordineSingolo.getOrdineId());
+                assertEquals(ordineSingolo2.getProdotto().getImmagine(), ordineSingolo.getProdotto().getImmagine());
+                assertEquals(ordineSingolo2.getProdotto().getNome(), ordineSingolo.getProdotto().getNome());
             }
         }
 
@@ -243,27 +228,20 @@ public class OrdineSingoloIDSTest {
         Mockito.verify(resultSet, times(2)).getInt("id");
         Mockito.verify(resultSet, times(2)).getInt("quantità");
         Mockito.verify(resultSet, times(2)).getDouble("totale_parziale");
-        Mockito.verify(resultSet, times(2)).getString("prodotti_isbn");
+        Mockito.verify(resultSet, times(2)).getString("immagine_prodotto");
+        Mockito.verify(resultSet, times(2)).getString("nome_prodotto");
+
     }
 
 
     @Test
     @DisplayName("TCU7_6_1 doRetrieveOrdiniSingoliById")
     public void testDoRetrieveOrdineSingoloById() throws Exception {
-        ProdottoIDS mockProdottoIDS = Mockito.mock(ProdottoIDS.class);
 
-        Field field = OrdineSingoloIDS.class.getDeclaredField("prodottoIDS");
-        field.setAccessible(true);
-        field.set(ordineSingoloIDS, mockProdottoIDS);
+    	Prodotto prodotto1 = new Prodotto("nome1", "immagine1");
 
-        Prodotto prodotto1 = Mockito.mock(Prodotto.class);
-
-        when(prodotto1.getIsbn()).thenReturn("12345678901234567");
-
-        String isbnmock1 = prodotto1.getIsbn();
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
-        when(mockProdottoIDS.doRetrieveByIsbn(prodotto1.getIsbn())).thenReturn(prodotto1);
 
         OrdineSingolo ordineSingolo = new OrdineSingolo(22, 10, 10.5, 1, prodotto1);
 
@@ -272,8 +250,10 @@ public class OrdineSingoloIDSTest {
         when(resultSet.getInt("quantità")).thenReturn(ordineSingolo.getQuantita());
         when(resultSet.getDouble("totale_parziale")).thenReturn(ordineSingolo.getTotParziale());
         when(resultSet.getInt("ordini_id")).thenReturn(ordineSingolo.getOrdineId());
-        when(resultSet.getString("prodotti_isbn")).thenReturn(isbnmock1);
+        when(resultSet.getString("nome_prodotto")).thenReturn(ordineSingolo.getProdotto().getNome());
+        when(resultSet.getString("immagine_prodotto")).thenReturn(ordineSingolo.getProdotto().getImmagine());
 
+        
         OrdineSingolo result = ordineSingoloIDS.doRetrieveById(ordineSingolo.getId());
 
         assertNotNull(result);
@@ -289,7 +269,9 @@ public class OrdineSingoloIDSTest {
         verify(resultSet, times(1)).getInt("quantità");
         verify(resultSet, times(1)).getDouble("totale_parziale");
         verify(resultSet, times(1)).getInt("ordini_id");
-        verify(resultSet, times(1)).getString("prodotti_isbn");
+        verify(resultSet, times(1)).getString("nome_prodotto");
+        verify(resultSet, times(1)).getString("immagine_prodotto");
+        
     }
     
     @Test

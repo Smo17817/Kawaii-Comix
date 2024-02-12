@@ -48,7 +48,7 @@ public class OrdiniEffettuatiServlet extends HttpServlet{
 			// Li ordino in base alla data
 			Collections.sort(ordini, new OrdineComparator());
 			Collections.reverse(ordini);			
-
+			System.out.println(json.toJson(ordini));
 			out.write(json.toJson(ordini));
 
 		} catch (SQLException | IOException e) {

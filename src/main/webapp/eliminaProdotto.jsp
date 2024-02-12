@@ -47,7 +47,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
                         Swal.fire('Prodotto eliminato correttamente','','success')
                         setTimeout(function() {
                             window.location.assign(response.url);
-                        }, 5000); // Ritardo di 5 secondi (5000 millisecondi)
+                        }, 3500); // Ritardo di 3,5 secondi (3500 millisecondi)
                     }
                     else if(status =='Invalid_Manga'){
                         Swal.fire('Scegliere un Manga da eliminare!','Riprovare','error')
@@ -80,7 +80,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
             <h2>Elimina un Prodotto</h2>
             <div class="form-row">
                 <label for="scelta">Prodotto: </label>
-                <select id="chooseProduct" name="scelta" required id="scelta">
+                <select id="chooseProduct" name="scelta">
 
                 </select>
             </div>

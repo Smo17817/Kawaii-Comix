@@ -2,7 +2,7 @@
   "id": "2284a0f4-19f4-4bdf-bd5d-7207b0477c8c",
   "version": "2.0",
   "name": "KawaiiComix - Test di integrazione",
-  "url": "http://localhost/kawaii-Comix/controllaOrdini.jsp",
+  "url": "http://localhost/kawaii-Comix/eliminaProdotto.jsp",
   "tests": [{
     "id": "8db47c37-eed1-4b47-8465-854b59225512",
     "name": "TC1_1_1 - Registrazione avvenuta con successo",
@@ -19484,6 +19484,160 @@
       ],
       "value": "Prodotto aggiornato correttamente!"
     }]
+  }, {
+    "id": "1b28b4b1-e11e-4f98-8393-c00b518a0fac",
+    "name": "TC3_3_1 Rimozione di un prodotto dal catalogo - Prodotto non selezionato",
+    "commands": [{
+      "id": "4c785cb2-c19d-4dda-84ec-b693fdd829b7",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/eliminaProdotto.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7af50bc2-60c9-4c7e-8b7f-63f40d54b3c2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "839x893",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "135b0180-654d-4b5e-ae51-fd75fce78cf9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sub-class > button",
+      "targets": [
+        ["css=.sub-class > button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='new_product']/div/form/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Elimina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b0aec9a-834e-4c94-b113-0fac27de64b1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salva')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ecd3a5e4-c14e-45b1-9c0f-80944cf6fd66",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-title",
+      "targets": [
+        ["id=swal2-title", "id"],
+        ["css=#swal2-title", "css:finder"],
+        ["xpath=//h2[@id='swal2-title']", "xpath:attributes"],
+        ["xpath=//div/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Scegliere un Manga da eliminare!')]", "xpath:innerText"]
+      ],
+      "value": "Scegliere un Manga da eliminare!"
+    }]
+  }, {
+    "id": "2d25c5cd-885d-428f-a166-71f347b801a8",
+    "name": "TC3_3_2 Rimozione con successo di un prodotto dal catalogo",
+    "commands": [{
+      "id": "38bff734-9bfa-451f-97ef-245ec41d8cde",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/kawaii-Comix/eliminaProdotto.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d0662f12-7eb7-4df2-92bc-316e295307ee",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "839x893",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6eceb648-bbb2-4bf8-9a95-8af3c76077f5",
+      "comment": "",
+      "command": "click",
+      "target": "id=chooseProduct",
+      "targets": [
+        ["id=chooseProduct", "id"],
+        ["name=scelta", "name"],
+        ["css=#chooseProduct", "css:finder"],
+        ["xpath=//select[@id='chooseProduct']", "xpath:attributes"],
+        ["xpath=//section[@id='new_product']/div/form/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "860bf50c-827a-4867-ae5c-58e630bc7449",
+      "comment": "",
+      "command": "select",
+      "target": "id=chooseProduct",
+      "targets": [],
+      "value": "label=Dragon Ball 1"
+    }, {
+      "id": "4c7baeeb-2343-4d47-9c4d-6d3a87cfbe1f",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=chooseProduct",
+      "targets": [
+        ["id=chooseProduct", "id"],
+        ["name=scelta", "name"],
+        ["css=#chooseProduct", "css:finder"],
+        ["xpath=//select[@id='chooseProduct']", "xpath:attributes"],
+        ["xpath=//section[@id='new_product']/div/form/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "Dragon Ball 1"
+    }, {
+      "id": "a6e18c78-a0e3-49cf-a992-fdcd01fe0215",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sub-class > button",
+      "targets": [
+        ["css=.sub-class > button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//section[@id='new_product']/div/form/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Elimina')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "404e9398-279f-41c9-852a-5122365f193a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salva')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6f1c699-d33c-4efc-a295-b9dbfaefb89c",
+      "comment": "",
+      "command": "waitForText",
+      "target": "id=swal2-title",
+      "targets": [],
+      "value": "Prodotto eliminato correttamente"
+    }, {
+      "id": "e26d7eb2-2636-4296-8554-31702d465f8a",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=swal2-title",
+      "targets": [
+        ["id=swal2-title", "id"],
+        ["css=#swal2-title", "css:finder"],
+        ["xpath=//h2[@id='swal2-title']", "xpath:attributes"],
+        ["xpath=//div/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Prodotto eliminato correttamente')]", "xpath:innerText"]
+      ],
+      "value": "Prodotto eliminato correttamente"
+    }]
   }],
   "suites": [{
     "id": "6fda69bd-c7de-43b8-b36e-d129543aef5a",
@@ -19569,7 +19723,14 @@
     "parallel": false,
     "timeout": 300,
     "tests": ["3c50e642-fd09-4413-8ff3-dd1631ffbe26", "218b55b5-2906-4d51-9a7c-96cc0312e00f", "cbe6aa87-e331-4b7a-b3e6-8e65b317cc8b", "8f57ccd7-a300-453a-8f66-26ad8aacea22", "f8a90625-fc3d-4147-b3ab-31dac1293ef0", "dfe7d4ca-56e5-49c8-bada-443cb6dfd3c4", "adce4570-9704-401b-903e-9e0de6991318", "a8a52877-1984-49f5-9427-7102d0c47128", "19a88626-1839-48f4-96e2-19f256967f73", "9d9c2619-1782-4dc2-938d-806d6eb7a993", "171ce459-e7d6-40d5-a01a-ef193c17444b", "49b0e58e-2d0a-4b12-85f0-e98048189139", "cf4fbb83-397f-4650-83dc-c330d8ab6ad2"]
+  }, {
+    "id": "fc30c44b-06b1-4518-b18d-146dbe783d70",
+    "name": "1.3.3 Rimozione di un prodotto dal catalogo",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["1b28b4b1-e11e-4f98-8393-c00b518a0fac", "2d25c5cd-885d-428f-a166-71f347b801a8"]
   }],
-  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp", "http://localhost/kawaii-Comix/controllaOrdini.jsp", "http://localhost/kawaii-Comix/aggiungiProdotto.jsp", "http://localhost/kawaii-Comix/modificaProdotto.jsp", "http://localhost/kawaii-Comix/carrello.jsp"],
+  "urls": ["http://localhost/", "http://localhost/kawaii-Comix/login.jsp", "http://localhost/kawaii-Comix/catalogo.jsp", "http://localhost/kawaii-Comix/datipersonali.jsp", "http://localhost/kawaii-Comix/indirizzo.jsp", "http://localhost/kawaii-Comix/controllaOrdini.jsp", "http://localhost/kawaii-Comix/aggiungiProdotto.jsp", "http://localhost/kawaii-Comix/modificaProdotto.jsp", "http://localhost/kawaii-Comix/carrello.jsp", "http://localhost/kawaii-Comix/eliminaProdotto.jsp"],
   "plugins": []
 }

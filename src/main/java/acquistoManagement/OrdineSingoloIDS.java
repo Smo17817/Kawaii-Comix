@@ -19,12 +19,10 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	private DataSource ds = null;
 	private Connection connection = null;
 
-	private ProdottoIDS prodottoIDS;
-
 	public OrdineSingoloIDS(DataSource ds) {
 		super();
 		this.ds = ds;
-		this.prodottoIDS = new ProdottoIDS(ds);
+		
 		try {
 			connection = ds.getConnection();
 		} catch (SQLException e) {
@@ -36,7 +34,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	public Boolean doSaveOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException {
 
 		String query = "INSERT INTO " + OrdineSingoloIDS.TABLE
-				+ " (quantità, totale_parziale, ordini_id, prodotti_isbn) VALUES (?, ?, ?, ?)";
+				+ " (quantità, totale_parziale, ordini_id, immagine_prodotto, nome_prodotto) VALUES (?, ?, ?, ?, ?)";
 
 		try (Connection connection = ds.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -44,11 +42,14 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 			preparedStatement.setInt(1, ordineSingolo.getQuantita());
 			preparedStatement.setDouble(2, ordineSingolo.getTotParziale());
 			preparedStatement.setInt(3, ordineSingolo.getOrdineId());
-			preparedStatement.setString(4, ordineSingolo.getProdotto().getIsbn());
+			preparedStatement.setString(4, ordineSingolo.getProdotto().getImmagine());
+			preparedStatement.setString(5, ordineSingolo.getProdotto().getNome());
+			
 			if(preparedStatement.executeUpdate()>0)
 				return true;
 		} catch (SQLException e) {
 			logger.log(Level.ALL, ERROR, e);
+			System.out.println(e.getMessage());
 		}
 		return false;
 
@@ -76,7 +77,7 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	@Override
 	public Boolean doUpdateOrdineSingolo(OrdineSingolo ordineSingolo) throws SQLException {
 		String query = "UPDATE " + OrdineSingoloIDS.TABLE
-				+ "SET quantità = ?, totale_parziale = ?, ordini_id = ?, prodotti_isbn = ? " + "WHERE id = ?";
+				+ "SET quantità = ?, totale_parziale = ?, ordini_id = ?, immagine_prodotto = ?, nome_prodotto = ? " + "WHERE id = ?";
 
 
 		try (Connection connection = ds.getConnection();
@@ -85,8 +86,9 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 			preparedStatement.setInt(1, ordineSingolo.getQuantita());
 			preparedStatement.setDouble(2, ordineSingolo.getTotParziale());
 			preparedStatement.setInt(3, ordineSingolo.getOrdineId());
-			preparedStatement.setString(4, ordineSingolo.getProdotto().getIsbn());
-			preparedStatement.setInt(5, ordineSingolo.getId());
+			preparedStatement.setString(4, ordineSingolo.getProdotto().getImmagine());
+			preparedStatement.setString(5, ordineSingolo.getProdotto().getNome());
+			preparedStatement.setInt(6, ordineSingolo.getId());
 
 			if (preparedStatement.executeUpdate() > 0)
 				return true;
@@ -111,7 +113,11 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	            Integer quantita = rs.getInt(QUANTITA);
 	            Double totParziale = rs.getDouble(TOT_PARZIALE);
 	            Integer ordineId = rs.getInt(ORDINE_ID);
-	            Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
+	            String imagePath = rs.getString(IMMAGINE_PRODOTTO);
+	            String nomeProdotto = rs.getString(NOME_PRODOTTO);
+	            
+	            Prodotto prodotto = new Prodotto(nomeProdotto,imagePath);
+	            
 	            ordiniSingoli.add(new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto));
 	        }
 
@@ -141,8 +147,11 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 				Integer id = rs.getInt(ID);
 				Integer quantita = rs.getInt(QUANTITA);
 				Double totParziale = rs.getDouble(TOT_PARZIALE);
-				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
-
+				String imagePath = rs.getString(IMMAGINE_PRODOTTO);
+	            String nomeProdotto = rs.getString(NOME_PRODOTTO);
+	            
+	            Prodotto prodotto = new Prodotto(nomeProdotto,imagePath);
+	            
 				ordiniSingoli.add(new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto));
 				
 			}
@@ -167,8 +176,11 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 				Integer quantita = rs.getInt(QUANTITA);
 				Double totParziale = rs.getDouble(TOT_PARZIALE);
 				Integer ordineId = rs.getInt(ORDINE_ID);
-				Prodotto prodotto = prodottoIDS.doRetrieveByIsbn(rs.getString(PRODOTTO_ISBN));
-
+				String imagePath = rs.getString(IMMAGINE_PRODOTTO);
+	            String nomeProdotto = rs.getString(NOME_PRODOTTO);
+	            
+	            Prodotto prodotto = new Prodotto(nomeProdotto,imagePath);
+	            
 				return new OrdineSingolo(id, quantita, totParziale, ordineId, prodotto);
 			}
 
@@ -187,7 +199,8 @@ public class OrdineSingoloIDS implements OrdineSingoloDAO {
 	private static final String QUANTITA = "quantità";
 	private static final String TOT_PARZIALE = "totale_parziale";
 	private static final String ORDINE_ID = "ordini_id";
-	private static final String PRODOTTO_ISBN = "prodotti_isbn";
+	private static final String IMMAGINE_PRODOTTO = "immagine_prodotto";
+	private static final String NOME_PRODOTTO = "nome_prodotto";
 	
 	/*** LOGGER ***/
 	private static final Logger logger = Logger.getLogger(OrdineSingoloIDS.class.getName());
