@@ -33,7 +33,6 @@ public class SignupServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		UserIDS userIDS = new UserIDS(ds);
 
-
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String email = request.getParameter("email");

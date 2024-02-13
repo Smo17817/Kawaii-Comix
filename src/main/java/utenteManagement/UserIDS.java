@@ -28,9 +28,7 @@ public class UserIDS implements UserDAO {
 	
 
 	@Override
-	public boolean doSaveUser(User user) throws SQLException {
-		
-		
+	public boolean doSaveUser(User user) throws SQLException {	
 		
 		String query = "INSERT INTO " + UserIDS.TABLE
 				+ " (email_address, password, nome, cognome, indirizzo, citta, codice_postale, provincia, nazione) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -47,7 +45,6 @@ public class UserIDS implements UserDAO {
 			preparedStatement.setString(7, user.getCap());
 			preparedStatement.setString(8, user.getProvincia());
 			preparedStatement.setString(9, user.getNazione());
-
 
 			if((preparedStatement.executeUpdate() > 0))
 				return  true;
