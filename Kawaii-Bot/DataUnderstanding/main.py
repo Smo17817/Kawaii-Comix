@@ -21,13 +21,16 @@ all_tags_list = all_tags_string.split()
 unique_tags = list(set(all_tags_list))
 unique_tags.sort()
 
+manga_dataset = manga_dataset.dropna(subset=['rating'])
+manga_dataset = manga_dataset.drop(columns=['description', 'cover'])
+
 # Calcola la distribuzione dei tag
 print("\nDISTRIBUZIONE VARIABILI")
 #tagDistribution(all_tags_list)
 
-print("\nBOX PLOT")
-#boxPlot(all_tags_list)
-
 print("\nRATING")
 #frequenze_teoriche_rating(manga_dataset)
 #frequenze_osservate_rating(manga_dataset)
+
+box_plot_rating(manga_dataset)
+trova_outliers_iqr(manga_dataset)

@@ -70,34 +70,6 @@ def duplicatedValues(dataset):
     plt.subplots_adjust(left=0.2)
     plt.show()
 
-
-def boxPlot(all_tags_list):
-    # Calcola le frequenze dei tag utilizzando Counter
-    frequenze = Counter(all_tags_list)
-    frequenze_valori = list(frequenze.values())
-
-    # Calcola i quartili e l'intervallo interquartile (IQR)
-    q1 = np.percentile(frequenze_valori, 25)
-    q3 = np.percentile(frequenze_valori, 75)
-    iqr = q3 - q1
-
-    #filtered_frequenze = [freq for freq in frequenze_valori if freq >= lower_bound and freq <= upper_bound]
-
-    # Calcola i limiti per definire gli outlier
-    lower_bound = q1 - 1.5 * iqr
-    upper_bound = q3 + 1.5 * iqr
-
-    plt.figure(figsize=(8, 6))
-    plt.boxplot(frequenze_valori)
-
-    # Aggiunta di etichette e titolo
-    plt.xlabel('Frequenza')
-    plt.ylabel('Count')
-    plt.title('Box Plot delle Frequenze dei Tag Senza Outlier')
-
-    # Visualizzazione del box plot
-    plt.show()
-
 def frequenze_osservate_rating(mangadataset):
     # Calcola le statistiche descrittive del rating
     rating_stats = mangadataset['rating'].describe()
@@ -146,3 +118,37 @@ def frequenze_teoriche_rating(mangadataset):
         plt.grid(True)
         plt.legend()
         plt.show()
+
+def box_plot_rating(mangadataset):
+    # Creazione del box plot del rating con colore skyblue
+    plt.figure(figsize=(8, 6))
+    bp = plt.boxplot(mangadataset['rating'], patch_artist=True)
+
+    # Imposta il colore delle caselle del boxplot a skyblue
+    for box in bp['boxes']:
+        box.set(color='skyblue')
+
+    plt.title('Box Plot del Rating dei Manga')
+    plt.ylabel('Rating')
+    plt.show()
+
+
+def trova_outliers_iqr(mangadataset):
+    rating = mangadataset['rating']
+
+    # Calcola il primo e il terzo quartile
+    Q1 = rating.quantile(0.25)
+    Q3 = rating.quantile(0.75)
+
+    # Calcola l'intervallo interquartile (IQR)
+    IQR = Q3 - Q1
+
+    # Calcola i limiti per identificare gli outlier
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+
+    # Trova gli outlier
+    outlier_indices = rating[(rating < lower_bound) | (rating > upper_bound)].index.tolist()
+
+    outlier_ratings = mangadataset.loc[outlier_indices, 'rating']
+    print(outlier_ratings)
