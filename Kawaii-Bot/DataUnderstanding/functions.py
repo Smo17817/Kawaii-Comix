@@ -70,6 +70,7 @@ def duplicatedValues(dataset):
     plt.subplots_adjust(left=0.2)
     plt.show()
 
+
 def frequenze_osservate_rating(mangadataset):
     # Calcola le statistiche descrittive del rating
     rating_stats = mangadataset['rating'].describe()
@@ -87,37 +88,37 @@ def frequenze_osservate_rating(mangadataset):
     plt.grid(True)
     plt.show()
 
+
 def frequenze_teoriche_rating(mangadataset):
-    def analisiRating(mangadataset):
-        # Applica uno stile predefinito di Matplotlib
 
-        # Calcola le statistiche descrittive del rating
-        rating_stats = mangadataset['rating'].describe()
+    # Calcola le statistiche descrittive del rating
+    rating_stats = mangadataset['rating'].describe()
 
-        # Stampa le statistiche descrittive del rating
-        print("Statistiche descrittive del rating:")
-        print(rating_stats)
+    # Stampa le statistiche descrittive del rating
+    print("Statistiche descrittive del rating:")
+    print(rating_stats)
 
-        # Calcola la media e la deviazione standard del rating
-        mean_rating = rating_stats['mean']
-        std_rating = rating_stats['std']
+     # Calcola la media e la deviazione standard del rating
+    mean_rating = rating_stats['mean']
+    std_rating = rating_stats['std']
 
-        # Genera una sequenza di valori per le frequenze teoriche
-        min_rating = mangadataset['rating'].min()
-        max_rating = mangadataset['rating'].max()
-        x = np.linspace(min_rating, max_rating, 100)
-        y = stats.norm.pdf(x, mean_rating, std_rating) * len(mangadataset['rating'])
+    # Genera una sequenza di valori per le frequenze teoriche
+    min_rating = mangadataset['rating'].min()
+    max_rating = mangadataset['rating'].max()
+    x = np.linspace(min_rating, max_rating, 100)
+    y = stats.norm.pdf(x, mean_rating, std_rating) * len(mangadataset['rating'])
 
-        # Visualizza un istogramma del rating con frequenze osservate e teoriche
-        plt.figure(figsize=(8, 6))
-        plt.hist(mangadataset['rating'], bins=20, color='skyblue', edgecolor='black', label='Frequenze osservate')
-        plt.plot(x, y, color='red', label='Frequenze teoriche')
-        plt.title('Distribuzione del rating dei manga')
-        plt.xlabel('Rating')
-        plt.ylabel('Frequenza')
-        plt.grid(True)
-        plt.legend()
-        plt.show()
+    # Visualizza un istogramma del rating con frequenze osservate e teoriche
+    plt.figure(figsize=(8, 6))
+    plt.hist(mangadataset['rating'], bins=20, color='skyblue', edgecolor='black', label='Frequenze osservate')
+    plt.plot(x, y, color='red', label='Frequenze teoriche')
+    plt.title('Distribuzione del rating dei manga')
+    plt.xlabel('Rating')
+    plt.ylabel('Frequenza')
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
 
 def box_plot_rating(mangadataset):
     # Creazione del box plot del rating con colore skyblue
