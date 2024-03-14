@@ -3,7 +3,7 @@ from DataUnderstanding.functions import *
 manga_dataset = pd.read_csv('../manga.csv')
 
 print("\nVALORI NULL")
-nanValues(manga_dataset)
+#nanValues(manga_dataset)
 
 print("\nVALORI DUPLICATI")
 #duplicatedValues(manga_dataset)
@@ -27,3 +27,7 @@ print("\nDISTRIBUZIONE VARIABILI")
 
 print("\nBOX PLOT")
 #boxPlot(all_tags_list)
+
+print("\nRATING")
+#frequenze_teoriche_rating(manga_dataset)
+#frequenze_osservate_rating(manga_dataset)
