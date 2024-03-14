@@ -107,7 +107,6 @@ public class AddProdottoServlet extends HttpServlet {
 			String partedaRimuovere = "target/kawaii-Comix/";
 			String realPath = tempPath.replace(partedaRimuovere , "src/main/webapp/");
 
-
 			boolean test = uploadFile(is,realPath);
 			if(!test)
 				setStatus(response , responseMap ,json , out, "File_Non_Caricato" );
