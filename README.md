@@ -1,10 +1,9 @@
 # 🌸 Kawaii-Bot 🌸
 → Reccommendation System for Kawaii-Comix
-📁 Data Understanding → Contiene gli script utilizzati per l'analisi dei dati;
-📁 Dataset       → Contiene i dataset;
-📁 Demo          → Contiene la demo del progetto;
-📁 Documents     → Contiene la documentazione.
-Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Natale](https://github.com/ddfn03)
+📁 Data Understanding: Contiene gli script utilizzati per l'analisi dei dati;  
+📁 Dataset           : Contiene il dataset;  
+📁 Documents         : Contiene la documentazione.  
+Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Natale](https://github.com/ddfn03)  
 
 ## Tavola dei Contenuti 📋
 * [Informazioni Generali](#informazioni-generali-ℹ)
