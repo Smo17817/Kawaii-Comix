@@ -8,8 +8,8 @@ Collaboratori: [Simone DAssisi](//github.com/Smo17817), [Davide Del Franco Natal
 📁 Kawaii-Bot🌸: Questa directory contiene ilmodulo di intelligenza artificiale che si occupa dei suggerimenti;  
 📁 Semilavorati: Questa directory contiene le componenti dei documenti finali;  
 📁	db: Questa directory contiene lo schema del database relazionale;  
-📁 src: Questa directory contiene il codice sorgente del progetto.
-
+📁 src: Questa directory contiene il codice sorgente del progetto;
+📄 pom.xml: file che si occupa della gestione delle dipendenze.
 
 
   
