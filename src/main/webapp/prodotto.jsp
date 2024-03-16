@@ -12,9 +12,40 @@
 	" rel="stylesheet">
 		<script src="./Script/dynamicCode.js"></script>
 		<script src="./Script/carrello.js"></script>
+
 		<jsp:include page="./nav.jsp" flush="true"/>
 
 		<% Prodotto p = (Prodotto) request.getAttribute("prodotto");%>
+
+		<script>
+			// Ottieni il genere e la categoria del prodotto
+			var genere = "<%= p.getGenere() %>";
+			var categoria = "<%= p.getCategoria() %>";
+			var tags = genere + ", " + categoria; // Concatena genere e categoria
+
+			// Chiamata al sistema di raccomandazione
+			$.ajax({
+				type: "POST",
+				url: "http://127.0.0.1:5000/recommendations", // Percorso Flask per le raccomandazioni
+				data: { tags: tags },
+				success: function(response) {
+					console.log(response);
+
+					var contenutoHtml = "";
+					for (const prodotto of response) {
+						contenutoHtml += "<div class=\"scheda\">";
+						contenutoHtml += "<a href=\"ProductServlet?isbn=" + prodotto.isbn + "\"><img src=\"" + prodotto.immagine_prod + "\"> </a>";
+						contenutoHtml += "<div class=\"info\">";
+						contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
+						contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";
+						contenutoHtml += "<a onclick=\"addCart(" + prodotto.quantita + ", '" + prodotto.isbn + "')\"> Carrello</a>";
+						contenutoHtml += "</div> </div>";
+					}
+
+					$("#consigliati").append(contenutoHtml);
+				}
+			});
+		</script>
 		<script>
 			var disponibilita = '';
 			<%	if(p.getQuantita() == 0){%>
