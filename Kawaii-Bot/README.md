@@ -15,7 +15,7 @@ Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Nata
 * [Project Status](#project-status-)
 ## Informazioni Generali ℹ
 ### Cos'è ❓
-_Kawaii-Bot_ è stato progettato per migliorare l’esperienza di shopping per gli appassionati di manga. Grazie a Kawaii-Bot, i clienti possono accedere a suggerimenti personalizzato e pertinenti, basati sui loro gusti, preferenze di acquisto e sulle ultime tendenze del settore.  
+_Kawaii-Bot_ è stato progettato per migliorare l’esperienza di shopping per gli appassionati di manga. Grazie a Kawaii-Bot, i clienti possono accedere a suggerimenti personalizzati e pertinenti, basati sui loro gusti, preferenze di acquisto e sulle ultime tendenze del settore.  
 ### Obiettivi 🎯
 Lo scopo del progetto consiste nella realizzazione di un modulo di raccomandazione personalizzata per l’e-commerce Kawaii-Comix che usi un approccio di tipo content-based. 
 ## Tecnologie Utilizzate 📊
