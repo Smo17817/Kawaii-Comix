@@ -16,6 +16,9 @@ Collaboratori: [Simone DAssisi](//github.com/Smo17817), [Davide Del Franco Natal
   + [Cos'è?](#cosè-)
   + [Obiettivi](#obiettivi-)
 * [Tecnologie Utilizzate](#Tecnologie-Utilizzate-)
+* [Getting Started](#Getting-Started-)
+  + [Prerequisiti](#prerequisiti-)
+  + [Settings](#settings-)
 * [Project Status](#project-status-)
 ## Informazioni Generali ℹ
 ### Cos'è ❓
@@ -30,18 +33,18 @@ Lo scopo del progetto consiste nell'applicare un modello B2C in cui è possibile
 + MySQL
 + Python
 
-##Getting Started
-###Prerequisiti
-Per poter avviare il progetto Kawaii-Comix sulla vostra macchina è richiesto l'installazione di un Web Server a vostro piacimento( noi abbiamo utilizzato Apache Tomcat 9.0)  e l'installazione di MySQL per poter utilizzare il nostro database. Infine scaricare se non già presente sulla vostra macchina un IDE , vi consigliamo Intellij IDEA. Infine scaricate lo zip della repo e decomprimetelo.
+## Getting Started ▶️
+### Prerequisiti❗
+Per poter avviare il progetto Kawaii-Comix sulla vostra macchina è richiesta l'installazione di un Web Server a vostro piacimento (noi abbiamo utilizzato Apache Tomcat 9.0) e di MySQL per poter utilizzare il nostro Database. Per eseguire il progetto è necessario scaricare sulla vostra macchina (se non già presente) un IDE; in particolare consigliamo IntelliJ IDEA. Infine scaricate lo zip della repository e decomprimetelo.
 
-Dopo aver scaricato tutti i prerequisiti si può passare alla fase di settings.
-1. Aprite Intellij IDEA e come da immagine aprite il progetto Kawaii-Comix
-2. Settate come Run Configuration Apache Tomcat 9.0 (come da immagini nella sottocartella Istruzioni)
-3. Runnare la configurazione e vi si aprirà automaticamente la schermata del browser che avete come predefinito con la homepage del sito
-4. Non dimenticatevi di accendere MySQL altrimenti non vedrete i prodotti e per l'installazione basta andare sul sito ufficiale: https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/
+### Setting⚙️
+Dopo aver scaricato tutti i prerequisiti si può passare alla fase di setting: 
+1. Accendete MySQL altrimenti non vedrete i prodotti. Per l'installazione basta andare sul [sito ufficiale](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/);
+2. Eseguite IntelliJ IDEA e aprite il progetto Kawaii-Comix;
+3. Settate come Run Configuration Apache Tomcat 9.0 (come da immagini nella sottocartella Istruzioni);
+4. Runnare la configurazione: vi si aprirà automaticamente la schermata del browser che avete come predefinito con la Homepage del sito.
 
- Una volta che è stato tutto configurato il progetto dovrebbe andare tutto senza problemi =)
+Una volta che è stato tutto configurato il progetto dovrebbe andare tutto senza problemi =)
    
-
 ## Project Status 👍
 Il Progetto è: _Completo_ ✅
