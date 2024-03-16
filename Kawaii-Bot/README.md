@@ -2,9 +2,11 @@
 → Reccommendation System for Kawaii-Comix 
 
 ## Struttura Modulo
-📁 Data Understanding: Contiene gli script utilizzati per l'analisi dei dati;  
+📁 DataUnderstanding: Contiene gli script utilizzati per l'analisi dei dati;  
 📁 Dataset           : Contiene il dataset;  
-📁 Documents         : Contiene la documentazione.  
+📁 Documents         : Contiene la documentazione;
+📁 Modello           : Contiene il modello;
+📁 Server Flask      : Contiene il server Flask per il collegamento con Kawaii-Comix.
 Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Natale](https://github.com/ddfn03)  
 
 ## Tavola dei Contenuti 📋
@@ -27,9 +29,9 @@ Lo scopo del progetto consiste nella realizzazione di un modulo di raccomandazio
 - Matplot
 - Scikit - Learn
 ## Setup 🖥
-Per effettuare il setup del sistema di raccomandazione, bisognerà semplicemente scaricare la repo completa Kawaii-Comix
+Per effettuare il setup del sistema di raccomandazione, bisognerà semplicemente scaricare la repo completa Kawaii-Comix.
 ## Utilizzo 🖥
-Se si desidera vedere il ssitema all'opera bastarà semplicemente avviare ilserver dell'e-commerce e far partire anche il server Flask  e recarsi su una pagina di un prodotto e in basso alla pagina si vedranno i prodotti raccomandati dal sistema in base ai tag del prodotto. 
+Se si desidera vedere il sitema all'opera basterà semplicemente avviare il server dell'e-commerce e far partire anche il server Flask. Dopodichè sarà necessario recarsi su una pagina di un qualsiasi prodotto e nella sezione "Consigliati" della pagina si vedranno i prodotti raccomandati dal sistema in base ai tag del prodotto. 
 
 ## Project Status 👍
 Il Progetto è: _Completo_ ✅
