@@ -2,9 +2,11 @@
 → Reccommendation System for Kawaii-Comix 
 
 ## Struttura Modulo
-📁 Data Understanding: Contiene gli script utilizzati per l'analisi dei dati;  
+📁 DataUnderstanding : Contiene gli script utilizzati per l'analisi dei dati;  
 📁 Dataset           : Contiene il dataset;  
-📁 Documents         : Contiene la documentazione.  
+📁 Documents         : Contiene la documentazione;  
+📁 Modello           : Contiene il modello;  
+📁 Server Flask      : Contiene il server Flask per il collegamento con Kawaii-Comix.  
 Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Natale](https://github.com/ddfn03)  
 
 ## Tavola dei Contenuti 📋
@@ -27,15 +29,10 @@ Lo scopo del progetto consiste nella realizzazione di un modulo di raccomandazio
 - Matplot
 - Scikit - Learn
 ## Setup 🖥
-Per effettuare il setup del modello, bisognerà semplicemente scaricare nella stessa cartella i file 
-+ __*"Hth_datasetPredictor.py"*__, _***heartStandardized.csv***_, _***"Hth_heartTest.csv"***_
-Se si vogliono testare i modelli su un dataset completamente scollegato da quello del training (__*"Hth_heartTest.csv"*__) mentre, scericare i file
-+ __*"Hth_inputPredictor.py"*__ e "_***heartStandardized.csv***_"
-Se si vogliono testare i modelli con una singola cartella clinica. 
+Per effettuare il setup del sistema di raccomandazione, bisognerà semplicemente scaricare la repo completa Kawaii-Comix.
 ## Utilizzo 🖥
-Per utilizzare il modello, basterà semplicemente
-+ Far partire lo script, nel caso si stia testando col dataset;
-+ Inserire dei dati di input e far partire lo script in Python altrimenti, come da esempio:
+Se si desidera vedere il sitema all'opera basterà semplicemente avviare il server dell'e-commerce e far partire anche il server Flask. Dopodichè sarà necessario recarsi su una pagina di un qualsiasi prodotto e nella sezione "Consigliati" della pagina si vedranno i prodotti raccomandati dal sistema in base ai tag del prodotto. 
+
 ## Project Status 👍
 Il Progetto è: _Completo_ ✅
 
