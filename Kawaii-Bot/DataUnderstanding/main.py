@@ -1,12 +1,12 @@
 from DataUnderstanding.functions import *
 
-manga_dataset = pd.read_csv('../manga.csv')
+manga_dataset = pd.read_csv('manga.csv')
 
 print("\nVALORI NULL")
-#nanValues(manga_dataset)
+nanValues(manga_dataset)
 
 print("\nVALORI DUPLICATI")
-#duplicatedValues(manga_dataset)
+duplicatedValues(manga_dataset)
 
 # Applica la rimozione degli spazi a ogni riga della colonna 'tags'
 manga_dataset['tags'] = manga_dataset['tags'].apply(lambda x: re.sub(r"'([^']*)'", rimuovi_spazi, x))
@@ -26,11 +26,10 @@ manga_dataset = manga_dataset.drop(columns=['description', 'cover'])
 
 # Calcola la distribuzione dei tag
 print("\nDISTRIBUZIONE VARIABILI")
-#tagDistribution(all_tags_list)
+tagDistribution(all_tags_list)
 
 print("\nRATING")
-#frequenze_teoriche_rating(manga_dataset)
-#frequenze_osservate_rating(manga_dataset)
+frequenze_osservate_rating(manga_dataset)
 
 box_plot_rating(manga_dataset)
 trova_outliers_iqr(manga_dataset)
