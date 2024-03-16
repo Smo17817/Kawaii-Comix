@@ -1,10 +1,11 @@
 # 🌸 Kawaii-Bot 🌸
-→ Heart Disease Predictor. ←
+→ Reccommendation System for Kawaii-Comix
 📁 Data Understanding → Contiene gli script utilizzati per l'analisi dei dati;
 📁 Dataset       → Contiene i dataset;
 📁 Demo          → Contiene la demo del progetto;
 📁 Documents     → Contiene la documentazione.
-Collaboratori: [_Di Tella Nazaro_](https://github.com/OddlyHod), [Amendola Alfredo](https://github.com/Alfredoame) e [Xu Xin Yu](https://github.com/XXY126). 🙋🙋🙋
+Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Natale](https://github.com/ddfn03)
+
 ## Tavola dei Contenuti 📋
 * [Informazioni Generali](#informazioni-generali-ℹ)
   + [Cos'è?](#cosè-)
