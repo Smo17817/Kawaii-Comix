@@ -5,7 +5,7 @@ Collaboratori: [Simone DAssisi](//github.com/Smo17817), [Davide Del Franco Natal
 
 ## Struttura Progetto  
 📁 Deliverables: Questa directory contiene i PDF che descrivono dettagliatamente il progetto;    
-📁 Kawaii-Bot🌸: Questa directory contiene ilmodulo di intelligenza artificiale che si occupa dei suggerimenti;  
+📁 Kawaii-Bot🌸: Questa directory contiene il modulo di IA che si occupa dei suggerimenti;  
 📁 Semilavorati: Questa directory contiene le componenti dei documenti finali;  
 📁	db: Questa directory contiene lo schema del database relazionale;  
 📁 src: Questa directory contiene il codice sorgente del progetto;  
