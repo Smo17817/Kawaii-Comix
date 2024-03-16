@@ -1,7 +1,7 @@
 # 🌸 Kawaii-Bot 🌸
 → Reccommendation System for Kawaii-Comix 
 
-# Struttura Modulo
+## Struttura Modulo
 📁 Data Understanding: Contiene gli script utilizzati per l'analisi dei dati;  
 📁 Dataset           : Contiene il dataset;  
 📁 Documents         : Contiene la documentazione.  
