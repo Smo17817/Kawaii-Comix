@@ -28,5 +28,6 @@ Lo scopo del progetto consiste nell'applicare un modello B2C in cui è possibile
 + CSS
 + JavaScript (JS)
 + MySQL
++ Python
 ## Project Status 👍
 Il Progetto è: _Completo_ ✅
