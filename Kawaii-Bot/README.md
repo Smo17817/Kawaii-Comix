@@ -1,13 +1,14 @@
 # 🌸 Kawaii-Bot 🌸
 → Reccommendation System for Kawaii-Comix 
 
+Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Natale](https://github.com/ddfn03)  
+
 ## Struttura Modulo
 📁 DataUnderstanding : Contiene gli script utilizzati per l'analisi dei dati;  
 📁 Dataset           : Contiene il dataset;  
 📁 Documents         : Contiene la documentazione;  
 📁 Modello           : Contiene il modello;  
 📁 Server Flask      : Contiene il server Flask per il collegamento con Kawaii-Comix.  
-Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Natale](https://github.com/ddfn03)  
 
 ## Tavola dei Contenuti 📋
 * [Informazioni Generali](#informazioni-generali-ℹ)
