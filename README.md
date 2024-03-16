@@ -16,9 +16,9 @@ Collaboratori: [Simone DAssisi](//github.com/Smo17817), [Davide Del Franco Natal
   + [Cos'è?](#cosè-)
   + [Obiettivi](#obiettivi-)
 * [Tecnologie Utilizzate](#Tecnologie-Utilizzate-)
-* [Getting Started](#Getting-Started-)
-  + [Prerequisiti](#prerequisiti-)
-  + [Settings](#settings-)
+* [Getting Started](#Getting-Started)
+  + [Prerequisiti](#prerequisiti)
+  + [Settings](#setting)
 * [Project Status](#project-status-)
 ## Informazioni Generali ℹ
 ### Cos'è ❓
