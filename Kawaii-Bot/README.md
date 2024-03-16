@@ -2,7 +2,7 @@
 → Reccommendation System for Kawaii-Comix 
 
 ## Struttura Modulo
-📁 DataUnderstanding: Contiene gli script utilizzati per l'analisi dei dati;  
+📁 DataUnderstanding : Contiene gli script utilizzati per l'analisi dei dati;  
 📁 Dataset           : Contiene il dataset;  
 📁 Documents         : Contiene la documentazione;  
 📁 Modello           : Contiene il modello;  
