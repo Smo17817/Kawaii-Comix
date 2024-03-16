@@ -1,5 +1,5 @@
 # 🌸 Kawaii-Bot 🌸
-→ Reccommendation System for Kawaii-Comix
+→ Reccommendation System for Kawaii-Comix  
 📁 Data Understanding: Contiene gli script utilizzati per l'analisi dei dati;  
 📁 Dataset           : Contiene il dataset;  
 📁 Documents         : Contiene la documentazione.  
@@ -10,29 +10,20 @@ Collaboratori: [Simone DAssisi](//github.com/Smo17817) & [Davide Del Franco Nata
   + [Cos'è?](#cosè-)
   + [Obiettivi](#obiettivi-)
 * [Tecnologie Utilizzate](#Tecnologie-Utilizzate-)
-* [Features](#features-)
 * [Setup](#setup-)
 * [Utilizzo](#utilizzo-)
 * [Project Status](#project-status-)
-* [Migliorie](#migliorie-)
-* [Acknowledgements](#ringraziamenti-)
 ## Informazioni Generali ℹ
 ### Cos'è ❓
-_HtH_ è un progetto per l'analisi di cartelle cliniche al fine di creare, addestrare e validare un modello di ML, annotando quelle che sono le performance dei vari modelli considerati. 
+_Kawaii-Bot_ è stato progettato per migliorare l’esperienza di shopping per gli appassionati di manga. Grazie a Kawaii-Bot, i clienti possono accedere a suggerimenti personalizzato e pertinenti, basati sui loro gusti, preferenze di acquisto e sulle ultime tendenze del settore.  
 ### Obiettivi 🎯
-L’obiettivo che HTH si pone è quello di ridurre al minimo l’errore umano creando e sviluppando un modello di intelligenza artificiale per predire uno scompenso cardiaco.
-Tramite lo sviluppo di questo modello si prova ad automatizzare la diagnosi di uno scompenso cardiaco lasciando al medico più tempo per concentrarsi sul trattamento.
+Lo scopo del progetto consiste nella realizzazione di un modulo di raccomandazione personalizzata per l’e-commerce Kawaii-Comix che usi un approccio di tipo content-based. 
 ## Tecnologie Utilizzate 📊
 - Python
 - Seaborne
 - Numpy
 - Matplot
 - Scikit - Learn
-## Features 📝
-- Data Analysis
-- Data Visualization
-- 4 Modelli Predittivi
-- Modelli Funzionanti ed Applicabili
 ## Setup 🖥
 Per effettuare il setup del modello, bisognerà semplicemente scaricare nella stessa cartella i file 
 + __*"Hth_datasetPredictor.py"*__, _***heartStandardized.csv***_, _***"Hth_heartTest.csv"***_
@@ -43,15 +34,7 @@ Se si vogliono testare i modelli con una singola cartella clinica.
 Per utilizzare il modello, basterà semplicemente
 + Far partire lo script, nel caso si stia testando col dataset;
 + Inserire dei dati di input e far partire lo script in Python altrimenti, come da esempio:
+## Project Status 👍
+Il Progetto è: _Completo_ ✅
 
- input_data = {
-    "Age": 62,
-    "Sex": 1,                                #M: 0, F: 1
-    "ChestPainType": 1,                      #TA: 0, ATA: 1, NAP: 2, ASY: 3
-    "Cholesterol": 208,
-    "FastingBS": 1,
-    "MaxHR": 140,
-    "ExerciseAngina": 0,                     #Y: 0, N: 1
-    "Oldpeak": 0,
-    "ST_Slope": 2,                           #Up: 0, Flat: 1, Down: 2
-}
+  
