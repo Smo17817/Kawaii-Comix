@@ -1,3 +1,5 @@
+![LOGO](https://github.com/Smo17817/Kawaii-Comix/blob/main/src/main/webapp/icons/kclogo.png?raw=true)
+
 # 🌸 Kawaii-Comix 🌸
 → e-commerce per appassionati di manga  
 
