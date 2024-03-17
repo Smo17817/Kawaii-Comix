@@ -42,8 +42,8 @@ Dopo aver scaricato tutti i prerequisiti si può passare alla fase di setting:
 1. Accendete MySQL altrimenti non vedrete i prodotti. Per l'installazione basta andare sul [sito ufficiale](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/);
 2. Eseguite IntelliJ IDEA e aprite il progetto Kawaii-Comix;
 3. Settate come Run Configuration Apache Tomcat 9.0 (come da immagini nella sottocartella Istruzioni);
-4. Modificare il campo username e password in 📁 src -> 📁 webapp -> 📁 META-INF -> 📄context.xml con quelli scelti in fase di registrazione su MySQL;
-5. Modificare il campo username e password in 📁 src -> 📁 java -> 📁 view -> 📁site -> 📄DbManager.java con quelli scelti in fase di registrazione su MySQL
+4. Modificare il campo username e password in 📁 src → 📁 webapp → 📁 META-INF → 📄context.xml con quelli scelti in fase di registrazione su MySQL;
+5. Modificare il campo username e password in 📁 src → 📁 java → 📁 view → 📁 site → 📄DbManager.java con quelli scelti in fase di registrazione su MySQL
 6. Runnare la configurazione: vi si aprirà automaticamente la schermata del browser che avete come predefinito con la Homepage del sito.
 
 Una volta che è stato tutto configurato il progetto dovrebbe andare tutto senza problemi =)
