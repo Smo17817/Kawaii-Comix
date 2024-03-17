@@ -1,9 +1,4 @@
 # 🌸 Kawaii-Comix 🌸
-
-<p align="center">
-  <img src="https://github.com/Smo17817/Kawaii-Comix/blob/main/src/main/webapp/icons/banner.jpg?raw=true" alt="Testo alternativo" style="display:block; margin:auto;" />
-</p>
-
 → e-commerce per appassionati di manga  
 
 Collaboratori: [Simone DAssisi](//github.com/Smo17817), [Davide Del Franco Natale](https://github.com/ddfn03) & [Giovanni Sicilia](https://github.com/giogiosici)  
