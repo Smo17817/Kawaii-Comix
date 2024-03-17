@@ -32,6 +32,7 @@ Lo scopo del progetto consiste nell'applicare un modello B2C in cui è possibile
 + JavaScript (JS)
 + MySQL
 + Python
++ Server Apache Tomcat
 
 ## Getting Started ▶️
 ### Prerequisiti❗
