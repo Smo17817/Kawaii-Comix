@@ -29,6 +29,7 @@ Lo scopo del progetto consiste nella realizzazione di un modulo di raccomandazio
 - Numpy
 - Matplot
 - Scikit - Learn
+- Server Flask
 ## Setup 🖥
 Per effettuare il setup del sistema di raccomandazione, bisognerà semplicemente scaricare la repo completa Kawaii-Comix.
 ## Utilizzo 🖥
