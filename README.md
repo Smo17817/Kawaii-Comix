@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="https://github.com/Smo17817/Kawaii-Comix/blob/main/src/main/webapp/icons/kclogo.png?raw=true" alt="Testo alternativo" style="display:block; margin:auto;" />
+  <img src="https://github.com/Smo17817/Kawaii-Comix/blob/main/src/main/webapp/icons/banner.jpg?raw=true" alt="Testo alternativo" style="display:block; margin:auto;" />
 </p>
-
 # 🌸 Kawaii-Comix 🌸
 → e-commerce per appassionati di manga  
 
